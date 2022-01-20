@@ -1,0 +1,19 @@
+<template>
+  <div>
+      <svg style="fill: #484848;" width="23.613" height="21.797" slot="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.479 23.541"><path class="a" d="M15.739,3A8.233,8.233,0,0,0,7.5,11.239c0,6.179,8.239,15.3,8.239,15.3s8.239-9.122,8.239-15.3A8.233,8.233,0,0,0,15.739,3Zm0,11.182a2.943,2.943,0,1,1,2.943-2.943A2.944,2.944,0,0,1,15.739,14.182Z" transform="translate(-7.5 -3)"/></svg>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'PictoLocation',
+}
+</script>
+
+<style scoped lang="scss">
+svg:hover {
+  transition: all .3s;
+  fill: #2093A7 !important;
+}
+</style>
+
