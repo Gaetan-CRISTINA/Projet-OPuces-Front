@@ -1,12 +1,12 @@
 <template>
   <div>
-    <img src="../assets/svg/Groupe-276.svg" alt="">
+    <img src="../../assets/svg/Groupe-257.svg" alt="">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IllusDesk',
+  name: 'IllusLamp',
 }
 </script>
 
