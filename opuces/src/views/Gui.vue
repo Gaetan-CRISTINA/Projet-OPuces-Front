@@ -21,24 +21,24 @@
       <PictoClose/>
       <PictoCoeur/>
       <PictoCompte/>
+      <PictoEye/>
+      <PictoFb/>
+      <PictoFilters/>
+      <PictoGoogle/>   
+      <PictoInfo/>
+      <PictoLocation/>
+      <PictoMail/>
+      <PictoNav/>
+      <PictoNext/>
+      <PictoRemove/>
+      <PictoSearch/>
+      <PictoStar/>
+      <PictoStarEmpty/>
+      <PictoUser/>
+      <PictoDisplay1/>
+      <PictoDisplay2/>
+      <PictoEtat1/>
     </div>
-    <PictoEye/>
-    <PictoFb/>
-    <PictoFilters/>
-    <PictoGoogle/>   
-    <PictoInfo/>
-    <PictoLocation/>
-    <PictoMail/>
-    <PictoNav/>
-    <PictoNext/>
-    <PictoRemove/>
-    <PictoSearch/>
-    <PictoStar/>
-    <PictoStarEmpty/>
-    <PictoUser/>
-    <PictoDisplay1/>
-    <PictoDisplay2/>
-    <PictoEtat1/>
   </div>
 </template>
 
