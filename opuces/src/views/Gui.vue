@@ -13,6 +13,9 @@
 
     <div class="flex">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ce807fc1ac3730368f847700325062f84b3e1486
       <PictoHome/>
       <PictoText/>
       <PictoAdd1/>
@@ -40,7 +43,18 @@
       <PictoDisplay2/>
       <PictoEtat1/>
     </div>
+<<<<<<< HEAD
 =======
+=======
+    <div class="flxe">
+      <Prix/>
+      <SearchBar/>
+    </div>
+    <div class="flxe">
+      <HeaderMobile/>
+
+    </div>
+>>>>>>> ce807fc1ac3730368f847700325062f84b3e1486
     <PictoHome/>
     <PictoText/>
     <PictoAdd1/>
@@ -70,7 +84,10 @@
     <TabBar/>
     <PageLoginMobile/>
   </div>
+<<<<<<< HEAD
 >>>>>>> gui-stephen-2
+=======
+>>>>>>> ce807fc1ac3730368f847700325062f84b3e1486
   </div>
 </template>
 
@@ -79,7 +96,9 @@ import IllusFlowers from '../components/atoms/IllusFLowers.vue'
 import IllusLamp from '../components/atoms/IllusLamp.vue'
 import IllusDesk from '../components/atoms/IllusDesk.vue'
 import IllusPlane from '../components/atoms/IllusPlane.vue'
+
 import Logo from '../components/atoms/Logo.vue'
+
 import PictoHome from '../components/atoms/PictoHome.vue'
 import PictoText from '../components/atoms/PictoText.vue'
 import PictoAdd1 from '../components/atoms/PictoAdd1.vue'
@@ -106,6 +125,12 @@ import PictoUser from '../components/atoms/PictoUser.vue'
 import PictoDisplay1 from '../components/atoms/PictoDisplay1.vue'
 import PictoDisplay2 from '../components/atoms/PictoDisplay2.vue'
 import PictoEtat1 from '../components/atoms/PictoEtat1.vue'
+
+import Prix from '../components/molecules/Prix.vue'
+import SearchBar from '../components/molecules/SearchBar.vue'
+
+import HeaderMobile from '../components/organisms/HeaderMobile.vue'
+
 import TabBar from '../components/molecules/TabBar.vue'
 import PageLoginMobile from '../components/organisms/PageLoginMobile.vue'
 export default {
@@ -115,7 +140,9 @@ export default {
     IllusLamp,
     IllusDesk,
     IllusPlane,
+
     Logo,
+
     PictoHome,
     PictoText,
     PictoAdd1,
@@ -142,6 +169,11 @@ export default {
     PictoDisplay1,
     PictoDisplay2,
     PictoEtat1,
+
+    Prix,
+    SearchBar,
+
+    HeaderMobile
     TabBar,
     PageLoginMobile
   }
