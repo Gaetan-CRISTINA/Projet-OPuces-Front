@@ -39,41 +39,56 @@
       <PictoDisplay2/>
       <PictoEtat1/>
     </div>
+    <div class="flxe">
+      <Prix/>
+      <SearchBar/>
+    </div>
+    <div class="flxe">
+      <HeaderMobile/>
+
+    </div>
   </div>
 </template>
 
 <script>
-import IllusFlowers from '../components/IllusFLowers.vue'
-import IllusLamp from '../components/IllusLamp.vue'
-import IllusDesk from '../components/IllusDesk.vue'
-import IllusPlane from '../components/IllusPlane.vue'
-import Logo from '../components/Logo.vue'
-import PictoHome from '../components/PictoHome.vue'
-import PictoText from '../components/PictoText.vue'
-import PictoAdd1 from '../components/PictoAdd1.vue'
-import PictoAdd2 from '../components/PictoAdd2.vue'
-import PictoAnnonces from '../components/PictoAnnonces.vue'
-import PictoCamera from '../components/PictoCamera.vue'
-import PictoClose from '../components/PictoClose.vue'
-import PictoCoeur from '../components/PictoCoeur.vue'
-import PictoCompte from '../components/PictoCompte.vue'
-import PictoEye from '../components/PictoEye.vue'
-import PictoFb from '../components/PictoFb.vue'
-import PictoFilters from '../components/PictoFilters.vue'
-import PictoGoogle from '../components/PictoGoogle.vue'
-import PictoInfo from '../components/PictoInfo.vue'
-import PictoLocation from '../components/PictoLocation.vue'
-import PictoMail from '../components/PictoMail.vue'
-import PictoNav from '../components/PictoNav.vue'
-import PictoNext from '../components/PictoNext.vue'
-import PictoRemove from '../components/PictoRemove.vue'
-import PictoSearch from '../components/PictoSearch.vue'
-import PictoStar from '../components/PictoStar.vue'
-import PictoStarEmpty from '../components/PictoStarEmpty.vue'
-import PictoUser from '../components/PictoUser.vue'
-import PictoDisplay1 from '../components/PictoDisplay1.vue'
-import PictoDisplay2 from '../components/PictoDisplay2.vue'
-import PictoEtat1 from '../components/PictoEtat1.vue'
+import IllusFlowers from '../components/atoms/IllusFLowers.vue'
+import IllusLamp from '../components/atoms/IllusLamp.vue'
+import IllusDesk from '../components/atoms/IllusDesk.vue'
+import IllusPlane from '../components/atoms/IllusPlane.vue'
+
+import Logo from '../components/atoms/Logo.vue'
+
+import PictoHome from '../components/atoms/PictoHome.vue'
+import PictoText from '../components/atoms/PictoText.vue'
+import PictoAdd1 from '../components/atoms/PictoAdd1.vue'
+import PictoAdd2 from '../components/atoms/PictoAdd2.vue'
+import PictoAnnonces from '../components/atoms/PictoAnnonces.vue'
+import PictoCamera from '../components/atoms/PictoCamera.vue'
+import PictoClose from '../components/atoms/PictoClose.vue'
+import PictoCoeur from '../components/atoms/PictoCoeur.vue'
+import PictoCompte from '../components/atoms/PictoCompte.vue'
+import PictoEye from '../components/atoms/PictoEye.vue'
+import PictoFb from '../components/atoms/PictoFb.vue'
+import PictoFilters from '../components/atoms/PictoFilters.vue'
+import PictoGoogle from '../components/atoms/PictoGoogle.vue'
+import PictoInfo from '../components/atoms/PictoInfo.vue'
+import PictoLocation from '../components/atoms/PictoLocation.vue'
+import PictoMail from '../components/atoms/PictoMail.vue'
+import PictoNav from '../components/atoms/PictoNav.vue'
+import PictoNext from '../components/atoms/PictoNext.vue'
+import PictoRemove from '../components/atoms/PictoRemove.vue'
+import PictoSearch from '../components/atoms/PictoSearch.vue'
+import PictoStar from '../components/atoms/PictoStar.vue'
+import PictoStarEmpty from '../components/atoms/PictoStarEmpty.vue'
+import PictoUser from '../components/atoms/PictoUser.vue'
+import PictoDisplay1 from '../components/atoms/PictoDisplay1.vue'
+import PictoDisplay2 from '../components/atoms/PictoDisplay2.vue'
+import PictoEtat1 from '../components/atoms/PictoEtat1.vue'
+
+import Prix from '../components/molecules/Prix.vue'
+import SearchBar from '../components/molecules/SearchBar.vue'
+
+import HeaderMobile from '../components/organisms/HeaderMobile.vue'
 
 export default {
   name: 'Gui',
@@ -82,7 +97,9 @@ export default {
     IllusLamp,
     IllusDesk,
     IllusPlane,
+
     Logo,
+
     PictoHome,
     PictoText,
     PictoAdd1,
@@ -108,7 +125,12 @@ export default {
     PictoUser,
     PictoDisplay1,
     PictoDisplay2,
-    PictoEtat1
+    PictoEtat1,
+
+    Prix,
+    SearchBar,
+
+    HeaderMobile
   }
 }
 </script>

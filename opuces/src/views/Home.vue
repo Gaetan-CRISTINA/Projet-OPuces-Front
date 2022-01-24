@@ -1,12 +1,14 @@
 <template>
-  <h1>Home</h1>
+  <HeaderMobile/>
 </template>
 
 <script>
+import HeaderMobile from '../components/organisms/HeaderMobile.vue'
 
 export default {
   name: 'Home',
   components: {
+    HeaderMobile,
   }
 }
 </script>
