@@ -94,6 +94,7 @@
 
 
 <script>
+import Logo from "../atoms/Logo";
 import IllusFLowers from "../atoms/IllusFLowers";
 import IllusDesk from "../atoms/IllusDesk";
 import IllusLamp from "../atoms/IllusLamp";
@@ -106,6 +107,7 @@ export default {
     IllusDesk,
     IllusFLowers,
     IllusLamp,
+    Logo
   },
   data(){
       return {
