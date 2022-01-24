@@ -45,7 +45,7 @@
       <SearchBar/>
     </div>
     <div class="flxe">
-      <HeaderMobile/>
+      <Header/>
 
     </div>
     <PictoHome/>
@@ -117,7 +117,7 @@ import PictoEtat1 from '../components/atoms/PictoEtat1.vue'
 import Prix from '../components/molecules/Prix.vue'
 import SearchBar from '../components/molecules/SearchBar.vue'
 
-import HeaderMobile from '../components/organisms/HeaderMobile.vue'
+import Header from '../components/organisms/Header.vue'
 
 import TabBar from '../components/molecules/TabBar.vue'
 import PageLoginMobile from '../components/organisms/PageLoginMobile.vue'
@@ -161,7 +161,7 @@ export default {
     Prix,
     SearchBar,
 
-    HeaderMobile,
+    Header,
     TabBar,
     PageLoginMobile
   }

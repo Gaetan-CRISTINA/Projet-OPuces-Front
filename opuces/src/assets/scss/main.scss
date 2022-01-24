@@ -13,6 +13,7 @@ a {
 //-----------------
 $main-green: #2093A7;
 $secondary-green: #31C7C0;
+$light-green: #E3FBFF;
 $light-yellow: #F5F5EE;
 $dark-yellow: #FDD89C;
 $text-color: #484848;
@@ -36,8 +37,10 @@ $social-google: #D44235;
 //-----------------    
 @media screen and (min-width: 576px) {
     .main-container {
-      width: 540px;
-      margin: 0 auto;
+        padding-right: 0;
+        padding-left: 0;
+        width: 540px;
+        margin: 0 auto;
     }
   }
 //-----------------
