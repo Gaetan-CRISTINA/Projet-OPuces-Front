@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Gui from '../views/Gui.vue'
 import LoginForm from '../views/LoginForm.vue'
+import CreateUser from '../views/CreateUser.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/login-form',
     name: 'LoginForm',
     component: LoginForm
+  },
+  {
+    path: '/create-user',
+    name: 'PageRegister',
+    component: CreateUser
   }
 ]
 
