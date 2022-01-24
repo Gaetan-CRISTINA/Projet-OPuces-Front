@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../scss/main.scss";
+@import "../../assets/scss/main.scss";
 
 footer {
     height:63px;;

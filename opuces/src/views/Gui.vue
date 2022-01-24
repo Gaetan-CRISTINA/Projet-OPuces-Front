@@ -12,10 +12,6 @@
     </div>
 
     <div class="flex">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ce807fc1ac3730368f847700325062f84b3e1486
       <PictoHome/>
       <PictoText/>
       <PictoAdd1/>
@@ -43,9 +39,7 @@
       <PictoDisplay2/>
       <PictoEtat1/>
     </div>
-<<<<<<< HEAD
-=======
-=======
+  
     <div class="flxe">
       <Prix/>
       <SearchBar/>
@@ -54,7 +48,6 @@
       <HeaderMobile/>
 
     </div>
->>>>>>> ce807fc1ac3730368f847700325062f84b3e1486
     <PictoHome/>
     <PictoText/>
     <PictoAdd1/>
@@ -83,11 +76,6 @@
     <PictoEtat1/>
     <TabBar/>
     <PageLoginMobile/>
-  </div>
-<<<<<<< HEAD
->>>>>>> gui-stephen-2
-=======
->>>>>>> ce807fc1ac3730368f847700325062f84b3e1486
   </div>
 </template>
 
@@ -173,7 +161,7 @@ export default {
     Prix,
     SearchBar,
 
-    HeaderMobile
+    HeaderMobile,
     TabBar,
     PageLoginMobile
   }
