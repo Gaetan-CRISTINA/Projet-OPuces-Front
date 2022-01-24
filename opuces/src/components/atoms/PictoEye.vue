@@ -16,7 +16,7 @@ export default {
 <style scoped lang="scss">
 svg:hover {
   transition: all .3s;
-  fill: #2093A7 !important;
+  fill: #2093A7;
 }
 </style>
 

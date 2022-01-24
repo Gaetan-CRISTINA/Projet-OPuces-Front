@@ -47,6 +47,35 @@
       <HeaderMobile/>
 
     </div>
+    <PictoHome/>
+    <PictoText/>
+    <PictoAdd1/>
+    <PictoAdd2/>
+    <PictoAnnonces/>
+    <PictoCamera/>
+    <PictoClose/>
+    <PictoCoeur/>
+    <PictoCompte/>
+    <PictoEye/>
+    <PictoFb/>
+    <PictoFilters/>
+    <PictoGoogle/>   
+    <PictoInfo/>
+    <PictoLocation/>
+    <PictoMail/>
+    <PictoNav/>
+    <PictoNext/>
+    <PictoRemove/>
+    <PictoSearch/>
+    <PictoStar/>
+    <PictoStarEmpty/>
+    <PictoUser/>
+    <PictoDisplay1/>
+    <PictoDisplay2/>
+    <PictoEtat1/>
+    <TabBar/>
+    <PageLoginMobile/>
+  </div>
   </div>
 </template>
 
@@ -90,6 +119,8 @@ import SearchBar from '../components/molecules/SearchBar.vue'
 
 import HeaderMobile from '../components/organisms/HeaderMobile.vue'
 
+import TabBar from '../components/molecules/TabBar.vue'
+import PageLoginMobile from '../components/organisms/PageLoginMobile.vue'
 export default {
   name: 'Gui',
   components: {
@@ -131,6 +162,8 @@ export default {
     SearchBar,
 
     HeaderMobile
+    TabBar,
+    PageLoginMobile
   }
 }
 </script>
