@@ -81,7 +81,6 @@
 <script>
 import Logo from "../atoms/Logo";
 import IllusPlane from "../atoms/IllusPlane";
-
 export default {
   name: "PageLoginMobile",
   components: {
@@ -92,7 +91,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../scss/main.scss";
+@import "../../assets/scss/main.scss";
+
 
   
  .connexion {

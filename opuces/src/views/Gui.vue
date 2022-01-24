@@ -76,7 +76,7 @@
     <TabBar/>
     <PageLoginMobile/>
   </div>
-  </div>
+  
 </template>
 
 <script>
@@ -161,7 +161,7 @@ export default {
     Prix,
     SearchBar,
 
-    HeaderMobile
+    HeaderMobile,
     TabBar,
     PageLoginMobile
   }
