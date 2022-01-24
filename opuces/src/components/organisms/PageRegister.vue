@@ -6,29 +6,33 @@
           <Logo />
           <h1>O'puces</h1>
         </div>
-        <h6>Nom</h6>
-        <input type="email" name="email" class="email" />
-
-        <h6>Email</h6>
-        <input type="password" name="password" class="password" />
-
-        <h6>Mot de passe</h6>
+        <form>
+          <h6>Nom</h6>
+          <label>
+          <input type="text" id="name" name="name" class="email"><br>
+          </label>
+          <h6>Email</h6>
+          <label>
+          <input type="text" id="Email" name="Email">
+          </label>
+          <h6>Mot de passe</h6>
         <label class="eye-label">
           <svg class="icon icon-eye">
             <use xlink:href="#icon-eye"></use>
           </svg>
           <input type="password" name="password" class="password" />
         </label>
-
-        <h6>Confirmation du mot de passe</h6>
+          <h6>Mot de passe</h6>
         <label class="eye-label">
           <svg class="icon icon-eye">
             <use xlink:href="#icon-eye"></use>
           </svg>
           <input type="password" name="password" class="password" />
         </label>
+        </form>
+        
 
-        <button href="#" class="button connect">SE CONNECTER</button>
+        <button href="#" class="--button connect">SE CONNECTER</button>
       </div>
 
       <svg class="spritesheet">
@@ -40,14 +44,14 @@
           ></path>
         </symbol>
       </svg>
-    
-    <div class="right">
-      <div class="Desktop">
-        <IllusDesk />
-        <IllusFLowers />
-        <IllusLamp />
+
+      <div class="right">
+        <div class="Desktop">
+          <div class="IllusDesk"><IllusDesk /></div>
+          <div class="IllusFLowers"><IllusFLowers /></div>
+          <div class="IllusLamp"><IllusLamp /></div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -55,6 +59,7 @@
 
 
 <script>
+import Logo from "../atoms/Logo"
 import IllusFLowers from "../atoms/IllusFLowers";
 import IllusDesk from "../atoms/IllusDesk";
 import IllusLamp from "../atoms/IllusLamp";
@@ -62,6 +67,7 @@ import IllusLamp from "../atoms/IllusLamp";
 export default {
   name: "PageRegister",
   components: {
+    Logo,
     IllusDesk,
     IllusFLowers,
     IllusLamp,
@@ -96,7 +102,13 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+form {
   width:100%;
+}
+.left h6{
+  margin-top:25px;
 }
 h1 {
   position: absolute;
@@ -104,7 +116,7 @@ h1 {
   font-weight: 900;
   font-size: 22px;
 }
-.button {
+.--button {
   border-radius: 19px;
   padding: 1px;
   width: 345px;
@@ -119,7 +131,7 @@ h1 {
   font-size: 14px;
   font-weight: 900px;
 }
-.button svg {
+.--button svg {
   position: relative;
   top: 6.5px;
 }
@@ -143,7 +155,7 @@ label {
 label > .icon {
   position: absolute;
   top: 70%;
-  left: 85%;
+  left: 90%;
   transform: translateY(-60%);
   color: #484848;
 }
@@ -200,9 +212,22 @@ input:focus {
     display: block;
     margin: auto;
   }
-  .Desktop img {
+  .Desktop {
+    position: relative;
+  }
+  .IllusDesk img {
+    position: absolute;
     height: 417px;
     width: 417px;
+    top:-140px;
+  }
+  .IllusFLowers img {
+  position: absolute;
+  top:120px; left:-55px;
+  }
+  .IllusLamp img {
+    position: absolute;
+  top: -290px; left: 250px;
   }
 }
 @media screen and (min-width: 1400px) {

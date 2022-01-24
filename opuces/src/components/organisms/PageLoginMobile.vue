@@ -6,7 +6,7 @@
           <Logo />
           <h1>O'puces</h1>
         </div>
-
+        <form>
         <h6>E-mail</h6>
         <input type="email" name="email" class="email" />
 
@@ -17,18 +17,19 @@
           </svg>
           <input type="password" name="password" class="password" />
         </label>
+        </form>
 
         <a href="#">Mot de passe oublié ?</a>
-        <button href="#" class="button connect">SE CONNECTER</button>
+        <button href="#" class="--button connect">SE CONNECTER</button>
 
-        <button class="button facebook">
+        <button class="--button facebook">
           <svg class="icon icon-facebook">
             <use xlink:href="#icon-facebook"></use>
           </svg>
           SE CONNECTER AVEC FACEBOOK
         </button>
 
-        <button href="#" class="button google">
+        <button href="#" class="--button google">
           <svg class="icon icon-google">
             <use xlink:href="#icon-google"></use></svg
           >SE CONNECTER AVEC GOOGLE
@@ -36,17 +37,17 @@
 
         <div class="new-account">
           <h5>PAS ENCORE INSCRIT ?</h5>
-          <button href="#" class="button">CREER UN NOUVEAU COMPTE</button>
+          <button href="#" class="*-button">CREER UN NOUVEAU COMPTE</button>
         </div>
-        <svg class="spritesheet">
-          <symbol id="icon-eye" viewBox="0 0 32 32">
-            <title>eye</title>
-            <path
-              class="a"
-              d="M10.215,6.75A9.371,9.371,0,0,0,1.5,12.692a9.363,9.363,0,0,0,17.431,0A9.371,9.371,0,0,0,10.215,6.75Zm0,9.9a3.962,3.962,0,1,1,3.962-3.962A3.963,3.963,0,0,1,10.215,16.654Zm0-6.339a2.377,2.377,0,1,0,2.377,2.377A2.374,2.374,0,0,0,10.215,10.315Z"
-            ></path>
-          </symbol>
-        </svg>
+         <svg class="spritesheet">
+        <symbol id="icon-eye" viewBox="0 0 32 32">
+          <title>eye</title>
+          <path
+            class="a"
+            d="M10.215,6.75A9.371,9.371,0,0,0,1.5,12.692a9.363,9.363,0,0,0,17.431,0A9.371,9.371,0,0,0,10.215,6.75Zm0,9.9a3.962,3.962,0,1,1,3.962-3.962A3.963,3.963,0,0,1,10.215,16.654Zm0-6.339a2.377,2.377,0,1,0,2.377,2.377A2.374,2.374,0,0,0,10.215,10.315Z"
+          ></path>
+        </symbol>
+      </svg>
         <svg class="spritesheet">
           <symbol id="icon-facebook" viewBox="0 0 32 32">
             <title>facebook</title>
@@ -81,6 +82,7 @@
 <script>
 import Logo from "../atoms/Logo";
 import IllusPlane from "../atoms/IllusPlane";
+
 export default {
   name: "PageLoginMobile",
   components: {
@@ -128,7 +130,7 @@ export default {
       font-weight: 900;
       font-size: 22px;
     } 
-    .button {
+    .--button {
     border-radius: 19px;
     padding: 1px;
     width: 345px;
@@ -143,9 +145,12 @@ export default {
     font-size:14px;
     font-weight:900px;
     }
-    .button svg {
+    .--button svg {
       position: relative;
       top:6.5px;
+    }
+    .--button:focus {
+     display:none;
     }
     h6 {
     padding: 15px 0 15px 0;
@@ -191,10 +196,10 @@ export default {
     }
     label > .icon {
       position: absolute;
-      top: 70%;
-      left:95%;
-      transform: translateY(-60%);
-      color: #484848;
+  top: 95%;
+  left: 90%;
+  transform: translateY(-60%);
+  color: #484848
     }
     label > input {
       padding-right: calc(1em + 10px + 8px); /* icon width + icon padding-left + desired separation*/
@@ -205,6 +210,7 @@ export default {
     }
     .eye-label {
       display:flex;
+      
       align-items: center;
       width:100%;      
     }
@@ -229,34 +235,56 @@ export default {
     .main-container {
       width: 720px;
     }
+    .right {
+  display:none;
+}
   }
   @media screen and (min-width: 992px) {
     .main-container {
       width: 960px;
     }
+    .right {
+  display:none;
+}
   }
   @media screen and (min-width: 1200px) {
     .main-container {
       width: 1140px;
     }
-    .connexion {
-      display:flex;
-      align-items: center;
-      height:100vh;
-    }
     .right {
       display: block;
-      margin:auto;
+      width:100%;
+      padding:100px;
     }
     .IllusPlane img {
-      height:417px;
-      width:417px;
+      height:100%;
+      width:100%;
     }
-    
+
+
   }
   @media screen and (min-width: 1400px) {
     .main-container {
       width: 1320px;
+    }
+    .connexion {
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      height:100vh;
+    }
+    .right {
+      display: block;
+      width:100%;
+      padding:100px;
+    }
+    .left{
+      margin-right: auto;
+      
+    }
+    .IllusPlane img {
+      height:100%;
+      width:100%;
     }
   }
 </style>
