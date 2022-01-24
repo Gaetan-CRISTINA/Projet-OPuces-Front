@@ -1,0 +1,19 @@
+<template>
+  <div>
+      <svg style="fill: #484848;" width="9.14" height="17.06" slot="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9.137 17.059"><path class="a" d="M10.147,9.6l.474-3.087H7.659v-2A1.544,1.544,0,0,1,9.4,2.837h1.347V.209A16.423,16.423,0,0,0,8.356,0C5.916,0,4.321,1.479,4.321,4.156V6.509H1.609V9.6H4.321v7.463H7.659V9.6Z" transform="translate(-1.609)"/></svg>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'PictoFb',
+}
+</script>
+
+<style scoped lang="scss">
+svg:hover {
+  transition: all .3s;
+  fill: #2093A7;
+}
+</style>
+
