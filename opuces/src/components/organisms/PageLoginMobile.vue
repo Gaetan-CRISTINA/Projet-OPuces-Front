@@ -6,20 +6,29 @@
           <Logo />
           <h1>O'puces</h1>
         </div>
+      <form @submit="handleSubmit">
+          <h6>E-mail</h6>
+          <label>
+          <input v-model="login" name="login" class="email" />
+          </label>
 
-        <h6>E-mail</h6>
-        <input type="email" name="email" class="email" />
+          <div class="error" v-if="loginEmpty">Vous devez saisir un identifiant</div>
 
         <h6>Mot de passe</h6>
-        <label class="eye-label">
-          <svg class="icon icon-eye">
-            <use xlink:href="#icon-eye"></use>
-          </svg>
-          <input type="password" name="password" class="password" />
-        </label>
+          <label class="eye-label">
+           <svg class="icon icon-eye">
+              <use xlink:href="#icon-eye"></use>
+            </svg>
+              <input v-model="password" type="password" name="password" class="password" />
+          </label>
 
-        <a href="#">Mot de passe oublié ?</a>
-        <button href="#" class="button connect">SE CONNECTER</button>
+          <div class="error" v-if="passwordEmpty">Vous devez saisir un mot de passe</div>
+
+            <div class="error" v-if="loginFailed">Echec de connexion</div>
+      
+          <a href="#">Mot de passe oublié ?</a>
+          <button class="button connect">SE CONNECTER</button>
+        </form>
 
         <button class="button facebook">
           <svg class="icon icon-facebook">
@@ -28,7 +37,7 @@
           SE CONNECTER AVEC FACEBOOK
         </button>
 
-        <button href="#" class="button google">
+        <button class="button google">
           <svg class="icon icon-google">
             <use xlink:href="#icon-google"></use></svg
           >SE CONNECTER AVEC GOOGLE
@@ -36,7 +45,7 @@
 
         <div class="new-account">
           <h5>PAS ENCORE INSCRIT ?</h5>
-          <button href="#" class="button">CREER UN NOUVEAU COMPTE</button>
+          <button class="button">CREER UN NOUVEAU COMPTE</button>
         </div>
         <svg class="spritesheet">
           <symbol id="icon-eye" viewBox="0 0 32 32">
@@ -74,6 +83,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 
@@ -81,19 +91,65 @@
 <script>
 import Logo from "../atoms/Logo";
 import IllusPlane from "../atoms/IllusPlane";
+
+import userService from "../../services/userService.js";
+import storage from "../../plugins/storage.js";
+
 export default {
   name: "PageLoginMobile",
   components: {
     Logo,
     IllusPlane,
   },
-};
+  data() {
+    return {
+      login: '',
+      password: '',
+      loginEmpty: false,
+      passwordEmpty: false,
+      loginFailed: false,
+    }
+  },
+  methods: {
+      async handleSubmit(evt){
+          evt.preventDefault();
+          // vérifications
+
+          if(this.login == ""){
+              this.loginEmpty = true;
+          }
+          if(this.password == ""){
+              this.passwordEmpty = true;
+          }
+        
+          if(!this.passwordEmpty && !this.loginEmpty){
+              let userData = await userService.login(
+                  this.login, 
+                  this.password
+              );
+              console.log(userData);
+
+            if(userData){
+                //console.log("LOGIN!");
+                storage.set('userData', userData);
+                this.$router.push({name: 'Home'});
+                
+            } else {
+                console.log("LOGIN FAILED !!")
+                this.loginFailed = true;
+            }
+          }
+      }
+  }
+}
 </script>
 
 <style lang="scss">
 @import "../../assets/scss/main.scss";
 
-
+  form{
+    width: 100%;
+  }
   
  .connexion {
       width: 100%;
@@ -114,7 +170,7 @@ export default {
       display:flex;
       align-items:center;
       justify-content: center;
-      
+    
     }
    .left {
     display:flex;
