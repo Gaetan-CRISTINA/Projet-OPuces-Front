@@ -6,31 +6,70 @@
           <Logo />
           <h1>O'puces</h1>
         </div>
+         <form @submit="handleSubmit">
         <h6>Nom</h6>
-        <input type="email" name="email" class="email" />
-
+        <input v-model="username" type="text" name="username" class="username" />
+          <div 
+            class="error"
+            v-if="usernameEmpty"
+          >
+            Vous devez saisir un nom d'utilisateur
+          </div>
+          
         <h6>Email</h6>
-        <input type="password" name="password" class="password" />
+        <input v-model="email" type="email" name="email" class="email" />
+          <div 
+            class="error"
+            v-if="emailEmpty"
+            >
+            Vous devez saisir un email
+          </div>
 
         <h6>Mot de passe</h6>
         <label class="eye-label">
           <svg class="icon icon-eye">
             <use xlink:href="#icon-eye"></use>
           </svg>
-          <input type="password" name="password" class="password" />
+          <input v-model="password" type="password" name="password" class="password" />
         </label>
+          <div 
+            class="error"
+            v-if="passwordEmpty"
+          >
+          Vous devez saisir un password
+          </div>
+          <div 
+            class="error"
+            v-if="passwordTooShort"
+          >
+          Le mot de passe doit faire 8 caractères au minimum
+          </div>
 
         <h6>Confirmation du mot de passe</h6>
         <label class="eye-label">
           <svg class="icon icon-eye">
             <use xlink:href="#icon-eye"></use>
           </svg>
-          <input type="password" name="password" class="password" />
+          <input v-model="passwordVerify" type="password" name="password" class="password" />
         </label>
+        <div 
+            class="error"
+            v-if="passwordVerifyEmpty"
+        >
+            Vous devez confirmer le mot de passe
+        </div>
+
+        <div 
+            class="error"
+            v-if="passwordConfirm"
+        >
+            Les mots de passe ne correspondent pas.
+        </div>
 
         <button href="#" class="button connect">SE CONNECTER</button>
+      </form>
       </div>
-
+    
       <svg class="spritesheet">
         <symbol id="icon-eye" viewBox="0 0 32 32">
           <title>eye</title>
@@ -59,6 +98,8 @@ import IllusFLowers from "../atoms/IllusFLowers";
 import IllusDesk from "../atoms/IllusDesk";
 import IllusLamp from "../atoms/IllusLamp";
 
+import userService from "../../services/userService.js";
+
 export default {
   name: "PageRegister",
   components: {
@@ -66,6 +107,76 @@ export default {
     IllusFLowers,
     IllusLamp,
   },
+  data(){
+      return {
+          username: '',
+          email: '',
+          password: '',
+          passwordVerify: '',
+          usernameEmpty: false,
+          emailEmpty: false,
+          passwordEmpty: false,
+          passwordTooShort: false,
+          passwordVerifyEmpty: false,
+          passwordConfirm: false
+
+      };
+  },
+  methods: {
+      async handleSubmit(event){
+          event.preventDefault();
+          
+          if(this.username == ""){
+              this.usernameEmpty = true;
+          }
+
+          if(this.email == ""){
+              this.emailEmpty = true;
+          }
+
+          if(this.password == ""){
+              this.passwordEmpty = true;
+          }
+
+          if(this.passwordVerify == ""){
+              this.passwordVerifyEmpty = true;
+          }
+
+          if(this.password.length < 8){
+              this.passwordTooShort = true;
+          }
+
+          if(this.password !== this.passwordVerify){
+              this.passwordConfirm= true;
+          }
+
+          //si OK
+          if( 
+              !this.usernameEmpty && 
+              !this.emailEmpty && 
+              !this.passwordEmpty && 
+              !this.passwordVerifyEmpty && 
+              !this.passwordTooShort && 
+              !this.passwordConfirm 
+          ) 
+          {
+              console.log('Appel de l\'API pour s\'inscrire');
+              let result = await userService.inscription(
+                  this.username,
+                  this.email,
+                  this.password,
+                  this.passwordVerify
+              );
+              // si tout s'est bien passé je redirige vers la page login
+              console.log(result);
+              if(result){
+                  if(result.success == true){
+                      this.$router.push({name:'LoginForm'});
+                  }
+              }
+          }
+      }
+  }
 };
 </script>
 

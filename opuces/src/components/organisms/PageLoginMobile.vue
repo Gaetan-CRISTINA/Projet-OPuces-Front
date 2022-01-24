@@ -7,7 +7,7 @@
           <h1>O'puces</h1>
         </div>
       <form @submit="handleSubmit">
-          <h6>E-mail</h6>
+          <h6>Login</h6>
           <label>
           <input v-model="login" name="login" class="email" />
           </label>

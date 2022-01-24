@@ -25,6 +25,22 @@ const userService = {
         return response.data;
     },
 
+    inscription: async function(username, email, password, passwordVerify)
+    {
+        const response = await axios.post(
+          'http://localhost/OPuces/public/wp-json/opuces/v1/create-user',
+          {
+              userName: username,
+              email: email,
+              password: password,
+              confirmPassword: passwordVerify
+          }  
+        ).catch(function(){
+            return false;
+        });
+        return response.data;
+    },
+
     logout: async function ()
     {
         //on supprime dans local storage
