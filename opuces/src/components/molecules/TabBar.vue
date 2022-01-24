@@ -29,10 +29,6 @@ export default {
       PictoAdd1,
       PictoAdd2,
   }
-   
-  
-
-
 }
 </script>
 

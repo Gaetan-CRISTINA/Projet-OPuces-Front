@@ -39,6 +39,7 @@
     <PictoDisplay2/>
     <PictoEtat1/>
     <TabBar/>
+    <PageLoginMobile/>
   </div>
   </div>
 </template>
@@ -76,6 +77,7 @@ import PictoDisplay1 from '../components/atoms/PictoDisplay1.vue'
 import PictoDisplay2 from '../components/atoms/PictoDisplay2.vue'
 import PictoEtat1 from '../components/atoms/PictoEtat1.vue'
 import TabBar from '../components/molecules/TabBar.vue'
+import PageLoginMobile from '../components/organisms/PageLoginMobile.vue'
 export default {
   name: 'Gui',
   components: {
@@ -110,7 +112,8 @@ export default {
     PictoDisplay1,
     PictoDisplay2,
     PictoEtat1,
-    TabBar
+    TabBar,
+    PageLoginMobile
   }
 }
 </script>

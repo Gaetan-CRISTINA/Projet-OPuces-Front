@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Gui from '../views/Gui.vue'
+import LoginForm from '../views/LoginForm.vue'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     name: 'Gui',
     component: Gui
   },
+  {
+    path: '/login-form',
+    name: 'LoginForm',
+    component: LoginForm
+  }
 ]
 
 const router = new VueRouter({
