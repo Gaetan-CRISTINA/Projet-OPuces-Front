@@ -13,12 +13,7 @@ export default {
   },
   created(){
       storage.unset('userData');
-      this.$router.push({name:"login"})  
+      this.$router.push({name:"Home"})  
   }
 }
 </script>
-
-<style scoped lang="scss">
-
-    
-</style>
