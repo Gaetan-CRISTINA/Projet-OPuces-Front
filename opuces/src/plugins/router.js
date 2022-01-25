@@ -5,7 +5,7 @@ import Home from '../views/Home.vue'
 import Gui from '../views/Gui.vue'
 import LoginForm from '../views/LoginForm.vue'
 import CreateUser from '../views/CreateUser.vue'
-
+import MentionsLegales from '../views/MentionsLegales.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,6 +28,11 @@ const routes = [
     path: '/create-user',
     name: 'PageRegister',
     component: CreateUser
+  },
+  {
+    path: '/mentions-legales',
+    name: 'CGU',
+    component: MentionsLegales
   },
 ]
 
