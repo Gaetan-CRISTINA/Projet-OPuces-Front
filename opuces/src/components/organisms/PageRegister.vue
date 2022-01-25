@@ -2,35 +2,82 @@
   <div class="main-container">
     <div class="connexion">
       <div class="left">
+        
         <div>
-          <Logo />
-          <h1>O'puces</h1>
+          <router-link
+            :to="{name: 'Home'}"
+            >
+              <Logo />
+              <h1>O'puces</h1>
+          </router-link>  
         </div>
-        <h6>Nom</h6>
-        <input type="email" name="email" class="email" />
+        
 
+         <form @submit="handleSubmit">
+        <h6>Nom</h6>
+        <input v-model="username" type="text" name="username" class="username" />
+          <div 
+            class="error"
+            v-if="usernameEmpty"
+          >
+            Vous devez saisir un nom d'utilisateur
+          </div>
+          
         <h6>Email</h6>
-        <input type="password" name="password" class="password" />
+        <input v-model="email" type="email" name="email" class="email" />
+          <div 
+            class="error"
+            v-if="emailEmpty"
+            >
+            Vous devez saisir un email
+          </div>
 
         <h6>Mot de passe</h6>
         <label class="eye-label">
           <svg class="icon icon-eye">
             <use xlink:href="#icon-eye"></use>
           </svg>
-          <input type="password" name="password" class="password" />
+          <input v-model="password" type="password" name="password" class="password" />
         </label>
+          <div 
+            class="error"
+            v-if="passwordEmpty"
+          >
+          Vous devez saisir un password
+          </div>
+          <div 
+            class="error"
+            v-if="passwordTooShort"
+          >
+          Le mot de passe doit faire 8 caractères au minimum
+          </div>
 
         <h6>Confirmation du mot de passe</h6>
         <label class="eye-label">
           <svg class="icon icon-eye">
             <use xlink:href="#icon-eye"></use>
           </svg>
-          <input type="password" name="password" class="password" />
+          <input v-model="passwordVerify" type="password" name="password" class="password" />
         </label>
+        <div 
+            class="error"
+            v-if="passwordVerifyEmpty"
+        >
+            Vous devez confirmer le mot de passe
+        </div>
 
-        <button href="#" class="button connect">SE CONNECTER</button>
+        <div 
+            class="error"
+            v-if="passwordConfirm"
+        >
+            Les mots de passe ne correspondent pas.
+        </div>
+
+        <button href="#" class="--button connect">SE CONNECTER</button>
+      </form>
+
       </div>
-
+    
       <svg class="spritesheet">
         <symbol id="icon-eye" viewBox="0 0 32 32">
           <title>eye</title>
@@ -40,14 +87,14 @@
           ></path>
         </symbol>
       </svg>
-    
-    <div class="right">
-      <div class="Desktop">
-        <IllusDesk />
-        <IllusFLowers />
-        <IllusLamp />
+
+      <div class="right">
+        <div class="Desktop">
+          <div class="IllusDesk"><IllusDesk /></div>
+          <div class="IllusFLowers"><IllusFLowers /></div>
+          <div class="IllusLamp"><IllusLamp /></div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -55,17 +102,92 @@
 
 
 <script>
+import Logo from "../atoms/Logo";
 import IllusFLowers from "../atoms/IllusFLowers";
 import IllusDesk from "../atoms/IllusDesk";
 import IllusLamp from "../atoms/IllusLamp";
 
+import userService from "../../services/userService.js";
+
 export default {
   name: "PageRegister",
   components: {
+    Logo,
     IllusDesk,
     IllusFLowers,
-    IllusLamp,
+    IllusLamp
   },
+  data(){
+      return {
+          username: '',
+          email: '',
+          password: '',
+          passwordVerify: '',
+          usernameEmpty: false,
+          emailEmpty: false,
+          passwordEmpty: false,
+          passwordTooShort: false,
+          passwordVerifyEmpty: false,
+          passwordConfirm: false
+
+      };
+  },
+  methods: {
+      async handleSubmit(event){
+          event.preventDefault();
+          
+          if(this.username == ""){
+              this.usernameEmpty = true;
+          }
+
+          if(this.email == ""){
+              this.emailEmpty = true;
+          }
+
+          if(this.password == ""){
+              this.passwordEmpty = true;
+          }
+
+          if(this.passwordVerify == ""){
+              this.passwordVerifyEmpty = true;
+          }
+
+          if(this.password.length < 8){
+              this.passwordTooShort = true;
+          }
+
+          if(this.password !== this.passwordVerify){
+              this.passwordConfirm= true;
+          }
+
+          //si OK
+          if( 
+              !this.usernameEmpty && 
+              !this.emailEmpty && 
+              !this.passwordEmpty && 
+              !this.passwordVerifyEmpty && 
+              !this.passwordTooShort && 
+              !this.passwordConfirm 
+          ) 
+          {
+              console.log('Appel de l\'API pour s\'inscrire');
+              let result = await userService.inscription(
+                  this.username,
+                  this.email,
+                  this.password,
+                  this.passwordVerify
+              );
+              // si tout s'est bien passé je redirige vers la page login
+              console.log(result);
+              if(result){
+                  if(result.success == true){
+                      this.$router.push({name:'LoginForm'});
+                      // renvoyer vers la home avec token 
+                  }
+              }
+          }
+      }
+  }
 };
 </script>
 
@@ -96,7 +218,13 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width:100%;
+  width: 100%;
+}
+form {
+  width: 100%;
+}
+.left h6 {
+  margin-top: 25px;
 }
 h1 {
   position: absolute;
@@ -104,7 +232,7 @@ h1 {
   font-weight: 900;
   font-size: 22px;
 }
-.button {
+.--button {
   border-radius: 19px;
   padding: 1px;
   width: 345px;
@@ -119,7 +247,7 @@ h1 {
   font-size: 14px;
   font-weight: 900px;
 }
-.button svg {
+.--button svg {
   position: relative;
   top: 6.5px;
 }
@@ -143,7 +271,7 @@ label {
 label > .icon {
   position: absolute;
   top: 70%;
-  left: 85%;
+  left: 90%;
   transform: translateY(-60%);
   color: #484848;
 }
@@ -200,9 +328,25 @@ input:focus {
     display: block;
     margin: auto;
   }
-  .Desktop img {
+  .Desktop {
+    position: relative;
+    margin-left: 300px;
+  }
+  .IllusDesk img {
+    position: absolute;
     height: 417px;
     width: 417px;
+    top: -140px;
+  }
+  .IllusFLowers img {
+    position: absolute;
+    top: 120px;
+    left: -55px;
+  }
+  .IllusLamp img {
+    position: absolute;
+    top: -290px;
+    left: 250px;
   }
 }
 @media screen and (min-width: 1400px) {

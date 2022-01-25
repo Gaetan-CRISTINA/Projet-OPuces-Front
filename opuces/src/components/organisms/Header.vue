@@ -1,23 +1,139 @@
 <template>
   <header>
     <div class="main-container">
+
       <div class="flex">
         <div id="left-header-mobile">
           <PictoUser />
           <p id="se-connecter">Se connecter</p>
         </div>
+
+      
+      <div class="flex">
+        
+        <div id="left-header-mobile">
+          <router-link
+            v-if="!user"
+            :to="{
+              name: 'LoginForm'
+              }"
+              >
+          <PictoUser />
+          <a id="se-connecter">
+            
+            Se connecter
+            
+          </a>
+          </router-link>
+
+          <router-link
+          v-if="user"
+          :to="{
+            name: 'Home'
+            }">
+            <PictoUser />
+          </router-link>
+          <nav class="sub-nav">
+            <ul>
+                <li id="welcome"><PictoUser/> Jean-Michel</li>
+
+                  <router-link
+                      :to="{
+                        name: 'UserProfil'
+                      }">
+                    <li><PictoUser />Mon profil</li>
+                  </router-link>  
+
+                  <router-link
+                      :to="{
+                        name: 'MyAccound'
+                        }">
+                    <li><PictoCompte />  Mon compte</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'UserClassified'
+                        }">
+                    <li><PictoAnnonces />  Mes annonces</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'CGV'
+                        }">
+                    <li><PictoInfo />  CGV-CGU</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'LegalMentions'
+                        }">
+                    <li><PictoText />  Mentions légales</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'Contact'
+                        }">
+                    <li><PictoMail /> Contact</li>
+                  </router-link>
+            </ul>
+                  <router-link
+                      :to="{
+                        name: 'Logout'
+                        }">
+            <a class="disconect--button">Se déconnecter</a>
+                  </router-link>
+        </nav>
+        </div>
+
         <div id="right-header-mobile">
           <PictoFilters />
         </div>
         <div id="left-header-desktop">
+
           <a href="#">
             <span id="logo-link"><Logo /></span>
             <h2 id="txt-link">O'puces</h2>
           </a>
+
+        <!--User Connected-->
+        <router-link
+          v-if="user"
+            :to="{
+              name: 'Home'
+              }"
+              >
+          <a>
+              <span id="logo-link"><Logo /></span>
+              <h2 id="txt-link">O'Puces</h2>
+
+          </a>
+        </router-link>
+        <!-- FIN-->
+
+        <!-- User Offline-->
+        <router-link
+          v-if="!user"
+            :to="{
+              name: 'PageRegister'
+              }"
+              >
+          <a>
+              <span id="logo-link"><Logo /></span>
+              <h2 id="txt-link">O'Puces</h2>
+
+          </a>
+        </router-link>
+        <!-- FIN-->
+        
+
         </div>
         <div id="center-header-desktop">
           <SearchBar />
         </div>
+
         <div style="display: none" id="right-header-desktop">
           <PictoUser />
         </div>
@@ -26,6 +142,64 @@
           <PictoAnnonces />
           <PictoAdd2 />
           <img src="https://picsum.photos/30" alt="" />
+
+
+        
+        <div style="display: none" id="right-header-desktop">
+          <PictoUser />
+        </div>
+
+        
+        <div id="right-header-desktop">
+          <router-link
+            :to="{
+              name: 'Home'
+              }"
+              >
+          <PictoHome />
+          </router-link>
+
+          <router-link
+          v-if="user"
+            :to="{
+              name: 'UserClassified'
+              }"
+              >
+          <PictoAnnonces />
+          </router-link>
+
+          <router-link
+          v-if="user"
+            :to="{
+              name: 'CreateClassified'
+              }"
+              >
+          <PictoAdd2 />
+          </router-link>
+
+        <!--User Connected-->
+        
+          <router-link
+          v-if="user"
+              :to="{
+              name: 'UserProfil'
+              }"
+              >
+            <img src="https://picsum.photos/30" alt="" />
+          </router-link>
+        <!--FIN-->
+
+        <!--User Offline-->
+          <router-link
+          v-if="!user"
+              :to="{
+                name: 'LoginForm'
+                }"
+                >
+                <PictoUser/>
+          </router-link>
+        <!--FIN-->
+
         </div>
       </div>
     </div>
@@ -34,15 +208,31 @@
 
 <script>
 import PictoUser from "../atoms/PictoUser";
+
+
+import PictoCompte from "../atoms/PictoCompte";
+import PictoAnnonces from "../atoms/PictoAnnonces";
+import PictoInfo from "../atoms/PictoInfo";
+import PictoText from "../atoms/PictoText";
+import PictoMail from "../atoms/PictoMail";
+
+
 import PictoFilters from "../atoms/PictoFilters";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
 import PictoAdd2 from "../atoms/PictoAdd2";
+
 import PictoAnnonces from "../atoms/PictoAnnonces";
 import PictoHome from "../atoms/PictoHome";
 
 export default {
   name: "HeaderMobile",
+
+import PictoHome from "../atoms/PictoHome";
+
+export default {
+  name: "Header",
+
   components: {
     PictoUser,
     PictoFilters,
@@ -51,7 +241,22 @@ export default {
     PictoAdd2,
     PictoAnnonces,
     PictoHome,
+
   },
+
+    PictoCompte,
+    PictoInfo,
+    PictoText,
+    PictoMail,
+  
+  },
+  computed: {
+    user(){
+      return this.$store.state.user;
+    }
+  }
+  
+
 };
 </script>
 
@@ -63,6 +268,11 @@ export default {
   align-items: center;
   width: 100%;
 }
+
+#left-header-mobile:hover .sub-nav {
+  transform: translateX(0)
+}
+
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
@@ -74,7 +284,11 @@ export default {
 }
 header {
   position: fixed;
-  z-index: 999;
+
+  
+
+  z-index: 1;
+
   padding: 0.5em 0 !important;
   width: 100%;
   background-color: #fff;
@@ -84,6 +298,70 @@ header {
   padding-left: 1em;
   position: relative;
   top: 2px;
+}
+
+.nav--button {
+  border-radius: 19px;
+  padding: 20px;
+  width: 100%;
+  height: 38px;
+  background-color: $main-green;
+  border: none;
+  margin: 20px 0 40px 0;
+  font-size: 14px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+}
+#pictocamera {
+  fill: black;
+}
+.sub-nav li {
+  border-bottom: solid 1px black;
+  padding: 25px 25px 25px 10px;
+  width: 100%;
+  margin-top: 25px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: black;
+}
+li svg {
+  margin-right: 15px;
+}
+#welcome {
+  border: none;
+  font-size: 24px;
+}
+.sub-nav {
+  padding: 30px;
+  width: 85%;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background: $light-grey;
+  transform: translateX(-100%);
+  transition: transform 0.2s ease-in-out;
+  
+}
+.disconect--button {
+  position: absolute;
+  bottom: 1em;
+  color:$main-green;
+}
+#div-logo {
+  width: 32px;
+}
+#left-header-desktop a:hover svg {
+  fill: $secondary-green !important;
+}
+#picto-home {
+  fill: $main-green !important;
 }
 
 @media screen and (min-width: 576px) {
@@ -140,18 +418,23 @@ header {
 }
 @media screen and (min-width: 1400px) {
 }
-</style>
+
+//
+//<style lang="scss">
+//@import "../../assets/scss/main";
+//#div-logo {
+//  width: 32px;
+//}
+//#left-header-desktop a:hover svg {
+//  fill: $secondary-green !important;
+//}
+//#picto-home {
+//  fill: $main-green !important;
+//}
+//
+//style>
+//
 
 
-<style lang="scss">
-@import "../../assets/scss/main";
-#div-logo {
-  width: 32px;
-}
-#left-header-desktop a:hover svg {
-  fill: $secondary-green !important;
-}
-#picto-home {
-  fill: $main-green !important;
-}
-</style>
+
+

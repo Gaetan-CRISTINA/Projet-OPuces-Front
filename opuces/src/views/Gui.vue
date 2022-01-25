@@ -76,7 +76,9 @@
     <PictoEtat1/>
     <TabBar/>
     <PageLoginMobile/>
+    
   </div>
+
 </template>
 
 <script>
@@ -121,6 +123,7 @@ import Header from '../components/organisms/Header.vue'
 
 import TabBar from '../components/molecules/TabBar.vue'
 import PageLoginMobile from '../components/organisms/PageLoginMobile.vue'
+
 export default {
   name: 'Gui',
   components: {
@@ -128,7 +131,7 @@ export default {
     IllusLamp,
     IllusDesk,
     IllusPlane,
-
+    
     Logo,
 
     PictoHome,
@@ -166,6 +169,7 @@ export default {
     PageLoginMobile
   }
 }
+
 </script>
 
 <style scoped lang="scss">

@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <Header />
     <div class="main-container">
@@ -24,10 +25,13 @@ import FiltersDesktop from "../components/organisms/FiltersDesktop.vue";
 import CardsList from "../components/organisms/CardsList.vue";
 import PictoDisplay2 from "../components/atoms/PictoDisplay2.vue";
 
+
+
 export default {
   name: "Home",
   components: {
     Header,
+
     FiltersDesktop,
     CardsList,
     PictoDisplay2,
@@ -59,6 +63,7 @@ export default {
   }
   #display-annonces {
     width: 520px;
+
   }
 }
 @media screen and (min-width: 1200px) {
