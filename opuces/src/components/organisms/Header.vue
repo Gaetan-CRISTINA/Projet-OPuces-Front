@@ -6,7 +6,15 @@
         
         <div id="left-header-mobile">
           <PictoUser />
-          <p id="se-connecter">Se connecter</p>
+          <p id="se-connecter">
+            <router-link
+            :to="{
+              name: 'LoginForm'
+              }"
+              >
+            Se connecter
+            </router-link>
+          </p>
           <nav class="sub-nav">
             <ul>
           <li id="welcome"><PictoUser/> Jean-Michel</li>
@@ -27,22 +35,62 @@
           <PictoFilters />
         </div>
         <div id="left-header-desktop">
-          <a href="#">
-            <span id="logo-link"><Logo /></span>
-            <h2 id="txt-link">O'puces</h2>
+        <router-link
+            :to="{
+              name: 'LoginForm'
+              }"
+              >
+              
+          <a>
+              <span id="logo-link"><Logo /></span>
+              <h2 id="txt-link">O'Puces</h2>
+
           </a>
+        </router-link>
+        
         </div>
         <div id="center-header-desktop">
           <SearchBar />
         </div>
+
+        
         <div style="display: none" id="right-header-desktop">
           <PictoUser />
         </div>
+
+        
         <div id="right-header-desktop">
+          <router-link
+            :to="{
+              name: 'Home'
+              }"
+              >
           <PictoHome />
+          </router-link>
+
+          <router-link
+            :to="{
+              name: 'UserClassified'
+              }"
+              >
           <PictoAnnonces />
+          </router-link>
+
+          <router-link
+            :to="{
+              name: 'CreateClassified'
+              }"
+              >
           <PictoAdd2 />
-          <img src="https://picsum.photos/30" alt="" />
+          </router-link>
+
+          <router-link
+              :to="{
+              name: 'UserProfil'
+              }"
+              >
+            <img src="https://picsum.photos/30" alt="" />
+          </router-link>
         </div>
       </div>
     </div>
@@ -79,6 +127,7 @@ export default {
     PictoMail,
   
   },
+  
 };
 </script>
 
