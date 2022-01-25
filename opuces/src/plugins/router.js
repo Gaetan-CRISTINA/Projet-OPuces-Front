@@ -5,8 +5,11 @@ import Home from '../views/Home.vue'
 import Gui from '../views/Gui.vue'
 import LoginForm from '../views/LoginForm.vue'
 import CreateUser from '../views/CreateUser.vue'
+
 import UserProfil from '../views/UserProfil.vue'
 import Logout from '../views/Logout.vue'
+
+import MentionsLegales from '../views/MentionsLegales.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +35,7 @@ const routes = [
     component: CreateUser
   },
   {
+
     path: '/user-profil',
     name: 'UserProfil',
     component: UserProfil
@@ -40,6 +44,12 @@ const routes = [
     path: '/logout',
     name: 'Logout',
     component: Logout
+ },
+  {
+    path: '/mentions-legales',
+    name: 'CGU',
+    component: MentionsLegales
+
   },
 ]
 
