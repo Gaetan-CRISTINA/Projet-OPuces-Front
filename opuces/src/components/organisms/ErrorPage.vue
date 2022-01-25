@@ -28,7 +28,7 @@ import Logo from '../atoms/Logo'
 import SearchBar from '../molecules/SearchBar'
 
 export default {
-  name: 'HeaderMobile',
+  name: 'Header',
   components: {
       PictoUser,
       PictoFilters,
