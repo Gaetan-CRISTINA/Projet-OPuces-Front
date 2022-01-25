@@ -6,6 +6,7 @@
           <Logo />
           <h1>O'puces</h1>
         </div>
+
          <form @submit="handleSubmit">
         <h6>Nom</h6>
         <input v-model="username" type="text" name="username" class="username" />
@@ -66,8 +67,9 @@
             Les mots de passe ne correspondent pas.
         </div>
 
-        <button href="#" class="button connect">SE CONNECTER</button>
+        <button href="#" class="--button connect">SE CONNECTER</button>
       </form>
+
       </div>
     
       <svg class="spritesheet">
@@ -79,14 +81,14 @@
           ></path>
         </symbol>
       </svg>
-    
-    <div class="right">
-      <div class="Desktop">
-        <IllusDesk />
-        <IllusFLowers />
-        <IllusLamp />
+
+      <div class="right">
+        <div class="Desktop">
+          <div class="IllusDesk"><IllusDesk /></div>
+          <div class="IllusFLowers"><IllusFLowers /></div>
+          <div class="IllusLamp"><IllusLamp /></div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -104,6 +106,7 @@ import userService from "../../services/userService.js";
 export default {
   name: "PageRegister",
   components: {
+    Logo,
     IllusDesk,
     IllusFLowers,
     IllusLamp,
@@ -210,7 +213,13 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width:100%;
+  width: 100%;
+}
+form {
+  width: 100%;
+}
+.left h6 {
+  margin-top: 25px;
 }
 h1 {
   position: absolute;
@@ -218,7 +227,7 @@ h1 {
   font-weight: 900;
   font-size: 22px;
 }
-.button {
+.--button {
   border-radius: 19px;
   padding: 1px;
   width: 345px;
@@ -233,7 +242,7 @@ h1 {
   font-size: 14px;
   font-weight: 900px;
 }
-.button svg {
+.--button svg {
   position: relative;
   top: 6.5px;
 }
@@ -257,7 +266,7 @@ label {
 label > .icon {
   position: absolute;
   top: 70%;
-  left: 85%;
+  left: 90%;
   transform: translateY(-60%);
   color: #484848;
 }
@@ -314,9 +323,25 @@ input:focus {
     display: block;
     margin: auto;
   }
-  .Desktop img {
+  .Desktop {
+    position: relative;
+    margin-left: 300px;
+  }
+  .IllusDesk img {
+    position: absolute;
     height: 417px;
     width: 417px;
+    top: -140px;
+  }
+  .IllusFLowers img {
+    position: absolute;
+    top: 120px;
+    left: -55px;
+  }
+  .IllusLamp img {
+    position: absolute;
+    top: -290px;
+    left: 250px;
   }
 }
 @media screen and (min-width: 1400px) {

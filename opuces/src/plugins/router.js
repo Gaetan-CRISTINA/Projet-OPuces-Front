@@ -28,7 +28,7 @@ const routes = [
     path: '/create-user',
     name: 'PageRegister',
     component: CreateUser
-  }
+  },
 ]
 
 const router = new VueRouter({
