@@ -9,30 +9,29 @@
         <form>
           <h6>Nom</h6>
           <label>
-          <input type="text" id="name" name="name" class="email"><br>
+            <input type="text" id="name" name="name" class="email" /><br />
           </label>
           <h6>Email</h6>
           <label>
-          <input type="text" id="Email" name="Email">
+            <input type="text" id="Email" name="Email" />
           </label>
           <h6>Mot de passe</h6>
-        <label class="eye-label">
-          <svg class="icon icon-eye">
-            <use xlink:href="#icon-eye"></use>
-          </svg>
-          <input type="password" name="password" class="password" />
-        </label>
+          <label class="eye-label">
+            <svg class="icon icon-eye">
+              <use xlink:href="#icon-eye"></use>
+            </svg>
+            <input type="password" name="password" class="password" />
+          </label>
           <h6>Mot de passe</h6>
-        <label class="eye-label">
-          <svg class="icon icon-eye">
-            <use xlink:href="#icon-eye"></use>
-          </svg>
-          <input type="password" name="password" class="password" />
-        </label>
+          <label class="eye-label">
+            <svg class="icon icon-eye">
+              <use xlink:href="#icon-eye"></use>
+            </svg>
+            <input type="password" name="password" class="password" />
+          </label>
         </form>
-        
 
-        <button href="#" class="--button connect">SE CONNECTER</button>
+        <button href="#" class="--button connect">CREER MON COMPTE</button>
       </div>
 
       <svg class="spritesheet">
@@ -59,7 +58,7 @@
 
 
 <script>
-import Logo from "../atoms/Logo"
+import Logo from "../atoms/Logo";
 import IllusFLowers from "../atoms/IllusFLowers";
 import IllusDesk from "../atoms/IllusDesk";
 import IllusLamp from "../atoms/IllusLamp";
@@ -105,10 +104,10 @@ export default {
   width: 100%;
 }
 form {
-  width:100%;
+  width: 100%;
 }
-.left h6{
-  margin-top:25px;
+.left h6 {
+  margin-top: 25px;
 }
 h1 {
   position: absolute;
@@ -214,20 +213,23 @@ input:focus {
   }
   .Desktop {
     position: relative;
+    margin-left: 300px;
   }
   .IllusDesk img {
     position: absolute;
     height: 417px;
     width: 417px;
-    top:-140px;
+    top: -140px;
   }
   .IllusFLowers img {
-  position: absolute;
-  top:120px; left:-55px;
+    position: absolute;
+    top: 120px;
+    left: -55px;
   }
   .IllusLamp img {
     position: absolute;
-  top: -290px; left: 250px;
+    top: -290px;
+    left: 250px;
   }
 }
 @media screen and (min-width: 1400px) {
