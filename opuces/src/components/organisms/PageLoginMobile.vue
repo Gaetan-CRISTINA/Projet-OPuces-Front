@@ -2,11 +2,19 @@
   <div class="main-container">
     <div class="connexion">
       <div class="left">
+        
         <div>
+          <router-link
+            :to="{
+              name: 'Home'
+              }"
+              >
           <Logo />
           <h1>O'puces</h1>
+          </router-link>
         </div>
-      <form @submit="handleSubmit">
+        
+<form @submit="handleSubmit">
           <h6>Login</h6>
           <label>
           <input v-model="login" name="login" class="email" />
@@ -27,17 +35,19 @@
             <div class="error" v-if="loginFailed">Echec de connexion</div>
       
           <a href="#">Mot de passe oublié ?</a>
-          <button class="button connect">SE CONNECTER</button>
-        </form>
+          <button class="--button connect">SE CONNECTER</button>
+     </form>
 
-        <button class="button facebook">
+
+        <button class="--button facebook">
           <svg class="icon icon-facebook">
             <use xlink:href="#icon-facebook"></use>
           </svg>
           SE CONNECTER AVEC FACEBOOK
         </button>
 
-        <button class="button google">
+        <button class="--button google">
+
           <svg class="icon icon-google">
             <use xlink:href="#icon-google"></use></svg
           >SE CONNECTER AVEC GOOGLE
@@ -45,7 +55,9 @@
 
         <div class="new-account">
           <h5>PAS ENCORE INSCRIT ?</h5>
-          <button class="button">CREER UN NOUVEAU COMPTE</button>
+
+          <button class="--button">CREER UN NOUVEAU COMPTE</button>
+
         </div>
         <svg class="spritesheet">
           <symbol id="icon-eye" viewBox="0 0 32 32">
@@ -92,8 +104,10 @@
 import Logo from "../atoms/Logo";
 import IllusPlane from "../atoms/IllusPlane";
 
+
 import userService from "../../services/userService.js";
 import storage from "../../plugins/storage.js";
+
 
 export default {
   name: "PageLoginMobile",
@@ -151,172 +165,133 @@ export default {
 <style lang="scss">
 @import "../../assets/scss/main.scss";
 
-  form{
-    width: 100%;
-  }
-  
- .connexion {
-      width: 100%;
-      padding-right : 15px;
-      padding-left:15px;
-      margin: auto;
-      border:15px;
-      
-    }
-    .main-container h6 {
-     align-self: flex-start;
-     margin:8px;
-    }
-    .left div:first-child {
-      position:relative;
-      color:$main-green;
-      margin-top:30px;
-      display:flex;
-      align-items:center;
-      justify-content: center;
-    
-    }
-   .left {
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: center;
-   }
-    h1 {
-      position: absolute;
-      bottom:10px;
-      font-weight: 900;
-      font-size: 22px;
-    } 
-    .button {
-    border-radius: 19px;
-    padding: 1px;
-    width: 345px;
-    height: 38px;
-    color:white;
-    width:100%;
-    border:none;
-    margin:17px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-    font-size:14px;
-    font-weight:900px;
-    }
-    .button svg {
-      position: relative;
-      top:6.5px;
-    }
-    h6 {
-    padding: 15px 0 15px 0;
-    }
-    input {
-    width: 100%;
-    height: 38px;
-    border: none;
-    background-color: $light-grey;
-    border-radius: 6px;    
-    }
-    a {
-    text-decoration: none;
-    align-self: flex-start;
-    color:$text-color;
-    padding:5px;
-    }
-    .connect {
-      background-color:$main-green;
-      margin:28px 0 38px 0;
-    }
-    .facebook{
-    background-color:$social-fb;
-    }
-    .google{
-    background-color:$social-google; 
-    }
-    .new-account{
-    margin-top:80px;
-    display: flex;
-    justify-content: center;
-    width:100%;
-    flex-wrap: wrap;
-    }   
-    h5{
-    margin:auto;
-    }
-    .new-account button {
-      color:$main-green;
-    }
-    label {
-      position: relative;
-    }
-    label > .icon {
-      position: absolute;
-      top: 70%;
-      left:95%;
-      transform: translateY(-60%);
-      color: #484848;
-    }
-    label > input {
-      padding-right: calc(1em + 10px + 8px); /* icon width + icon padding-left + desired separation*/
-      height: 38px;
-    }
-    input:focus {
-        outline: $text-color;
-    }
-    .eye-label {
-      display:flex;
-      align-items: center;
-      width:100%;      
-    }
-    .spritesheet {
-      display: none;
-    }
-    .icon {
-      display: inline-block;
-      width: 2em;
-      height: 2em;
-      stroke-width: 0;
-      stroke: currentColor;
-      fill: currentColor;
-      }
-.right {
-  display:none;
+
+.connexion {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: auto;
+  border: 15px;
 }
-@media screen and (min-width: 576px) {
-   
- }
-  @media screen and (min-width: 768px) {
-    .main-container {
-      width: 720px;
-    }
-  }
-  @media screen and (min-width: 992px) {
-    .main-container {
-      width: 960px;
-    }
-  }
-  @media screen and (min-width: 1200px) {
-    .main-container {
-      width: 1140px;
-    }
-    .connexion {
-      display:flex;
-      align-items: center;
-      height:100vh;
-    }
-    .right {
-      display: block;
-      margin:auto;
-    }
-    .IllusPlane img {
-      height:417px;
-      width:417px;
-    }
-    
-  }
-  @media screen and (min-width: 1400px) {
-    .main-container {
-      width: 1320px;
-    }
-  }
+.main-container h6 {
+  align-self: flex-start;
+  margin: 8px;
+}
+.left div:first-child {
+  position: relative;
+  color: $main-green;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  position: absolute;
+  bottom: 10px;
+  font-weight: 900;
+  font-size: 22px;
+}
+.--button {
+  border-radius: 19px;
+  padding: 1px;
+  width: 345px;
+  height: 38px;
+  color: white;
+  width: 100%;
+  border: none;
+  margin: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 900px;
+}
+.--button svg {
+  position: relative;
+  top: 6.5px;
+}
+.--button:focus {
+  display: none;
+}
+h6 {
+  padding: 15px 0 15px 0;
+}
+input {
+  width: 100%;
+  height: 38px;
+  border: none;
+  background-color: $light-grey;
+  border-radius: 6px;
+}
+a {
+  text-decoration: none;
+  align-self: flex-start;
+  color: $text-color;
+  padding: 5px;
+}
+.connect {
+  background-color: $main-green;
+  margin: 28px 0 38px 0;
+}
+.facebook {
+  background-color: $social-fb;
+}
+.google {
+  background-color: $social-google;
+}
+.new-account {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+h5 {
+  margin: auto;
+}
+.new-account button {
+  color: $main-green;
+}
+label {
+  position: relative;
+}
+label > .icon {
+  position: absolute;
+  top: 70%;
+  right: 90%;
+  transform: translateY(-60%);
+  color: #484848;
+}
+label > input {
+  padding-right: calc(
+    1em + 10px + 8px
+  ); /* icon width + icon padding-left + desired separation*/
+  height: 38px;
+}
+input:focus {
+  outline: $text-color;
+}
+.eye-label {
+  display: flex;
+
+  align-items: center;
+  width: 100%;
+}
+.spritesheet {
+  display: none;
+}
+.icon {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
 </style>
