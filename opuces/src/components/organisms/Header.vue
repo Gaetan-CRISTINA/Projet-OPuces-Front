@@ -1,13 +1,6 @@
 <template>
   <header>
     <div class="main-container">
-
-      <div class="flex">
-        <div id="left-header-mobile">
-          <PictoUser />
-          <p id="se-connecter">Se connecter</p>
-        </div>
-
       
       <div class="flex">
         
@@ -87,17 +80,11 @@
                   </router-link>
         </nav>
         </div>
-
+        
         <div id="right-header-mobile">
           <PictoFilters />
         </div>
         <div id="left-header-desktop">
-
-          <a href="#">
-            <span id="logo-link"><Logo /></span>
-            <h2 id="txt-link">O'puces</h2>
-          </a>
-
         <!--User Connected-->
         <router-link
           v-if="user"
@@ -128,21 +115,10 @@
         </router-link>
         <!-- FIN-->
         
-
         </div>
         <div id="center-header-desktop">
           <SearchBar />
         </div>
-
-        <div style="display: none" id="right-header-desktop">
-          <PictoUser />
-        </div>
-        <div id="right-header-desktop">
-          <PictoHome />
-          <PictoAnnonces />
-          <PictoAdd2 />
-          <img src="https://picsum.photos/30" alt="" />
-
 
         
         <div style="display: none" id="right-header-desktop">
@@ -199,7 +175,6 @@
                 <PictoUser/>
           </router-link>
         <!--FIN-->
-
         </div>
       </div>
     </div>
@@ -208,31 +183,20 @@
 
 <script>
 import PictoUser from "../atoms/PictoUser";
-
-
 import PictoCompte from "../atoms/PictoCompte";
 import PictoAnnonces from "../atoms/PictoAnnonces";
 import PictoInfo from "../atoms/PictoInfo";
 import PictoText from "../atoms/PictoText";
 import PictoMail from "../atoms/PictoMail";
 
-
 import PictoFilters from "../atoms/PictoFilters";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
 import PictoAdd2 from "../atoms/PictoAdd2";
-
-import PictoAnnonces from "../atoms/PictoAnnonces";
-import PictoHome from "../atoms/PictoHome";
-
-export default {
-  name: "HeaderMobile",
-
 import PictoHome from "../atoms/PictoHome";
 
 export default {
   name: "Header",
-
   components: {
     PictoUser,
     PictoFilters,
@@ -241,9 +205,6 @@ export default {
     PictoAdd2,
     PictoAnnonces,
     PictoHome,
-
-  },
-
     PictoCompte,
     PictoInfo,
     PictoText,
@@ -256,7 +217,6 @@ export default {
     }
   }
   
-
 };
 </script>
 
@@ -268,11 +228,9 @@ export default {
   align-items: center;
   width: 100%;
 }
-
 #left-header-mobile:hover .sub-nav {
   transform: translateX(0)
 }
-
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
@@ -284,11 +242,7 @@ export default {
 }
 header {
   position: fixed;
-
-  
-
   z-index: 1;
-
   padding: 0.5em 0 !important;
   width: 100%;
   background-color: #fff;
@@ -299,7 +253,6 @@ header {
   position: relative;
   top: 2px;
 }
-
 .nav--button {
   border-radius: 19px;
   padding: 20px;
@@ -363,7 +316,6 @@ li svg {
 #picto-home {
   fill: $main-green !important;
 }
-
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {
@@ -418,23 +370,4 @@ li svg {
 }
 @media screen and (min-width: 1400px) {
 }
-
-//
-//<style lang="scss">
-//@import "../../assets/scss/main";
-//#div-logo {
-//  width: 32px;
-//}
-//#left-header-desktop a:hover svg {
-//  fill: $secondary-green !important;
-//}
-//#picto-home {
-//  fill: $main-green !important;
-//}
-//
-//style>
-//
-
-
-
-
+</style>
