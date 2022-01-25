@@ -6,21 +6,31 @@
           <Logo />
           <h1>O'puces</h1>
         </div>
-        <form>
-          <h6>E-mail</h6>
-          <input type="email" name="email" class="email" />
 
-          <h6>Mot de passe</h6>
+<form @submit="handleSubmit">
+          <h6>Login</h6>
+          <label>
+          <input v-model="login" name="login" class="email" />
+          </label>
+
+          <div class="error" v-if="loginEmpty">Vous devez saisir un identifiant</div>
+
+        <h6>Mot de passe</h6>
           <label class="eye-label">
-            <svg class="icon icon-eye">
+           <svg class="icon icon-eye">
               <use xlink:href="#icon-eye"></use>
             </svg>
-            <input type="password" name="password" class="password" />
+              <input v-model="password" type="password" name="password" class="password" />
           </label>
-        </form>
 
-        <a href="#">Mot de passe oublié ?</a>
-        <button href="#" class="--button connect">SE CONNECTER</button>
+          <div class="error" v-if="passwordEmpty">Vous devez saisir un mot de passe</div>
+
+            <div class="error" v-if="loginFailed">Echec de connexion</div>
+      
+          <a href="#">Mot de passe oublié ?</a>
+          <button class="--button connect">SE CONNECTER</button>
+     </form>
+
 
         <button class="--button facebook">
           <svg class="icon icon-facebook">
@@ -29,7 +39,8 @@
           SE CONNECTER AVEC FACEBOOK
         </button>
 
-        <button href="#" class="--button google">
+        <button class="--button google">
+
           <svg class="icon icon-google">
             <use xlink:href="#icon-google"></use></svg
           >SE CONNECTER AVEC GOOGLE
@@ -37,7 +48,9 @@
 
         <div class="new-account">
           <h5>PAS ENCORE INSCRIT ?</h5>
-          <button href="#" class="--button">CREER UN NOUVEAU COMPTE</button>
+
+          <button class="--button">CREER UN NOUVEAU COMPTE</button>
+
         </div>
         <svg class="spritesheet">
           <symbol id="icon-eye" viewBox="0 0 32 32">
@@ -75,6 +88,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 
@@ -83,17 +97,67 @@
 import Logo from "../atoms/Logo";
 import IllusPlane from "../atoms/IllusPlane";
 
+
+import userService from "../../services/userService.js";
+import storage from "../../plugins/storage.js";
+
+
 export default {
   name: "PageLoginMobile",
   components: {
     Logo,
     IllusPlane,
   },
-};
+  data() {
+    return {
+      login: '',
+      password: '',
+      loginEmpty: false,
+      passwordEmpty: false,
+      loginFailed: false,
+    }
+  },
+  methods: {
+      async handleSubmit(evt){
+          evt.preventDefault();
+          // vérifications
+
+          if(this.login == ""){
+              this.loginEmpty = true;
+          }
+          if(this.password == ""){
+              this.passwordEmpty = true;
+          }
+        
+          if(!this.passwordEmpty && !this.loginEmpty){
+              let userData = await userService.login(
+                  this.login, 
+                  this.password
+              );
+              console.log(userData);
+
+            if(userData){
+                console.log("SUCCESS!");
+                storage.set('userData', userData);
+                this.loginFailed = false;
+                this.$router.push({name: 'Home'});
+
+                
+            } else {
+                console.log("FAILED !!")
+                this.loginFailed = true;
+                
+            }
+          }
+          
+      }
+  }
+}
 </script>
 
 <style lang="scss">
 @import "../../assets/scss/main.scss";
+
 
 .connexion {
   width: 100%;
@@ -222,63 +286,5 @@ input:focus {
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
-}
-.right {
-  display: none;
-}
-@media screen and (min-width: 576px) {
-}
-@media screen and (min-width: 768px) {
-  .main-container {
-    width: 720px;
-  }
-  .right {
-    display: none;
-  }
-}
-@media screen and (min-width: 992px) {
-  .main-container {
-    width: 960px;
-  }
-  .right {
-    display: none;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .main-container {
-    width: 1140px;
-  }
-  .right {
-    display: block;
-    width: 100%;
-    padding: 100px;
-  }
-  .IllusPlane img {
-    height: 100%;
-    width: 100%;
-  }
-}
-@media screen and (min-width: 1400px) {
-  .main-container {
-    width: 1320px;
-  }
-  .connexion {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100vh;
-  }
-  .right {
-    display: block;
-    width: 100%;
-    padding: 100px;
-  }
-  .left {
-    margin-right: auto;
-  }
-  .IllusPlane img {
-    height: 100%;
-    width: 100%;
-  }
 }
 </style>
