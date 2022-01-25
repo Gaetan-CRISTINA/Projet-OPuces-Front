@@ -1,6 +1,5 @@
-// NOTICE JS storage est un objet qui va nous permettre de stocker des informations
 const storage = {
-
+    // stocker des informations en localstorage
     set: function(variableName, value) {
   
       // je transforme la variable en JSON
@@ -9,14 +8,15 @@ const storage = {
       //ajouter en storage/cookie
       localStorage.setItem(variableName, json);
     },
-  
+    // récupérer des informations en locastorage
     get: function(variableName) {
       const json = localStorage.getItem(variableName);
       //transformer une string en JSON
       const value = JSON.parse(json);
       return value;
     },
-  
+    
+    //supprimer des informations en localstorage
     unset: function(variableName) {
       localStorage.removeItem(variableName);
     }
