@@ -39,6 +39,7 @@
       <PictoDisplay2/>
       <PictoEtat1/>
     </div>
+  
     <div class="flxe">
       <Prix/>
       <SearchBar/>
@@ -77,8 +78,7 @@
     <PageLoginMobile/>
     
   </div>
-  
-  
+
 </template>
 
 <script>

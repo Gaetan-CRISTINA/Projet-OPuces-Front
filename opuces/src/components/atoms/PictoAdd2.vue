@@ -1,6 +1,7 @@
 <template>
-  <div>
-      <svg style="fill: #484848;" xmlns="http://www.w3.org/2000/svg" width="33.276" height="33.276" viewBox="0 0 33.276 33.276"><path class="a" d="M15.14,3.375A11.765,11.765,0,1,0,26.9,15.14,11.724,11.724,0,0,0,15.14,3.375Zm5.883,16-1.647,1.647L15.14,16.787,10.9,21.022,9.257,19.375l4.235-4.235L9.257,10.9,10.9,9.258l4.235,4.235,4.235-4.235L21.022,10.9,16.787,15.14Z" transform="translate(-4.773 16.638) rotate(-45)"/></svg>
+  <div>  
+  
+<svg style="fill: #484848;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.53 23.55">><g id="Calque_2" data-name="Calque 2"><g id="Calque_1-2" data-name="Calque 1"><path id="Icon_ionic-md-close-circle" data-name="Icon ionic-md-close-circle" class="cls-1" d="M3.45,3.46a11.76,11.76,0,1,0,16.64,0h0A11.73,11.73,0,0,0,3.5,3.4Zm15.47,7.15v2.33h-6v6H10.6v-6h-6V10.62h6v-6h2.33v6Z"/></g></g></svg>
   </div>
 </template>
 
@@ -11,8 +12,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../../assets/scss/main';
+div {
+  width: 23px;
+  height: 23px;
+}
+svg {
+  width: 23px;
+  height: 23px;
+}
 svg:hover {
   transition: all .3s;
-  fill: #2093A7;
+  fill: $secondary-green !important;
 }
 </style>
