@@ -2,11 +2,18 @@
   <div class="main-container">
     <div class="connexion">
       <div class="left">
+        
         <div>
+          <router-link
+            :to="{
+              name: 'Home'
+              }"
+              >
           <Logo />
           <h1>O'puces</h1>
+          </router-link>
         </div>
-
+        
 <form @submit="handleSubmit">
           <h6>Login</h6>
           <label>

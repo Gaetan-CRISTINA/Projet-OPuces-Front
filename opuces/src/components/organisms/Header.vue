@@ -5,21 +5,79 @@
       <div class="flex">
         
         <div id="left-header-mobile">
+          <router-link
+            v-if="!user"
+            :to="{
+              name: 'LoginForm'
+              }"
+              >
           <PictoUser />
-          <p id="se-connecter">Se connecter</p>
+          <a id="se-connecter">
+            
+            Se connecter
+            
+          </a>
+          </router-link>
+
+          <router-link
+          v-if="user"
+          :to="{
+            name: 'Home'
+            }">
+            <PictoUser />
+          </router-link>
           <nav class="sub-nav">
             <ul>
-          <li id="welcome"><PictoUser/> Jean-Michel</li>
-          
-            <li><PictoUser />Mon profil</li>
-            <li><PictoCompte /> Mon compte</li>
-            <li><PictoAnnonces /> Mes annonces</li>
-            <li><PictoInfo /> CGV-CGU</li>
-            <li><PictoText /> Mentions légales</li>
-            <li><PictoMail /> Contact</li>
-          </ul>
+                <li id="welcome"><PictoUser/> Jean-Michel</li>
 
-          <a href="#" class="disconect--button">Se déconnecter</a>
+                  <router-link
+                      :to="{
+                        name: 'UserProfil'
+                      }">
+                    <li><PictoUser />Mon profil</li>
+                  </router-link>  
+
+                  <router-link
+                      :to="{
+                        name: 'MyAccound'
+                        }">
+                    <li><PictoCompte />  Mon compte</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'UserClassified'
+                        }">
+                    <li><PictoAnnonces />  Mes annonces</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'CGV'
+                        }">
+                    <li><PictoInfo />  CGV-CGU</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'LegalMentions'
+                        }">
+                    <li><PictoText />  Mentions légales</li>
+                  </router-link>
+
+                  <router-link
+                      :to="{
+                        name: 'Contact'
+                        }">
+                    <li><PictoMail /> Contact</li>
+                  </router-link>
+            </ul>
+                  <router-link
+                      :to="{
+                        name: 'Logout'
+                        }">
+            <a class="disconect--button">Se déconnecter</a>
+                  </router-link>
         </nav>
         </div>
         
@@ -27,22 +85,96 @@
           <PictoFilters />
         </div>
         <div id="left-header-desktop">
-          <a href="#">
-            <span id="logo-link"><Logo /></span>
-            <h2 id="txt-link">O'puces</h2>
+        <!--User Connected-->
+        <router-link
+          v-if="user"
+            :to="{
+              name: 'Home'
+              }"
+              >
+          <a>
+              <span id="logo-link"><Logo /></span>
+              <h2 id="txt-link">O'Puces</h2>
+
           </a>
+        </router-link>
+        <!-- FIN-->
+
+        <!-- User Offline-->
+        <router-link
+          v-if="!user"
+            :to="{
+              name: 'PageRegister'
+              }"
+              >
+          <a>
+              <span id="logo-link"><Logo /></span>
+              <h2 id="txt-link">O'Puces</h2>
+
+          </a>
+        </router-link>
+        <!-- FIN-->
+        
         </div>
         <div id="center-header-desktop">
           <SearchBar />
         </div>
+
+        
         <div style="display: none" id="right-header-desktop">
           <PictoUser />
         </div>
+
+        
         <div id="right-header-desktop">
+          <router-link
+            :to="{
+              name: 'Home'
+              }"
+              >
           <PictoHome />
+          </router-link>
+
+          <router-link
+          v-if="user"
+            :to="{
+              name: 'UserClassified'
+              }"
+              >
           <PictoAnnonces />
+          </router-link>
+
+          <router-link
+          v-if="user"
+            :to="{
+              name: 'CreateClassified'
+              }"
+              >
           <PictoAdd2 />
-          <img src="https://picsum.photos/30" alt="" />
+          </router-link>
+
+        <!--User Connected-->
+        
+          <router-link
+          v-if="user"
+              :to="{
+              name: 'UserProfil'
+              }"
+              >
+            <img src="https://picsum.photos/30" alt="" />
+          </router-link>
+        <!--FIN-->
+
+        <!--User Offline-->
+          <router-link
+          v-if="!user"
+              :to="{
+                name: 'LoginForm'
+                }"
+                >
+                <PictoUser/>
+          </router-link>
+        <!--FIN-->
         </div>
       </div>
     </div>
@@ -79,6 +211,12 @@ export default {
     PictoMail,
   
   },
+  computed: {
+    user(){
+      return this.$store.state.user;
+    }
+  }
+  
 };
 </script>
 
