@@ -18,6 +18,14 @@
             
           </a>
           </router-link>
+
+          <router-link
+          v-if="user"
+          :to="{
+            name: 'Home'
+            }">
+            <PictoUser />
+          </router-link>
           <nav class="sub-nav">
             <ul>
                 <li id="welcome"><PictoUser/> Jean-Michel</li>
