@@ -2,10 +2,16 @@
   <div class="main-container">
     <div class="connexion">
       <div class="left">
+        
         <div>
-          <Logo />
-          <h1>O'puces</h1>
+          <router-link
+            :to="{name: 'Home'}"
+            >
+              <Logo />
+              <h1>O'puces</h1>
+          </router-link>  
         </div>
+        
 
          <form @submit="handleSubmit">
         <h6>Nom</h6>
@@ -109,8 +115,7 @@ export default {
     Logo,
     IllusDesk,
     IllusFLowers,
-    IllusLamp,
-    Logo
+    IllusLamp
   },
   data(){
       return {

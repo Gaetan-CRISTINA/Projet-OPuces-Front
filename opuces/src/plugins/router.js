@@ -5,6 +5,8 @@ import Home from '../views/Home.vue'
 import Gui from '../views/Gui.vue'
 import LoginForm from '../views/LoginForm.vue'
 import CreateUser from '../views/CreateUser.vue'
+import UserProfil from '../views/UserProfil.vue'
+import Logout from '../views/Logout.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +30,16 @@ const routes = [
     path: '/create-user',
     name: 'PageRegister',
     component: CreateUser
+  },
+  {
+    path: '/user-profil',
+    name: 'UserProfil',
+    component: UserProfil
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   },
 ]
 
