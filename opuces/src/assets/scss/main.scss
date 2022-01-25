@@ -5,9 +5,7 @@
 * {
     font-family: 'Montserrat', sans-serif;
 }
-a {
-    text-decoration: none;
-}
+
 //-----------------
 //Couleurs
 //-----------------
@@ -21,7 +19,35 @@ $light-grey: #F8F8F8;
 $social-fb: #166ADA;
 $social-google: #D44235;
 
-
+p {
+    line-height: 1.5;
+}
+a {
+    text-decoration: none;
+}
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: $text-color;
+}
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: $text-color;
+}
+.date-annonce {
+    font-size: 12px;
+    font-weight: 100;
+    font-style: italic;
+    color: $text-color;
+    padding-bottom: .7em;
+}
+.auteur-annonce {
+    font-size: 12px;
+    font-weight: 700;
+    color: $text-color;
+    padding-bottom: .7em;
+}
 
 //-----------------
 //Mobile

@@ -11,9 +11,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+div {
+  height: 21.8px;
+  width: 21.8px;
+  cursor: pointer;
+}
 svg:hover {
   transition: all .3s;
-  fill: #2093A7;
+  fill: #2093A7 !important;
 }
 </style>
 

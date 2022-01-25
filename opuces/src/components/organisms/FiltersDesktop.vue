@@ -212,6 +212,10 @@ export default {
       font-weight: 600;
       color: #fff;
       cursor: pointer;
+      transition: all .3s;
+  }
+  .search-validate:hover {
+    background-color: $secondary-green;
   }
 }
 @media screen and (min-width: 1200px) {
