@@ -130,15 +130,19 @@ export default {
               console.log(userData);
 
             if(userData){
-                //console.log("LOGIN!");
+                console.log("SUCCESS!");
                 storage.set('userData', userData);
+                this.loginFailed = false;
                 this.$router.push({name: 'Home'});
+
                 
             } else {
-                console.log("LOGIN FAILED !!")
+                console.log("FAILED !!")
                 this.loginFailed = true;
+                
             }
           }
+          
       }
   }
 }
