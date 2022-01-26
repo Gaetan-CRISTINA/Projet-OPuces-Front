@@ -39,9 +39,9 @@
 
                   <router-link
                       :to="{
-                        name: 'CGV'
+                        name: 'CGU'
                         }">
-                    <li><PictoInfo />  CGV-CGU</li>
+                    <li><PictoInfo /> CGU</li>
                   </router-link>
 
                   <router-link
@@ -64,7 +64,8 @@
                         }">
             <a class="disconect--button">Se déconnecter</a>
                   </router-link>
-        </nav>
+          </nav>
+        
           <router-link
             v-if="!user"
             :to="{
@@ -78,14 +79,7 @@
             
           </a>
           </router-link>
-
-          <router-link
-          v-if="user"
-          :to="{
-            name: 'Home'
-            }">
-            <PictoUser />
-          </router-link>
+          
         </div>
         <div id="left-header-desktop">
         <!--User Connected-->
@@ -123,12 +117,6 @@
           <SearchBar />
         </div>
 
-        
-        <div style="display: none" id="right-header-desktop">
-          <PictoUser />
-        </div>
-
-        
         <div id="right-header-desktop">
           <router-link
             :to="{
