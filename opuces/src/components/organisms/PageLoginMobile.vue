@@ -184,12 +184,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 .left {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 h1 {
   position: absolute;
@@ -200,7 +202,7 @@ h1 {
 .--button {
   border-radius: 19px;
   padding: 1px;
-  width: 345px;
+  width: 100%;
   height: 38px;
   color: white;
   width: 100%;

@@ -79,15 +79,16 @@ export default {
   }
   select {
     width: 100%;
-    border: none;
+    border: 0;
     padding-bottom: 1em;
     border-bottom: solid 1px $text-color;
     margin-bottom: 1em;
     font-size: 14px;
     cursor: pointer;
+    background-color:white;
   }
   select:focus {
-    outline: none;
+    outline: 0;
   }
   .add {
     font-size: 22px !important;
@@ -106,6 +107,7 @@ export default {
     border-radius: 6px;
     margin-bottom: 1em;
     background-color: $light-grey;
+    text-indent:25px
   }
   #ville {
     background: url("../../assets/svg/picto-location.svg"), $light-grey;
