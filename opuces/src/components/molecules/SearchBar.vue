@@ -37,7 +37,7 @@ export default {
 @media screen and (min-width: 992px) {
   label {
     position: relative;
-    margin-top:2em;
+    
   }
   input {
     width: 195px;
