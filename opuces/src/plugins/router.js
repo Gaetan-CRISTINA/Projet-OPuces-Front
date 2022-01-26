@@ -6,7 +6,7 @@ import Gui from '../views/Gui.vue'
 import LoginForm from '../views/LoginForm.vue'
 import CreateUser from '../views/CreateUser.vue'
 
-import UserProfil from '../views/UserProfil.vue'
+import ErrorPages from '../views/ErrorPages.vue'
 import Logout from '../views/Logout.vue'
 
 import MentionsLegales from '../views/MentionsLegales.vue'
@@ -35,12 +35,6 @@ const routes = [
     component: CreateUser
   },
   {
-
-    path: '/user-profil',
-    name: 'UserProfil',
-    component: UserProfil
-  },
-  {
     path: '/logout',
     name: 'Logout',
     component: Logout
@@ -50,6 +44,11 @@ const routes = [
     name: 'CGU',
     component: MentionsLegales
 
+  },
+  {
+    path: '/error-404',
+    name: 'ErrorPage',
+    component: ErrorPages
   },
 ]
 

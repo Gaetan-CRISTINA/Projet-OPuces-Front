@@ -1,104 +1,105 @@
 <template>
-  <header>
-    <div class="main-container">
-      <div id="left-header-mobile" class="flex">
-        <PictoUser/>
-        <p id="se-connecter">Se connecter</p>
-      </div>
-      <div id="right-header-mobile" class="flex">
-        <PictoFilters/>
-      </div>
-      <div id="left-header-desktop">
-        <a href="#"><span><Logo/></span>O'puces</a>
-      </div>
-      <div id="center-header-desktop" class="flex">
-        <SearchBar/>
-      </div>
-      <div id="right-header-desktop" class="flex">
-        <PictoUser/>
-      </div>
+  <div>
+    <div class="error-header">
+      <span><Logo /></span>
+      <h2>O'Puces</h2>
     </div>
-  </header>
+    <div class="error-text">
+      <span>OUPS !</span>
+      <p>
+        Il n'y a rien sur cette page, elle a peut-être été supprimée, ouu elle
+        n'a jamais existé !
+      </p>
+    </div>
+    <div class="error-button">
+      <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
+      <a href="" class="useless2">FAIRE UN TRUC INUTILE</a>
+    </div>
+  </div>
 </template>
 
 <script>
-import PictoUser from '../atoms/PictoUser'
-import PictoFilters from '../atoms/PictoFilters'
-import Logo from '../atoms/Logo'
-import SearchBar from '../molecules/SearchBar'
+import Logo from "../atoms/Logo";
 
 export default {
-  name: 'Header',
+  name: "ErrorPage",
   components: {
-      PictoUser,
-      PictoFilters,
-      Logo,
-      SearchBar,
+    Logo,
   },
-}
+};
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/main';
-#left-header-desktop,
-#center-header-desktop,
-#right-header-desktop {
-  display: none;
-}
-header {
-  padding: 1em 0;
-  width: 100%;
-  background-color: #fff;
+@import "../../assets/scss/main";
+
+.error-header {
   display: flex;
-  }
-.main-container {
-  width: 100%;
+  margin: 2em;
+  padding: 15px;
+}
+.error-header svg {
+  width: 42px;
+  margin-right: 1em;
+}
+.error-header h2 {
+  font-size: 24px;
+  font-weight: 900;
+  color: $main-green;
+}
+.error-text {
   display: flex;
-  justify-content: space-between;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 4em;
 }
-.flex {
-  display: flex;
+.error-text span {
+  font-weight: 700;
+  font-size:48px;
 }
-#se-connecter {
-  padding-left: 1em;
-  position: relative;
-  top: 2px;
+.error-text p {
+  font-weight: 600;
+  font-size:24px;
 }
+.error-button {
+ display: flex;
+  text-align: center;
+  align-items:center;
+  justify-content: center;
+  flex-direction:column; 
+}
+.error-button a {
+  margin: 1em;
+  width: 50%;
+  padding: 1em;;
+  border-radius:19px;
+  font-weight:600;
+  font-size:14px;
+}
+.useless {
+  color:white;
+  background-color:$main-green;
   
-  @media screen and (min-width: 576px) {
-    
-  }
-  @media screen and (min-width: 768px) {
-    
-  }
-  @media screen and (min-width: 992px) {
-    #left-header-mobile,
-    #right-header-mobile {
-      display: none;
-    }
-    #left-header-desktop,
-    #center-header-desktop,
-    #right-header-desktop {
-      display: block;
-    }
-    #left-header-desktop a {
-      display: flex;
-      font-weight: 900;
-      font-size: 16px;
-      color: $main-green;
-      transition: all .3s;
-    }
-    #left-header-desktop a span {
-      margin-right: .3em;
-    }
-    
-    
-  }  
-  @media screen and (min-width: 1200px) {
+}
+.useless2 {
+  color:$main-green;
+  background-color:white;
+  border:2px solid $main-green;
+  
+}
+@media screen and (min-width: 576px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+
+@media screen and (min-width: 1200px) {
+  }.error-button {
+ display: block;
    
-  }
-  @media screen and (min-width: 1400px) {
-    
-  }
+}
+}
+@media screen and (min-width: 1400px) {
+}
 </style>
 
