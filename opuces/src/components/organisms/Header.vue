@@ -3,13 +3,17 @@
     <div class="main-container">
       
       <div class="flex">
-        
-        <div id="left-header-mobile">
-          <span id="logo-link"><Logo /></span>
+        <router-link
+              v-if="user"
+              :to="{ name: 'Home'
+              }"
+              >
+          <div id="left-header-mobile">
+              <span id="logo-link"><Logo /></span>
               <h2 id="txt-link">O'Puces</h2>
-          
-        </div>
-        
+          </div>
+        </router-link>
+
         <div id="right-header-mobile">
           <PictoUser />
           <nav class="sub-nav">
@@ -39,14 +43,14 @@
 
                   <router-link
                       :to="{
-                        name: 'CGV'
+                        name: 'CGU'
                         }">
-                    <li><PictoInfo />  CGV-CGU</li>
+                    <li><PictoInfo /> CGU</li>
                   </router-link>
 
                   <router-link
                       :to="{
-                        name: 'LegalMentions'
+                        name: 'LegalNotice'
                         }">
                     <li><PictoText />  Mentions légales</li>
                   </router-link>
@@ -64,7 +68,8 @@
                         }">
             <a class="disconect--button">Se déconnecter</a>
                   </router-link>
-        </nav>
+          </nav>
+        
           <router-link
             v-if="!user"
             :to="{
@@ -78,14 +83,7 @@
             
           </a>
           </router-link>
-
-          <router-link
-          v-if="user"
-          :to="{
-            name: 'Home'
-            }">
-            <PictoUser />
-          </router-link>
+          
         </div>
         <div id="left-header-desktop">
         <!--User Connected-->
@@ -123,12 +121,6 @@
           <SearchBar />
         </div>
 
-        
-        <div style="display: none" id="right-header-desktop">
-          <PictoUser />
-        </div>
-
-        
         <div id="right-header-desktop">
           <router-link
             :to="{

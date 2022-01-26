@@ -1,14 +1,22 @@
 <template>
-  <FiltersMobile/>
 
+
+  <div>
+    <Header/>
+    
+  </div>
+  
 </template>
 
 <script>
-import FiltersMobile from '../components/organisms/FiltersMobile.vue'
+import Header from '../components/organisms/Header.vue'
+
+
 export default {
   name: 'UserProfil',
   components: {
-    FiltersMobile,
+    Header
+    
   }
 }
 </script>

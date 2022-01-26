@@ -10,6 +10,7 @@ import ErrorPages from '../views/ErrorPages.vue'
 import Logout from '../views/Logout.vue'
 
 import MentionsLegales from '../views/MentionsLegales.vue'
+import CGU from '../views/CGU.vue'
 
 Vue.use(VueRouter)
 
@@ -41,7 +42,7 @@ const routes = [
  },
   {
     path: '/mentions-legales',
-    name: 'CGU',
+    name: 'LegalNotice',
     component: MentionsLegales
 
   },
@@ -49,6 +50,11 @@ const routes = [
     path: '/error-404',
     name: 'ErrorPage',
     component: ErrorPages
+ },
+  {
+    path: '/cgu',
+    name: 'CGU',
+    component: CGU
   },
 ]
 
