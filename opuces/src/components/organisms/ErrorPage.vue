@@ -12,46 +12,41 @@
       </p>
     </div>
     <div class="error-button">
-      
       <router-link
-      :to="{
-        name: 'Home'
-        }">
-
-      <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
-
+        :to="{
+          name: 'Home',
+        }"
+      >
+        <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
       </router-link>
-      <a href="" id="useless2" v-on:click="handleclick">FAIRE UN TRUC INUTILE</a>
+      <a href="" id="useless2" v-on:click="handleclick"
+        >FAIRE UN TRUC INUTILE</a
+      >
     </div>
     <div class="svgFlex">
-    <div class="svg">
-      <img src="../../assets/svg/Quatre.svg" alt="">
-    </div>
-    <div class="svg">
-      <IllusPlane/>
-    </div>
-    <div class="svg">
-      <img src="../../assets/svg/Quatre.svg" alt="">
-    </div>
+      <div class="svg">
+        <img src="../../assets/svg/Quatre.svg" alt="" />
+      </div>
+      <div class="svg">
+        <IllusPlane />
+      </div>
+      <div class="svg">
+        <img src="../../assets/svg/Quatre.svg" alt="" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from "../atoms/Logo";
-import IllusPlane from "../atoms/IllusPlane"
+import IllusPlane from "../atoms/IllusPlane";
 export default {
   name: "ErrorPage",
   components: {
     Logo,
-    IllusPlane
-  },  
-}
-
-
-
-
-
+    IllusPlane,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -80,66 +75,64 @@ export default {
 }
 .error-text span {
   font-weight: 700;
-  font-size:48px;
+  font-size: 48px;
 }
 .error-text p {
   font-weight: 600;
-  font-size:24px;
+  font-size: 24px;
 }
 .error-button {
- display: flex;
+  display: flex;
   text-align: center;
-  align-items:center;
+  align-items: center;
   justify-content: center;
-  flex-direction:column; 
+  flex-direction: column;
 }
 .error-button a {
   margin: 1em;
-  width: 50%;
-  padding: 1em;;
-  border-radius:19px;
-  font-weight:600;
-  font-size:14px;
+  padding: 1em;
+  border-radius: 19px;
+  font-weight: 600;
+  font-size: 14px;
 }
 .useless {
-  color:white;
-  background-color:$main-green;
-  
+  color: white;
+  background-color: $main-green;
 }
 #useless2 {
-  color:$main-green;
-  background-color:white;
-  border:2px solid $main-green;
+  color: $main-green;
+  background-color: white;
+  border: 2px solid $main-green;
 }
-.svgFlex{
-    display:none;
-  }
+.svgFlex {
+  display: none;
+}
 
 @media screen and (min-width: 576px) {
-  .svgFlex{
-    display:none;
+  .svgFlex {
+    display: none;
   }
 }
 @media screen and (min-width: 768px) {
-.svgFlex{
-    display:none;
+  .svgFlex {
+    display: none;
   }
 }
 @media screen and (min-width: 992px) {
-.svg img {
-  width:280px;
-  padding:2em;
-}
-.svgFlex {
-  display:flex;
-  justify-content: center;
-  margin:10%;
-}
+  .svg img {
+    width: 280px;
+    padding: 2em;
+  }
+  .svgFlex {
+    display: flex;
+    justify-content: center;
+    margin: 10%;
+  }
 }
 @media screen and (min-width: 1200px) {
-.error-button {
- display: block;
-}
+  .error-button {
+    display: block;
+  }
 }
 @media screen and (min-width: 1400px) {
 }
