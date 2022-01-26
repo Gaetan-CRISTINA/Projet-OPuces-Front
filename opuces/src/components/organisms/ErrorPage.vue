@@ -13,20 +13,37 @@
     </div>
     <div class="error-button">
       <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
-      <a href="" class="useless2">FAIRE UN TRUC INUTILE</a>
+      <a href="" id="useless2" v-on:click="handleclick">FAIRE UN TRUC INUTILE</a>
+    </div>
+    <div class="svgFlex">
+    <div class="svg">
+      <img src="../../assets/svg/Quatre.svg" alt="">
+    </div>
+    <div class="svg">
+      <IllusPlane/>
+    </div>
+    <div class="svg">
+      <img src="../../assets/svg/Quatre.svg" alt="">
+    </div>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from "../atoms/Logo";
-
+import IllusPlane from "../atoms/IllusPlane"
 export default {
   name: "ErrorPage",
   components: {
     Logo,
-  },
-};
+    IllusPlane
+  },  
+}
+
+
+
+
+
 </script>
 
 <style lang="scss">
@@ -81,22 +98,39 @@ export default {
   background-color:$main-green;
   
 }
-.useless2 {
+#useless2 {
   color:$main-green;
   background-color:white;
   border:2px solid $main-green;
-  
 }
+.svgFlex{
+    display:none;
+  }
+
 @media screen and (min-width: 576px) {
+  .svgFlex{
+    display:none;
+  }
 }
 @media screen and (min-width: 768px) {
+.svgFlex{
+    display:none;
+  }
 }
 @media screen and (min-width: 992px) {
-
+.svg img {
+  width:280px;
+  padding:2em;
+}
+.svgFlex {
+  display:flex;
+  justify-content: center;
+  margin:10%;
+}
+}
 @media screen and (min-width: 1200px) {
-  }.error-button {
+.error-button {
  display: block;
-   
 }
 }
 @media screen and (min-width: 1400px) {

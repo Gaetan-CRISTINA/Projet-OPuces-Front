@@ -226,7 +226,9 @@ export default {
 #right-header-mobile:hover .sub-nav {
   transform: translateX(0);
 }
-
+.right-header-mobile:hover header {
+  background-color: black;
+}
 #left-header-mobile,
 #right-header-mobile {
   display: flex;

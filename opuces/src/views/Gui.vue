@@ -76,7 +76,7 @@
     <PictoEtat1/>
     <TabBar/>
     <PageLoginMobile/>
-    
+    <PictoQuatre/>
   </div>
 
 </template>
@@ -115,7 +115,7 @@ import PictoUser from '../components/atoms/PictoUser.vue'
 import PictoDisplay1 from '../components/atoms/PictoDisplay1.vue'
 import PictoDisplay2 from '../components/atoms/PictoDisplay2.vue'
 import PictoEtat1 from '../components/atoms/PictoEtat1.vue'
-
+import PictoQuatre from '../components/atoms/PictoQuatre.vue'
 import Prix from '../components/molecules/Prix.vue'
 import SearchBar from '../components/molecules/SearchBar.vue'
 
@@ -160,7 +160,7 @@ export default {
     PictoDisplay1,
     PictoDisplay2,
     PictoEtat1,
-
+    PictoQuatre,
     Prix,
     SearchBar,
 
