@@ -12,7 +12,16 @@
       </p>
     </div>
     <div class="error-button">
+      
+      <router-link
+      :to="{
+        name: 'Home'
+        }">
+
       <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
+
+      </router-link>
+
       <a href="" class="useless2">FAIRE UN TRUC INUTILE</a>
     </div>
   </div>
