@@ -3,13 +3,17 @@
     <div class="main-container">
       
       <div class="flex">
-        
-        <div id="left-header-mobile">
-          <span id="logo-link"><Logo /></span>
+        <router-link
+              v-if="user"
+              :to="{ name: 'Home'
+              }"
+              >
+          <div id="left-header-mobile">
+              <span id="logo-link"><Logo /></span>
               <h2 id="txt-link">O'Puces</h2>
-          
-        </div>
-        
+          </div>
+        </router-link>
+
         <div id="right-header-mobile">
           <PictoUser />
           <nav class="sub-nav">
@@ -46,7 +50,7 @@
 
                   <router-link
                       :to="{
-                        name: 'LegalMentions'
+                        name: 'LegalNotice'
                         }">
                     <li><PictoText />  Mentions légales</li>
                   </router-link>

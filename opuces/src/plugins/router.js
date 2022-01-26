@@ -10,6 +10,7 @@ import UserProfil from '../views/UserProfil.vue'
 import Logout from '../views/Logout.vue'
 
 import MentionsLegales from '../views/MentionsLegales.vue'
+import CGU from '../views/CGU.vue'
 
 Vue.use(VueRouter)
 
@@ -47,8 +48,14 @@ const routes = [
  },
   {
     path: '/mentions-legales',
-    name: 'CGU',
+    name: 'LegalNotice',
     component: MentionsLegales
+
+  },
+  {
+    path: '/cgu',
+    name: 'CGU',
+    component: CGU
 
   },
 ]

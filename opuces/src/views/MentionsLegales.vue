@@ -1,15 +1,15 @@
 <template>
-  <CGU/>
+  <LegalNotice/>
  
 </template>
 
 <script>
-import CGU from '../components/organisms/CGU.vue'
+import LegalNotice from '../components/organisms/LegalNotice.vue'
 
 export default {
   name: 'MentionsLegales',
   components: {
-    CGU,
+    LegalNotice,
    
   }
 }
