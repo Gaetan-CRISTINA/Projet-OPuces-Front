@@ -1,5 +1,5 @@
 <template>
-  <div class="etat">
+  <div class="etat content-annonce">
     <div class="picto-etat"><PictoEtat1 /></div>
     <p>Parfait état</p>
   </div>

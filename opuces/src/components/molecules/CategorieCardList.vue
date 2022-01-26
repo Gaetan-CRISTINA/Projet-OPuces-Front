@@ -1,5 +1,5 @@
 <template>
-  <div class="liste-categories-annonce">
+  <div class="liste-categories-annonce content-annonce">
     <CategorieCard />
     <CategorieCard />
     <CategorieCard />

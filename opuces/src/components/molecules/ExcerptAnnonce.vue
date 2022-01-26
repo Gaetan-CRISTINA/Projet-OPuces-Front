@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <p class="excerpt-annonce content-annonce">
     Wesh alors quam erat volutpat. Nunc cursus tellus ac molestie tincidunt.
     Etiam tempor mauris arcu.[...]
   </p>
@@ -16,7 +16,9 @@ export default {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main";
-
+.excerpt-annonce {
+  overflow: hidden !important;
+}
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {

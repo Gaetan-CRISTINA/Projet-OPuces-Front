@@ -1,43 +1,34 @@
 <template>
   <div class="card display2">
-    <div class="img-annoce">
-      <div class="flex prix-like">
-        <div class="circle"><PictoCoeur /></div>
-        <Prix class="prix" />
-      </div>
-    </div>
-
-    <div class="content-annonce">
-      <HeaderAnnonce/>
-      <EtatAnnonce/>
-      <CategorieCardList/>
-      <ExcerptAnnonce/>      
-      <DescriptionAnnonce/> 
-      <VoirPlus />
-      <div class="more-content">
-        <h3 class="ville">Toulouse</h3>
-      </div>
-    </div>
-    <div class="more-content">
+    <HeroAnnonce/>
+    <HeaderAnnonce/>
+    <EtatAnnonce/>
+    <CategorieCardList/>
+    <ExcerptAnnonce class="show-content"/>      
+    <DescriptionAnnonce class="hide-content"/> 
+    <VoirPlus
+    v-on:displayHideCardContent="displayHideCardContent"
+    class="show-content"
+    />
+    <div class="hide-content">
+      <Ville/>
       <MapWrapper/>
-      <div class="content-annonce">
-        <AnnonceAuteur/> 
-        <VoirMoins/>
-        <CtaAnnonce/>
-      </div>
+      <AnnonceAuteur/> 
+      <VoirMoins/>
+      <CtaAnnonce/>
     </div>
   </div>
 </template>
 
 <script>
-import PictoCoeur from "../atoms/PictoCoeur.vue";
-import Prix from "../molecules/Prix.vue";
+import HeroAnnonce from "../molecules/HeroAnnonce.vue";
 import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
 import EtatAnnonce from "../molecules/EtatAnnonce.vue";
 import CategorieCardList from "../molecules/CategorieCardList.vue";
 import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
 import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
 import VoirPlus from "../molecules/VoirPlus.vue";
+import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
 import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
 import VoirMoins from "../molecules/VoirMoins.vue";
@@ -46,19 +37,39 @@ import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 export default {
   name: "Card",
   components: {
-    PictoCoeur,
-    Prix,
+    HeroAnnonce,
     HeaderAnnonce,
     EtatAnnonce,
     CategorieCardList,
     ExcerptAnnonce,
     DescriptionAnnonce,
     VoirPlus,
+    Ville,
     MapWrapper,
     AnnonceAuteur,
     VoirMoins,
     CtaAnnonce,
   },
+  created() {
+    
+   
+  },
+  methods: {
+    displayHideCardContent: function(evt){
+      const hiddenSections = document.querySelectorAll('.hide-content')
+      console.log(evt);
+      hiddenSections.evt.currentTarget.classList.toggle('show-content');
+        
+        //const hiddenSections = document.querySelectorAll('.hide-content')
+
+        // for(let hiddenSection of hiddenSections){
+        //   hiddenSection.classList.toggle('show-content');
+        // }
+
+      },
+      
+  },
+  
 };
 </script>
 
@@ -70,50 +81,17 @@ export default {
   -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   margin-bottom: 15px;
+  padding-bottom: 15px;
   border-radius: 44px;
 }
-.img-annoce {
-  position: relative;
-  background-image: url("https://picsum.photos/400/600");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  border-radius: 44px 44px 0 0;
-  width: 100%;
-  height: 150px;
-}
-.flex {
-  display: flex;
-}
-.prix-like {
-  position: absolute;
-  width: calc(100% - 3em);
-  bottom: 1em;
-  left: 1.5em;
-}
-.circle{
-  background-color: $light-yellow;
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  position: relative;
-}
-.prix {
-  position: absolute;
-  right: 0;
-}
-.content-annonce {
-  padding: 1.5em;
-}
-.ville {
-  margin-top: 0.5em;
-}
 
-// .more-content {
-//   height: 0;
-//   overflow: hidden;
-// }
-
+.hide-content {
+  height: 0;
+  overflow: hidden;
+}
+.show-content {
+  height: 100%;
+}
 .display1 {
   width: 100%;
 }

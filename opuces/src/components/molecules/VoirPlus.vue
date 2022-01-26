@@ -1,13 +1,23 @@
 <template>
   <div class="voir-plus">
-    <button>VOIR L'ANNONCE</button>
+    <button
+      v-on:click="handleSeeMore"
+    >VOIR L'ANNONCE</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "VoirPlus",
-  components: {},
+  components: {
+
+  },
+  methods: {
+    handleSeeMore: function(evt){
+          evt.preventDefault();
+          this.$emit('displayHideCardContent', evt);
+      }
+  },
 };
 </script>
 
