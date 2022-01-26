@@ -1,11 +1,5 @@
 <template>
-
-
-  <div>
-    <Header/>
-    
-  </div>
-  
+    <Header/>  
 </template>
 
 <script>

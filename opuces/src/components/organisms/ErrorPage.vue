@@ -12,7 +12,14 @@
       </p>
     </div>
     <div class="error-button">
+      
+      <router-link
+      :to="{
+        name: 'Home'
+        }">
+
       <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
+<<<<<<< HEAD
       <a href="" id="useless2" v-on:click="handleclick">FAIRE UN TRUC INUTILE</a>
     </div>
     <div class="svgFlex">
@@ -25,6 +32,12 @@
     <div class="svg">
       <img src="../../assets/svg/Quatre.svg" alt="">
     </div>
+=======
+
+      </router-link>
+
+      <a href="" class="useless2">FAIRE UN TRUC INUTILE</a>
+>>>>>>> 586624eaffaab1f3aeb4ca19d4016fed2751a7ce
     </div>
   </div>
 </template>

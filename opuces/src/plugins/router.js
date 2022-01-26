@@ -12,6 +12,9 @@ import Logout from '../views/Logout.vue'
 import MentionsLegales from '../views/MentionsLegales.vue'
 import CGU from '../views/CGU.vue'
 
+import UserProfil from '../views/UserProfil.vue'
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -56,6 +59,20 @@ const routes = [
     name: 'CGU',
     component: CGU
   },
+  {
+    path: '/user-profil',
+    name: 'UserProfil',
+    component: UserProfil
+  },
+
+
+
+
+  
+  {
+    path: '*',
+    component: ErrorPages
+  }
 ]
 
 const router = new VueRouter({
