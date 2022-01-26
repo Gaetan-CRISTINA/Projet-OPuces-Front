@@ -5,27 +5,13 @@
       <div class="flex">
         
         <div id="left-header-mobile">
-          <router-link
-            v-if="!user"
-            :to="{
-              name: 'LoginForm'
-              }"
-              >
+          <span id="logo-link"><Logo /></span>
+              <h2 id="txt-link">O'Puces</h2>
+          
+        </div>
+        
+        <div id="right-header-mobile">
           <PictoUser />
-          <a id="se-connecter">
-            
-            Se connecter
-            
-          </a>
-          </router-link>
-
-          <router-link
-          v-if="user"
-          :to="{
-            name: 'Home'
-            }">
-            <PictoUser />
-          </router-link>
           <nav class="sub-nav">
             <ul>
                 <li id="welcome"><PictoUser/> Jean-Michel</li>
@@ -79,10 +65,27 @@
             <a class="disconect--button">Se déconnecter</a>
                   </router-link>
         </nav>
-        </div>
-        
-        <div id="right-header-mobile">
-          <PictoFilters />
+          <router-link
+            v-if="!user"
+            :to="{
+              name: 'LoginForm'
+              }"
+              >
+          
+          <a id="se-connecter">
+            
+            Se connecter
+            
+          </a>
+          </router-link>
+
+          <router-link
+          v-if="user"
+          :to="{
+            name: 'Home'
+            }">
+            <PictoUser />
+          </router-link>
         </div>
         <div id="left-header-desktop">
         <!--User Connected-->
@@ -189,7 +192,7 @@ import PictoInfo from "../atoms/PictoInfo";
 import PictoText from "../atoms/PictoText";
 import PictoMail from "../atoms/PictoMail";
 
-import PictoFilters from "../atoms/PictoFilters";
+
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
 import PictoAdd2 from "../atoms/PictoAdd2";
@@ -199,7 +202,7 @@ export default {
   name: "Header",
   components: {
     PictoUser,
-    PictoFilters,
+ 
     Logo,
     SearchBar,
     PictoAdd2,
@@ -228,9 +231,10 @@ export default {
   align-items: center;
   width: 100%;
 }
-#left-header-mobile:hover .sub-nav {
-  transform: translateX(0)
+#right-header-mobile:hover .sub-nav {
+  transform: translateX(0);
 }
+
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
@@ -296,9 +300,9 @@ li svg {
   position: absolute;
   z-index: 2;
   top: 0;
-  left: 0;
+  right: 0;
   background: $light-grey;
-  transform: translateX(-100%);
+  transform: translateX(100%);
   transition: transform 0.2s ease-in-out;
   
 }

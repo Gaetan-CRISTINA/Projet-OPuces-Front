@@ -1,15 +1,15 @@
 <template>
-  <Header/>
+  <FiltersMobile/>
   
 </template>
 
 <script>
-import Header from '../components/organisms/Header.vue'
+import FiltersMobile from '../components/organisms/FiltersMobile.vue'
 
 export default {
   name: 'UserProfil',
   components: {
-    Header,
+    FiltersMobile,
   }
 }
 </script>
