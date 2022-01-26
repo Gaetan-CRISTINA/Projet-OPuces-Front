@@ -7,7 +7,7 @@
     <div class="error-text">
       <span>OUPS !</span>
       <p>
-        Il n'y a rien sur cette page, elle a peut-être été supprimée, ouu elle
+        Il n'y a rien sur cette page, elle a peut-être été supprimée, ou elle
         n'a jamais existé !
       </p>
     </div>
