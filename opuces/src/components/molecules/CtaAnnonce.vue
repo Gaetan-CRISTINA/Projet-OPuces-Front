@@ -1,5 +1,5 @@
 <template>
-    <div class="CTA-annonces">
+    <div class="CTA-annonces content-annonce">
         <button id="acheter">ACHETER</button>
         <button id="contacter">CONTACTER</button>
     </div>

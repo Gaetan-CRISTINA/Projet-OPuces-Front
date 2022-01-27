@@ -1,5 +1,5 @@
 <template>
-    <div class="annonce-section-auteur">
+    <div class="annonce-section-auteur content-annonce">
         <img src="https://picsum.photos/73" alt="" />
         <div class="text-auteur-annonce">
             <p class="auteur-annonce">Jack Chirack</p>
@@ -43,6 +43,7 @@ export default {
 }
 .annonce-section-auteur{
     display: flex;
+    padding-top: 1em;
 }
 .annonce-section-auteur img {
     border-radius: 100%;

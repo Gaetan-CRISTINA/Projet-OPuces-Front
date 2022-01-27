@@ -1,5 +1,5 @@
 <template>
-    <div class="voir-moins">
+    <div class="voir-moins content-annonce">
         <p>VOIR MOINS </p>
         <PictoNext/>
     </div>
@@ -22,6 +22,7 @@ export default {
     display: flex;
     padding: .5em 0;
     margin-top: .5em;
+    cursor: pointer;;
 }
 p {
     font-weight: 600;

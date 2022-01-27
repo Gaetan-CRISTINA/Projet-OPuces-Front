@@ -35,6 +35,9 @@ h3 {
     font-weight: 600;
     color: $text-color;
 }
+
+//-------ANNONCES-------//
+
 .date-annonce {
     font-size: 12px;
     font-weight: 100;
@@ -47,6 +50,10 @@ h3 {
     font-weight: 700;
     color: $text-color;
     padding-bottom: .7em;
+}
+.content-annonce {
+    padding-left:1.5em;
+    padding-right: 1.5em;
 }
 
 //-----------------

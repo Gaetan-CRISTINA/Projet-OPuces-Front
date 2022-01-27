@@ -25,6 +25,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: flex-start;
 }
 @media screen and (min-width: 576px) {
     
