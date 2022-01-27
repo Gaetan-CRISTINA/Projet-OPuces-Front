@@ -1,19 +1,27 @@
 <template>
   <div class="liste-categories-annonce content-annonce">
     <CategorieCard />
-    <CategorieCard />
-    <CategorieCard />
+    
   </div>
 </template>
 
 <script>
 import CategorieCard from "../molecules/CategorieCard.vue";
+import classifiedsService from "../../services/classifiedsService.js";
 
 export default {
   name: "CategorieCardList",
   components: {
       CategorieCard,
   },
+  data(){
+      return{
+          classifieds: []
+      };
+  },
+  async load(){
+      this.classifieds = await classifiedsService.loadClassified();
+  }
 };
 </script>
 

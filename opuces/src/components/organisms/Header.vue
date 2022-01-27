@@ -36,7 +36,7 @@
 
                   <router-link
                       :to="{
-                        name: 'UserClassified'
+                        name: 'UserClassifieds'
                         }">
                     <li><PictoAnnonces />  Mes annonces</li>
                   </router-link>
@@ -133,7 +133,7 @@
           <router-link
           v-if="user"
             :to="{
-              name: 'UserClassified'
+              name: 'UserClassifieds'
               }"
               >
           <PictoAnnonces />
@@ -153,7 +153,10 @@
           <router-link
           v-if="user"
               :to="{
-              name: 'UserProfil'
+              name: 'UserProfil',
+              //params: {
+                //id: userProps.id,
+              //}
               }"
               >
             <img src="https://picsum.photos/30" alt="" />
@@ -210,7 +213,11 @@ export default {
     user(){
       return this.$store.state.user;
     }
-  }
+  },
+  // props:{
+  //   userProps: Object,
+  // },
+
   
 };
 </script>
@@ -314,7 +321,8 @@ li svg {
 #picto-home {
   fill: $main-green !important;
 }
-@media screen and (min-width: 576px) {
+@media screen and (max-width: 576px) {
+  
 }
 @media screen and (min-width: 768px) {
 }
@@ -330,10 +338,13 @@ li svg {
   #center-header-desktop,
   #right-header-desktop {
     display: flex;
+    width:100%;
+    justify-content:space-between;
   }
   #left-header-desktop a {
     display: flex;
     align-items: center;
+    
   }
   #left-header-desktop a:hover h2 {
     color: $secondary-green;

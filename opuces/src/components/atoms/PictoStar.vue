@@ -16,5 +16,9 @@ export default {
   width: 10px;
   height: 10px;
 }
+svg:hover {
+  transition: all .3s;
+  fill: #2093A7;
+}
 </style>
 

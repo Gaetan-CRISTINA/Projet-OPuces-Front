@@ -68,6 +68,11 @@ const userService = {
     {
        const response = await axios.post(userService.baseURI + '/lost-password');
        return response.data; 
+    },
+
+    updateUser: async function()
+    {
+        
     }
 };
 export default userService;

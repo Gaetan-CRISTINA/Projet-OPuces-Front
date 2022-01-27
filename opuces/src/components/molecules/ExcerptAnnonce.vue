@@ -1,16 +1,24 @@
 <template>
-  <p class="excerpt-annonce content-annonce">
-    Wesh alors quam erat volutpat. Nunc cursus tellus ac molestie tincidunt.
-    Etiam tempor mauris arcu.[...]
+  <p class="excerpt-annonce content-annonce" v-html="recipeProps.excerpt.rendered">
+    
   </p>
 </template>
 
 <script>
+import classifiedsService from "../../services/classifiedsService.js";
 export default {
   name: "ExcerptAnnonce",
   components: {
       
   },
+  data(){
+      return{
+          classifieds: []
+      };
+  },
+  async load(){
+      this.classifieds = await classifiedsService.loadClassified();
+  } 
 };
 </script>
 
