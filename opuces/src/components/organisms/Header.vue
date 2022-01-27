@@ -314,7 +314,8 @@ li svg {
 #picto-home {
   fill: $main-green !important;
 }
-@media screen and (min-width: 576px) {
+@media screen and (max-width: 576px) {
+  
 }
 @media screen and (min-width: 768px) {
 }
@@ -330,10 +331,13 @@ li svg {
   #center-header-desktop,
   #right-header-desktop {
     display: flex;
+    width:100%;
+    justify-content:space-between;
   }
   #left-header-desktop a {
     display: flex;
     align-items: center;
+    
   }
   #left-header-desktop a:hover h2 {
     color: $secondary-green;

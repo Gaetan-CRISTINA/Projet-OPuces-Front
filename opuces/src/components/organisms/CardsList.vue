@@ -41,7 +41,7 @@ export default {
     align-items: flex-start;
 }
 @media screen and (min-width: 576px) {
-    
+   
 }
 @media screen and (min-width: 768px) {
     

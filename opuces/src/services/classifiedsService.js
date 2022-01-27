@@ -52,6 +52,11 @@ const classifiedsService = {
     async loadSellerRate(){
         const response = await axios.get(classifiedsService.baseURI + '/SellerRate?_embed=true');
         return response.data;
+    },
+
+    async loadClassifiedsById(classifiedId){
+        const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId + '?_embed=true');
+        return response.data;
     }
 
     

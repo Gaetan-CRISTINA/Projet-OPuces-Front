@@ -3,44 +3,67 @@
     
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
+      <img :src="getImage" alt="classifiedImage" class="img-annoce">
     <div class="flex prix-like">
       <div class="circle"><PictoCoeur /></div>
-      <Prix class="prix" />
+      <span class="prix">{{classifiedProps.classifiedPrice}}€</span>
     </div>
   </div>
+
     <!-- <HeaderAnnonce/> -->
     <div class="header-annonce content-annonce">
         <h3>{{classifiedProps.title.rendered}}</h3>
         <p class="date-annonce">Annonce parue le {{classifiedProps.date}}</p>
         <p class="auteur-annonce">{{classifiedProps._embedded['author'][0].name}}</p>
     </div>
+
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
     <div class="picto-etat"><PictoEtat1 /></div>
     <p>{{classifiedProps.ProductState}}</p>
   </div>
+
     <!-- <CategorieCardList/> -->
-<div class="liste-categories-annonce content-annonce">
+  <div class="liste-categories-annonce content-annonce">
     <!-- <CategorieCard /> -->
     <div class="category-card-tag">
       <p>{{classifiedProps.ProductCategory}}</p>
     </div>
   </div>
+
     <!-- <ExcerptAnnonce class="show-content"/>  -->
     <p class="excerpt-annonce content-annonce" v-html="classifiedProps.excerpt.rendered + '[...]'">
-     </p>     
-    <DescriptionAnnonce class="hide-content"/> 
+     </p> 
+    <!--<DescriptionAnnonce class="hide-content"/>-->
+    <p class="description-annonce content-annonce hide-content" v-html="classifiedProps.content.rendered"> </p>
+    
+    
     <VoirPlus
     v-on:displayHideCardContent="displayHideCardContent"
     class="show-content"
     />
+
     <div class="hide-content">
       <Ville/>
       <MapWrapper/>
       <AnnonceAuteur/> 
       <VoirMoins/>
       <CtaAnnonce/>
+
+       <!-- <router-link
+      :to="{
+        name:'classifiedById',
+        params: {
+          id: classifiedProps.id,
+        }
+      }"
+      >
+      Lire l'annonce
+      </router-link> -->
+
     </div>
+
+
   </div>
 </template>
 
@@ -50,7 +73,7 @@
 // import EtatAnnonce from "../molecules/EtatAnnonce.vue";
 // import CategorieCardList from "../molecules/CategorieCardList.vue";
 // import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
-import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
+// import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
 import VoirPlus from "../molecules/VoirPlus.vue";
 import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
@@ -60,7 +83,7 @@ import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
 import PictoCoeur from "../atoms/PictoCoeur.vue";
-import Prix from "../molecules/Prix.vue";
+// import Prix from "../molecules/Prix.vue";
 // import CategorieCard from "../molecules/CategorieCard.vue";
 
 export default {
@@ -71,7 +94,7 @@ export default {
     // EtatAnnonce,
     // CategorieCardList,
     // ExcerptAnnonce,
-    DescriptionAnnonce,
+    // DescriptionAnnonce,
     VoirPlus,
     Ville,
     MapWrapper,
@@ -79,7 +102,7 @@ export default {
     VoirMoins,
     CtaAnnonce,
     PictoCoeur,
-    Prix,
+    // Prix,
     PictoEtat1,
     // CategorieCard
   },
@@ -108,7 +131,15 @@ export default {
   async load(){
       this.classifieds = await classifiedsService.loadClassified();
   },
-  
+  computed:{
+    getImage(){
+    if(this.classifiedProps._embedded['wp:featuredmedia']){
+      return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
+    }else{
+      return "https://picsum.photos/400/600";
+    }
+  }
+  }
   
 };
 </script>
@@ -131,6 +162,16 @@ export default {
     font-size: 10px;
     font-weight: 700;
   }
+}
+span {
+    font-weight: 600;
+    color: $main-green;
+    background-color: $light-yellow;
+    padding: 5.5px .7em;
+    border-radius: 20px;
+  }
+.description-annonce {
+  overflow: hidden;
 }
 .picto-etat {
   background-color: $light-yellow;
@@ -172,7 +213,7 @@ export default {
 }
 .img-annoce {
   position: relative;
-  background-image: url("https://picsum.photos/400/600");
+  // background-image: url("https://picsum.photos/400/600");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -227,6 +268,8 @@ export default {
     width: 432.5px;
   }
 }
+
+
 </style>
 
 <style  lang="scss">
