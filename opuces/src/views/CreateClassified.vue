@@ -7,7 +7,7 @@
       </router-link>
     </div>
     <h1>CreateClassified Form</h1>
-    <form action="">
+    <form @submit="handleSubmit">
       <h6>Titre de votre annonce</h6>
       <label>
         <input v-model="title" name="title" class="title" />
@@ -20,30 +20,32 @@
 
       <h6>Etat du produit</h6>
       <label>
-        <select name="" id="">
-            <option value="">Etat du produit</option>
+        <select name="selectState">
+          <option value="">Etat du produit</option>
         </select>
       </label>
 
       <h6>Catégorie</h6>
       <label>
-        <select name="" id="">
-            <option value="">Catégorie</option>
+        <select name="selectCategory">
+          <option value="">Catégorie</option>
         </select>
       </label>
 
-    <h6>Mode de livraions</h6>
+      <h6>Mode de livraions</h6>
       <label>
-        <select name="" id="">
-            <option value="">Mode de livraison</option>
+        <select name="selectUnderCategory">
+          <option value="">Mode de livraison</option>
         </select>
       </label>
-    </form>
-
-    <h6>Images</h6>
+      <h6>Images</h6>
       <label>
         <button>Upload Image</button>
       </label>
+      <div>
+        <button>Enregistrer mon annonce</button>
+      </div>
+    </form>
 
     <div class="homeLink">
       <router-link
@@ -62,6 +64,17 @@ export default {
   name: "CreateClassified",
   components: {
     Logo,
+  },
+  data() {
+    return {
+      title: "",
+      description: "",
+    };
+  },
+  methods: {
+    async handleSubmit(evt) {
+      evt.preventDefault();
+    },
   },
 };
 </script>
@@ -97,11 +110,11 @@ button:hover {
   align-items: center;
   justify-content: flex-start;
 }
-.logoOpuces{
+.logoOpuces {
   margin-bottom: 20px;
 }
-.homeLink{
-    margin-top: 20px;
+.homeLink {
+  margin-top: 20px;
 }
 
 @media screen and (min-width: 576px) {
