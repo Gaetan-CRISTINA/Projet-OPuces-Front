@@ -16,6 +16,8 @@ import UserProfil from '../views/UserProfil.vue'
 import SingleCardClassified from '../components/organisms/SingleCardClassified.vue'
 import CreateClassified from '../views/CreateClassified.vue'
 
+import UserClassifieds from '../views/UserClassifieds.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -74,6 +76,11 @@ const routes = [
     path: '/create-classified',
     name: 'CreateClassified',
     component: CreateClassified
+  },
+  {
+    path: '/user-classifieds',
+    name: 'UserClassifieds',
+    componen: UserClassifieds
   },
 
 

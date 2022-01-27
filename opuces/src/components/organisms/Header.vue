@@ -36,7 +36,7 @@
 
                   <router-link
                       :to="{
-                        name: 'UserClassified'
+                        name: 'UserClassifieds'
                         }">
                     <li><PictoAnnonces />  Mes annonces</li>
                   </router-link>
@@ -133,7 +133,7 @@
           <router-link
           v-if="user"
             :to="{
-              name: 'UserClassified'
+              name: 'UserClassifieds'
               }"
               >
           <PictoAnnonces />

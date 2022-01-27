@@ -6,7 +6,8 @@
         <h1>O'puces</h1>
       </router-link>
     </div>
-    <h1>CreateClassified Form</h1>
+    <div class="displayForm">
+    <h1 class="CreateClassifiedFormTitle">CreateClassified Form</h1>
     <form @submit="handleSubmit">
       <h6>Titre de votre annonce</h6>
       <label>
@@ -15,13 +16,23 @@
 
       <h6>Description</h6>
       <label>
-        <input v-model="description" name="description" class="description" />
+        <textarea v-model="description" name="description" class="description" />
+      </label>
+
+      <h6>Votre prix</h6>
+      <label>
+        <input v-model="price" name="price" class="price" /> €
       </label>
 
       <h6>Etat du produit</h6>
       <label>
         <select name="selectState">
           <option value="">Etat du produit</option>
+           <option value="">Comme neuf</option>
+           <option value="">Bon état</option>
+            <option value="">usé</option>
+             <option value="">mauvais état</option>
+              <option value="">très mauvais état</option>
         </select>
       </label>
 
@@ -40,7 +51,7 @@
       </label>
       <h6>Images</h6>
       <label>
-        <button>Upload Image</button>
+        <button class="uploadImage">Upload Image</button>
       </label>
       <div>
         <button>Enregistrer mon annonce</button>
@@ -55,6 +66,7 @@
       >
         <button>Retouner vers la page d'accueil</button>
       </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -110,13 +122,65 @@ button:hover {
   align-items: center;
   justify-content: flex-start;
 }
+form{
+  padding: 20px;
+  border: #2093A7 2px solid;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+select {
+    width: 200px;
+    border: 0;
+    padding-bottom: 1em;
+    border-bottom: solid 1px $text-color;
+    margin-bottom: 1em;
+    font-size: 14px;
+    cursor: pointer;
+    background-color:white;
+  }
+
+h6{
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
 .logoOpuces {
   margin-bottom: 20px;
 }
 .homeLink {
   margin-top: 20px;
-}
+  align-self: flex-end;
 
+}
+h1:hover {
+  transition: all .3s;
+  color:#2093A7;
+}
+input {
+  background-color: $light-grey;
+  padding: 10px;
+  margin: 0px 15px;
+  height: 100px;
+  width: auto;
+  height: 38px;
+  border-radius: 6px;
+  border: none;
+}
+input:focus {
+  outline: $text-color;
+}
+.uploadImage{
+  margin-bottom: 20px;
+}
+.displayForm{
+  display: flex;
+  flex-direction: column;
+}
+.CreateClassifiedFormTitle{
+  margin-bottom: 15px;
+}
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {

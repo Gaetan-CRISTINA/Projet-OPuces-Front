@@ -31,7 +31,6 @@ export default {
   name: "Home",
   components: {
     Header,
-
     FiltersDesktop,
     CardsList,
     PictoDisplay2,

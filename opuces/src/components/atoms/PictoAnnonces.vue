@@ -20,6 +20,6 @@ div {
 }
 svg:hover {
   transition: all .3s;
-  fill: $secondary-green !important;
+  fill: #2093A7;
 }
 </style>
