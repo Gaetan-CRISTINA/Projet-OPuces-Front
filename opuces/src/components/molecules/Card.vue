@@ -38,10 +38,25 @@
     <p class="description-annonce content-annonce hide-content" v-html="classifiedProps.content.rendered"> </p>
     
     
-    <VoirPlus
+    <!-- <VoirPlus
     v-on:displayHideCardContent="displayHideCardContent"
     class="show-content"
-    />
+    /> -->
+      
+    <div class="voir-plus">
+    <router-link
+      :to="{
+        name:'SingleClassified',
+        params: {
+          id: classifiedProps.id,
+        }
+      }"
+      >
+    <button
+      v-on:click="handleSeeMore"
+    >VOIR L'ANNONCE</button>
+    </router-link>
+  </div>
 
     <div class="hide-content">
       <Ville/>
@@ -49,17 +64,6 @@
       <AnnonceAuteur/> 
       <VoirMoins/>
       <CtaAnnonce/>
-
-       <!-- <router-link
-      :to="{
-        name:'classifiedById',
-        params: {
-          id: classifiedProps.id,
-        }
-      }"
-      >
-      Lire l'annonce
-      </router-link> -->
 
     </div>
 
@@ -74,7 +78,7 @@
 // import CategorieCardList from "../molecules/CategorieCardList.vue";
 // import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
 // import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
-import VoirPlus from "../molecules/VoirPlus.vue";
+// import VoirPlus from "../molecules/VoirPlus.vue";
 import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
 import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
@@ -95,7 +99,7 @@ export default {
     // CategorieCardList,
     // ExcerptAnnonce,
     // DescriptionAnnonce,
-    VoirPlus,
+    // VoirPlus,
     Ville,
     MapWrapper,
     AnnonceAuteur,
@@ -125,8 +129,14 @@ export default {
   }, 
   data(){
       return{
-          classifieds: []
+          classifieds: [],
+          classifiedId: null,
+          classified: null,
       };
+  },
+  async created(){
+    this.classifiedId = this.$router.parms.id;
+    this.classified = await classifiedsService.loadClassifiedsById(this.classifiedId);
   },
   async load(){
       this.classifieds = await classifiedsService.loadClassified();
@@ -181,6 +191,27 @@ span {
   }
 .description-annonce {
   overflow: hidden;
+}
+button {
+  font-size: 12px;
+  font-weight: 700;
+  color: $main-green;
+  padding: 0.5em 1em;
+  border-radius: 22px;
+  border: solid 1px $main-green;
+  background-color: #fff;
+  margin-top: 0.5em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: $main-green;
+  color: #fff;
+  border: solid 1px $main-green;
+}
+
+.voir-plus {
+  text-align: center;
 }
 .picto-etat {
   background-color: $light-yellow;

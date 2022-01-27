@@ -13,6 +13,7 @@ import MentionsLegales from '../views/MentionsLegales.vue'
 import CGU from '../views/CGU.vue'
 
 import UserProfil from '../views/UserProfil.vue'
+import SingleCardClassified from '../components/organisms/SingleCardClassified.vue'
 
 
 Vue.use(VueRouter)
@@ -64,7 +65,11 @@ const routes = [
     name: 'UserProfil',
     component: UserProfil
   },
-
+  {
+    path: '/single-classified',
+    name: 'SingleClassified',
+    component: SingleCardClassified
+  },
 
 
 

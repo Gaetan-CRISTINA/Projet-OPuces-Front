@@ -153,7 +153,10 @@
           <router-link
           v-if="user"
               :to="{
-              name: 'UserProfil'
+              name: 'UserProfil',
+              //params: {
+                //id: userProps.id,
+              //}
               }"
               >
             <img src="https://picsum.photos/30" alt="" />
@@ -210,7 +213,11 @@ export default {
     user(){
       return this.$store.state.user;
     }
-  }
+  },
+  // props:{
+  //   userProps: Object,
+  // },
+
   
 };
 </script>
