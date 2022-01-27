@@ -29,6 +29,10 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.baseURI + '/classified?_embed=true');
         return response.data;
     },
+    async loadAuthor(){
+        const response = await axios.get(classifiedsService.baseURI+ '/users/:id')
+        return response.data;
+    },
 
     async loadClassifiedProductCategory(){
         const response = await axios.get(classifiedsService.baseURI + '/productCategory?_embed=true');
@@ -52,3 +56,5 @@ const classifiedsService = {
 
     
 }
+
+export default classifiedsService;

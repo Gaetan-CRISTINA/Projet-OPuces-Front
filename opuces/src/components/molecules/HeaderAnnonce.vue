@@ -1,16 +1,29 @@
 <template>
     <div class="header-annonce content-annonce">
-        <h3>Vélo de ville</h3>
-        <p class="date-annonce">Annonce parue le 12/10/2022</p>
-        <p class="auteur-annonce">Jack Chirack</p>
+        <h3>{{classifiedProps.title.rendered}}</h3>
+        <p class="date-annonce">Annonce parue le {{classifiedProps.date}}</p>
+        <p class="auteur-annonce">{{classifiedProps.author}}</p>
     </div>
 </template>
 
 <script>
+import classifiedsService from "../../services/classifiedsService.js"
 export default {
   name: "HeaderAnnonce",
   components: {
   },
+  props: {
+    classifiedProps: Object,
+  },
+  data(){
+    return{
+      classifieds: []
+    };
+  },
+  
+  async load(){
+      this.classifieds = await classifiedsService.loadClassified();
+  }
 };
 </script>
 

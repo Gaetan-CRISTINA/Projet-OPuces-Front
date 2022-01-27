@@ -1,10 +1,34 @@
 <template>
   <div class="card display2">
-    <HeroAnnonce/>
-    <HeaderAnnonce/>
-    <EtatAnnonce/>
-    <CategorieCardList/>
-    <ExcerptAnnonce class="show-content"/>      
+    
+    <!-- <HeroAnnonce/> -->
+    <div class="img-annoce">
+    <div class="flex prix-like">
+      <div class="circle"><PictoCoeur /></div>
+      <Prix class="prix" />
+    </div>
+  </div>
+    <!-- <HeaderAnnonce/> -->
+    <div class="header-annonce content-annonce">
+        <h3>{{classifiedProps.title.rendered}}</h3>
+        <p class="date-annonce">Annonce parue le {{classifiedProps.date}}</p>
+        <p class="auteur-annonce">{{classifiedProps._embedded['author'][0].name}}</p>
+    </div>
+    <!-- <EtatAnnonce/> -->
+    <div class="etat content-annonce">
+    <div class="picto-etat"><PictoEtat1 /></div>
+    <p>{{classifiedProps.ProductState}}</p>
+  </div>
+    <!-- <CategorieCardList/> -->
+<div class="liste-categories-annonce content-annonce">
+    <!-- <CategorieCard /> -->
+    <div class="category-card-tag">
+      <p>{{classifiedProps.ProductCategory}}</p>
+    </div>
+  </div>
+    <!-- <ExcerptAnnonce class="show-content"/>  -->
+    <p class="excerpt-annonce content-annonce" v-html="classifiedProps.excerpt.rendered + '[...]'">
+     </p>     
     <DescriptionAnnonce class="hide-content"/> 
     <VoirPlus
     v-on:displayHideCardContent="displayHideCardContent"
@@ -21,11 +45,11 @@
 </template>
 
 <script>
-import HeroAnnonce from "../molecules/HeroAnnonce.vue";
-import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
-import EtatAnnonce from "../molecules/EtatAnnonce.vue";
-import CategorieCardList from "../molecules/CategorieCardList.vue";
-import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
+// import HeroAnnonce from "../molecules/HeroAnnonce.vue";
+// import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
+// import EtatAnnonce from "../molecules/EtatAnnonce.vue";
+// import CategorieCardList from "../molecules/CategorieCardList.vue";
+// import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
 import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
 import VoirPlus from "../molecules/VoirPlus.vue";
 import Ville from "../atoms/Ville.vue";
@@ -33,15 +57,20 @@ import MapWrapper from "../molecules/MapWrapper.vue";
 import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
 import VoirMoins from "../molecules/VoirMoins.vue";
 import CtaAnnonce from "../molecules/CtaAnnonce.vue";
+import classifiedsService from "../../services/classifiedsService.js";
+import PictoEtat1 from "../atoms/PictoEtat1.vue";
+import PictoCoeur from "../atoms/PictoCoeur.vue";
+import Prix from "../molecules/Prix.vue";
+// import CategorieCard from "../molecules/CategorieCard.vue";
 
 export default {
   name: "Card",
   components: {
-    HeroAnnonce,
-    HeaderAnnonce,
-    EtatAnnonce,
-    CategorieCardList,
-    ExcerptAnnonce,
+    // HeroAnnonce,
+    // HeaderAnnonce,
+    // EtatAnnonce,
+    // CategorieCardList,
+    // ExcerptAnnonce,
     DescriptionAnnonce,
     VoirPlus,
     Ville,
@@ -49,10 +78,10 @@ export default {
     AnnonceAuteur,
     VoirMoins,
     CtaAnnonce,
-  },
-  created() {
-    
-   
+    PictoCoeur,
+    Prix,
+    PictoEtat1,
+    // CategorieCard
   },
   methods: {
     displayHideCardContent: function(evt){
@@ -68,13 +97,54 @@ export default {
 
       },
       
+  },props: {
+    classifiedProps: Object,
+  }, 
+  data(){
+      return{
+          classifieds: []
+      };
   },
+  async load(){
+      this.classifieds = await classifiedsService.loadClassified();
+  },
+  
   
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+.etat {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+.category-card-tag {
+  display:inline-block;
+  background-color: $light-yellow;
+  padding: 0.3em 0.8em;
+  border-radius: 20px;
+  margin-right: .5em;
+  margin-bottom: .5em;
+  & p {
+    font-size: 10px;
+    font-weight: 700;
+  }
+}
+.picto-etat {
+  background-color: $light-yellow;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.etat p {
+  font-size: 12px;
+  font-style: italic;
+  padding-left: 1em;
+}
 .card {
   position: relative;
   -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
@@ -84,7 +154,9 @@ export default {
   padding-bottom: 15px;
   border-radius: 44px;
 }
-
+.excerpt-annonce {
+  overflow: hidden !important;
+}
 .hide-content {
   height: 0;
   overflow: hidden;
@@ -97,6 +169,37 @@ export default {
 }
 .display2 {
   width: 48%;
+}
+.img-annoce {
+  position: relative;
+  background-image: url("https://picsum.photos/400/600");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 44px 44px 0 0;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 1em;
+}
+.flex {
+  display: flex;
+}
+.prix-like {
+  position: absolute;
+  width: calc(100% - 3em);
+  bottom: 1em;
+  left: 1.5em;
+}
+.circle{
+  background-color: $light-yellow;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  position: relative;
+}
+.prix {
+  position: absolute;
+  right: 0;
 }
 
 @media screen and (min-width: 576px) {
@@ -137,5 +240,10 @@ export default {
   position: absolute;
   top: 9px;
   left: 9px;
+}
+#picto-etat1 {
+  position: absolute;
+  top: 4px;
+  left: 3px;
 }
 </style>

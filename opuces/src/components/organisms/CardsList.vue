@@ -1,20 +1,33 @@
 <template>
-    <div class="cards-list">
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+    <div class="cards-list"> 
+        
+        <span v-for="classified in classifieds"
+            :key="classified.id">
+       
+         
+            <Card :classifiedProps="classified" />
+        </span>
+        
     </div>
 </template>
 
 <script>
 import Card from "../molecules/Card.vue";
+import classifiedsService from "../../services/classifiedsService";
+
 export default {
   name: 'CardsList',
   components: {
       Card,
   },
+  data(){
+      return{
+          classifieds: []
+      };
+  },
+  async created(){
+      this.classifieds = await classifiedsService.loadClassified();
+  }
 }
 </script>
 
