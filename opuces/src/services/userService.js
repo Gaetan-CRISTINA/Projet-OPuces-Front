@@ -5,6 +5,7 @@ import storage from '../plugins/storage.js';
 const userService = {
 
     jwtBaseURI: 'http://localhost/OPuces/public/wp-json/jwt-auth/v1',
+    baseURI: 'http://localhost/OPuces/public/wp-json/opuces/v1/',
 
 
     login: async function(login, password){
@@ -61,6 +62,12 @@ const userService = {
     {
         //on supprime dans local storage
         storage.unset('userData');
+    },
+
+    lostPassword: async function()
+    {
+       const response = await axios.post(userService.baseURI + '/lost-password');
+       return response.data; 
     }
 };
 export default userService;
