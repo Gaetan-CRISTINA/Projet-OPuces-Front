@@ -2,19 +2,30 @@
   <div class="filters-desktop">
     <form>
       <div class="input-filters">
-        <select name="Ajouter une catégorie" id="">
+        <select name="Ajouter une catégorie" id=""
+        @change="handleChangeCategory"
+        v-model="selectedCategory">
           <option value="">
-            <span class="add">+</span> Ajouter une catégorie
+            <span class="add"></span> Ajouter une catégorie
           </option>
-          <option value="0">Lorem</option>
-          <option value="0">Ipsum</option>
-          <option value="0">Dolor</option>
-          <option value="0">Sit</option>
+          <option v-for="category in categories"
+          :key="category.id"
+          :value="category.id">{{category.name}}</option>
+          
+        </select>
+        <select name="Ajouter une sous-catégorie" id=""
+        @change="handleChangeUnderCategory"
+        v-model="selectedUnderCategory">
+          <option value="">
+            <span class="add"></span> Ajouter une sous-catégorie
+          </option>
+          <option v-for="category in categories"
+          :key="category.id"
+          :value="category.id">{{category.name}}</option>
+          
         </select>
         <Categorie />
-        <Categorie />
-        <Categorie />
-        <Categorie />
+        
       </div>
       <div class="input-filters">
         <label for="ville">Ajouter une ville</label>
@@ -48,12 +59,21 @@
 <script>
 import Categorie from "../molecules/Categorie.vue";
 import Villes from "../molecules/Villes.vue";
+import classifiedsService from "../../services/classifiedsService";
 
 export default {
   name: "FiltersDesktop",
   components: {
     Categorie,
     Villes,
+  },
+  data(){
+    return{
+      categories: []
+    };
+  },
+  async created(){
+    this.categories = await classifiedsService.loadClassifiedProductCategory();
   },
 };
 </script>
