@@ -3,8 +3,7 @@
     <form>
       <div class="input-filters">
         <select name="Ajouter une catégorie" id=""
-        @change="handleChangeCategory"
-        v-model="selectedCategory">
+        >
           <option value="">
             <span class="add"></span> Ajouter une catégorie
           </option>
@@ -14,8 +13,7 @@
           
         </select>
         <select name="Ajouter une sous-catégorie" id=""
-        @change="handleChangeUnderCategory"
-        v-model="selectedUnderCategory">
+        >
           <option value="">
             <span class="add"></span> Ajouter une sous-catégorie
           </option>

@@ -138,6 +138,15 @@ export default {
     }else{
       return "https://picsum.photos/400/600";
     }
+    //TODO
+    // author name en Majuscule (1ere lettre)
+    // capitalizeString(){ 
+    //  let input = document.getElementById("input"); 
+    //  let headingElement = document.getElementById("modified-string"); 
+    //  let string = input.value; 
+    //  headingElement.innerHTML = string.charAt(0).toUpperCase() + 
+    //      string.slice(1); ; 
+    // }
   }
   }
   
