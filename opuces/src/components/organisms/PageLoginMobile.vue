@@ -3,18 +3,18 @@
     <div class="connexion">
       <div class="left">
         
-        <div>
-          <router-link
+         <router-link
             :to="{
               name: 'Home'
-              }"
+              }" 
               >
-          <Logo />
+        <div>
+          <span><Logo/></span>
           <h1>O'puces</h1>
-          </router-link>
         </div>
+         </router-link> 
         
-<form @submit="handleSubmit">
+<form class ="login-form" @submit="handleSubmit">
           <h6>Login</h6>
           <label>
           <input v-model="login" name="login" class="email" />
@@ -90,7 +90,7 @@
 
       <div class="right">
         <div class="IllusPlane">
-          <IllusPlane />
+          <img src="../../assets/svg/Groupe-277.svg" alt="">
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
 
 <script>
 import Logo from "../atoms/Logo";
-import IllusPlane from "../atoms/IllusPlane";
+
 
 
 import userService from "../../services/userService.js";
@@ -113,7 +113,7 @@ export default {
   name: "PageLoginMobile",
   components: {
     Logo,
-    IllusPlane,
+    
   },
   data() {
     return {
@@ -164,14 +164,18 @@ export default {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main.scss";
-
+.login-form {
+  width:100%;
+}
 
 .connexion {
-  width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  margin: auto;
   border: 15px;
+  display:flex;
+  justify-content: space-around;
+  align-items:center;
+  margin: 15em auto;
 }
 .main-container h6 {
   align-self: flex-start;
@@ -183,7 +187,7 @@ export default {
   margin-top: 30px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex;
   
 }
 .left {
@@ -266,7 +270,7 @@ label {
 label > .icon {
   position: absolute;
   top: 70%;
-  right: 90%;
+  right: 0;
   transform: translateY(-60%);
   color: #484848;
 }
@@ -295,5 +299,38 @@ input:focus {
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
+}
+.right{
+  display:none;
+}
+@media screen and (min-width: 576px) {
+  
+}
+
+@media screen and (min-width: 768px) {
+ .right img {
+  width:70%;
+}
+}
+@media screen and (min-width: 992px) {
+   .right{
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.right img {
+  width:100%;
+}
+}
+@media screen and (min-width: 1200px) {
+  .right img {
+  width:100%;
+}
+}
+@media screen and (min-width: 1400px) {
+ .right img {
+  width:150%;
+}
 }
 </style>
