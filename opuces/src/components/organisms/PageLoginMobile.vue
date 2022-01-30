@@ -3,16 +3,18 @@
     <div class="connexion">
       <div class="left">
         
-        <div>
+        
           <router-link
             :to="{
               name: 'Home'
               }"
               >
-          <Logo />
-          <h1>O'puces</h1>
+              <div>
+          <span><Logo /></span>
+          <h1>O'Puces</h1>
+              </div>
           </router-link>
-        </div>
+        
         
 <form @submit="handleSubmit">
           <h6>Login</h6>

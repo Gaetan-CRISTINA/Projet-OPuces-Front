@@ -80,7 +80,7 @@ const routes = [
   {
     path: '/user-classifieds',
     name: 'UserClassifieds',
-    componen: UserClassifieds
+    component: UserClassifieds
   },
 
 
