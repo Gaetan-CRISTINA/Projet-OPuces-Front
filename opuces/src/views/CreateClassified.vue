@@ -28,11 +28,10 @@
       <label>
         <select name="selectState">
           <option value="">Etat du produit</option>
-           <option value="">Comme neuf</option>
-           <option value="">Bon état</option>
-            <option value="">usé</option>
-             <option value="">mauvais état</option>
-              <option value="">très mauvais état</option>
+           <option v-for="state in states"
+          :key="state.id"
+          :value="state.id">{{state.name}}</option>
+           
         </select>
       </label>
 
@@ -40,6 +39,9 @@
       <label>
         <select name="selectCategory">
           <option value="">Catégorie</option>
+          <option v-for="category in categories"
+          :key="category.id"
+          :value="category.id">{{category.name}}</option>
         </select>
       </label>
 
@@ -47,6 +49,9 @@
       <label>
         <select name="selectUnderCategory">
           <option value="">Mode de livraison</option>
+          <option v-for="deliveryMethod in deliveryMethods"
+          :key="deliveryMethod.id"
+          :value="category.id">{{category.name}}</option>
         </select>
       </label>
       <h6>Images</h6>
@@ -72,6 +77,7 @@
 </template>
 <script>
 import Logo from "../components/atoms/Logo.vue";
+import classifiedsService from '../services/classifiedsService';
 export default {
   name: "CreateClassified",
   components: {
@@ -81,7 +87,15 @@ export default {
     return {
       title: "",
       description: "",
+      categories: [],
+      states: [],
+      deliveryMethods: []
     };
+  },
+  async created(){
+    this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
+    this.categories = await classifiedsService.loadClassifiedProductCategory();
+    this.states = await classifiedsService.loadProductState();
   },
   methods: {
     async handleSubmit(evt) {

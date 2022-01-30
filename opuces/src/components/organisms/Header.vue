@@ -16,11 +16,13 @@
 
         <div id="right-header-mobile">
           <PictoUser />
-          <nav class="sub-nav">
+          <nav class="sub-nav"
+          v-if="user">
             <ul>
-                <li id="welcome"><PictoUser/> Jean-Michel</li>
+                <li id="welcome"><PictoUser/>{{user.user_display_name}}</li>
 
                   <router-link
+                  v-if="user"
                       :to="{
                         name: 'UserProfil'
                       }">
@@ -28,6 +30,7 @@
                   </router-link>  
 
                   <router-link
+                  v-if="user"
                       :to="{
                         name: 'MyAccound'
                         }">
@@ -35,6 +38,7 @@
                   </router-link>
 
                   <router-link
+                  v-if="user"
                       :to="{
                         name: 'UserClassifieds'
                         }">
@@ -193,6 +197,8 @@ import SearchBar from "../molecules/SearchBar";
 import PictoAdd2 from "../atoms/PictoAdd2";
 import PictoHome from "../atoms/PictoHome";
 
+
+
 export default {
   name: "Header",
   components: {
@@ -211,12 +217,14 @@ export default {
   },
   computed: {
     user(){
+      
+      if(this.$store.state.user){
       return this.$store.state.user;
+      }else{
+        return false;
+      }
     }
-  },
-  // props:{
-  //   userProps: Object,
-  // },
+  }
 
   
 };

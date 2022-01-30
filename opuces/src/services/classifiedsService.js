@@ -3,12 +3,12 @@ import axios from "axios"
 
 const classifiedsService = {
     
-    jwtBaseURI: 'http://localhost/OPuces/public/wp-json/opuces/v1',
+    opucesBaseURI: 'http://localhost/OPuces/public/wp-json/opuces/v1',
     baseURI: 'http://localhost/OPuces/public/wp-json/wp/v2',
 
     createClassified: async function(title, description, price, author, image){
         let response = await axios.post(
-            classifiedsService.jwtBaseURI + '/create-classified',
+            classifiedsService.opucesBaseURI + '/create-classified',
             {
                 title: title,
                 description: description,
@@ -40,7 +40,7 @@ const classifiedsService = {
     },
 
     async loadProductState(){
-        const response = await axios.get(classifiedsService.baseURI + '/ProductState?_embed=true');
+        const response = await axios.get(classifiedsService.baseURI + '/taxonomy?_embed=true');
         return response.data;
     },
     
