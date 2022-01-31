@@ -1,8 +1,8 @@
 <template>
 
   <div class="contact">
-    <div class="form-contact">
-      <h1>CONTACT</h1>
+    <div class="form-contact" v-if="!user">
+      <h1 >CONTACT</h1>
       <form class="contact-form" action="">
         <label for="Name">Nom</label>
         <input type="text" id="fname" name="fname" value="" />
@@ -16,19 +16,19 @@
       </form>
     </div>
 
-    <div class="form-contact">
+    <div class="form-contact" v-if="user">
       
         
 
-      <h1>Bonjour XXX votre demande concerne :</h1>
+      <h1 >Bonjour {{user.user_nicename}} votre demande concerne :</h1>
       
       <form class="contact-form" action="">
       <select name="" id="">
         <option value="0">Choisir un sujet</option>
-        <option value="1">michel</option>
-        <option value="2">michel</option>
-        <option value="3">michel</option>
-        <option value="4">michel</option>
+        <option value="1">Réclamation</option>
+        <option value="2">Question sur le site</option>
+        <option value="3">Un problème ?</option>
+        <option value="4">Contacter l'administrateur</option>
       </select>
     
      
