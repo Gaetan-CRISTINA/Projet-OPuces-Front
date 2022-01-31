@@ -12,16 +12,6 @@
           :value="category.id">{{category.name}}</option>
           
         </select>
-        <select name="Ajouter une sous-catégorie" id=""
-        >
-          <option value="">
-            <span class="add"></span> Ajouter une sous-catégorie
-          </option>
-          <option v-for="category in categories"
-          :key="category.id"
-          :value="category.id">{{category.name}}</option>
-          
-        </select>
         <Categorie />
         
       </div>
@@ -38,16 +28,6 @@
           <input placeholder="Minimum" type="text" id="name" name="user_name" />
           <input placeholder="Maximum" type="text" id="name" name="user_name" />
         </div>
-      </div>
-      <div class="input-filters">
-        <div class="save-search">
-          <label for="name">Enregistrer la recherche</label>
-          <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round"></span>
-          </label>
-        </div>
-        <input placeholder="Nom de la recherche" type="text" id="savesearch" name="user_name" />
       </div>
       <button type="submit" href="#" class="search-validate">RECHERCHER</button>
     </form>
@@ -198,8 +178,7 @@ export default {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-
-  input:checked + .slider {
+input:checked + .slider {
     background-color: $light-green;
     border: solid 1px $main-green;
   }
@@ -213,6 +192,7 @@ export default {
     transform: translateX(18px);
     background-color: $main-green;
   }
+  
 
   /* Rounded sliders */
   .slider.round {
@@ -236,7 +216,7 @@ export default {
   }
   .search-validate:hover {
     background-color: $secondary-green;
-  }
+  } 
 }
 @media screen and (min-width: 1200px) {
 }
