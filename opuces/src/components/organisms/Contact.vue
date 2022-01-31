@@ -13,20 +13,20 @@
       <input type="submit" value="Envoyer le message" />
     </form>
 
-    <div>
-      <p>Bonjour XXX, que pouvons nous faire pour vous ?</p>
+    <div v-if="user">
+      <p>Bonjour {{user.user_nicename}}, que pouvons nous faire pour vous ?</p>
       <h4>Votre demande concerne :</h4>
       <select name="" id="">
         <option value="0">Choisir un sujet</option>
-        <option value="1">michel</option>
-        <option value="2">michel</option>
-        <option value="3">michel</option>
-        <option value="4">michel</option>
+        <option value="1">Demande d'informations</option>
+        <option value="2">Réclamation</option>
+        <option value="3">Question générale sur le site</option>
+        <option value="4">J'ai un problème ?</option>
         </select>
         <form action="">
-          <label for="Message">Message</label>
+          <label for="Message">Votre message</label>
           <input type="text" id="fname" name="fname" value="" />
-          <input type="submit" value="Envoyer le message" />
+          <button type="submit">Envoyer le message</button>
         </form>
       
     </div>
@@ -36,7 +36,15 @@
 <script>
 export default {
   name: "Contact",
-  components: {},
+  components: {
+
+  },
+  computed: {
+    user(){
+    this.$store.state.user;
+    return this.$store.state.user;
+    }
+  }
 };
 </script>
 
