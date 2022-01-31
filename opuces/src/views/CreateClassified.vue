@@ -14,9 +14,14 @@
         <input v-model="title" name="title" class="title" />
       </label>
 
-      <h6>Description</h6>
+      <h6>Description rapide</h6>
       <label>
         <textarea v-model="description" name="description" class="description" />
+      </label>
+
+      <h6>Contenu de l'annonce</h6>
+      <label>
+        <textarea v-model="content" name="content" class="content" />
       </label>
 
       <h6>Votre prix</h6>
@@ -199,7 +204,7 @@ h1:hover {
   transition: all .3s;
   color:#2093A7;
 }
-input {
+input, textarea {
   background-color: $light-grey;
   padding: 10px;
   margin: 0px 15px;
@@ -208,6 +213,10 @@ input {
   height: 38px;
   border-radius: 6px;
   border: none;
+  color: black;
+}
+textarea{
+  padding: 0 15rem 7rem 0;
 }
 input:focus {
   outline: $text-color;
