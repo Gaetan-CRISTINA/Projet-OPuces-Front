@@ -99,7 +99,8 @@ export default {
       price: "",
       selectedState: "",
       selectedCategory: "",
-      selectedDeliveryMethod: ""
+      selectedDeliveryMethod: "",
+      content: ""
     };
   },
   async created(){
@@ -112,13 +113,14 @@ export default {
   methods: {
     async handleSubmit(event){
       event.preventDefault();
-      const result = await classifiedsService.saveClassified(
+      const result = await classifiedsService.createClassified(
         this.title,
         this.description,
         this.selectedState,
         this.selectedCategory,
         this.price,
-        this.selectedDeliveryMethod
+        this.selectedDeliveryMethod,
+        this.content
       );
       if(result){
         this.$router.push({name: 'Home'});

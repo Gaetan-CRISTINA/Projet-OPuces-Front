@@ -6,15 +6,19 @@ const classifiedsService = {
     opucesBaseURI: env.opucesApi,
     baseURI: env.wpApi,
 
-    createClassified: async function(title, description, price, author, image){
-        let response = await axios.post(
-            classifiedsService.opucesBaseURI + '/create-classified',
+    async createClassified(title, description, selectedState, selectedCategory,  price, selectedDeliveryMethod, content){
+        const response = await axios.post(
+            classifiedsService.opucesBaseURI + '/save-classified',
             {
+                post_id: 0,
                 title: title,
                 description: description,
-                author: author,
+                ProductState: selectedState,
+                ProductCategorie: selectedCategory,
                 price: price,
-                image: image 
+                DeliveryMethod: selectedDeliveryMethod,
+                content: content
+                
             }
         ).catch(
             function(){
@@ -66,18 +70,7 @@ const classifiedsService = {
         return response.data;
     },
 
-    async saveClassified(title, description, selectedState, selectedCategory, price, selectedDeliveryMethod){
-        const response = await axios.post (classifiedsService.opucesBaseURI + '/save-classified',
-            {
-                title: title,
-                description: description,
-                selectedSate: selectedState,
-                selectedCategory: selectedCategory,
-                price: price,
-                selectedDeliveryMethod: selectedDeliveryMethod
-            })
-        return response.data;
-    }
+    
 
     
 }
