@@ -8,7 +8,7 @@ const classifiedsService = {
 
     createClassified: async function(title, description, price, author, image){
         let response = await axios.post(
-            classifiedsService.env.opucesApi + '/create-classified',
+            classifiedsService.opucesBaseURI + '/create-classified',
             {
                 title: title,
                 description: description,
