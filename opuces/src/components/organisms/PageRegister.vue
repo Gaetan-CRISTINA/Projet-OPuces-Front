@@ -4,13 +4,11 @@
       <div class="left">
         
         <div>
-          <router-link
-            :to="{name: 'Home'}"
-            >
-              <Logo />
-              <h1>O'puces</h1>
-          </router-link>  
+          
+          <h1><Logo/> O'Puces</h1>
         </div>
+
+        <h2>Inscription</h2>
         
 
          <form @submit="handleSubmit">
@@ -206,7 +204,7 @@ export default {
   margin: 8px;
 }
 .left div:first-child {
-  position: relative;
+  
   color: $main-green;
   margin-top: 30px;
   display: flex;
@@ -223,12 +221,11 @@ export default {
 form {
   width: 100%;
 }
-.left h6 {
-  margin-top: 25px;
+h6,h2 {
+  padding: 15px 0 30px 0;
+  margin:30px;
 }
 h1 {
-  position: absolute;
-  bottom: 10px;
   font-weight: 900;
   font-size: 22px;
 }

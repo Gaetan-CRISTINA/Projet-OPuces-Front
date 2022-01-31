@@ -216,6 +216,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color:$light-grey;
 }
 #right-header-mobile:hover .sub-nav {
   transform: translateX(0);

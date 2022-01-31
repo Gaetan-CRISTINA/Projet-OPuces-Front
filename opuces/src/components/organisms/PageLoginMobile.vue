@@ -2,66 +2,49 @@
   <div class="main-container">
     <div class="connexion">
       <div class="left">
-        
+        <div>
+          <h1><Logo /> O'Puces</h1>
+        </div>
 
-          <router-link
-            :to="{
-              name: 'Home'
-              }" 
-              >
+        <h2>Connexion</h2>
 
-              <div>
-          <span><Logo /></span>
-          <h1>O'Puces</h1>
-              </div>
-          </router-link>
-        
-
-        
-<form class ="login-form" @submit="handleSubmit">
+        <form class="login-form" @submit="handleSubmit">
           <h6>Login</h6>
           <label>
-          <input v-model="login" name="login" class="email" />
+            <input v-model="login" name="login" class="email" />
           </label>
 
-          <div class="error" v-if="loginEmpty">Vous devez saisir un identifiant</div>
+          <div class="error" v-if="loginEmpty">
+            Vous devez saisir un identifiant
+          </div>
 
-        <h6>Mot de passe</h6>
+          <h6>Mot de passe</h6>
           <label class="eye-label">
-           <svg class="icon icon-eye">
+            <svg class="icon icon-eye">
               <use xlink:href="#icon-eye"></use>
             </svg>
-              <input v-model="password" type="password" name="password" class="password" />
+            <input
+              v-model="password"
+              type="password"
+              name="password"
+              class="password"
+            />
           </label>
 
-          <div class="error" v-if="passwordEmpty">Vous devez saisir un mot de passe</div>
+          <div class="error" v-if="passwordEmpty">
+            Vous devez saisir un mot de passe
+          </div>
 
-            <div class="error" v-if="loginFailed">Echec de connexion</div>
-      
+          <div class="error" v-if="loginFailed">Echec de connexion</div>
+
           <a href="#">Mot de passe oublié ?</a>
           <button class="--button connect">SE CONNECTER</button>
-     </form>
-
-
-        <button class="--button facebook">
-          <svg class="icon icon-facebook">
-            <use xlink:href="#icon-facebook"></use>
-          </svg>
-          SE CONNECTER AVEC FACEBOOK
-        </button>
-
-        <button class="--button google">
-
-          <svg class="icon icon-google">
-            <use xlink:href="#icon-google"></use></svg
-          >SE CONNECTER AVEC GOOGLE
-        </button>
+        </form>
 
         <div class="new-account">
           <h5>PAS ENCORE INSCRIT ?</h5>
-
-          <button class="--button">CREER UN NOUVEAU COMPTE</button>
-
+          <a class="create-account">CREER UN NOUVEAU COMPTE</a>
+          
         </div>
         <svg class="spritesheet">
           <symbol id="icon-eye" viewBox="0 0 32 32">
@@ -72,34 +55,15 @@
             ></path>
           </symbol>
         </svg>
-        <svg class="spritesheet">
-          <symbol id="icon-facebook" viewBox="0 0 32 32">
-            <title>facebook</title>
-            <path
-              class="a"
-              d="M10.147,9.6l.474-3.087H7.659v-2A1.544,1.544,0,0,1,9.4,2.837h1.347V.209A16.423,16.423,0,0,0,8.356,0C5.916,0,4.321,1.479,4.321,4.156V6.509H1.609V9.6H4.321v7.463H7.659V9.6Z"
-            ></path>
-          </symbol>
-        </svg>
-        <svg class="spritesheet">
-          <symbol id="icon-google" viewBox="0 0 32 32">
-            <title>google</title>
-            <path
-              class="a"
-              d="M16.905,9.355a7.978,7.978,0,0,1-8.314,8.39,8.591,8.591,0,1,1,0-17.183,8.262,8.262,0,0,1,5.761,2.248L12.014,5.059C8.955,2.108,3.267,4.325,3.267,9.154a5.382,5.382,0,0,0,5.325,5.425,4.646,4.646,0,0,0,4.878-3.7H8.591V7.921H16.77A7.532,7.532,0,0,1,16.905,9.355Z"
-            ></path>
-          </symbol>
-        </svg>
       </div>
 
       <div class="right">
         <div class="IllusPlane">
-          <img src="../../assets/svg/Groupe-277.svg" alt="">
+          <img src="../../assets/svg/Groupe-277.svg" alt="" />
         </div>
       </div>
     </div>
   </div>
-  
 </template>
 
 
@@ -107,79 +71,70 @@
 <script>
 import Logo from "../atoms/Logo";
 
-
-
 import userService from "../../services/userService.js";
 import storage from "../../plugins/storage.js";
-
 
 export default {
   name: "PageLoginMobile",
   components: {
     Logo,
-    
   },
   data() {
     return {
-      login: '',
-      password: '',
+      login: "",
+      password: "",
       loginEmpty: false,
       passwordEmpty: false,
       loginFailed: false,
-    }
+    };
   },
   methods: {
-      async handleSubmit(evt){
-          evt.preventDefault();
-          // vérifications
+    async handleSubmit(evt) {
+      evt.preventDefault();
+      // vérifications
 
-          if(this.login == ""){
-              this.loginEmpty = true;
-          }
-          if(this.password == ""){
-              this.passwordEmpty = true;
-          }
-        
-          if(!this.passwordEmpty && !this.loginEmpty){
-              let userData = await userService.login(
-                  this.login, 
-                  this.password
-              );
-              console.log(userData);
-
-            if(userData){
-                console.log("SUCCESS!");
-                storage.set('userData', userData);
-                this.loginFailed = false;
-                this.$router.push({name: 'Home'});
-
-                
-            } else {
-                console.log("FAILED !!")
-                this.loginFailed = true;
-                
-            }
-          }
-          
+      if (this.login == "") {
+        this.loginEmpty = true;
       }
-  }
-}
+      if (this.password == "") {
+        this.passwordEmpty = true;
+      }
+
+      if (!this.passwordEmpty && !this.loginEmpty) {
+        let userData = await userService.login(this.login, this.password);
+        console.log(userData);
+
+        if (userData) {
+          console.log("SUCCESS!");
+          storage.set("userData", userData);
+          this.loginFailed = false;
+          this.$router.push({ name: "Home" });
+        } else {
+          console.log("FAILED !!");
+          this.loginFailed = true;
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
 @import "../../assets/scss/main.scss";
 .login-form {
-  width:100%;
+  width: 100%;
 }
-
+#logo {
+  width: auto;
+}
 .connexion {
   padding-right: 15px;
   padding-left: 15px;
   border: 15px;
-  display:flex;
+  display: flex;
   justify-content: space-around;
-  align-items:center;
-  margin: 15em auto;
+  align-items: center;
+  margin: 10em auto;
 }
 .main-container h6 {
   align-self: flex-start;
@@ -188,49 +143,77 @@ export default {
 .left div:first-child {
   position: relative;
   color: $main-green;
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: flex;
-  
 }
 .left {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+}
+a {
+  text-decoration: none;
+  color:$text-color;
 }
 h1 {
-  position: absolute;
-  bottom: 10px;
   font-weight: 900;
   font-size: 22px;
+  padding: 40px 0 40px 0;
 }
 .--button {
-  border-radius: 19px;
-  padding: 1px;
+  display: block;
   width: 100%;
   height: 38px;
-  color: white;
-  width: 100%;
+  background-color: $main-green;
+  border-radius: 20px;
   border: none;
-  margin: 17px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.--button:hover {
+  background-color: $secondary-green;
+}
+.new-account {
+  margin: 50px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 900px;
+  align-items:center;
+  
+  
 }
-.--button svg {
-  position: relative;
-  top: 6.5px;
+.new-account a{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  width: 100%;
+  height: 38px;
+  background-color: $main-green;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
 }
-.--button:focus {
-  display: none;
+.create-account{
+  display: block;
+  width: 100%;
+  height: 38px;
+  background-color: $main-green;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  padding:1em;
 }
-h6 {
-  padding: 15px 0 15px 0;
+h6,
+h2 {
+  padding: 15px 0 30px 0;
 }
 input {
   width: 100%;
@@ -239,34 +222,9 @@ input {
   background-color: $light-grey;
   border-radius: 6px;
 }
-a {
-  text-decoration: none;
-  align-self: flex-start;
-  color: $text-color;
-  padding: 5px;
-}
 .connect {
   background-color: $main-green;
   margin: 28px 0 38px 0;
-}
-.facebook {
-  background-color: $social-fb;
-}
-.google {
-  background-color: $social-google;
-}
-.new-account {
-  margin-top: 80px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  flex-wrap: wrap;
-}
-h5 {
-  margin: auto;
-}
-.new-account button {
-  color: $main-green;
 }
 label {
   position: relative;
@@ -289,7 +247,6 @@ input:focus {
 }
 .eye-label {
   display: flex;
-
   align-items: center;
   width: 100%;
 }
@@ -304,37 +261,36 @@ input:focus {
   stroke: currentColor;
   fill: currentColor;
 }
-.right{
-  display:none;
+.right {
+  display: none;
 }
 @media screen and (min-width: 576px) {
-  
 }
 
 @media screen and (min-width: 768px) {
- .right img {
-  width:70%;
-}
+  .right img {
+    width: 70%;
+  }
 }
 @media screen and (min-width: 992px) {
-   .right{
-   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.right img {
-  width:100%;
-}
+  .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .right img {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 1200px) {
   .right img {
-  width:100%;
-}
+    width: 100%;
+  }
 }
 @media screen and (min-width: 1400px) {
- .right img {
-  width:150%;
-}
+  .right img {
+    width: 150%;
+  }
 }
 </style>
