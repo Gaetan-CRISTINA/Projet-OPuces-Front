@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import storage from '../plugins/storage.js';
-import env from "@/env.js";
+import env from "../../env";
 
 
 const userService = {
