@@ -61,7 +61,7 @@
 
                   <router-link
                       :to="{
-                        name: 'Contact'
+                        name: 'ContactPage'
                         }">
                     <li><PictoMail /> Contact</li>
                   </router-link>
