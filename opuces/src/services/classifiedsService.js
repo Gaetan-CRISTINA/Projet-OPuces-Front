@@ -1,10 +1,10 @@
 import axios from "axios"
-
+import env from "@/env.js";
 
 const classifiedsService = {
     
-    opucesBaseURI: 'http://localhost/OPuces/public/wp-json/opuces/v1',
-    baseURI: 'http://localhost/OPuces/public/wp-json/wp/v2',
+    opucesBaseURI: env.opucesApi,
+    baseURI: env.wpApi,
 
     createClassified: async function(title, description, price, author, image){
         let response = await axios.post(
@@ -35,12 +35,14 @@ const classifiedsService = {
     },
 
     async loadClassifiedProductCategory(){
-        const response = await axios.get(classifiedsService.baseURI + '/productCategory?_embed=true');
+        const response = await axios.get(classifiedsService.baseURI + '/productCategory?parent=0');
+        
         return response.data;
+        
     },
 
     async loadProductState(){
-        const response = await axios.get(classifiedsService.baseURI + '/taxonomy?_embed=true');
+        const response = await axios.get(classifiedsService.baseURI + '/ProductState');
         return response.data;
     },
     
@@ -61,6 +63,19 @@ const classifiedsService = {
 
     async loadClassifiedsByUser(userId){
         const response = await axios.get(classifiedsService.baseURI + '/classified?user=' + userId);
+        return response.data;
+    },
+
+    async saveClassified(title, description, selectedState, selectedCategory, price, selectedDeliveryMethod){
+        const response = await axios.post (classifiedsService.opucesBaseURI + '/save-classified',
+            {
+                title: title,
+                description: description,
+                selectedSate: selectedState,
+                selectedCategory: selectedCategory,
+                price: price,
+                selectedDeliveryMethod: selectedDeliveryMethod
+            })
         return response.data;
     }
 
