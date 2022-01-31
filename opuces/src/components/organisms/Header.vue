@@ -19,7 +19,7 @@
           <nav class="sub-nav"
           v-if="user">
             <ul>
-                <li id="welcome"><PictoUser/>{{user.user_display_name}}</li>
+                <li id="welcome">{{user.user_display_name}}</li>
 
                   <router-link
                   v-if="user"
@@ -61,7 +61,7 @@
 
                   <router-link
                       :to="{
-                        name: 'ContactPage'
+                        name: 'Contact'
                         }">
                     <li><PictoMail /> Contact</li>
                   </router-link>
@@ -133,24 +133,24 @@
               >
           <PictoHome />
           </router-link>
-
-          <router-link
+          <h3 v-if="user">Bonjour {{user.user_nicename}}</h3>
+          <!-- <router-link
           v-if="user"
             :to="{
               name: 'UserClassifieds'
               }"
               >
           <PictoAnnonces />
-          </router-link>
+          </router-link> -->
 
-          <router-link
+          <!-- <router-link
           v-if="user"
             :to="{
               name: 'CreateClassified'
               }"
               >
           <PictoAdd2 />
-          </router-link>
+          </router-link> -->
 
         <!--User Connected-->
         
@@ -194,8 +194,8 @@ import PictoMail from "../atoms/PictoMail";
 
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
-import PictoAdd2 from "../atoms/PictoAdd2";
-import PictoHome from "../atoms/PictoHome";
+// import PictoAdd2 from "../atoms/PictoAdd2";
+// import PictoHome from "../atoms/PictoHome";
 
 
 
@@ -206,9 +206,9 @@ export default {
  
     Logo,
     SearchBar,
-    PictoAdd2,
+    // PictoAdd2,
     PictoAnnonces,
-    PictoHome,
+    // PictoHome,
     PictoCompte,
     PictoInfo,
     PictoText,
@@ -223,7 +223,8 @@ export default {
       }else{
         return false;
       }
-    }
+    },
+    
   }
 
   
