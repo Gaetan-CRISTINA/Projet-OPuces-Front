@@ -1,14 +1,14 @@
 import axios from "axios"
-
+import env from "@/env.js";
 
 const classifiedsService = {
     
-    opucesBaseURI: 'http://localhost/OPuces/public/wp-json/opuces/v1',
-    baseURI: 'http://localhost/OPuces/public/wp-json/wp/v2',
+    opucesBaseURI: env.opucesApi,
+    baseURI: env.wpApi,
 
     createClassified: async function(title, description, price, author, image){
         let response = await axios.post(
-            classifiedsService.opucesBaseURI + '/create-classified',
+            classifiedsService.env.opucesApi + '/create-classified',
             {
                 title: title,
                 description: description,
@@ -36,7 +36,7 @@ const classifiedsService = {
 
     async loadClassifiedProductCategory(){
         const response = await axios.get(classifiedsService.baseURI + '/productCategory?parent=0');
-        console.log(response.data);
+        
         return response.data;
         
     },

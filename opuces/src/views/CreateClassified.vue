@@ -80,6 +80,7 @@
 <script>
 import Logo from "../components/atoms/Logo.vue";
 import classifiedsService from '../services/classifiedsService';
+
 export default {
   name: "CreateClassified",
   components: {
@@ -93,14 +94,16 @@ export default {
       price: "",
       selectedState: "",
       selectedCategory: "",
-      selectedDeliveryMethod: "",
+      selectedDeliveryMethod: ""
     };
   },
   async created(){
     this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
     this.categories = await classifiedsService.loadClassifiedProductCategory();
     this.states = await classifiedsService.loadProductState();
+    
   },
+
   methods: {
     async handleSubmit(event){
       event.preventDefault();
@@ -114,9 +117,16 @@ export default {
       );
       if(result){
         this.$router.push({name: 'Home'});
+        return result;
       } else {
         this.createFail = true;
       }
+    },
+  },
+  computed: {
+    user(){
+      this.$store.state.user;
+      return this.$store.state.user;
     }
   }
 };

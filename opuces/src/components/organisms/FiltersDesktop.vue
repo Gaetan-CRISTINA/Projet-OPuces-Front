@@ -12,16 +12,7 @@
           :value="category.id">{{category.name}}</option>
           
         </select>
-        <select name="Ajouter une sous-catégorie" id=""
-        >
-          <option value="">
-            <span class="add"></span> Ajouter une sous-catégorie
-          </option>
-          <option v-for="category in categories"
-          :key="category.id"
-          :value="category.id">{{category.name}}</option>
-          
-        </select>
+       
         <Categorie />
         
       </div>

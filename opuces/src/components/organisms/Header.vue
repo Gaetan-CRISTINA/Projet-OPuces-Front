@@ -130,13 +130,7 @@
         </div>
 
         <div id="right-header-desktop">
-          <router-link
-            :to="{
-              name: 'Home',
-            }"
-          >
-            <PictoHome />
-          </router-link>
+          
           <h3 v-if="user">Bonjour {{ user.user_nicename }}</h3>
 
           <router-link
