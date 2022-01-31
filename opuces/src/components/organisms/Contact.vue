@@ -1,65 +1,77 @@
 <template>
-
-  <div class="contact">
-    <div class="form-contact" v-if="!user">
-      <h1 >CONTACT</h1>
-      <form class="contact-form" action="">
-        <label for="Name">Nom</label>
-        <input type="text" id="fname" name="fname" value="" />
-        <label for="Sujet">Sujet</label>
-        <input type="text" id="Sujet" name="Sujet" value="" />
-        <label for="Mail">Mail</label>
-        <input type="email" id="Mail" name="Mail" value="" />
-        <label for="Message">Message</label>
-        <input type="text" class="Message" name="Message" value="" />
-        <input class="--button" type="submit" value="Envoyer le message" />
-      </form>
+  <div class="main-container">
+    <div class="headerLink">
+      <router-link
+        :to="{
+          name: 'Home',
+        }"
+      >
+        <div id="left-header-mobile">
+          <span><Logo /></span>
+          <h2>O'Puces</h2>
+        </div>
+      </router-link>
     </div>
+    <div class="contact">
+      <div class="form-contact" v-if="!user">
+        <h1>Formulaire de contact</h1>
+        <form class="contact-form" action="">
+          <label for="Name">Nom</label>
+          <input type="text" id="fname" name="fname" value="" />
+          <label for="Sujet">Sujet</label>
+          <input type="text" id="Sujet" name="Sujet" value="" />
+          <label for="Mail">Mail</label>
+          <input type="email" id="Mail" name="Mail" value="" />
+          <label for="Message">Message</label>
+          <input type="text" class="Message" name="Message" value="" />
+          <div>
+            <button class="--button" type="submit">Envoyer le message</button>
+          </div>
+        </form>
+      </div>
 
-    <div class="form-contact" v-if="user">
-      
-        
+      <div class="form-contact" v-if="user">
+        <h1>Bonjour {{ user.user_nicename }} votre demande concerne :</h1>
 
-      <h1 >Bonjour {{user.user_nicename}} votre demande concerne :</h1>
-      
-      <form class="contact-form" action="">
-      <select name="" id="">
-        <option value="0">Choisir un sujet</option>
-        <option value="1">Réclamation</option>
-        <option value="2">Question sur le site</option>
-        <option value="3">Un problème ?</option>
-        <option value="4">Contacter l'administrateur</option>
-      </select>
-    
-     
+        <form class="contact-form" action="">
+          <select name="" id="">
+            <option value="0">Choisir un sujet</option>
+            <option value="1">Réclamation</option>
+            <option value="2">Question sur le site</option>
+            <option value="3">Un problème ?</option>
+            <option value="4">Contacter l'administrateur</option>
+          </select>
 
-      
-        <label for="Message">Message</label>
-        <input type="text" class="Message" name="Message" value="" />
-        <input class="--button" type="submit" value="Envoyer le message" />
-      </form>
+          <label for="Message">Message</label>
+          <input type="text" class="Message" name="Message" value="" />
+          <div>
+            <button class="--button" type="submit">Envoyer le message</button>
+          </div>
+        </form>
       </div>
     </div>
-  
+  </div>
 </template>
 
 <script>
+import Logo from "../atoms/Logo.vue";
 export default {
   name: "Contact",
   components: {
-
+    Logo,
   },
   computed: {
-    user(){
-    this.$store.state.user;
-    return this.$store.state.user;
-    }
-  }
+    user() {
+      this.$store.state.user;
+      return this.$store.state.user;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 @import "../../assets/scss/main";
+
 .form-contact {
   margin: 50px auto;
   padding: 20px;
@@ -69,7 +81,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width:80vh;
+  width: 80vh;
 }
 
 .--button {
@@ -85,6 +97,7 @@ export default {
   cursor: pointer;
   width: 50%;
 }
+
 .--button:hover {
   background-color: $main-green;
   color: #fff;
@@ -99,20 +112,24 @@ input {
   padding: 10px;
   border-radius: 6px;
   border: none;
-  color:black;
+  color: black;
 }
 input:focus {
   outline: $text-color;
 }
 .contact-form select {
-    border: 0;
-    padding-bottom: 1em;
-    border-bottom: solid 1px $text-color;
-    margin: 1em;
-    font-size: 14px;
-    cursor: pointer;
-    background-color:white;
-  
+  border: 0;
+  padding-bottom: 1em;
+  border-bottom: solid 1px $text-color;
+  margin: 1em;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: white;
+}
+.headerLink {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
 
 @media screen and (min-width: 576px) {
