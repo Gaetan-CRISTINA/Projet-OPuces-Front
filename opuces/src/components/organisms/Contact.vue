@@ -1,4 +1,5 @@
 <template>
+
   <div class="contact">
     <div class="form-contact">
       <h1>CONTACT</h1>
@@ -31,6 +32,7 @@
       </select>
     
      
+
       
         <label for="Message">Message</label>
         <input type="text" class="Message" name="Message" value="" />
@@ -44,7 +46,15 @@
 <script>
 export default {
   name: "Contact",
-  components: {},
+  components: {
+
+  },
+  computed: {
+    user(){
+    this.$store.state.user;
+    return this.$store.state.user;
+    }
+  }
 };
 </script>
 

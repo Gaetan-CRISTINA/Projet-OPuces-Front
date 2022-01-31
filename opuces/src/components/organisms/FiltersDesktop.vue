@@ -12,6 +12,7 @@
           :value="category.id">{{category.name}}</option>
           
         </select>
+
         <Categorie />
         
       </div>

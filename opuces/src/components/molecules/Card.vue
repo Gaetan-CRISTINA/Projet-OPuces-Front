@@ -46,7 +46,7 @@
     <div class="voir-plus">
     
     <button
-      v-on:click="handleSeeMore"
+      
     >VOIR L'ANNONCE</button>
     
   </div>
@@ -86,38 +86,16 @@ import PictoCoeur from "../atoms/PictoCoeur.vue";
 export default {
   name: "Card",
   components: {
-    // HeroAnnonce,
-    // HeaderAnnonce,
-    // EtatAnnonce,
-    // CategorieCardList,
-    // ExcerptAnnonce,
-    // DescriptionAnnonce,
-    // VoirPlus,
     Ville,
     MapWrapper,
     AnnonceAuteur,
     VoirMoins,
     CtaAnnonce,
     PictoCoeur,
-    // Prix,
     PictoEtat1,
-    // CategorieCard
+     
   },
-  methods: {
-    displayHideCardContent: function(evt){
-      const hiddenSections = document.querySelectorAll('.hide-content')
-      console.log(evt);
-      hiddenSections.evt.currentTarget.classList.toggle('show-content');
-        
-        //const hiddenSections = document.querySelectorAll('.hide-content')
-
-        // for(let hiddenSection of hiddenSections){
-        //   hiddenSection.classList.toggle('show-content');
-        // }
-
-      },
-      
-  },props: {
+  props: {
     classifiedProps: Object,
   }, 
     

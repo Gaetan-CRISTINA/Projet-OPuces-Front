@@ -21,23 +21,25 @@
 
       <h6>Votre prix</h6>
       <label>
-        <input v-model="price" name="price" class="price" /> €
+        <input v-model="price" name="price" class="price" /> 
       </label>
 
       <h6>Etat du produit</h6>
       <label>
-        <select name="selectState">
+        <select name="selectState" v-model="selectedState">
           <option value="">Etat du produit</option>
            <option v-for="state in states"
+          
           :key="state.id"
-          :value="state.id">{{state.name}}</option>
+          :value="state.id"
+          >{{state.name}}</option>
            
         </select>
       </label>
 
       <h6>Catégorie</h6>
       <label>
-        <select name="selectCategory">
+        <select name="selectCategory" v-model="selectedCategory">
           <option value="">Catégorie</option>
           <option v-for="category in categories"
           :key="category.id"
@@ -47,11 +49,11 @@
 
       <h6>Mode de livraions</h6>
       <label>
-        <select name="selectUnderCategory">
+        <select name="selectUnderCategory" v-model="selectedDeliveryMethod">
           <option value="">Mode de livraison</option>
           <option v-for="deliveryMethod in deliveryMethods"
           :key="deliveryMethod.id"
-          :value="category.id">{{category.name}}</option>
+          :value="deliveryMethod.id">{{deliveryMethod.name}}</option>
         </select>
       </label>
       <h6>Images</h6>
@@ -78,6 +80,7 @@
 <script>
 import Logo from "../components/atoms/Logo.vue";
 import classifiedsService from '../services/classifiedsService';
+
 export default {
   name: "CreateClassified",
   components: {
@@ -87,21 +90,45 @@ export default {
     return {
       title: "",
       description: "",
-      categories: [],
       states: [],
-      deliveryMethods: []
+      price: "",
+      selectedState: "",
+      selectedCategory: "",
+      selectedDeliveryMethod: ""
     };
   },
   async created(){
     this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
     this.categories = await classifiedsService.loadClassifiedProductCategory();
     this.states = await classifiedsService.loadProductState();
+    
   },
+
   methods: {
-    async handleSubmit(evt) {
-      evt.preventDefault();
+    async handleSubmit(event){
+      event.preventDefault();
+      const result = await classifiedsService.saveClassified(
+        this.title,
+        this.description,
+        this.selectedState,
+        this.selectedCategory,
+        this.price,
+        this.selectedDeliveryMethod
+      );
+      if(result){
+        this.$router.push({name: 'Home'});
+        return result;
+      } else {
+        this.createFail = true;
+      }
     },
   },
+  computed: {
+    user(){
+      this.$store.state.user;
+      return this.$store.state.user;
+    }
+  }
 };
 </script>
 
