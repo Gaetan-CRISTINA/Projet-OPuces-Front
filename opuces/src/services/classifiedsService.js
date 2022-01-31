@@ -1,10 +1,10 @@
 import axios from "axios"
-
+import env from "@/env.js";
 
 const classifiedsService = {
     
-    opucesBaseURI: 'http://localhost/OPuces/public/wp-json/opuces/v1',
-    baseURI: 'http://localhost/OPuces/public/wp-json/wp/v2',
+    opucesBaseURI: env.opucesApi,
+    baseURI: env.wpApi,
 
     createClassified: async function(title, description, price, author, image){
         let response = await axios.post(
