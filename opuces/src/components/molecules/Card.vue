@@ -119,7 +119,8 @@ export default {
     //      string.slice(1); ; 
     // }
   }
-  }
+  },
+  
   
 };
 </script>

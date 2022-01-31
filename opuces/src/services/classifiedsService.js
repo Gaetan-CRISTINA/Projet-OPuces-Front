@@ -39,7 +39,7 @@ const classifiedsService = {
     },
 
     async loadClassifiedProductCategory(){
-        const response = await axios.get(classifiedsService.baseURI + '/productCategory?parent=0');
+        const response = await axios.get(classifiedsService.baseURI + '/ProductCategory/?parent=0');
         
         return response.data;
         
