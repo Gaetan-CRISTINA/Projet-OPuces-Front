@@ -16,7 +16,10 @@ import UserProfil from '../views/UserProfil.vue'
 import CreateClassified from '../views/CreateClassified.vue'
 
 import UserClassifieds from '../views/UserClassifieds.vue'
-
+import ContactPage from '../views/ContactPage.vue'
+import UserProfilEdit from '../views/UserProfilEdit.vue'
+import UploadProfilImage from '../views/UploadProfilImage.vue'
+import UpdatePassword from '../views/UpdatePassword.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -76,11 +79,28 @@ const routes = [
     path: '/user-classifieds',
     name: 'UserClassifieds',
     component: UserClassifieds
+
   },
-
-
-
-  
+  {
+    path: '/contact',
+    name: 'ContactPage',
+    component: ContactPage
+  },
+  {
+    path: '/profil-edit',
+    name: 'UserProfilEdit',
+    component: UserProfilEdit
+  },
+  {
+    path: '/upload-profil-image',
+    name: 'UploadProfilImage',
+    component: UploadProfilImage
+  },
+  {
+    path: '/password-edit',
+    name: 'UpdatePassword',
+    component: UpdatePassword
+  },
   {
     path: '*',
     component: ErrorPages

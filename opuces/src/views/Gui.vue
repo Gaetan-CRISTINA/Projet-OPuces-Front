@@ -38,6 +38,7 @@
       <PictoDisplay1/>
       <PictoDisplay2/>
       <PictoEtat1/>
+      
     </div>
   
     <div class="flxe">
@@ -48,18 +49,23 @@
       <Header/>
 
     </div>
+    
     <PictoHome/>
     <PictoText/>
+    <FiltersMobile/>
     <PictoAdd1/>
     <PictoAdd2/>
+    
     <PictoAnnonces/>
     <PictoCamera/>
+    
     <PictoClose/>
     <PictoCoeur/>
     <PictoCompte/>
     <PictoEye/>
     <PictoFb/>
     <PictoFilters/>
+    
     <PictoGoogle/>   
     <PictoInfo/>
     <PictoLocation/>
@@ -72,11 +78,13 @@
     <PictoStarEmpty/>
     <PictoUser/>
     <PictoDisplay1/>
+    
     <PictoDisplay2/>
     <PictoEtat1/>
     <TabBar/>
     <PageLoginMobile/>
     <PictoQuatre/>
+    
   </div>
 
 </template>
@@ -86,7 +94,7 @@ import IllusFlowers from '../components/atoms/IllusFLowers.vue'
 import IllusLamp from '../components/atoms/IllusLamp.vue'
 import IllusDesk from '../components/atoms/IllusDesk.vue'
 import IllusPlane from '../components/atoms/IllusPlane.vue'
-
+import FiltersMobile from '../components/organisms/FiltersMobile.vue'
 import Logo from '../components/atoms/Logo.vue'
 
 import PictoHome from '../components/atoms/PictoHome.vue'
@@ -133,7 +141,7 @@ export default {
     IllusPlane,
     
     Logo,
-
+    FiltersMobile,
     PictoHome,
     PictoText,
     PictoAdd1,
