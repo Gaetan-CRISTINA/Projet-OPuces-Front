@@ -44,18 +44,11 @@
     /> -->
       
     <div class="voir-plus">
-    <router-link
-      :to="{
-        name:'SingleClassified',
-        params: {
-          id: classifiedProps.id,
-        }
-      }"
-      >
+    
     <button
       v-on:click="handleSeeMore"
     >VOIR L'ANNONCE</button>
-    </router-link>
+    
   </div>
 
     <div class="hide-content">
@@ -127,17 +120,7 @@ export default {
   },props: {
     classifiedProps: Object,
   }, 
-  data(){
-      return{
-          classifieds: [],
-          classifiedId: null,
-          classified: null,
-      };
-  },
-  async created(){
-    this.classifiedId = this.$router.parms.id;
-    this.classified = await classifiedsService.loadClassifiedsById(this.classifiedId);
-  },
+    
   async load(){
       this.classifieds = await classifiedsService.loadClassified();
   },
