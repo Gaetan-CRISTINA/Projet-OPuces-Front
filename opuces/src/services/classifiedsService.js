@@ -1,13 +1,23 @@
-import axios from "axios"
+import axios from "axios";
 import env from "../../env";
+import storage from "../plugins/storage.js";
 
 const classifiedsService = {
     
     opucesBaseURI: env.opucesApi,
     baseURI: env.wpApi,
 
-    async createClassified(title, description, selectedState, selectedCategory,  price, selectedDeliveryMethod, content){
-        const response = await axios.post(
+    async createClassified(title, description, selectedState, selectedCategory,  price, selectedDeliveryMethod, content, imageId){
+        const userData = storage.get('userData');
+        if(userData !=null){
+            const token = userData.token;
+            if(token){
+                const options = {
+                    headers: {
+                        Authorization: 'Bearer' + token
+                    }
+                };
+            const response = await axios.post(
             classifiedsService.opucesBaseURI + '/save-classified',
             {
                 post_id: 0,
@@ -17,16 +27,22 @@ const classifiedsService = {
                 ProductCategorie: selectedCategory,
                 price: price,
                 DeliveryMethod: selectedDeliveryMethod,
-                content: content
+                content: content,
+                imageId: imageId
                 
-            }
+            },
+            options
         ).catch(
             function(){
                 console.log('upload classified failed');
                 return false;
+            });
+            
+            return response.data;
+            
             }
-        )
-        return response.data;
+        }
+        
     },
 
     async loadClassified(){
@@ -69,6 +85,20 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.baseURI + '/classified?user=' + userId);
         return response.data;
     },
+
+    async uploadImage(image){
+        let formData = new FormData();
+        formData.append("image", image);
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.post(classifiedsService.opucesBaseURI+ '/upload-image', formData,{
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        return response.data;
+    }
 
     
 

@@ -7,84 +7,104 @@
       </router-link>
     </div>
     <div class="displayForm">
-    <h1 class="CreateClassifiedFormTitle">CreateClassified Form</h1>
-    <form @submit="handleSubmit">
-      <h6>Titre de votre annonce</h6>
-      <label>
-        <input v-model="title" name="title" class="title" />
-      </label>
+      <h1 class="CreateClassifiedFormTitle">CreateClassified Form</h1>
+      <form @submit="handleSubmit">
+        <h6>Titre de votre annonce</h6>
+        <label>
+          <input v-model="title" name="title" class="title" />
+        </label>
 
-      <h6>Description rapide</h6>
-      <label>
-        <textarea v-model="description" name="description" class="description" />
-      </label>
+        <h6>Description rapide</h6>
+        <label>
+          <textarea
+            v-model="description"
+            name="description"
+            class="description"
+          />
+        </label>
 
-      <h6>Contenu de l'annonce</h6>
-      <label>
-        <textarea v-model="content" name="content" class="content" />
-      </label>
+        <h6>Contenu de l'annonce</h6>
+        <label>
+          <textarea v-model="content" name="content" class="content" />
+        </label>
 
-      <h6>Votre prix</h6>
-      <label>
-        <input v-model="price" name="price" class="price" /> 
-      </label>
+        <h6>Votre prix</h6>
+        <label>
+          <input v-model="price" name="price" class="price" /> €
+        </label>
 
-      <h6>Etat du produit</h6>
-      <label>
-        <select name="selectState" v-model="selectedState">
-          <option value="">Etat du produit</option>
-           <option v-for="state in states"
-          
-          :key="state.id"
-          :value="state.id"
-          >{{state.name}}</option>
-           
-        </select>
-      </label>
+        <h6>Etat du produit</h6>
+        <label>
+          <select name="selectState" v-model="selectedState">
+            <option value="">Etat du produit</option>
+            <option v-for="state in states" :key="state.id" :value="state.id">
+              {{ state.name }}
+            </option>
+          </select>
+        </label>
 
-      <h6>Catégorie</h6>
-      <label>
-        <select name="selectCategory" v-model="selectedCategory">
-          <option value="">Catégorie</option>
-          <option v-for="category in categories"
-          :key="category.id"
-          :value="category.id">{{category.name}}</option>
-        </select>
-      </label>
+        <h6>Catégorie</h6>
+        <label>
+          <select name="selectCategory" v-model="selectedCategory">
+            <option value="">Catégorie</option>
+            <option
+              v-for="category in categories"
+              :key="category.id"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </label>
 
-      <h6>Mode de livraions</h6>
-      <label>
-        <select name="selectUnderCategory" v-model="selectedDeliveryMethod">
-          <option value="">Mode de livraison</option>
-          <option v-for="deliveryMethod in deliveryMethods"
-          :key="deliveryMethod.id"
-          :value="deliveryMethod.id">{{deliveryMethod.name}}</option>
-        </select>
-      </label>
-      <h6>Images</h6>
-      <label>
-        <button class="uploadImage">Upload Image</button>
-      </label>
-      <div>
-        <button>Enregistrer mon annonce</button>
-      </div>
-    </form>
+        <h6>Mode de livraions</h6>
+        <label>
+          <select name="selectUnderCategory" v-model="selectedDeliveryMethod">
+            <option value="">Mode de livraison</option>
+            <option
+              v-for="deliveryMethod in deliveryMethods"
+              :key="deliveryMethod.id"
+              :value="deliveryMethod.id"
+            >
+              {{ deliveryMethod.name }}
+            </option>
+          </select>
+        </label>
+<h6>L'image de votre annonce</h6>
+        <div class="uploadImageForm">
+          <label>
+            <div>
+            <input type="file" @change="uploadImage" />
+            </div>
+            <div>
+            <img class="imageDisplay" v-if="image" :src="image" />
+            </div>
+            <div>
+            <input v-model="imageId" type="hidden" />
+            </div>
+          </label>
+        </div>
 
-    <div class="homeLink">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <button>Retouner vers la page d'accueil</button>
-      </router-link>
+        <div>
+          <button>Enregistrer mon annonce</button>
+        </div>
+      </form>
+
+      <div class="homeLink">
+        <router-link
+          :to="{
+            name: 'Home',
+          }"
+        >
+          <button>Retouner vers la page d'accueil</button>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 <script>
 import Logo from "../components/atoms/Logo.vue";
-import classifiedsService from '../services/classifiedsService';
+import classifiedsService from "../services/classifiedsService";
 
 export default {
   name: "CreateClassified",
@@ -100,18 +120,19 @@ export default {
       selectedState: "",
       selectedCategory: "",
       selectedDeliveryMethod: "",
-      content: ""
+      content: "",
+      image: null,
+      imageId: null
     };
   },
-  async created(){
+  async created() {
     this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
     this.categories = await classifiedsService.loadClassifiedProductCategory();
     this.states = await classifiedsService.loadProductState();
-    
   },
 
   methods: {
-    async handleSubmit(event){
+    async handleSubmit(event) {
       event.preventDefault();
       const result = await classifiedsService.createClassified(
         this.title,
@@ -120,22 +141,30 @@ export default {
         this.selectedCategory,
         this.price,
         this.selectedDeliveryMethod,
-        this.content
+        this.content,
+        this.imageId
       );
-      if(result){
-        this.$router.push({name: 'Home'});
+      if (result) {
+        this.$router.push({ name: "Home" });
         return result;
       } else {
         this.createFail = true;
       }
     },
+    async uploadImage(event){
+      event.preventDefault();
+      const image = event.currentTarget.files[0];
+      let imageResult = await classifiedsService.uploadImage(image);
+      this.image = imageResult.image.url;
+      this.imageId = imageResult.image.id;
+    }
   },
   computed: {
-    user(){
+    user() {
       this.$store.state.user;
       return this.$store.state.user;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -145,6 +174,15 @@ export default {
   position: relative;
   top: 70px;
 }
+.imageDisplay
+{
+  width: 300px;
+  margin-left: calc(20% - 3rem);
+}
+.uploadImageForm{
+  display: flex;
+}
+
 button {
   font-size: 12px;
   font-weight: 700;
@@ -157,6 +195,7 @@ button {
   transition: all 0.3s;
   cursor: pointer;
 }
+
 button:hover {
   background-color: $main-green;
   color: #fff;
@@ -170,9 +209,9 @@ button:hover {
   align-items: center;
   justify-content: flex-start;
 }
-form{
+form {
   padding: 20px;
-  border: #2093A7 2px solid;
+  border: #2093a7 2px solid;
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -180,17 +219,17 @@ form{
   flex-direction: column;
 }
 select {
-    width: 200px;
-    border: 0;
-    padding-bottom: 1em;
-    border-bottom: solid 1px $text-color;
-    margin-bottom: 1em;
-    font-size: 14px;
-    cursor: pointer;
-    background-color:white;
-  }
+  width: 200px;
+  border: 0;
+  padding-bottom: 1em;
+  border-bottom: solid 1px $text-color;
+  margin-bottom: 1em;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: white;
+}
 
-h6{
+h6 {
   margin-bottom: 15px;
   margin-top: 20px;
 }
@@ -200,13 +239,13 @@ h6{
 .homeLink {
   margin-top: 20px;
   align-self: flex-end;
-
 }
 h1:hover {
-  transition: all .3s;
-  color:#2093A7;
+  transition: all 0.3s;
+  color: #2093a7;
 }
-input, textarea {
+input,
+textarea {
   background-color: $light-grey;
   padding: 10px;
   margin: 0px 15px;
@@ -217,20 +256,20 @@ input, textarea {
   border: none;
   color: black;
 }
-textarea{
+textarea {
   padding: 0 15rem 7rem 0;
 }
 input:focus {
   outline: $text-color;
 }
-.uploadImage{
+.uploadImage {
   margin-bottom: 20px;
 }
-.displayForm{
+.displayForm {
   display: flex;
   flex-direction: column;
 }
-.CreateClassifiedFormTitle{
+.CreateClassifiedFormTitle {
   margin-bottom: 15px;
 }
 @media screen and (min-width: 576px) {
