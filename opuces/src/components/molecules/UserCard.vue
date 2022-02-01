@@ -73,6 +73,7 @@ import VoirMoins from "../molecules/VoirMoins.vue";
 import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
+import storage from "../../plugins/storage";
 
 export default {
   name: "UserCard",
@@ -86,7 +87,7 @@ export default {
      
   },
   props: {
-    userClassifiedProps: Object,
+    userClassifiedProps: Object
   }, 
     
   async load(){
@@ -95,27 +96,31 @@ export default {
   async getCategoryName(){
     this.categoryName = await classifiedsService.getTaxonomyName();
   },
-    computed:{
-    // getImage(){
-    // if(this.userClassifiedProps._embedded['wp:featuredmedia']){
-    //   return this.userClassifiedProps._embedded['wp:featuredmedia'][0].source_url;
-    // }else{
-    //   return "https://picsum.photos/400/600";
-    // }
-    //TODO
-    // author name en Majuscule (1ere lettre)
-    // capitalizeString(){ 
-    //  let input = document.getElementById("input"); 
-    //  let headingElement = document.getElementById("modified-string"); 
-    //  let string = input.value; 
-    //  headingElement.innerHTML = string.charAt(0).toUpperCase() + 
-    //      string.slice(1); ; 
-    // }
-    //},
+  async created(){
+    const userData = storage.get('userData');
+    if(userData){
+      return userData.name
+    }
+    
+  },
+  data(){
+    return {
+      userName: ''
+    }
   
   },
+  computed:{
+    getUsername(){
     
-  
+    const userData = storage.get('userData');
+        
+    if(userData != null){
+      return userData.nicename;
+    }
+    return true;
+  }
+    
+  }
 };
 </script>
 
