@@ -13,7 +13,7 @@
       </router-link>
     </div>
     <div class="contact">
-      <!-- <div class="form-contact" v-if="!user">
+      <div class="form-contact" v-if="!user">
         <h1>Formulaire de contact</h1>
         <form class="contact-form" @submit.prevent="sendEmail">
           <label for="Name">Nom</label>
@@ -28,7 +28,7 @@
             <button class="--button" type="submit">Envoyer le message</button>
           </div>
         </form>
-      </div> -->
+      </div>
 
       <div class="form-contact" v-if="user">
         <h1>Bonjour {{ user.user_nicename }} votre demande concerne :</h1>
