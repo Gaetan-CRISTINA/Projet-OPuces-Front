@@ -5,7 +5,7 @@
     <div class="img-annoce">
       <img :src="getImage" alt="classifiedImage" class="img-annoce">
     <div class="flex prix-like">
-      <div class="circle"><PictoCoeur /></div>
+      
       <span class="prix">{{classifiedProps.classifiedPrice}}€</span>
     </div>
   </div>
@@ -79,7 +79,7 @@ import VoirMoins from "../molecules/VoirMoins.vue";
 import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
-import PictoCoeur from "../atoms/PictoCoeur.vue";
+// import PictoCoeur from "../atoms/PictoCoeur.vue";
 // import Prix from "../molecules/Prix.vue";
 // import CategorieCard from "../molecules/CategorieCard.vue";
 
@@ -91,7 +91,6 @@ export default {
     AnnonceAuteur,
     VoirMoins,
     CtaAnnonce,
-    PictoCoeur,
     PictoEtat1,
      
   },
@@ -150,7 +149,7 @@ span {
     background-color: $light-yellow;
     padding: 5.5px .7em;
     border-radius: 20px;
-  }
+}
 .description-annonce {
   overflow: hidden;
 }
@@ -226,6 +225,7 @@ button:hover {
 }
 .flex {
   display: flex;
+  margin-bottom: 25px;
 }
 .prix-like {
   position: absolute;
