@@ -76,15 +76,16 @@
               >
                 <li><PictoMail /><span>Contact</span></li>
               </router-link>
-            <li>
+
+            
             <router-link
               :to="{
                 name: 'Logout',
               }"
             >
-             <li><PictoClose/><span>Se déconnecter</span></li>
+             <li class="disconect--button"><PictoClose/><span>Se déconnecter</span></li>
             </router-link>
-            </li>
+            
             </ul>
           </nav>
 
