@@ -20,14 +20,14 @@
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
     <div class="picto-etat"><PictoEtat1 /></div>
-    <p>{{classifiedProps.ProductState}}</p>
+    <p>{{productState.name}}</p>
   </div>
 
     <!-- <CategorieCardList/> -->
   <div class="liste-categories-annonce content-annonce">
     <!-- <CategorieCard /> -->
     <div class="category-card-tag">
-      <p>{{classifiedProps.ProductCategory}}</p>
+      <p>{{categoryName.name}}</p>
     </div>
   </div>
 
@@ -90,18 +90,36 @@ export default {
   }, 
     
   async load(){
+
+      // this.classifieds = await classifiedsService.loadClassified();
       this.categories = await classifiedsService.loadClassifiedProductCategory();
-  },
-  async getCategoryName(){
-    this.categoryName = await classifiedsService.getTaxonomyName();
-  },
-    computed:{
+},
+
+async created(){  
+  let typeCusto = "ProductCategory";
+  this.categoryName = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductCategory[0]);
+  typeCusto = "productstate";
+  this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
+  console.log(this.classifiedProps.productState);
+},
+
+data() {
+  return{
+    categoryName: '',
+    productState: ''
+  }
+},
+  computed:{
+
     getImage(){
     if(this.classifiedProps._embedded['wp:featuredmedia']){
+ 
       return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
     }else{
       return "https://picsum.photos/400/600";
     }
+
+
     //TODO
     // author name en Majuscule (1ere lettre)
     // capitalizeString(){ 

@@ -90,6 +90,12 @@ const classifiedsService = {
         return response.data;
         
     },
+    async loadOneCustonomy(typeCusto,id){
+        const response = await axios.get(classifiedsService.baseURI + '/' + typeCusto + '/' + id);
+        
+        return response.data;
+        
+    },
 
     async loadProductState(){
         const response = await axios.get(classifiedsService.baseURI + '/ProductState');
@@ -135,7 +141,6 @@ const classifiedsService = {
         return response.data;
     }
 
-    
 
     
 }
