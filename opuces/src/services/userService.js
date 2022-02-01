@@ -1,11 +1,13 @@
 import axios from 'axios';
 
 import storage from '../plugins/storage.js';
+import env from "../../env";
+
 
 const userService = {
 
-    jwtBaseURI: 'http://localhost/OPuces/public/wp-json/jwt-auth/v1',
-    baseURI: 'http://localhost/OPuces/public/wp-json/opuces/v1/',
+    jwtBaseURI: env.jwtBaseURI,
+    baseURI: env.baseURI,
 
 
     login: async function(login, password){
