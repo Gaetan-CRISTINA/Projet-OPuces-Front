@@ -19,14 +19,14 @@
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
     <div class="picto-etat"><PictoEtat1 /></div>
-    <p>{{userClassifiedProps.ProductState}}</p>
+    <p>{{productState.name}}</p>
   </div>
 
     <!-- <CategorieCardList/> -->
   <div class="liste-categories-annonce content-annonce">
     <!-- <CategorieCard /> -->
     <div class="category-card-tag">
-      <p>{{userClassifiedProps.ProductCategory}}</p>
+      <p>{{categoryName.name}}</p>
     </div>
   </div>
 
@@ -95,8 +95,18 @@ export default {
   async load(){
       this.categories = await classifiedsService.loadClassifiedProductCategory();
   },
-  async getCategoryName(){
-    this.categoryName = await classifiedsService.getTaxonomyName();
+  async created(){  
+  let typeCusto = "ProductCategory";
+  this.categoryName = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductCategory[0]);
+  typeCusto = "productstate";
+  this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
+  console.log(this.classifiedProps.productState);
+  },
+  data(){
+    return{
+      categoryName: '',
+      productState: ''
+    }
   },
  
 };

@@ -90,8 +90,6 @@ export default {
   }, 
     
   async load(){
-
-      // this.classifieds = await classifiedsService.loadClassified();
       this.categories = await classifiedsService.loadClassifiedProductCategory();
 },
 
