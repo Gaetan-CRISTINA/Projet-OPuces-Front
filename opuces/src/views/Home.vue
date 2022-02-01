@@ -16,6 +16,7 @@
         </div>
       </div>
     </div>
+    <TabBar/>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import Header from "../components/organisms/Header.vue";
 import FiltersDesktop from "../components/organisms/FiltersDesktop.vue";
 import CardsList from "../components/organisms/CardsList.vue";
 import PictoDisplay2 from "../components/atoms/PictoDisplay2.vue";
+import TabBar from "../components/molecules/TabBar.vue";
 
 
 
@@ -34,6 +36,7 @@ export default {
     FiltersDesktop,
     CardsList,
     PictoDisplay2,
+    TabBar,
   },
 };
 </script>

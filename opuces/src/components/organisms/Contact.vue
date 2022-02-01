@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+
     <div class="headerLink">
       <router-link
         :to="{
@@ -48,7 +49,13 @@
             <button class="--button" value="send" type="submit">Envoyer le message</button>
           
         </form>
+
       </div>
+      <img
+        class="illus-computer"
+        src="../../assets/svg/illus-computer.svg"
+        alt=""
+      />
     </div>
   </div>
 </template>
@@ -83,77 +90,123 @@ export default {
       );
     }
   }
+
+export default {
+  name: "Contact",
+  components: {},
+
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "../../assets/scss/main";
-
-.form-contact {
-  margin: 50px auto;
-  padding: 20px;
-  border: #2093a7 2px solid;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 80vh;
+.infos-desktop {
+  display: none;
 }
-
-.--button {
-  font-size: 12px;
-  font-weight: 700;
+.infos-mobile {
+  display: block;
+}
+.infos{
+  padding-top: 2em;
+  padding-bottom: 2em;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 33em;
+}
+h2 {
   color: $main-green;
-  padding: 0.5em 1em;
-  border-radius: 22px;
-  border: solid 1px $main-green;
-  background-color: #fff;
-  margin-top: 0.5em;
-  transition: all 0.3s;
-  cursor: pointer;
-  width: 50%;
 }
-
-.--button:hover {
-  background-color: $main-green;
-  color: #fff;
-  border: solid 1px $main-green;
+.main-container {
+  padding-top: 42px;
 }
-.Message {
-  padding: 0 15rem 10rem 0;
+form {
+  margin: 0 auto;
+  width: 100%;
 }
-
+form > * {
+  display: block;
+  width: 100%;
+}
+.right {
+  display: none;
+}
+label {
+  font-weight: 600;
+  padding-top: 1.5em;
+}
 input {
+  height: 38px;
   background-color: $light-grey;
-  padding: 10px;
-  border-radius: 6px;
   border: none;
-  color: black;
+  border-radius: 6px;
+  padding-left: 1em;
 }
-input:focus {
-  outline: $text-color;
-}
-.contact-form select {
+select {
+  padding-top: 1.5em;
   border: 0;
   padding-bottom: 1em;
   border-bottom: solid 1px $text-color;
-  margin: 1em;
+  margin-bottom: 1em;
   font-size: 14px;
   cursor: pointer;
   background-color: white;
 }
-.headerLink {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
 }
-
+textarea {
+  border-radius: 6px;
+  background-color: $light-grey;
+  border: none;
+  padding-top: 0.5em;
+  padding-left: 1em;
+}
+button {
+  margin-top: 2em;
+  background-color: $main-green;
+  border-radius: 19px;
+  padding: 1px;
+  height: 38px;
+  color: white;
+  width: 100%;
+  border: none;
+  font-size: 14px;
+  font-weight: 900px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+button:hover {
+  background-color: $secondary-green;
+}
 @media screen and (min-width: 576px) {
+  form {
+    max-width: 400px;
+  }
 }
 @media screen and (min-width: 768px) {
 }
 @media screen and (min-width: 992px) {
+  .infos-mobile {
+    display: none;
+  }
+  .infos-desktop {
+    display: block;
+  }
+  .main-container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+  }
+  .left {
+    width: 50%;
+  }
+  .right {
+    text-align: center;
+    width: 50%;
+    display: block;
+  }
 }
 @media screen and (min-width: 1200px) {
 }

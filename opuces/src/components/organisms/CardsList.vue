@@ -7,7 +7,6 @@
          
             <Card :classifiedProps="classified" />
         </span>
-        
     </div>
 </template>
 

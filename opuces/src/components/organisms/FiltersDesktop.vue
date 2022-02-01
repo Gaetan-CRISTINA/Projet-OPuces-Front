@@ -13,6 +13,7 @@
           >{{category.name}}</option>
         </select>
 
+
         <!-- Je boucle sur les categories selectionnées dans selectedCategory -->
         <div class="container-category"
         v-for="unitCategory in selectedCategory"
@@ -23,7 +24,6 @@
               <PictoRemove />
           </div>
        </div>
-
         
       </div>
       <div class="input-filters">
@@ -50,6 +50,7 @@
           v-model="maximumPrice"/>
         </div>
       </div>
+      
       <button type="submit" href="#" class="search-validate">RECHERCHER</button>
     </form>
   </div>
