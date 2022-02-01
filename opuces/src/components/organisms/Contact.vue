@@ -90,12 +90,7 @@ export default {
       );
     }
   }
-
-export default {
-  name: "Contact",
-  components: {},
-
-};
+}
 </script>
 
 <style scoped lang="scss">

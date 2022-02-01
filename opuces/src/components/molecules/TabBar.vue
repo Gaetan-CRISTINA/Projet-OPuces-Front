@@ -1,9 +1,25 @@
 <template>
   <nav>
+<router-link
+:to="{
+    name: 'Home'}">
       <PictoHome/>
+</router-link>
       <PictoSearch/>
+
       <PictoAnnonces/>
+
+
+
+
+
+
+      <router-link
+      :to="{
+          name: 'CreateClassified'
+          }">
       <PictoAdd1 class="button-add"/>
+      </router-link>
      
   </nav>
 </template>
@@ -45,6 +61,7 @@ nav {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    background-color: white;
 }
 .button-add {
     position: relative;
@@ -55,5 +72,23 @@ nav {
     -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
     box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+    background-color: white;
+}
+
+@media screen and (min-width: 576px) {
+   
+}
+@media screen and (min-width: 768px) {
+    
+}
+@media screen and (min-width: 992px) {
+    nav{
+        display: none;
+    }
+}  
+@media screen and (min-width: 1200px) {
+} 
+@media screen and (min-width: 1400px) {
+   
 }
 </style>

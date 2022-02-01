@@ -55,11 +55,6 @@ const routes = [
 
   },
   {
-    path: '/error-404',
-    name: 'ErrorPage',
-    component: ErrorPages
- },
-  {
     path: '/cgu',
     name: 'CGU',
     component: CGU
