@@ -72,6 +72,18 @@ const classifiedsService = {
             }
     },
 
+    async loadAuthorLogged(){
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/CurrentUserLogged',
+        {
+            headers: {
+                'Authorization' : 'Bearer' + token
+            }
+        });
+        return response.data;
+    },
+
     async loadClassifiedProductCategory(){
         const response = await axios.get(classifiedsService.baseURI + '/ProductCategory/?parent=0');
         

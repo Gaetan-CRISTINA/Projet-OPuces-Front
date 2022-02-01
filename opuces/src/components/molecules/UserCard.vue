@@ -14,7 +14,6 @@
     <div class="header-annonce content-annonce">
         <h3>{{userClassifiedProps.title.rendered}}</h3>
         <p class="date-annonce">Annonce parue le {{userClassifiedProps.date}}</p>
-        <p class="auteur-annonce">{{userClassifiedProps.author}}</p>
     </div>
 
     <!-- <EtatAnnonce/> -->
@@ -48,8 +47,12 @@
     <button
       
     >VOIR L'ANNONCE</button>
+
+    <button class="delete"
+      
+    >Supprimer L'ANNONCE</button>
     
-  </div>
+    </div>
 
     <div class="hide-content">
       <Ville/>
@@ -73,7 +76,6 @@ import VoirMoins from "../molecules/VoirMoins.vue";
 import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
-import storage from "../../plugins/storage";
 
 export default {
   name: "UserCard",
@@ -87,7 +89,7 @@ export default {
      
   },
   props: {
-    userClassifiedProps: Object
+    userClassifiedProps: Object,
   }, 
     
   async load(){
@@ -96,31 +98,7 @@ export default {
   async getCategoryName(){
     this.categoryName = await classifiedsService.getTaxonomyName();
   },
-  async created(){
-    const userData = storage.get('userData');
-    if(userData){
-      return userData.name
-    }
-    
-  },
-  data(){
-    return {
-      userName: ''
-    }
-  
-  },
-  computed:{
-    getUsername(){
-    
-    const userData = storage.get('userData');
-        
-    if(userData != null){
-      return userData.nicename;
-    }
-    return true;
-  }
-    
-  }
+ 
 };
 </script>
 
@@ -170,9 +148,17 @@ button:hover {
   color: #fff;
   border: solid 1px $main-green;
 }
-
+.delete:hover{
+  background-color: $social-google;
+  color: white;
+  border: solid 1px $social-google;
+}
 .voir-plus {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
 }
 .picto-etat {
   background-color: $light-yellow;

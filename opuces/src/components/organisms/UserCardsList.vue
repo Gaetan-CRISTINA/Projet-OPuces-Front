@@ -28,6 +28,7 @@ export default {
   async created(){
     this.userId = await classifiedsService.loadAuthor();
     this.userClassifieds = await this.$store.state.services.classified.loadClassifiedsByUser(this.userId);
+    
   },
 }
 </script>
