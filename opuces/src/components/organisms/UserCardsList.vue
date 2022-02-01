@@ -1,31 +1,33 @@
 <template>
     <div class="cards-list"> 
         
-        <span v-for="classified in classifieds"
-            :key="classified.id">
+        <span v-for="userClassified in userClassifieds"
+            :key="userClassified.id">
        
          
-            <Card :classifiedProps="classified" />
+            <UserCard :userClassifiedProps="userClassified" />
         </span>
     </div>
 </template>
 
 <script>
-import Card from "../molecules/Card.vue";
+import UserCard from "../molecules/UserCard.vue";
 import classifiedsService from "../../services/classifiedsService";
 
 export default {
-  name: 'CardsList',
+  name: 'UserCardsList',
   components: {
-      Card,
+      UserCard,
   },
   data(){
       return{
-          classifieds: []
+          userClassifieds: [],
+          userId: ''
       };
   },
   async created(){
-      this.classifieds = await classifiedsService.loadClassified();
+    this.userId = await classifiedsService.loadAuthor();
+    this.userClassifieds = await this.$store.state.services.classified.loadClassifiedsByUser(this.userId);
   },
 }
 </script>
