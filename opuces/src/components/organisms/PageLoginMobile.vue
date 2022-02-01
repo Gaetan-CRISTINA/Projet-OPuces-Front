@@ -2,10 +2,14 @@
   <div class="main-container">
     <div class="connexion">
       <div class="left">
+        <router-link
+        :to="{
+          name: 'Home'
+        }">
         <div>
           <h1><Logo /> O'Puces</h1>
         </div>
-
+        </router-link>
         <h2>Connexion</h2>
 
         <form class="login-form" @submit="handleSubmit">
@@ -43,8 +47,13 @@
 
         <div class="new-account">
           <h5>PAS ENCORE INSCRIT ?</h5>
+          <router-link
+          :to="{
+            name: 'PageRegister'
+            }"
+          >
           <a class="create-account">CREER UN NOUVEAU COMPTE</a>
-          
+          </router-link>
         </div>
         <svg class="spritesheet">
           <symbol id="icon-eye" viewBox="0 0 32 32">
