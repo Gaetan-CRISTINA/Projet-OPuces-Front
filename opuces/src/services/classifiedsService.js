@@ -49,9 +49,27 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.baseURI + '/classified?_embed=true');
         return response.data;
     },
+
     async loadAuthor(){
-        const response = await axios.get(classifiedsService.baseURI+ '/users/:id')
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/userIdLogged',
+        {
+            headers: {
+                'Authorization' : 'Bearer' + token
+            }
+        });
         return response.data;
+    },
+
+    loadUserData: function(){
+        const userData = storage.get('userData');
+            if(userData != null){
+                const usernameLogged = userData.user_nicename;
+                return usernameLogged;
+            } else {
+                return false;
+            }
     },
 
     async loadClassifiedProductCategory(){
@@ -82,7 +100,7 @@ const classifiedsService = {
     },
 
     async loadClassifiedsByUser(userId){
-        const response = await axios.get(classifiedsService.baseURI + '/classified?user=' + userId);
+        const response = await axios.get(classifiedsService.baseURI + '/classified?author=' + userId);
         return response.data;
     },
 

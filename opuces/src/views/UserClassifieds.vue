@@ -6,7 +6,7 @@
         <h1>UserClassifieds</h1>
       </div>
       <div>
-          <CardsList />
+          <UserCardsList />
       </div>
     </div>
   </div>
@@ -14,14 +14,29 @@
 
 <script>
 import Header from "../components/organisms/Header.vue";
-import CardsList from "../components/organisms/CardsList.vue";
+import UserCardsList from "../components/organisms/UserCardsList.vue";
+import classifiedsService from '../services/classifiedsService';
+// import storage from "../plugins/storage";
+// import userService from "../services/userService";
 
 export default {
   name: "UserClassifieds",
   components: {
     Header,
-    CardsList
+    UserCardsList
   },
+  data(){
+    return {
+      classifiedId: null,
+      classified: [],
+      userId: "",
+    }
+  },
+  async created(){   
+    this.userId = await classifiedsService.loadAuthor();
+    this.classifieds = await this.$store.state.services.classified.loadClassifiedsByUser(this.userId);
+},
+  
 };
 
 

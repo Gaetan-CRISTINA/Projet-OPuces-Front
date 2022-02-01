@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import storage from '../plugins/storage.js';
+import classifiedsService from '../services/classifiedsService.js';
 
 
 import userService from '../services/userService';
@@ -15,7 +16,8 @@ const store = new Vuex.Store({
         user: null,
         services:{
             user: userService,
-            storage: storage
+            storage: storage,
+            classified: classifiedsService
         }
     },
     //setters pour modifier le state 
