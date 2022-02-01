@@ -98,6 +98,11 @@ const classifiedsService = {
             }
         });
         return response.data;
+    },
+
+    async getTaxonomyName(){
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'taxonomy');
+        return response.data;
     }
 
     

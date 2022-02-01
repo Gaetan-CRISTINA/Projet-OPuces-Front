@@ -28,6 +28,23 @@ const userService = {
         )
         return response.data;
     },
+    checkUser: async function(token){
+        let response = await axios.post(
+            userService.jwtBaseURI+'/token/validate',
+            { token: token
+            }
+        ).catch(
+            function(){
+                console.log('User différent');
+                return false;
+            }
+        )
+        return {
+            'success': true,
+            'response': response,
+
+        };
+    },
 
     userConnected: async function(){
         const userData = storage.get('userData');

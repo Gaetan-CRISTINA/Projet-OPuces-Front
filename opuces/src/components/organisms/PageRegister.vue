@@ -107,6 +107,7 @@ import IllusLamp from "../atoms/IllusLamp";
 
 import userService from "../../services/userService.js";
 
+
 export default {
   name: "PageRegister",
   components: {
@@ -175,11 +176,14 @@ export default {
                   this.password,
                   this.passwordVerify
               );
+              
               // si tout s'est bien passé je redirige vers la page login
               console.log(result);
               if(result){
-                  if(result.success == true){
-                      this.$router.push({name:'LoginForm'});
+                  if(result.success == true){   
+                let userAutoLog = await userService.login(this.username, this.password);
+                console.log(userAutoLog);
+                this.$router.push({name:'LoginForm'});
                       // renvoyer vers la home avec token 
                   }
               }

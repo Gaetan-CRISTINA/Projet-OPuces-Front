@@ -100,6 +100,10 @@ export default {
     
   async load(){
       this.classifieds = await classifiedsService.loadClassified();
+      this.categories = await classifiedsService.loadClassifiedProductCategory();
+  },
+  async getCategoryName(){
+    this.categoryName = await classifiedsService.getTaxonomyName();
   },
   computed:{
     getImage(){
@@ -117,7 +121,8 @@ export default {
     //  headingElement.innerHTML = string.charAt(0).toUpperCase() + 
     //      string.slice(1); ; 
     // }
-  }
+  },
+  
   },
   
   

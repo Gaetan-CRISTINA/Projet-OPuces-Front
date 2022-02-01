@@ -64,7 +64,7 @@
             Les mots de passe ne correspondent pas.
           </div>
 
-          <button href="#" class="--button connect">
+          <button class="--button connect">
             ENREGISTRER LES MODIFICATIONS
           </button>
         </form>
@@ -76,7 +76,8 @@
 
 <script>
 import Logo from "../components/atoms/Logo.vue";
-
+import storage from "../plugins/storage";
+import userService from "../services/userService";
 
 export default {
   name: 'Myaccount',
@@ -84,6 +85,84 @@ export default {
       Logo,
 
   },
+  data(){
+    return{
+    username: '',
+    usernameEmpty: false,
+    newPassword: '',
+    newPasswordEmpty: false,
+    email: '',
+    emailEmtpy: false,
+    newPasswordVerify: '',
+    newPasswordTooShort: false,
+    newPasswordVerifyEmpty: false,
+    newPasswordConfirm: false,
+    
+    }
+  },
+methods: {
+  async handleSubmit(event){
+    event.preventDefault();
+    if(this.username == ""){
+              this.usernameEmpty = true;
+          }
+          if(this.email == ""){
+              this.emailEmpty = true;
+          }
+          if(this.password == ""){
+              this.passwordEmpty = true;
+          }
+          if(this.newPasswordVerify == ""){
+              this.newPasswordVerifyEmpty = true;
+          }
+          if(this.newPassword.length < 8){
+              this.newPasswordTooShort = true;
+          }
+          if(this.newPassword !== this.newPasswordVerify){
+              this.passwordConfirm= true;
+          }
+
+          const userData = storage.get('userData');
+          if(userData != null){
+            const token = userData.token;
+            if(userService.checkUser(token)){
+              return true;
+            }
+            else{
+              return false;
+            }
+
+          }
+
+          if (
+            !this.usernameEmpty &&
+            !this.emailEmpty &&
+            !this.newPasswordEmpty &&
+            !this.newPasswordVerify &&
+            !this.newPasswordTooShort &&
+            !this.newPasswordConfirm &&
+            this.userData == true
+
+          )
+          {
+            console.log('Mise à jour du USER');
+            let result = await userService.updateUser(
+              this.newPassword,
+              this.newPasswordVerify,
+              this.username,
+              this.email
+            );
+            console.log(result);
+            if(result){
+              if(result.success == true){
+                this.$router.push({name: 'Home'});
+              }
+            }
+          }
+
+
+  }
+}
   
 }
 </script>
