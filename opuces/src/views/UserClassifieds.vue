@@ -3,7 +3,7 @@
     <Header />
     <div class="main-container">
       <div id="display-annonces">
-        <h1>UserClassifieds</h1>
+        <h1>Mes Annonces</h1>
       </div>
       <div>
           <UserCardsList />
