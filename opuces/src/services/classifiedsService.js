@@ -60,8 +60,8 @@ const classifiedsService = {
         return response.data;
         
     },
-    async loadOneProductCategory(id){
-        const response = await axios.get(classifiedsService.baseURI + '/ProductCategory/' + id);
+    async loadOneCustonomy(typeCusto,id){
+        const response = await axios.get(classifiedsService.baseURI + '/' + typeCusto + '/' + id);
         
         return response.data;
         

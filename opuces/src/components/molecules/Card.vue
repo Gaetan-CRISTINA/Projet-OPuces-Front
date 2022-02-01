@@ -20,7 +20,7 @@
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
     <div class="picto-etat"><PictoEtat1 /></div>
-    <p>{{classifiedProps.ProductState}}</p>
+    <p>{{productState.name}}</p>
   </div>
 
     <!-- <CategorieCardList/> -->
@@ -104,13 +104,17 @@ export default {
 },
 
 async created(){  
-  console.log(this.classifiedProps.ProductCategory[0]);
-    this.categoryName = await classifiedsService.loadOneProductCategory(this.classifiedProps.ProductCategory[0]);
+  let typeCusto = "ProductCategory";
+  this.categoryName = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductCategory[0]);
+  typeCusto = "productstate";
+  this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
+  console.log(this.classifiedProps.productState);
 },
 
 data() {
   return{
-    categoryName: ''
+    categoryName: '',
+    productState: ''
   }
 },
   computed:{
