@@ -72,7 +72,7 @@
             Les mots de passe ne correspondent pas.
           </div>
 
-          <button href="#" class="--button connect">SE CONNECTER</button>
+          <button href="#" class="--button connect">S'INSCRIRE</button>
         </form>
       </div>
 
@@ -146,7 +146,7 @@ export default {
           input.setAttribute('type', 'password');
         }
       },
-      
+
       async handleSubmit(event){
           event.preventDefault();
           
