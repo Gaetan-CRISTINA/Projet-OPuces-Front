@@ -60,6 +60,12 @@ const classifiedsService = {
         return response.data;
         
     },
+    async loadOneProductCategory(id){
+        const response = await axios.get(classifiedsService.baseURI + '/ProductCategory/' + id);
+        
+        return response.data;
+        
+    },
 
     async loadProductState(){
         const response = await axios.get(classifiedsService.baseURI + '/ProductState');
@@ -105,7 +111,6 @@ const classifiedsService = {
         return response.data;
     }
 
-    
 
     
 }

@@ -27,7 +27,7 @@
   <div class="liste-categories-annonce content-annonce">
     <!-- <CategorieCard /> -->
     <div class="category-card-tag">
-      <p>{{classifiedProps.ProductCategory}}</p>
+      <p>{{categoryName.name}}</p>
     </div>
   </div>
 
@@ -99,19 +99,30 @@ export default {
   }, 
     
   async load(){
-      this.classifieds = await classifiedsService.loadClassified();
+      // this.classifieds = await classifiedsService.loadClassified();
       this.categories = await classifiedsService.loadClassifiedProductCategory();
-  },
-  async getCategoryName(){
-    this.categoryName = await classifiedsService.getTaxonomyName();
-  },
+},
+
+async created(){  
+  console.log(this.classifiedProps.ProductCategory[0]);
+    this.categoryName = await classifiedsService.loadOneProductCategory(this.classifiedProps.ProductCategory[0]);
+},
+
+data() {
+  return{
+    categoryName: ''
+  }
+},
   computed:{
     getImage(){
     if(this.classifiedProps._embedded['wp:featuredmedia']){
+ 
       return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
     }else{
       return "https://picsum.photos/400/600";
     }
+
+
     //TODO
     // author name en Majuscule (1ere lettre)
     // capitalizeString(){ 
