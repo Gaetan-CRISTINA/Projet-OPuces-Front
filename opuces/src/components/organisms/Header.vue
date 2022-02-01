@@ -76,14 +76,15 @@
               >
                 <li><PictoMail /><span>Contact</span></li>
               </router-link>
-            
+            <li>
             <router-link
               :to="{
                 name: 'Logout',
               }"
             >
-             <li class="disconect--button"><PictoClose/><span>Se déconnecter</span></li>
+             <li><PictoClose/><span>Se déconnecter</span></li>
             </router-link>
+            </li>
             </ul>
           </nav>
 
@@ -96,6 +97,9 @@
             <a id="se-connecter"> Se connecter </a>
           </router-link>
         </div>
+
+       
+
         <div id="left-header-desktop">
           <!--User Connected-->
           <router-link
@@ -240,6 +244,7 @@ header {
   background-color: #fff;
   display: flex;
 }
+
 #se-connecter {
   padding-left: 1em;
   position: relative;
