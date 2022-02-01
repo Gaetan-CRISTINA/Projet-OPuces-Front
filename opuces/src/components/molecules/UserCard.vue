@@ -3,39 +3,38 @@
     
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
-      <img :src="getImage" alt="classifiedImage" class="img-annoce">
+      <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce">
     <div class="flex prix-like">
       
-      <span class="prix">{{classifiedProps.classifiedPrice}}€</span>
+      <span class="prix">{{userClassifiedProps.classifiedPrice}}€</span>
     </div>
   </div>
 
     <!-- <HeaderAnnonce/> -->
     <div class="header-annonce content-annonce">
-        <h3>{{classifiedProps.title.rendered}}</h3>
-        <p class="date-annonce">Annonce parue le {{classifiedProps.date}}</p>
-        <p class="auteur-annonce">{{classifiedProps._embedded['author'][0].name}}</p>
+        <h3>{{userClassifiedProps.title.rendered}}</h3>
+        <p class="date-annonce">Annonce parue le {{userClassifiedProps.date}}</p>
     </div>
 
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
     <div class="picto-etat"><PictoEtat1 /></div>
-    <p>{{productState.name}}</p>
+    <p>{{userClassifiedProps.ProductState}}</p>
   </div>
 
     <!-- <CategorieCardList/> -->
   <div class="liste-categories-annonce content-annonce">
     <!-- <CategorieCard /> -->
     <div class="category-card-tag">
-      <p>{{categoryName.name}}</p>
+      <p>{{userClassifiedProps.ProductCategory}}</p>
     </div>
   </div>
 
     <!-- <ExcerptAnnonce class="show-content"/>  -->
-    <p class="excerpt-annonce content-annonce" v-html="classifiedProps.excerpt.rendered + '[...]'">
+    <p class="excerpt-annonce content-annonce" v-html="userClassifiedProps.excerpt.rendered + '[...]'">
      </p> 
     <!--<DescriptionAnnonce class="hide-content"/>-->
-    <p class="description-annonce content-annonce hide-content" v-html="classifiedProps.content.rendered"> </p>
+    <p class="description-annonce content-annonce hide-content" v-html="userClassifiedProps.content.rendered"> </p>
     
     
     <!-- <VoirPlus
@@ -48,8 +47,12 @@
     <button
       
     >VOIR L'ANNONCE</button>
+
+    <button class="delete"
+      
+    >Supprimer L'ANNONCE</button>
     
-  </div>
+    </div>
 
     <div class="hide-content">
       <Ville/>
@@ -75,7 +78,7 @@ import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
 
 export default {
-  name: "Card",
+  name: "UserCard",
   components: {
     Ville,
     MapWrapper,
@@ -86,54 +89,16 @@ export default {
      
   },
   props: {
-    classifiedProps: Object,
+    userClassifiedProps: Object,
   }, 
     
   async load(){
-
-      // this.classifieds = await classifiedsService.loadClassified();
       this.categories = await classifiedsService.loadClassifiedProductCategory();
-},
-
-async created(){  
-  let typeCusto = "ProductCategory";
-  this.categoryName = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductCategory[0]);
-  typeCusto = "productstate";
-  this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
-  console.log(this.classifiedProps.productState);
-},
-
-data() {
-  return{
-    categoryName: '',
-    productState: ''
-  }
-},
-  computed:{
-
-    getImage(){
-    if(this.classifiedProps._embedded['wp:featuredmedia']){
- 
-      return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
-    }else{
-      return "https://picsum.photos/400/600";
-    }
-
-
-    //TODO
-    // author name en Majuscule (1ere lettre)
-    // capitalizeString(){ 
-    //  let input = document.getElementById("input"); 
-    //  let headingElement = document.getElementById("modified-string"); 
-    //  let string = input.value; 
-    //  headingElement.innerHTML = string.charAt(0).toUpperCase() + 
-    //      string.slice(1); ; 
-    // }
-    },
-  
   },
-    
-  
+  async getCategoryName(){
+    this.categoryName = await classifiedsService.getTaxonomyName();
+  },
+ 
 };
 </script>
 
@@ -183,9 +148,17 @@ button:hover {
   color: #fff;
   border: solid 1px $main-green;
 }
-
+.delete:hover{
+  background-color: $social-google;
+  color: white;
+  border: solid 1px $social-google;
+}
 .voir-plus {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
 }
 .picto-etat {
   background-color: $light-yellow;
