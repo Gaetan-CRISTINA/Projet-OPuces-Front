@@ -13,9 +13,9 @@
       </router-link>
     </div>
     <div class="contact">
-      <div class="form-contact" v-if="!user">
+      <!-- <div class="form-contact" v-if="!user">
         <h1>Formulaire de contact</h1>
-        <form class="contact-form" action="">
+        <form class="contact-form" @submit.prevent="sendEmail">
           <label for="Name">Nom</label>
           <input type="text" id="fname" name="fname" value="" />
           <label for="Sujet">Sujet</label>
@@ -28,12 +28,12 @@
             <button class="--button" type="submit">Envoyer le message</button>
           </div>
         </form>
-      </div>
+      </div> -->
 
       <div class="form-contact" v-if="user">
         <h1>Bonjour {{ user.user_nicename }} votre demande concerne :</h1>
 
-        <form class="contact-form" action="">
+        <form class="contact-form" @submit.prevent="sendEmail">
           <select name="" id="">
             <option value="0">Choisir un sujet</option>
             <option value="1">Réclamation</option>
@@ -44,9 +44,9 @@
 
           <label for="Message">Message</label>
           <input type="text" class="Message" name="Message" value="" />
-          <div>
-            <button class="--button" type="submit">Envoyer le message</button>
-          </div>
+          
+            <button class="--button" value="send" type="submit">Envoyer le message</button>
+          
         </form>
       </div>
     </div>
@@ -55,6 +55,7 @@
 
 <script>
 import Logo from "../atoms/Logo.vue";
+import emailjs from "@emailjs/browser";
 export default {
   name: "Contact",
   components: {
@@ -66,6 +67,22 @@ export default {
       return this.$store.state.user;
     },
   },
+  methods:{
+    sendEmail(){
+      emailjs.sendForm(
+        'service_oas4sls',
+        0,
+        this.$refs.form,
+        'user_cII9HEbDAx55pYFWR6DJy'
+      ).then((result) => {
+        console.log('Success', result.text);
+      },
+      (error) => {
+        console.log('Failed', error.text)
+      }
+      );
+    }
+  }
 };
 </script>
 
