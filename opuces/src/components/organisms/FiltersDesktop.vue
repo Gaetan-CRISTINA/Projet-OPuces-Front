@@ -2,31 +2,52 @@
   <div class="filters-desktop">
     <form>
       <div class="input-filters">
-        <select name="Ajouter une catégorie" id=""
-        >
-          <option value="">
-            <span class="add"></span> Ajouter une catégorie
-          </option>
+
+        
+        <select name="selectCategory" v-model="selectedCategory"
+        @change="SelectCategory">
+          <option value="">Ajouter une catégorie</option>
           <option v-for="category in categories"
           :key="category.id"
-          :value="category.id">{{category.name}}</option>
-          
+          :value="category.id"
+          >{{category.name}}</option>
         </select>
-        <Categorie />
+
+
+        <!-- Je boucle sur les categories selectionnées dans selectedCategory -->
+        <div class="container-category"
+        v-for="unitCategory in selectedCategory"
+        :key="unitCategory.id"
+        value="unitCategory.id">
+          <div class="category-tag">
+            <p>{{unitCategory.name}}</p>
+              <PictoRemove />
+          </div>
+       </div>
         
       </div>
       <div class="input-filters">
         <label for="ville">Ajouter une ville</label>
-        <input type="text" id="ville" name="ville" />
-        <Villes />
-        <Villes />
-        <Villes />
+        <input type="text" id="ville" name="ville" v-model="userCity" />
+        
+        <div class="container-category"
+        v-for="city in userCity"
+        :key="city.name"
+        :value="city.id">
+          <div class="category-tag">
+            <p>{{city.name}}</p>
+            <PictoRemove />
+          </div>
+        </div>
+        
+
       </div>
       <div class="input-filters">
         <label for="name">Prix</label>
         <div class="input-price">
-          <input placeholder="Minimum" type="text" id="name" name="user_name" />
-          <input placeholder="Maximum" type="text" id="name" name="user_name" />
+          <input placeholder="Minimum en Euros" type="text" id="minAmount" name="user_name" v-model="minimumPrice"/> 
+          <input placeholder="Maximum en Euros" type="text" id="maxAmount" name="user_name" 
+          v-model="maximumPrice"/>
         </div>
       </div>
       
@@ -36,24 +57,63 @@
 </template>
 
 <script>
-import Categorie from "../molecules/Categorie.vue";
-import Villes from "../molecules/Villes.vue";
+
+
 import classifiedsService from "../../services/classifiedsService";
+import PictoRemove from "../atoms/PictoRemove.vue";
 
 export default {
   name: "FiltersDesktop",
   components: {
-    Categorie,
-    Villes,
+   PictoRemove,
+   
   },
   data(){
     return{
-      categories: []
+      categories: [],
+      selectedCategory: '',
+      userCity: '',
+      minimumPrice: '',
+      maximumPrice: ''
     };
   },
   async created(){
     this.categories = await classifiedsService.loadClassifiedProductCategory();
   },
+  methods:{
+  async created(){
+    if(this.$store.state.categoriesList[this.category]){
+      this.categories = this.$store.categoriesList[this.category];
+    } else {
+      this.categories = await this.$store.state.categories.classified.loadClassifiedProductCategory(this.category);
+      this.$store.commit(
+        'saveCategoriesList',
+        {
+          category: this.category,
+          categories: this.categories
+        }
+      );
+    }
+  },
+
+  props: {
+    selectedCategory: Object,
+    category: String,
+    label: String,
+    userCity: String
+    
+  },
+  SelectCategory(event){
+    event.preventDefault();
+    this.$emit(
+      'classified-category-selected',
+      {
+        categoryId: this.selectedOption,
+        category: this.category
+      }
+    )
+  }
+}
 };
 </script>
 
@@ -63,6 +123,7 @@ export default {
 .filters-desktop {
   display: none;
 }
+
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {

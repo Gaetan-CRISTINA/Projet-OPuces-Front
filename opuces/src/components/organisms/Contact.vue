@@ -1,39 +1,55 @@
 <template>
   <div class="main-container">
-    <div class="left">
-      <div class="infos infos-mobile">
-        <h2>Conactez-nous !</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          vitae tellus libero.
-        </p>
-      </div>
-      <form action="">
-        <label for="Name">Nom</label>
-        <input type="text" id="fname" name="fname" value="" />
-        <label for="Sujet">Sujet</label>
-        <input type="text" id="Sujet" name="Sujet" value="" />
-        <select name="" id="">
-          <option value="0">Choisir un sujet</option>
-          <option value="1">michel</option>
-          <option value="2">michel</option>
-          <option value="3">michel</option>
-          <option value="4">michel</option>
-        </select>
-        <label for="Mail">Mail</label>
-        <input type="email" id="Mail" name="Mail" value="" />
-        <label for="Message">Message</label>
-        <textarea name="Message" id="Message" cols="30" rows="10"></textarea>
-        <button type="submit">ENVOYER LE MESSAGE</button>
-      </form>
+
+    <div class="headerLink">
+      <router-link
+        :to="{
+          name: 'Home',
+        }"
+      >
+        <div id="left-header-mobile">
+          <span><Logo /></span>
+          <h2>O'Puces</h2>
+        </div>
+      </router-link>
     </div>
-    <div class="right">
-     <div class="infos infos-desktop">
-        <h2>Conactez-nous !</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          vitae tellus libero.
-        </p>
+    <div class="contact">
+      <div class="form-contact" v-if="!user">
+        <h1>Formulaire de contact</h1>
+        <form class="contact-form" @submit.prevent="sendEmail">
+          <label for="Name">Nom</label>
+          <input type="text" id="fname" name="fname" value="" />
+          <label for="Sujet">Sujet</label>
+          <input type="text" id="Sujet" name="Sujet" value="" />
+          <label for="Mail">Mail</label>
+          <input type="email" id="Mail" name="Mail" value="" />
+          <label for="Message">Message</label>
+          <input type="text" class="Message" name="Message" value="" />
+          <div>
+            <button class="--button" type="submit">Envoyer le message</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-contact" v-if="user">
+        <h1>Bonjour {{ user.user_nicename }} votre demande concerne :</h1>
+
+        <form class="contact-form" @submit.prevent="sendEmail">
+          <select name="" id="">
+            <option value="0">Choisir un sujet</option>
+            <option value="1">Réclamation</option>
+            <option value="2">Question sur le site</option>
+            <option value="3">Un problème ?</option>
+            <option value="4">Contacter l'administrateur</option>
+          </select>
+
+          <label for="Message">Message</label>
+          <input type="text" class="Message" name="Message" value="" />
+          
+            <button class="--button" value="send" type="submit">Envoyer le message</button>
+          
+        </form>
+
       </div>
       <img
         class="illus-computer"
@@ -45,9 +61,40 @@
 </template>
 
 <script>
+import Logo from "../atoms/Logo.vue";
+import emailjs from "@emailjs/browser";
+export default {
+  name: "Contact",
+  components: {
+    Logo,
+  },
+  computed: {
+    user() {
+      this.$store.state.user;
+      return this.$store.state.user;
+    },
+  },
+  methods:{
+    sendEmail(){
+      emailjs.sendForm(
+        'service_oas4sls',
+        0,
+        this.$refs.form,
+        'user_cII9HEbDAx55pYFWR6DJy'
+      ).then((result) => {
+        console.log('Success', result.text);
+      },
+      (error) => {
+        console.log('Failed', error.text)
+      }
+      );
+    }
+  }
+
 export default {
   name: "Contact",
   components: {},
+
 };
 </script>
 

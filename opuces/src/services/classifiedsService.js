@@ -1,28 +1,48 @@
-import axios from "axios"
+import axios from "axios";
 import env from "../../env";
+import storage from "../plugins/storage.js";
 
 const classifiedsService = {
     
     opucesBaseURI: env.opucesApi,
     baseURI: env.wpApi,
 
-    createClassified: async function(title, description, price, author, image){
-        let response = await axios.post(
-            classifiedsService.opucesBaseURI + '/create-classified',
+    async createClassified(title, description, selectedState, selectedCategory,  price, selectedDeliveryMethod, content, imageId){
+        const userData = storage.get('userData');
+        if(userData !=null){
+            const token = userData.token;
+            if(token){
+                const options = {
+                    headers: {
+                        Authorization: 'Bearer' + token
+                    }
+                };
+            const response = await axios.post(
+            classifiedsService.opucesBaseURI + '/save-classified',
             {
+                post_id: 0,
                 title: title,
                 description: description,
-                author: author,
+                ProductState: selectedState,
+                ProductCategorie: selectedCategory,
                 price: price,
-                image: image 
-            }
+                DeliveryMethod: selectedDeliveryMethod,
+                content: content,
+                imageId: imageId
+                
+            },
+            options
         ).catch(
             function(){
                 console.log('upload classified failed');
                 return false;
+            });
+            
+            return response.data;
+            
             }
-        )
-        return response.data;
+        }
+        
     },
 
     async loadClassified(){
@@ -35,7 +55,7 @@ const classifiedsService = {
     },
 
     async loadClassifiedProductCategory(){
-        const response = await axios.get(classifiedsService.baseURI + '/productCategory?parent=0');
+        const response = await axios.get(classifiedsService.baseURI + '/ProductCategory/?parent=0');
         
         return response.data;
         
@@ -66,18 +86,26 @@ const classifiedsService = {
         return response.data;
     },
 
-    async saveClassified(title, description, selectedState, selectedCategory, price, selectedDeliveryMethod){
-        const response = await axios.post (classifiedsService.opucesBaseURI + '/save-classified',
-            {
-                title: title,
-                description: description,
-                selectedSate: selectedState,
-                selectedCategory: selectedCategory,
-                price: price,
-                selectedDeliveryMethod: selectedDeliveryMethod
-            })
+    async uploadImage(image){
+        let formData = new FormData();
+        formData.append("image", image);
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.post(classifiedsService.opucesBaseURI+ '/upload-image', formData,{
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        return response.data;
+    },
+
+    async getTaxonomyName(){
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'taxonomy');
         return response.data;
     }
+
+    
 
     
 }

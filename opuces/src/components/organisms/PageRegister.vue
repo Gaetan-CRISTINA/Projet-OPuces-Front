@@ -109,6 +109,7 @@ import PictoEye from "../atoms/PictoEye";
 
 import userService from "../../services/userService.js";
 
+
 export default {
   name: "PageRegister",
   components: {
@@ -130,75 +131,64 @@ export default {
     };
   },
   methods: {
-    /**
-     * 
-     * Méthode pour Afficher / Cacher le mot de passe au click sur PictoEye
-     */
-    displayHidePassword: function(evt){
-      evt.preventDefault();
-      let input = evt.currentTarget.closest('label').querySelector('input');
-      let attribut = input.getAttribute('type')
-        if(attribut == 'password'){
-          input.setAttribute('type', 'text');
-        } else {
-          input.setAttribute('type', 'password');
-        }
-      },
-
-    async handleSubmit(event) {
-      event.preventDefault();
-
-      if (this.username == "") {
-        this.usernameEmpty = true;
-      }
-
-      if (this.email == "") {
-        this.emailEmpty = true;
-      }
-
-      if (this.password == "") {
-        this.passwordEmpty = true;
-      }
-
-      if (this.passwordVerify == "") {
-        this.passwordVerifyEmpty = true;
-      }
-
-      if (this.password.length < 8) {
-        this.passwordTooShort = true;
-      }
-
-      if (this.password !== this.passwordVerify) {
-        this.passwordConfirm = true;
-      }
-
-      //si OK
-      if (
-        !this.usernameEmpty &&
-        !this.emailEmpty &&
-        !this.passwordEmpty &&
-        !this.passwordVerifyEmpty &&
-        !this.passwordTooShort &&
-        !this.passwordConfirm
-      ) {
-        console.log("Appel de l'API pour s'inscrire");
-        let result = await userService.inscription(
-          this.username,
-          this.email,
-          this.password,
-          this.passwordVerify
-        );
-        // si tout s'est bien passé je redirige vers la page login
-        console.log(result);
-        if (result) {
-          if (result.success == true) {
-            this.$router.push({ name: "LoginForm" });
-            // renvoyer vers la home avec token
+      async handleSubmit(event){
+          event.preventDefault();
+          
+          if(this.username == ""){
+              this.usernameEmpty = true;
           }
-        }
+
+          if(this.email == ""){
+              this.emailEmpty = true;
+          }
+
+          if(this.password == ""){
+              this.passwordEmpty = true;
+          }
+
+          if(this.passwordVerify == ""){
+              this.passwordVerifyEmpty = true;
+          }
+
+          if(this.password.length < 8){
+              this.passwordTooShort = true;
+          }
+
+          if(this.password !== this.passwordVerify){
+              this.passwordConfirm= true;
+          }
+
+          //si OK
+          if( 
+              !this.usernameEmpty && 
+              !this.emailEmpty && 
+              !this.passwordEmpty && 
+              !this.passwordVerifyEmpty && 
+              !this.passwordTooShort && 
+              !this.passwordConfirm 
+          ) 
+          {
+              console.log('Appel de l\'API pour s\'inscrire');
+              let result = await userService.inscription(
+                  this.username,
+                  this.email,
+                  this.password,
+                  this.passwordVerify
+              );
+              
+              // si tout s'est bien passé je redirige vers la page login
+              console.log(result);
+              if(result){
+                  if(result.success == true){   
+                let userAutoLog = await userService.login(this.username, this.password);
+                console.log(userAutoLog);
+                this.$router.push({name:'Home'});
+                      // renvoyer vers la home avec token 
+                  }
+              }
+          }
       }
-    },
-  },
+  }
 };
 </script>
 <style lang="scss">

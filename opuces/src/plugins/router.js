@@ -17,8 +17,9 @@ import CreateClassified from '../views/CreateClassified.vue'
 
 import UserClassifieds from '../views/UserClassifieds.vue'
 import ContactPage from '../views/ContactPage.vue'
-import UserProfilEdit from '../views/UserProfilEdit.vue'
 import UpdatePassword from '../views/UpdatePassword.vue'
+
+import Myaccount from '../views/Myaccount.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -86,14 +87,14 @@ const routes = [
     component: ContactPage
   },
   {
-    path: '/profil-edit',
-    name: 'UserProfilEdit',
-    component: UserProfilEdit
-  },
-  {
     path: '/password-edit',
     name: 'UpdatePassword',
     component: UpdatePassword
+  },
+  {
+    path: '/user-account',
+    name: 'Myaccount',
+    component: Myaccount
   },
   {
     path: '*',
