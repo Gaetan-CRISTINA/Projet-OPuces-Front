@@ -12,7 +12,6 @@
           :value="category.id">{{category.name}}</option>
           
         </select>
-
         <Categorie />
         
       </div>
@@ -30,6 +29,7 @@
           <input placeholder="Maximum" type="text" id="name" name="user_name" />
         </div>
       </div>
+      
       <button type="submit" href="#" class="search-validate">RECHERCHER</button>
     </form>
   </div>

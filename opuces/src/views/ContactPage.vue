@@ -1,15 +1,18 @@
 <template>
   <div>
+      <Header/>
       <Contact/> 
   </div>
 </template>
 
 <script>
 import Contact from "../components/organisms/Contact.vue"
+import Header from "../components/organisms/Header.vue"
 export default {
   name: "ContactPage",
   components: {
-   Contact
+   Contact,
+   Header,
   },
 };
 </script>
