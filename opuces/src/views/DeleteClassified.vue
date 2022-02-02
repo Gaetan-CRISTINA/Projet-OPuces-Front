@@ -13,11 +13,10 @@ export default {
   },
   created(){
       this.id = this.$route.params.id;
-      console.log(this.id);
-
+      
 
       classifiedsService.deleteCurrentClassified(this.id); 
-      this.$router.push({name:"Home"})  
+      this.$router.push({name:"UserClassifieds"})  
   }
 }
 </script>

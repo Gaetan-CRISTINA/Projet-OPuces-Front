@@ -98,7 +98,7 @@ async created(){
   this.categoryName = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductCategory[0]);
   typeCusto = "productstate";
   this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
-  console.log(this.classifiedProps.productState);
+  
 },
 
 data() {
