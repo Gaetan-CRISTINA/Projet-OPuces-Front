@@ -147,7 +147,7 @@
               //}
             }"
           >
-            <img src="https://picsum.photos/30" alt="" />
+            <img class="userPicto" src="https://picsum.photos/30" alt="" />
           </router-link>
           <!--FIN-->
 
@@ -237,6 +237,13 @@ export default {
 #right-header-desktop {
   display: none;
 }
+#left-header-mobile span, h2{
+  transition: all .2s ease-in-out;
+}
+#left-header-mobile span, h2:hover{
+  transform: scale(1.3);
+}
+
 header {
   position: fixed;
   z-index: 1;
@@ -363,6 +370,12 @@ li svg {
   }
   #right-header-desktop > *:hover {
     cursor: pointer;
+  }
+  .userPicto{
+    transition: all .2s ease-in-out;
+  }
+  .userPicto:hover{
+    transform: scale(1.3);
   }
 }
 @media screen and (min-width: 1200px) {

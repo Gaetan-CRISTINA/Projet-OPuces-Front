@@ -40,8 +40,11 @@
           </div>
 
           <div class="error" v-if="loginFailed">Echec de connexion</div>
-
+            <router-link
+            :to="{
+              name: 'UpdatePassword'}">
           <a href="#">Mot de passe oublié ?</a>
+            </router-link>
           <button class="--button connect">SE CONNECTER</button>
         </form>
 
