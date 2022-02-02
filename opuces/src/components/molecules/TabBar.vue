@@ -7,8 +7,14 @@
     >
       <PictoHome />
     </router-link>
-    <PictoSearch />
 
+    <router-link
+    :to="{
+      name: 'searchMobile',
+      }"
+      >
+    <PictoSearch />
+    </router-link>
     <router-link
       :to="{
         name: 'UserClassifieds',

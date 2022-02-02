@@ -56,7 +56,7 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.opucesBaseURI + '/userIdLogged',
         {
             headers: {
-                'Authorization' : 'Bearer' + token
+                'Authorization' : 'Bearer ' + token
             }
         });
         return response.data;
@@ -78,7 +78,7 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.opucesBaseURI + '/CurrentUserLogged',
         {
             headers: {
-                'Authorization' : 'Bearer' + token
+                'Authorization' : 'Bearer ' + token
             }
         });
         return response.data;
@@ -144,10 +144,11 @@ const classifiedsService = {
     async deleteCurrentClassified(classifiedId){
         const userData = storage.get('userData');
         const token = userData.token;
-        const response = await axios.delete(classifiedsService.baseURI+ '/classified/' + classifiedId, {
-            headers: {
-                'Authorization': 'Bearer' + token
-            }
+        const response = await axios.delete(classifiedsService.baseURI+ '/classified/' + classifiedId, 
+        {
+                headers: {
+                    'Authorization' : 'Bearer ' + token
+                }
         });
         console.log('ok');
         return response.data;
