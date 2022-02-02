@@ -83,7 +83,7 @@
                 name: 'Logout',
               }"
             >
-             <li class="disconect--button"><PictoClose/><span>Se déconnecter</span></li>
+             <a class="disconect--button"><PictoClose/><span>Se déconnecter</span></a>
             </router-link>
             
             </ul>
@@ -280,9 +280,13 @@ header {
   justify-content: flex-start;
   color: black;
 }
+li:hover, span:hover {
+  color:$main-green;
+}
 li svg {
   margin-right: 15px;
 }
+
 #welcome {
   border: none;
   font-size: 24px;
@@ -301,7 +305,16 @@ li svg {
 }
 .disconect--button {
   position: absolute;
-  bottom: 1em;
+  bottom: 10em;  
+  padding: 25px 25px 25px 10px;
+  width: 100%;
+  margin-top: 25px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.disconect--button span {
   color: $main-green;
 }
 #div-logo {
