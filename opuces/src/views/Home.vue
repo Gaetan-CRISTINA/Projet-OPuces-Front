@@ -2,6 +2,9 @@
 
   <div>
     <Header />
+    <div class="illusLamp">
+    <IllusLamp />
+    </div>
     <div class="main-container">
       <div id="display-annonces">
 
@@ -34,6 +37,7 @@ import CardsList from "../components/organisms/CardsList.vue";
 import PictoDisplay1 from "../components/atoms/PictoDisplay1.vue";
 import PictoDisplay2 from "../components/atoms/PictoDisplay2.vue";
 import TabBar from "../components/molecules/TabBar.vue";
+import IllusLamp from "../components/atoms/IllusLamp.vue";
 
 
 
@@ -46,6 +50,7 @@ export default {
     PictoDisplay1,
     PictoDisplay2,
     TabBar,
+    IllusLamp
   },
   methods: {
     displayColumnHome: function(evt){
@@ -95,11 +100,19 @@ export default {
     justify-content: space-between;
     padding-bottom: 1em;
   }
+.illusLamp{
+      display: none;
+    }
+  
 @media screen and (min-width: 576px) {
-    
+    .illusLamp{
+      display: none;
+    }
   }
 @media screen and (min-width: 768px) {
-    
+    .illusLamp{
+      display: none;
+    }
 } 
 @media screen and (min-width: 992px) {
   .main-container {
@@ -112,15 +125,28 @@ export default {
     width: 520px;
 
   }
+    .illusLamp{
+    display: none;    
+  }
 }
 @media screen and (min-width: 1200px) {
     #display-annonces {
     width: 700px;
   }
+    .illusLamp{
+      display: none;
+    position: absolute;
+    margin-left: 6%;    
+  }
 }
 @media screen and (min-width: 1400px) {
     #display-annonces {
     width: 880px;
+  }
+    .illusLamp{
+      display: inline-block;
+    position: absolute;
+    margin-left: 6%;    
   }
 }
 </style>
