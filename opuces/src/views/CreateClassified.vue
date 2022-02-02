@@ -1,11 +1,14 @@
 <template>
-  <div class="main-container">
-    <div class="logoOpuces">
+<div>
+<div class="logoOpuces">
       <router-link :to="{ name: 'Home' }">
         <span id="logo-link"><Logo /></span>
         <h1>O'puces</h1>
       </router-link>
     </div>
+
+  <div class="main-container">
+    
     <div class="displayForm">
       <h1 class="CreateClassifiedFormTitle">CreateClassified Form</h1>
       <form @submit="handleSubmit">
@@ -99,6 +102,7 @@
           <button>Retouner vers la page d'accueil</button>
         </router-link>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -234,8 +238,13 @@ h6 {
   margin-top: 20px;
 }
 .logoOpuces {
-  margin-bottom: 20px;
+  margin: 20px 0 5px 20px;
+  width: 70px;
+  transition: all .2s ease-in-out
 }
+.logoOpuces:hover {
+  transform: scale(1.1);
+} 
 .homeLink {
   margin-top: 20px;
   align-self: flex-end;

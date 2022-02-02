@@ -4,7 +4,7 @@
     <Header />
     <div class="main-container">
       <div id="display-annonces">
-        <h2>DERNIÈRES ANNONCES</h2>
+        <h2>Les Dernières Annonces</h2>
         <PictoDisplay2/>
       </div>
       <div class="flex">
