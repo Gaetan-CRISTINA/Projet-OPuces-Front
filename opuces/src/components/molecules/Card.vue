@@ -34,37 +34,47 @@
     <!-- <ExcerptAnnonce class="show-content"/>  -->
     <p class="excerpt-annonce content-annonce" v-html="classifiedProps.excerpt.rendered + '[...]'">
      </p> 
-    <!--<DescriptionAnnonce class="hide-content"/>-->
-    <p class="description-annonce content-annonce hide-content" v-html="classifiedProps.content.rendered"> </p>
     
     
-    <!-- <VoirPlus
-    v-on:displayHideCardContent="displayHideCardContent"
-    class="show-content"
-    /> -->
+    
+    
       
-    <div class="voir-plus">
+    <!-- <div class="voir-plus">
     
     <button
       
     >VOIR L'ANNONCE</button>
     
-  </div>
+  </div> -->
 
     <div class="hide-content">
+
+      <!--<DescriptionAnnonce class="hide-content"/>-->
+      <p class="description-annonce content-annonce" v-html="classifiedProps.content.rendered"> </p>
       <Ville/>
       <MapWrapper/>
       <AnnonceAuteur/> 
       <VoirMoins/>
       <CtaAnnonce/>
-
     </div>
 
+    <VoirPlus
+    v-on:displayHideCardContent="displayHideCardContent"
+    class="show-content content-annonce"
+    />
 
   </div>
 </template>
 
 <script>
+
+// import HeroAnnonce from "../molecules/HeroAnnonce.vue";
+// import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
+// import EtatAnnonce from "../molecules/EtatAnnonce.vue";
+// import CategorieCardList from "../molecules/CategorieCardList.vue";
+// import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
+// import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
+import VoirPlus from "../molecules/VoirPlus.vue";
 
 import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
@@ -83,6 +93,7 @@ export default {
     VoirMoins,
     CtaAnnonce,
     PictoEtat1,
+    VoirPlus,
      
   },
   props: {
@@ -110,6 +121,47 @@ data() {
   computed:{
 
     getImage(){
+
+      if(this.classifiedProps._embedded['wp:featuredmedia']){
+        return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
+      }else{
+        return "https://picsum.photos/400/600";
+      }
+      //TODO
+      // author name en Majuscule (1ere lettre)
+      // capitalizeString(){ 
+      //  let input = document.getElementById("input"); 
+      //  let headingElement = document.getElementById("modified-string"); 
+      //  let string = input.value; 
+      //  headingElement.innerHTML = string.charAt(0).toUpperCase() + 
+      //      string.slice(1); ; 
+      // }
+    },
+  
+  },
+  // created(){
+  //     let hideContent = document.querySelectorAll('.hide-content');
+  //     let hiddenContentHeight = [];
+      
+
+  //     for (let i = 0; i < hideContent.length; i++) {
+  //       hiddenContentHeight.push(hideContent[i].offsetHeight);
+  //       hideContent[i].style.height = 0;
+  //     }
+
+  //     //console.log(hiddenContentHeight);
+
+  // },
+  methods: {
+    // displayHideCardContent: function(evt) {
+    //   console.log(evt.currentTarget.closest("div").parentNode.parentNode.querySelector('.hide-content'));
+    // }
+    displayHideCardContent: function(evt){
+          evt.preventDefault();
+          this.$emit('displayHideCardContent', evt);
+      }
+  },
+
     if(this.classifiedProps._embedded['wp:featuredmedia']){
  
       return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
@@ -131,6 +183,7 @@ data() {
   
   },
     
+
   
 };
 </script>
@@ -211,7 +264,6 @@ button:hover {
   overflow: hidden !important;
 }
 .hide-content {
-  height: 0;
   overflow: hidden;
 }
 .show-content {

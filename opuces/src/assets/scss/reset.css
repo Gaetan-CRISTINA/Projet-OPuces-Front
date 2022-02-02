@@ -82,6 +82,10 @@ nav,
 section {
   display: block;
 }
+ul,
+li {
+  list-style-type: none;
+}
 /*
 Pour se faciliter les calculs on utilise la propriÃ©tÃ© 
 box-sizing sur tous les divs et Ã©lÃ©ments structurants (non supportÃ©e par IE6 et IE7)
