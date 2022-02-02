@@ -9,19 +9,21 @@
           <UserCardsList />
       </div>
     </div>
+    <TabBar/>  
   </div>
 </template>
 
 <script>
 import Header from "../components/organisms/Header.vue";
 import UserCardsList from "../components/organisms/UserCardsList.vue";
-
+import TabBar from "../components/molecules/TabBar.vue";
 
 export default {
   name: "UserClassifieds",
   components: {
     Header,
-    UserCardsList
+    UserCardsList,
+    TabBar
   },
    
 };

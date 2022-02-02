@@ -1,5 +1,5 @@
 <template>
-<div>
+
     <div class="cards-list"> 
         
         <span class="unitCard" v-for="userClassified in userClassifieds"
@@ -9,21 +9,19 @@
             <UserCard :userClassifiedProps="userClassified" />
         </span>
         
-    </div>
-        <TabBar/>
-    </div>
+</div>
 </template>
 
 <script>
 import UserCard from "../molecules/UserCard.vue";
 import classifiedsService from "../../services/classifiedsService";
-import TabBar from "../molecules/TabBar.vue";
+
 
 export default {
   name: 'UserCardsList',
   components: {
       UserCard,
-      TabBar
+      
   },
   data(){
       return{
