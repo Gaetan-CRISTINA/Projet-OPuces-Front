@@ -4,7 +4,7 @@
 
 <script>
 
-
+import classifiedsService from '../services/classifiedsService';
 
 export default {
   name: 'DeleteClassified',
@@ -12,7 +12,11 @@ export default {
 
   },
   created(){
-      
+      this.id = this.$route.params.id;
+      console.log(this.id);
+
+
+      classifiedsService.deleteCurrentClassified(this.id); 
       this.$router.push({name:"Home"})  
   }
 }
