@@ -11,7 +11,7 @@
 
         <div id="right-header-mobile">
           <PictoUser />
-          <nav class="sub-nav" v-if="user">
+         <nav class="sub-nav" v-if="user">
             <ul>
               <li id="welcome">
                 <img src="https://picsum.photos/30" alt="" /> Bonjour
@@ -30,7 +30,7 @@
               <router-link
                 v-if="user"
                 :to="{
-                  name: 'Myaccount',
+                  name: 'MyAccount',
                 }"
               >
                 <li><PictoCompte /><span>Mon compte</span></li>
@@ -76,19 +76,16 @@
               >
                 <li><PictoMail /><span>Contact</span></li>
               </router-link>
-
             
             <router-link
               :to="{
                 name: 'Logout',
               }"
             >
-             <a class="disconect--button"><PictoClose/><span>Se déconnecter</span></a>
+             <li class="disconect--button"><PictoClose/><span>Se déconnecter</span></li>
             </router-link>
-            
             </ul>
           </nav>
-
           <router-link
             v-if="!user"
             :to="{
@@ -98,9 +95,6 @@
             <a id="se-connecter"> Se connecter </a>
           </router-link>
         </div>
-
-       
-
         <div id="left-header-desktop">
           <!--User Connected-->
           <router-link
@@ -135,7 +129,9 @@
         </div>
 
         <div id="right-header-desktop">
-          
+                  
+    </div>
+    
           <h3 v-if="user">Bonjour {{ user.user_nicename }}</h3>
 
           <router-link
@@ -163,37 +159,34 @@
           <!--FIN-->
         </div>
       </div>
-    </div>
+    
   </header>
 </template>
 
 <script>
-import PictoUser from "../atoms/PictoUser";
-import PictoCompte from "../atoms/PictoCompte";
-import PictoAnnonces from "../atoms/PictoAnnonces";
-import PictoInfo from "../atoms/PictoInfo";
-import PictoText from "../atoms/PictoText";
-import PictoMail from "../atoms/PictoMail";
-import PictoClose from "../atoms/PictoClose.vue";
-import PictoAdd2 from "../atoms/PictoAdd2.vue";
+import Logo from "../atoms/Logo.vue"
+import PictoUser from "../atoms/PictoUser.vue"
+import SearchBar from "../molecules/SearchBar.vue"
+import PictoAnnonces from '../atoms/PictoAnnonces.vue'
 
-
-import Logo from "../atoms/Logo";
-import SearchBar from "../molecules/SearchBar";
+import PictoMail from '../atoms/PictoMail.vue'
+import PictoText from '../atoms/PictoText.vue'
+import PictoInfo from '../atoms/PictoInfo.vue'
+import PictoClose from '../atoms/PictoClose.vue'
+import PictoCompte from '../atoms/PictoCompte.vue'
 
 export default {
   name: "Header",
   components: {
-    PictoUser,
-    Logo,
-    SearchBar,
-    PictoAnnonces,
-    PictoCompte,
-    PictoInfo,
-    PictoText,
-    PictoMail,
-    PictoClose,
-    PictoAdd2
+  SearchBar,
+  Logo,
+  PictoUser,
+  PictoMail,
+  PictoText,
+  PictoInfo,
+  PictoClose,
+  PictoCompte,
+  PictoAnnonces
   },
   computed: {
     user() {
@@ -202,9 +195,9 @@ export default {
       } else {
         return false;
       }
-    },
-  },
-};
+    }
+}
+}
 </script>
 
 <style scoped lang="scss">
@@ -221,11 +214,18 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color: #F8F8F8;
 }
 #right-header-mobile:hover .sub-nav {
   transform: translateX(0);
 }
 .right-header-mobile:hover header {
+  background-color: black;
+}
+#right-header-desktop:hover .sub-nav {
+  transform: translateX(52%);
+}
+.right-header-desktop:hover header {
   background-color: black;
 }
 #left-header-mobile,
@@ -242,10 +242,9 @@ header {
   z-index: 1;
   padding: 0.5em 0 !important;
   width: 100%;
-  background-color: #fff;
+  background-color: #F8F8F8;
   display: flex;
 }
-
 #se-connecter {
   padding-left: 1em;
   position: relative;
@@ -280,13 +279,9 @@ header {
   justify-content: flex-start;
   color: black;
 }
-li:hover, span:hover {
-  color:$main-green;
-}
 li svg {
   margin-right: 15px;
 }
-
 #welcome {
   border: none;
   font-size: 24px;
@@ -305,16 +300,7 @@ li svg {
 }
 .disconect--button {
   position: absolute;
-  bottom: 10em;  
-  padding: 25px 25px 25px 10px;
-  width: 100%;
-  margin-top: 25px;
-  height: 37px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.disconect--button span {
+  bottom: 1em;
   color: $main-green;
 }
 #div-logo {
