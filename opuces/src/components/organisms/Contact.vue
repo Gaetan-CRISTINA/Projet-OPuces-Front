@@ -16,15 +16,15 @@
     <div class="contact">
       <div class="form-contact" v-if="!user">
         <h1>Formulaire de contact</h1>
-        <form class="contact-form" @submit.prevent="sendEmail">
+        <form class="contact-form" @submit="sendEmail">
           <label for="Name">Nom</label>
-          <input type="text" id="fname" name="fname" value="" />
+          <input type="text" id="fname" name="fname" v-model="name"/>
           <label for="Sujet">Sujet</label>
-          <input type="text" id="Sujet" name="Sujet" value="" />
+          <input type="text" id="Sujet" name="Sujet" v-model="subject" />
           <label for="Mail">Mail</label>
-          <input type="email" id="Mail" name="Mail" value="" />
+          <input type="email" id="Mail" name="Mail" v-model="email" />
           <label for="Message">Message</label>
-          <input type="text" class="Message" name="Message" value="" />
+          <input type="text" class="Message" name="Message" v-model="text" />
           <div>
             <button class="--button" type="submit">Envoyer le message</button>
           </div>
@@ -34,8 +34,8 @@
       <div class="form-contact" v-if="user">
         <h1>Bonjour {{ user.user_nicename }} votre demande concerne :</h1>
 
-        <form class="contact-form" @submit.prevent="sendEmail">
-          <select name="" id="">
+        <form class="contact-form" @submit="sendEmail">
+          <select name="subject" v-model="subject" >
             <option value="0">Choisir un sujet</option>
             <option value="1">Réclamation</option>
             <option value="2">Question sur le site</option>
@@ -44,7 +44,7 @@
           </select>
 
           <label for="Message">Message</label>
-          <input type="text" class="Message" name="Message" value="" />
+          <input type="text" class="Message" name="Message" v-model="text"/>
           
             <button class="--button" value="send" type="submit">Envoyer le message</button>
           
@@ -62,11 +62,21 @@
 
 <script>
 import Logo from "../atoms/Logo.vue";
-import emailjs from "@emailjs/browser";
+import emailjs from "emailjs-com";
 export default {
   name: "Contact",
   components: {
     Logo,
+  },
+  data(){
+    return {
+      text: "",
+      email: "",
+      subjetct: "",
+      name: ""
+
+
+    }
   },
   computed: {
     user() {
@@ -75,20 +85,18 @@ export default {
     },
   },
   methods:{
-    sendEmail(){
+    sendEmail(event){
       emailjs.sendForm(
         'service_oas4sls',
-        0,
-        this.$refs.form,
-        'user_cII9HEbDAx55pYFWR6DJy'
-      ).then((result) => {
-        console.log('Success', result.text);
-      },
-      (error) => {
-        console.log('Failed', error.text)
-      }
-      );
+        event.target,
+        'user_cII9HEbDAx55pYFWR6DJy',
+        {
+          name: this.name,
+          email: this.email,
+          message: this.text
+        })
     }
+    
   }
 }
 </script>

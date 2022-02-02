@@ -6,7 +6,7 @@
       <img :src="getImage" alt="classifiedImage" class="img-annoce">
     <div class="flex prix-like">
       
-      <span class="prix">{{classifiedProps.classifiedPrice}}€</span>
+      <span class="prix">{{classifiedProps.classifiedPrice}} €</span>
     </div>
   </div>
 

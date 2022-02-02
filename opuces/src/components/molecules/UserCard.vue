@@ -1,74 +1,83 @@
 <template>
   <div class="card display2">
-    
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
-      <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce">
-    <div class="flex prix-like">
-      
-      <span class="prix">{{userClassifiedProps.classifiedPrice}}€</span>
+      <img
+        src="https://picsum.photos/400/600"
+        alt="classifiedImage"
+        class="img-annoce"
+      />
+      <div class="flex prix-like">
+        <span class="prix">{{ userClassifiedProps.classifiedPrice }}€</span>
+      </div>
     </div>
-  </div>
 
     <!-- <HeaderAnnonce/> -->
     <div class="header-annonce content-annonce">
-        <h3>{{userClassifiedProps.title.rendered}}</h3>
-        <p class="date-annonce">Annonce parue le {{userClassifiedProps.date}}</p>
+      <h3>{{ userClassifiedProps.title.rendered }}</h3>
+      <p class="date-annonce">
+        Annonce parue le {{ userClassifiedProps.date }}
+      </p>
     </div>
 
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
-    <div class="picto-etat"><PictoEtat1 /></div>
-    <p>{{productState.name}}</p>
-  </div>
+      <div class="picto-etat"><PictoEtat1 /></div>
+      <p>{{ productState.name }}</p>
+    </div>
 
     <!-- <CategorieCardList/> -->
-  <div class="liste-categories-annonce content-annonce">
-    <!-- <CategorieCard /> -->
-    <div class="category-card-tag">
-      <p>{{categoryName.name}}</p>
+    <div class="liste-categories-annonce content-annonce">
+      <!-- <CategorieCard /> -->
+      <div class="category-card-tag">
+        <p>{{ categoryName.name }}</p>
+      </div>
     </div>
-  </div>
 
     <!-- <ExcerptAnnonce class="show-content"/>  -->
-    <p class="excerpt-annonce content-annonce" v-html="userClassifiedProps.excerpt.rendered + '[...]'">
-     </p> 
+    <p
+      class="excerpt-annonce content-annonce"
+      v-html="userClassifiedProps.excerpt.rendered + '[...]'"
+    ></p>
     <!--<DescriptionAnnonce class="hide-content"/>-->
-    <p class="description-annonce content-annonce hide-content" v-html="userClassifiedProps.content.rendered"> </p>
-    
-    
+    <p
+      class="description-annonce content-annonce hide-content"
+      v-html="userClassifiedProps.content.rendered"
+    ></p>
+
     <!-- <VoirPlus
     v-on:displayHideCardContent="displayHideCardContent"
     class="show-content"
     /> -->
-      
-    <div class="voir-plus">
-    
-    <button
-      
-    >VOIR L'ANNONCE</button>
 
-    <button class="delete"
-      
-    >Supprimer L'ANNONCE</button>
+    <div class="voir-plus">
+      <button>VOIR L'ANNONCE</button>
+
+
     
+      <router-link
+        :to="{
+          name: 'deleteClassified'
+          
+        }"
+      >
+        <button class="delete">Supprimer L'ANNONCE</button>
+      </router-link>
+    
+
     </div>
 
     <div class="hide-content">
-      <Ville/>
-      <MapWrapper/>
-      <AnnonceAuteur/> 
-      <VoirMoins/>
-      <CtaAnnonce/>
-
+      <Ville />
+      <MapWrapper />
+      <AnnonceAuteur />
+      <VoirMoins />
+      <CtaAnnonce />
     </div>
-
-
   </div>
 </template>
 
 <script>
-
 import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
 import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
@@ -86,29 +95,33 @@ export default {
     VoirMoins,
     CtaAnnonce,
     PictoEtat1,
-     
   },
   props: {
     userClassifiedProps: Object,
-  }, 
-    
-  async load(){
-      this.categories = await classifiedsService.loadClassifiedProductCategory();
   },
-  async created(){  
-  let typeCusto = "ProductCategory";
-  this.categoryName = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductCategory[0]);
-  typeCusto = "productstate";
-  this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
-  console.log(this.classifiedProps.productState);
+
+  async load() {
+    this.categories = await classifiedsService.loadClassifiedProductCategory();
   },
-  data(){
-    return{
-      categoryName: '',
-      productState: ''
-    }
+  async created() {
+    let typeCusto = "ProductCategory";
+    this.categoryName = await classifiedsService.loadOneCustonomy(
+      typeCusto,
+      this.classifiedProps.ProductCategory[0]
+    );
+    typeCusto = "productstate";
+    this.productState = await classifiedsService.loadOneCustonomy(
+      typeCusto,
+      this.classifiedProps.ProductState
+    );
+    console.log(this.classifiedProps.productState);
   },
- 
+  data() {
+    return {
+      categoryName: "",
+      productState: "",
+    };
+  },
 };
 </script>
 
@@ -120,23 +133,23 @@ export default {
   margin-bottom: 0.5em;
 }
 .category-card-tag {
-  display:inline-block;
+  display: inline-block;
   background-color: $light-yellow;
   padding: 0.3em 0.8em;
   border-radius: 20px;
-  margin-right: .5em;
-  margin-bottom: .5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
   & p {
     font-size: 10px;
     font-weight: 700;
   }
 }
 span {
-    font-weight: 600;
-    color: $main-green;
-    background-color: $light-yellow;
-    padding: 5.5px .7em;
-    border-radius: 20px;
+  font-weight: 600;
+  color: $main-green;
+  background-color: $light-yellow;
+  padding: 5.5px 0.7em;
+  border-radius: 20px;
 }
 .description-annonce {
   overflow: hidden;
@@ -158,7 +171,7 @@ button:hover {
   color: #fff;
   border: solid 1px $main-green;
 }
-.delete:hover{
+.delete:hover {
   background-color: $social-google;
   color: white;
   border: solid 1px $social-google;
@@ -229,7 +242,7 @@ button:hover {
   bottom: 1em;
   left: 1.5em;
 }
-.circle{
+.circle {
   background-color: $light-yellow;
   width: 30px;
   height: 30px;
@@ -266,8 +279,6 @@ button:hover {
     width: 432.5px;
   }
 }
-
-
 </style>
 
 <style  lang="scss">

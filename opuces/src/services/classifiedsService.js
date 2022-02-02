@@ -139,6 +139,17 @@ const classifiedsService = {
     async getTaxonomyName(){
         const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'taxonomy');
         return response.data;
+    },
+
+    async deleteCurrentClassified(classifiedId){
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.delete(classifiedsService.baseURI+ '/classified/' + classifiedId, {
+            headers: {
+                'Authorization': 'Bearer' + token
+            }
+        });
+        return response.data;
     }
 
 
