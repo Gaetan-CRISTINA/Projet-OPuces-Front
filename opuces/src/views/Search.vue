@@ -4,17 +4,20 @@
     <div class="main-container">
       <FilterDesktop />
     </div>
+    <TabBar/>
   </div>
 </template>
 
 <script>
 import Header from "../components/organisms/Header.vue";
 import FilterDesktop from "../components/organisms/FiltersDesktop.vue";
+import TabBar from "../components/molecules/TabBar.vue";
 export default {
   name: "Home",
   components: {
     Header,
     FilterDesktop,
+    TabBar
   },
 };
 </script>
