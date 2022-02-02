@@ -57,7 +57,10 @@
     
       <router-link
         :to="{
-          name: 'deleteClassified'
+          name: 'deleteClassified',
+          params: {
+            id: userClassifiedProps.id
+          }
           
         }"
       >
@@ -107,14 +110,13 @@ export default {
     let typeCusto = "ProductCategory";
     this.categoryName = await classifiedsService.loadOneCustonomy(
       typeCusto,
-      this.classifiedProps.ProductCategory[0]
+      this.userClassifiedProps.ProductCategory[0]
     );
     typeCusto = "productstate";
     this.productState = await classifiedsService.loadOneCustonomy(
       typeCusto,
-      this.classifiedProps.ProductState
+      this.userClassifiedProps.ProductState
     );
-    console.log(this.classifiedProps.productState);
   },
   data() {
     return {

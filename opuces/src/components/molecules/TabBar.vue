@@ -7,8 +7,14 @@
     >
       <PictoHome />
     </router-link>
-    <PictoSearch />
 
+    <router-link
+    :to="{
+      name: 'searchMobile',
+      }"
+      >
+    <PictoSearch />
+    </router-link>
     <router-link
       :to="{
         name: 'UserClassifieds',
@@ -74,7 +80,8 @@ nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: white;
+  background: linear-gradient(0deg, rgba(49,199,192,1) 0%, rgba(227,251,255,1) 50%);;
+  
 }
 .button-add {
   position: relative;
@@ -85,7 +92,11 @@ nav {
   -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
-  background-color: white;
+  background: white;
+  transition: all .2s ease-in-out;
+}
+.button-add:hover{
+  transform: scale(1.2);
 }
 
 @media screen and (min-width: 576px) {

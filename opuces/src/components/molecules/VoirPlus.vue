@@ -2,15 +2,19 @@
   <div class="voir-plus">
     <button
       v-on:click="handleSeeMore"
-    >VOIR L'ANNONCE</button>
+    >VOIR PLUS
+    <PictoNav/>
+    </button>
   </div>
 </template>
 
 <script>
+import PictoNav from "../atoms/PictoNav.vue";
+
 export default {
   name: "VoirPlus",
   components: {
-
+    PictoNav,
   },
   methods: {
     handleSeeMore: function(evt){
@@ -21,26 +25,45 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import "../../assets/scss/main";
+#picto-nav {
+  transform: rotateZ(90deg);
+  width: 7px;
+  margin-left: 1em;
+  fill: $main-green;
+  transition: all .3s;
+}
+button:hover #picto-nav {
+  transform: rotateZ(-270deg);
+  fill: $secondary-green;
+}
+
+</style>
+
 <style scoped lang="scss">
 @import "../../assets/scss/main";
 button {
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 12px;
   font-weight: 700;
   color: $main-green;
-  padding: 0.5em 1em;
-  border-radius: 22px;
-  border: solid 1px $main-green;
+  padding-top: 1em;
+  border: none;
+  border-top: solid 1px $main-green;
   background-color: #fff;
-  margin-top: 0.5em;
+  margin-top: 1em;
   transition: all 0.3s;
   cursor: pointer;
 }
 button:hover {
-  background-color: $main-green;
-  color: #fff;
-  border: solid 1px $main-green;
+  color: $secondary-green;
+  border-top: solid 1px $secondary-green;
 }
-
 .voir-plus {
   text-align: center;
 }

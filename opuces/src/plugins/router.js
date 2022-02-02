@@ -22,6 +22,7 @@ import UpdatePassword from '../views/UpdatePassword.vue'
 import Myaccount from '../views/Myaccount.vue'
 import DeleteClassified from '../views/DeleteClassified.vue'
 
+import Search from '../views/Search.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -97,6 +98,11 @@ const routes = [
     path: '/delete-classified',
     name: 'deleteClassified',
     component: DeleteClassified
+  },
+  {
+    path: '/search',
+    name: 'searchMobile',
+    component: Search
   },
   {
     path: '*',

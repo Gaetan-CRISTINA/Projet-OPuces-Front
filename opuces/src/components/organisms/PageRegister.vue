@@ -72,7 +72,7 @@
             Les mots de passe ne correspondent pas.
           </div>
 
-          <button href="#" class="--button connect">SE CONNECTER</button>
+          <button href="#" class="--button connect">S'INSCRIRE</button>
         </form>
       </div>
 
@@ -128,6 +128,22 @@ export default {
     };
   },
   methods: {
+
+      /**
+     * 
+     * Méthode pour Afficher / Cacher le mot de passe au click sur PictoEye
+     */
+    displayHidePassword: function(evt){
+      evt.preventDefault();
+      let input = evt.currentTarget.closest('label').querySelector('input');
+      let attribut = input.getAttribute('type')
+        if(attribut == 'password'){
+          input.setAttribute('type', 'text');
+        } else {
+          input.setAttribute('type', 'password');
+        }
+      },
+
       async handleSubmit(event){
           event.preventDefault();
           
