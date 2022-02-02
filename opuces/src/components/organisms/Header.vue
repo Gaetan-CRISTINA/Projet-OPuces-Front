@@ -196,7 +196,7 @@
           <router-link
             v-if="user"
             :to="{
-              name: 'CreateClassified',
+              name: 'UserClassifieds',
             }"
           >
           <li>Mes annonces</li>
