@@ -1,7 +1,7 @@
 <template>
     <div class="cards-list"> 
         
-        <span v-for="classified in classifieds"
+        <span class="unitCard" v-for="classified in classifieds"
             :key="classified.id">
        
          
@@ -38,6 +38,12 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+}
+.unitCard{
+    transition: all .2s ease-in-out
+}
+.unitCard:hover{
+    transform: scale(1.02);
 }
 @media screen and (min-width: 576px) {
    

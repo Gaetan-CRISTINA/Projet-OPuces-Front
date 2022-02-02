@@ -149,6 +149,7 @@ const classifiedsService = {
                 'Authorization': 'Bearer' + token
             }
         });
+        console.log('ok');
         return response.data;
     }
 
