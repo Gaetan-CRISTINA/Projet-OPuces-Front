@@ -1,5 +1,5 @@
 <template>
-  <header id="header-site">
+  <header>
     <div class="main-container">
       <div class="flex">
         <router-link v-if="user" :to="{ name: 'Home' }">
@@ -96,10 +96,6 @@
             <a id="se-connecter"> Se connecter </a>
           </router-link>
         </div>
-
-        <!--
-        LEFT HEADER
-        -->
         <div id="left-header-desktop">
           <!--User Connected-->
           <router-link
@@ -114,6 +110,7 @@
             </a>
           </router-link>
           <!-- FIN-->
+
           <!-- User Offline-->
           <router-link
             v-if="!user"
@@ -128,20 +125,14 @@
           </router-link>
           <!-- FIN-->
         </div>
-
-        <!--
-        CENTER HEADER
-        -->
         <div id="center-header-desktop">
           <SearchBar />
         </div>
 
-        <!--
-        RIGHT HEADER
-        -->
         <div id="right-header-desktop">
+          
           <h3 v-if="user">Bonjour {{ user.user_nicename }}</h3>
-          <!--User Connected-->
+
           <router-link
             v-if="user"
             :to="{
@@ -151,7 +142,7 @@
               //}
             }"
           >
-          <img src="https://picsum.photos/30" alt="" />
+            <img src="https://picsum.photos/30" alt="" />
           </router-link>
           <!--FIN-->
 
@@ -162,65 +153,12 @@
               name: 'LoginForm',
             }"
           >
-          <PictoUser />
+            <PictoUser />
           </router-link>
           <!--FIN-->
         </div>
       </div>
-      
     </div>
-    <div class="header-bottom">
-        <ul>
-          <router-link
-            v-if="user"
-            :to="{
-              name: 'CreateClassified',
-            }"
-          >
-            <li>Ajouter une annonce</li>
-          </router-link>
-          <router-link
-            v-if="user"
-            :to="{
-              name: 'Myaccount',
-            }"
-          >
-          <li>Mon compte</li>
-          </router-link>
-          <router-link
-            v-if="user"
-            :to="{
-              name: 'CreateClassified',
-            }"
-          >
-          <li>Mes annonces</li>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'CGU',
-            }"
-          >
-            
-          <li>CGU/CGV</li>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'LegalNotice',
-            }"
-          >
-            
-          <li>Mentions légales</li>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'ContactPage',
-            }"
-          >
-            
-          <li>Contact</li>
-          </router-link>
-        </ul>
-      </div>
   </header>
 </template>
 
@@ -266,9 +204,6 @@ export default {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main";
-.header-bottom {
-  display: none;
-}
 .sub-nav img {
   border-radius: 100%;
   margin-right: 10px;
@@ -377,25 +312,6 @@ li svg {
 @media screen and (min-width: 768px) {
 }
 @media screen and (min-width: 992px) {
-
-  .header-bottom {
-    width: 100%;
-    display: block;
-    background-color: $main-green;
-    position: absolute;
-    bottom: -23px;
-    left: 0;
-  }
-  .header-bottom ul {
-    display: flex;
-    justify-content: center;
-    font-size: 13px;
-    padding: .3em 0;
-  }
-  .header-bottom a li {
-    color: #fff;
-    padding: 0 1em;
-  }
   #left-header-desktop svg {
     width: 32px;
   }
@@ -435,7 +351,6 @@ li svg {
   }
   #right-header-desktop {
     align-items: center;
-    justify-content: flex-end;
   }
   #right-header-desktop > * {
     margin-left: 2em;

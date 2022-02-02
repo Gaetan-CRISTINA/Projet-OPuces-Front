@@ -5,8 +5,13 @@
             :key="classified.id">
        
          
-            <Card :classifiedProps="classified" />
+            <Card 
+            v-on:displayHideCardContent="displayHideCardContent"
+            :classifiedProps="classified" 
+            />
         </span>
+
+        
     </div>
 </template>
 
@@ -26,7 +31,37 @@ export default {
   },
   async created(){
       this.classifieds = await classifiedsService.loadClassified();
-  }
+
+
+
+
+
+      // afficher/cacher contenu des cards
+
+      let hideContent = document.querySelectorAll('div.cards-list')[0].children;
+      console.log(hideContent);
+
+    //   let hiddenContentHeight = [];
+      
+
+    //   for (let i = 0; i < hideContent.length; i++) {
+    //     hiddenContentHeight.push(hideContent[i].offsetHeight);
+    //     hideContent[i].style.height = 0;
+    //   }
+
+    //   console.log(hiddenContentHeight);
+
+
+
+
+
+  },
+  methods: {
+    displayHideCardContent: function(evt){
+          evt.preventDefault();
+          console.log('poutre');
+      }
+  },
 }
 </script>
 

@@ -60,6 +60,9 @@ export default {
     
 } 
 @media screen and (min-width: 992px) {
+  .main-container {
+    top: 100px;
+  }
   .flex {
     display: flex;
   }
