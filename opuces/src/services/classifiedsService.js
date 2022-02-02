@@ -49,13 +49,49 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.baseURI + '/classified?_embed=true');
         return response.data;
     },
+
     async loadAuthor(){
-        const response = await axios.get(classifiedsService.baseURI+ '/users/:id')
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/userIdLogged',
+        {
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        });
+        return response.data;
+    },
+
+    loadUserData: function(){
+        const userData = storage.get('userData');
+            if(userData != null){
+                const usernameLogged = userData.user_nicename;
+                return usernameLogged;
+            } else {
+                return false;
+            }
+    },
+
+    async loadAuthorLogged(){
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/CurrentUserLogged',
+        {
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        });
         return response.data;
     },
 
     async loadClassifiedProductCategory(){
         const response = await axios.get(classifiedsService.baseURI + '/ProductCategory/?parent=0');
+        
+        return response.data;
+        
+    },
+    async loadOneCustonomy(typeCusto,id){
+        const response = await axios.get(classifiedsService.baseURI + '/' + typeCusto + '/' + id);
         
         return response.data;
         
@@ -82,7 +118,7 @@ const classifiedsService = {
     },
 
     async loadClassifiedsByUser(userId){
-        const response = await axios.get(classifiedsService.baseURI + '/classified?user=' + userId);
+        const response = await axios.get(classifiedsService.baseURI + '/classified?author=' + userId);
         return response.data;
     },
 
@@ -103,9 +139,21 @@ const classifiedsService = {
     async getTaxonomyName(){
         const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'taxonomy');
         return response.data;
+    },
+
+    async deleteCurrentClassified(classifiedId){
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const response = await axios.delete(classifiedsService.baseURI+ '/classified/' + classifiedId, 
+        {
+                headers: {
+                    'Authorization' : 'Bearer ' + token
+                }
+        });
+        console.log('ok');
+        return response.data;
     }
 
-    
 
     
 }

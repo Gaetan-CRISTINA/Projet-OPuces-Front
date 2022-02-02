@@ -4,13 +4,15 @@
     <Header />
     <div class="main-container">
       <div id="display-annonces">
-        <h2>DERNIÈRES ANNONCES</h2>
+
+        <h2>Les Dernières Annonces</h2>
         <PictoDisplay1 
           v-on:displayRowHome="displayRowHome"
         />
         <PictoDisplay2
           v-on:displayColumnHome="displayColumnHome"
         />
+
       </div>
       <div class="flex">
         <div class="site-content">

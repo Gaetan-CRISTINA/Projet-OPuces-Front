@@ -1,5 +1,6 @@
 <template>
-<div>
+<div class="main-container">
+  <div class="lostPasswordFrom">
     <img src="https://picsum.photos/60" alt="">
     <div>
     <h4>Identifiant de connexion</h4>
@@ -7,7 +8,7 @@
     </div>
     <h4>NOUVEAU MOT DE PASSE</h4>
 <a href="">Recevoir un MDP par mail</a>
-
+  </div>
 </div> 
    
 </template>

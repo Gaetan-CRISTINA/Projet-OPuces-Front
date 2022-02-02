@@ -76,14 +76,16 @@
               >
                 <li><PictoMail /><span>Contact</span></li>
               </router-link>
+
             
             <router-link
               :to="{
                 name: 'Logout',
               }"
             >
-             <li class="disconect--button"><PictoClose/><span>Se déconnecter</span></li>
+             <a class="disconect--button"><PictoClose/><span>Se déconnecter</span></a>
             </router-link>
+            
             </ul>
           </nav>
 
@@ -97,9 +99,11 @@
           </router-link>
         </div>
 
+
         <!--
         LEFT HEADER
         -->
+
         <div id="left-header-desktop">
           <!--User Connected-->
           <router-link
@@ -151,7 +155,9 @@
               //}
             }"
           >
-          <img src="https://picsum.photos/30" alt="" />
+
+            <img class="userPicto" src="https://picsum.photos/30" alt="" />
+
           </router-link>
           <!--FIN-->
 
@@ -297,6 +303,13 @@ export default {
 #right-header-desktop {
   display: none;
 }
+#left-header-mobile span, h2{
+  transition: all .2s ease-in-out;
+}
+#left-header-mobile span, h2:hover{
+  transform: scale(1.3);
+}
+
 header {
   position: fixed;
   z-index: 1;
@@ -305,6 +318,7 @@ header {
   background-color: #fff;
   display: flex;
 }
+
 #se-connecter {
   padding-left: 1em;
   position: relative;
@@ -339,9 +353,13 @@ header {
   justify-content: flex-start;
   color: black;
 }
+li:hover, span:hover {
+  color:$main-green;
+}
 li svg {
   margin-right: 15px;
 }
+
 #welcome {
   border: none;
   font-size: 24px;
@@ -360,7 +378,16 @@ li svg {
 }
 .disconect--button {
   position: absolute;
-  bottom: 1em;
+  bottom: 10em;  
+  padding: 25px 25px 25px 10px;
+  width: 100%;
+  margin-top: 25px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.disconect--button span {
   color: $main-green;
 }
 #div-logo {
@@ -442,6 +469,12 @@ li svg {
   }
   #right-header-desktop > *:hover {
     cursor: pointer;
+  }
+  .userPicto{
+    transition: all .2s ease-in-out;
+  }
+  .userPicto:hover{
+    transform: scale(1.3);
   }
 }
 @media screen and (min-width: 1200px) {

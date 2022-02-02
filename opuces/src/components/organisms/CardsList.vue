@@ -1,7 +1,7 @@
 <template>
     <div class="cards-list"> 
         
-        <span v-for="classified in classifieds"
+        <span class="unitCard" v-for="classified in classifieds"
             :key="classified.id">
        
          
@@ -36,6 +36,7 @@ export default {
 
 
 
+
       // afficher/cacher contenu des cards
 
       let hideContent = document.querySelectorAll('div.cards-list')[0].children;
@@ -61,6 +62,7 @@ export default {
           evt.preventDefault();
           console.log('poutre');
       }
+
   },
 }
 </script>
@@ -73,6 +75,12 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+}
+.unitCard{
+    transition: all .2s ease-in-out
+}
+.unitCard:hover{
+    transform: scale(1.02);
 }
 @media screen and (min-width: 576px) {
    

@@ -6,7 +6,7 @@
       <img :src="getImage" alt="classifiedImage" class="img-annoce">
     <div class="flex prix-like">
       
-      <span class="prix">{{classifiedProps.classifiedPrice}}€</span>
+      <span class="prix">{{classifiedProps.classifiedPrice}} €</span>
     </div>
   </div>
 
@@ -20,14 +20,14 @@
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
     <div class="picto-etat"><PictoEtat1 /></div>
-    <p>{{classifiedProps.ProductState}}</p>
+    <p>{{productState.name}}</p>
   </div>
 
     <!-- <CategorieCardList/> -->
   <div class="liste-categories-annonce content-annonce">
     <!-- <CategorieCard /> -->
     <div class="category-card-tag">
-      <p>{{classifiedProps.ProductCategory}}</p>
+      <p>{{categoryName.name}}</p>
     </div>
   </div>
 
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+
 // import HeroAnnonce from "../molecules/HeroAnnonce.vue";
 // import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
 // import EtatAnnonce from "../molecules/EtatAnnonce.vue";
@@ -74,6 +75,7 @@
 // import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
 // import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
 import VoirPlus from "../molecules/VoirPlus.vue";
+
 import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
 import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
@@ -81,9 +83,6 @@ import VoirMoins from "../molecules/VoirMoins.vue";
 import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
-// import PictoCoeur from "../atoms/PictoCoeur.vue";
-// import Prix from "../molecules/Prix.vue";
-// import CategorieCard from "../molecules/CategorieCard.vue";
 
 export default {
   name: "Card",
@@ -102,14 +101,27 @@ export default {
   }, 
     
   async load(){
-      this.classifieds = await classifiedsService.loadClassified();
       this.categories = await classifiedsService.loadClassifiedProductCategory();
-  },
-  async getCategoryName(){
-    this.categoryName = await classifiedsService.getTaxonomyName();
-  },
+},
+
+async created(){  
+  let typeCusto = "ProductCategory";
+  this.categoryName = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductCategory[0]);
+  typeCusto = "productstate";
+  this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
+  
+},
+
+data() {
+  return{
+    categoryName: '',
+    productState: ''
+  }
+},
   computed:{
+
     getImage(){
+
       if(this.classifiedProps._embedded['wp:featuredmedia']){
         return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
       }else{
@@ -149,6 +161,29 @@ export default {
           this.$emit('displayHideCardContent', evt);
       }
   },
+
+    if(this.classifiedProps._embedded['wp:featuredmedia']){
+ 
+      return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
+    }else{
+      return "https://picsum.photos/400/600";
+    }
+
+
+    //TODO
+    // author name en Majuscule (1ere lettre)
+    // capitalizeString(){ 
+    //  let input = document.getElementById("input"); 
+    //  let headingElement = document.getElementById("modified-string"); 
+    //  let string = input.value; 
+    //  headingElement.innerHTML = string.charAt(0).toUpperCase() + 
+    //      string.slice(1); ; 
+    // }
+    },
+  
+  },
+    
+
   
 };
 </script>

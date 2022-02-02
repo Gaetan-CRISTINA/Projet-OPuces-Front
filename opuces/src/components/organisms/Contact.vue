@@ -16,57 +16,41 @@
     <div class="contact">
       <div class="form-contact" v-if="!user">
         <h1>Formulaire de contact</h1>
-        <form class="contact-form" @submit.prevent="sendEmail">
+        <form class="contact-form" @submit="sendEmail">
           <label for="Name">Nom</label>
-          <input type="text" id="fname" name="fname" value="" />
+          <input type="text" id="fname" name="fname" v-model="name"/>
           <label for="Sujet">Sujet</label>
-          <input type="text" id="Sujet" name="Sujet" value="" />
+          <input type="text" id="Sujet" name="Sujet" v-model="subject" />
           <label for="Mail">Mail</label>
-          <input type="email" id="Mail" name="Mail" value="" />
+          <input type="email" id="Mail" name="Mail" v-model="email" />
           <label for="Message">Message</label>
-          <input type="text" class="Message" name="Message" value="" />
+          <input type="text" class="Message" name="Message" v-model="text" />
           <div>
             <button class="--button" type="submit">Envoyer le message</button>
           </div>
         </form>
       </div>
-
-      <div class="form-contact" v-if="user">
-        <h1>Bonjour {{ user.user_nicename }} votre demande concerne :</h1>
-
-        <form class="contact-form" @submit.prevent="sendEmail">
-          <select name="" id="">
-            <option value="0">Choisir un sujet</option>
-            <option value="1">Réclamation</option>
-            <option value="2">Question sur le site</option>
-            <option value="3">Un problème ?</option>
-            <option value="4">Contacter l'administrateur</option>
-          </select>
-
-          <label for="Message">Message</label>
-          <input type="text" class="Message" name="Message" value="" />
-          
-            <button class="--button" value="send" type="submit">Envoyer le message</button>
-          
-        </form>
-
-      </div>
-      <img
-        class="illus-computer"
-        src="../../assets/svg/illus-computer.svg"
-        alt=""
-      />
-    </div>
+  </div>
   </div>
 </template>
 
 <script>
 import Logo from "../atoms/Logo.vue";
-import emailjs from "@emailjs/browser";
+import emailjs from "emailjs-com";
 export default {
   name: "Contact",
   components: {
     Logo,
+  },
+  data(){
+    return {
+      text: "",
+      email: "",
+      subject: "",
+      name: ""
+
+
+    }
   },
   computed: {
     user() {
@@ -74,22 +58,29 @@ export default {
       return this.$store.state.user;
     },
   },
-  methods:{
-    sendEmail(){
-      emailjs.sendForm(
-        'service_oas4sls',
-        0,
-        this.$refs.form,
-        'user_cII9HEbDAx55pYFWR6DJy'
-      ).then((result) => {
-        console.log('Success', result.text);
-      },
-      (error) => {
-        console.log('Failed', error.text)
+  
+  methods: {
+    sendEmail(e) {
+      try {
+        emailjs.sendForm('service_23ritqp', 'template_7p13msm', e.target,
+        'user_S0Gnpuir0FKyLOHzHOp9L', {
+          name: this.name,
+          email: this.email,
+          message: this.message,
+          subject: this.subject
+        })
+      console.log('Ok')
+      } catch(error) {
+          console.log({error})
       }
-      );
-    }
+      // Reset form field
+      this.name = ''
+      this.email = ''
+      this.message = ''
+      this.subject = ''
+    },
   }
+
 }
 </script>
 

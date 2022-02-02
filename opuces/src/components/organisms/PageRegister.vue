@@ -106,10 +106,7 @@
 <script>
 import Logo from "../atoms/Logo";
 import PictoEye from "../atoms/PictoEye";
-
 import userService from "../../services/userService.js";
-
-
 export default {
   name: "PageRegister",
   components: {
@@ -153,27 +150,21 @@ export default {
           if(this.username == ""){
               this.usernameEmpty = true;
           }
-
           if(this.email == ""){
               this.emailEmpty = true;
           }
-
           if(this.password == ""){
               this.passwordEmpty = true;
           }
-
           if(this.passwordVerify == ""){
               this.passwordVerifyEmpty = true;
           }
-
           if(this.password.length < 8){
               this.passwordTooShort = true;
           }
-
           if(this.password !== this.passwordVerify){
               this.passwordConfirm= true;
           }
-
           //si OK
           if( 
               !this.usernameEmpty && 
@@ -232,7 +223,6 @@ h1 {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main.scss";
-
 // .connexion {
 //   width: 100%;
 //   padding-right: 15px;
@@ -240,7 +230,6 @@ h1 {
 //   margin: auto;
 //   border: 15px;
 // }
-
 .left div:first-child {
   position: relative;
   color: $main-green;
