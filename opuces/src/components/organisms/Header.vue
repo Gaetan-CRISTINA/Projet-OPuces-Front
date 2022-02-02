@@ -225,6 +225,36 @@
             
           <li>Contact</li>
           </router-link>
+
+          <router-link
+          v-if="user"
+            :to="{
+              name: 'Logout',
+            }"
+          >
+            
+          <li>Se déconnecter</li>
+          </router-link>
+
+          <router-link
+          v-if="!user"
+            :to="{
+              name: 'LoginForm',
+            }"
+          >
+            
+          <li>Se connecter</li>
+          </router-link>
+
+          <router-link
+          v-if="!user"
+            :to="{
+              name: 'PageRegister',
+            }"
+          >
+            
+          <li>Créer un compte</li>
+          </router-link>
         </ul>
       </div>
   </header>
