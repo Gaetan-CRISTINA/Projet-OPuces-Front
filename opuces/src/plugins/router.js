@@ -20,6 +20,8 @@ import ContactPage from '../views/ContactPage.vue'
 import UpdatePassword from '../views/UpdatePassword.vue'
 
 import Myaccount from '../views/Myaccount.vue'
+import DeleteClassified from '../views/DeleteClassified.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -90,6 +92,11 @@ const routes = [
     path: '/user-account',
     name: 'Myaccount',
     component: Myaccount
+  },
+  {
+    path: '/delete-classified',
+    name: 'deleteClassified',
+    component: DeleteClassified
   },
   {
     path: '*',
