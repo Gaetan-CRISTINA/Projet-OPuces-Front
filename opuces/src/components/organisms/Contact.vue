@@ -30,33 +30,7 @@
           </div>
         </form>
       </div>
-
-      <div class="form-contact" v-if="user">
-        <h1>Bonjour {{ user.user_nicename }} votre demande concerne :</h1>
-
-        <form class="contact-form" @submit="sendEmail">
-          <select name="subject" v-model="subject" >
-            <option value="0">Choisir un sujet</option>
-            <option value="1">Réclamation</option>
-            <option value="2">Question sur le site</option>
-            <option value="3">Un problème ?</option>
-            <option value="4">Contacter l'administrateur</option>
-          </select>
-
-          <label for="Message">Message</label>
-          <input type="text" class="Message" name="Message" v-model="text"/>
-          
-            <button class="--button" value="send" type="submit">Envoyer le message</button>
-          
-        </form>
-
-      </div>
-      <img
-        class="illus-computer"
-        src="../../assets/svg/illus-computer.svg"
-        alt=""
-      />
-    </div>
+  </div>
   </div>
 </template>
 
@@ -72,7 +46,7 @@ export default {
     return {
       text: "",
       email: "",
-      subjetct: "",
+      subject: "",
       name: ""
 
 
@@ -84,20 +58,29 @@ export default {
       return this.$store.state.user;
     },
   },
-  methods:{
-    sendEmail(event){
-      emailjs.sendForm(
-        'service_oas4sls',
-        event.target,
-        'user_cII9HEbDAx55pYFWR6DJy',
-        {
+  
+  methods: {
+    sendEmail(e) {
+      try {
+        emailjs.sendForm('service_23ritqp', 'template_7p13msm', e.target,
+        'user_S0Gnpuir0FKyLOHzHOp9L', {
           name: this.name,
           email: this.email,
-          message: this.text
+          message: this.message,
+          subject: this.subject
         })
-    }
-    
+      console.log('Ok')
+      } catch(error) {
+          console.log({error})
+      }
+      // Reset form field
+      this.name = ''
+      this.email = ''
+      this.message = ''
+      this.subject = ''
+    },
   }
+
 }
 </script>
 

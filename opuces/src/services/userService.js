@@ -8,6 +8,7 @@ const userService = {
 
     jwtBaseURI: env.jwtBaseURI,
     baseURI: env.baseURI,
+    opucesBaseURI: env.opucesApi,
 
 
     login: async function(login, password){
@@ -63,8 +64,7 @@ const userService = {
 
     inscription: async function(username, email, password, passwordVerify)
     {
-        const response = await axios.post(
-          'http://localhost/OPuces/public/wp-json/opuces/v1/create-user',
+        const response = await axios.post(userService.opucesBaseURI + '/create-user',
           {
               userName: username,
               email: email,
