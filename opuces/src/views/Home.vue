@@ -5,7 +5,9 @@
     <div class="illusLamp">
     <IllusLamp />
     </div>
+    
     <div class="main-container">
+      
       <div id="display-annonces">
 
         <h2>Les Dernières Annonces</h2>
@@ -23,9 +25,13 @@
         </div>
         <div class="fixe-right">
           <FiltersDesktop />
+          
         </div>
+        
       </div>
+      
     </div>
+    
     <TabBar/>
   </div>
 </template>
@@ -103,16 +109,19 @@ export default {
 .illusLamp{
       display: none;
     }
+   
   
 @media screen and (min-width: 576px) {
     .illusLamp{
       display: none;
     }
+    
   }
 @media screen and (min-width: 768px) {
     .illusLamp{
       display: none;
     }
+  
 } 
 @media screen and (min-width: 992px) {
   .main-container {
@@ -128,6 +137,7 @@ export default {
     .illusLamp{
     display: none;    
   }
+  
 }
 @media screen and (min-width: 1200px) {
     #display-annonces {
@@ -135,18 +145,19 @@ export default {
   }
     .illusLamp{
       display: none;
-    position: absolute;
-    margin-left: 6%;    
+       
   }
+ 
 }
 @media screen and (min-width: 1400px) {
     #display-annonces {
     width: 880px;
   }
     .illusLamp{
-      display: inline-block;
-    position: absolute;
+    display: inline-block;
+    position: fixed;
     margin-left: 6%;    
   }
+  
 }
 </style>
