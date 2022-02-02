@@ -152,38 +152,6 @@ data() {
   //     //console.log(hiddenContentHeight);
 
   // },
-  methods: {
-    // displayHideCardContent: function(evt) {
-    //   console.log(evt.currentTarget.closest("div").parentNode.parentNode.querySelector('.hide-content'));
-    // }
-    displayHideCardContent: function(evt){
-          evt.preventDefault();
-          this.$emit('displayHideCardContent', evt);
-      }
-  },
-
-    if(this.classifiedProps._embedded['wp:featuredmedia']){
- 
-      return this.classifiedProps._embedded['wp:featuredmedia'][0].source_url;
-    }else{
-      return "https://picsum.photos/400/600";
-    }
-
-
-    //TODO
-    // author name en Majuscule (1ere lettre)
-    // capitalizeString(){ 
-    //  let input = document.getElementById("input"); 
-    //  let headingElement = document.getElementById("modified-string"); 
-    //  let string = input.value; 
-    //  headingElement.innerHTML = string.charAt(0).toUpperCase() + 
-    //      string.slice(1); ; 
-    // }
-    },
-  
-  },
-    
-
   
 };
 </script>
