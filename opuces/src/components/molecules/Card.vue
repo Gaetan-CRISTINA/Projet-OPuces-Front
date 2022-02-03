@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 
 // import HeroAnnonce from "../molecules/HeroAnnonce.vue";
 // import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
@@ -129,6 +130,15 @@ async created(){
   typeCusto = "productstate";
   this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
   
+  //AFFICHER CACHER CONTENU SUPPLEMENTAIRE CARDS
+  Vue.prototype.$hiddenContentHeight = [];
+  Vue.prototype.$hideContent = document.querySelectorAll('.hide-content'); 
+
+  for (let i = 0; i < this.$hideContent.length; i++) {
+      this.$hiddenContentHeight.push(this.$hideContent[i].offsetHeight);
+      this.$hideContent[i].style.height = 0;  
+    }
+  
 },
 
 data() {
@@ -158,22 +168,39 @@ data() {
     },
   
   },
+
   methods:{
      async StoreClassified(event){
        event.preventDefault();
       storage.set("ClassifiedIdCart", this.classifiedProps.id);
 
      }
+     
 
-  }
+  },
+  displayHideCardContent: function(evt) {
+        evt.preventDefault;
+        //console.log(evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content'));
+        let currentHideContent = evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content');
+        
+        if(currentHideContent.hasAttribute('style')){
+          currentHideContent.removeAttribute('style');
+          evt.currentTarget.querySelector('#picto-nav').style.transform = 'rotateZ(-90deg)';
+          
+          //Tentative de faire faire un 360 à la flêche à chaque survol...
+          //let rotation = 360;
+          // evt.currentTarget.addEventListener('mouseenter', function(e) {
+          //   e.currentTarget.querySelector('#picto-nav').style.transform = 'rotateZ(' -90 + rotation + 'deg)';
+          // }, false)
+          
+        }else {
+          currentHideContent.style.height = 0;
+        }
+        
+        
+        
 
-
-
-
-
-
-
-
+      }
 
 
   // created(){
@@ -300,6 +327,7 @@ button:hover {
 }
 .hide-content {
   overflow: hidden;
+  transition: all .3s;
 }
 .show-content {
   height: 100%;
