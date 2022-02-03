@@ -51,7 +51,7 @@
     /> -->
 
     <div class="voir-plus">
-      <button>VOIR L'ANNONCE</button>
+      <button>Modifier L'Annonce</button>
 
 
     
@@ -64,7 +64,7 @@
           
         }"
       >
-        <button class="delete">Supprimer L'ANNONCE</button>
+        <button class="delete">Supprimer L'Annonce</button>
       </router-link>
     
 
