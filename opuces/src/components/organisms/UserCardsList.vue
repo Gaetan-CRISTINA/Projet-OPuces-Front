@@ -45,6 +45,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
 }
 .unitCard{
     transition: all .2s ease-in-out
@@ -59,19 +60,13 @@ export default {
     
 }
 @media screen and (min-width: 992px) {
-    .cards-list {
-        width: 520px;
-    }
+    
 }  
 @media screen and (min-width: 1200px) {
-    .cards-list {
-        width: 700px;
-    }
+    
 }
 @media screen and (min-width: 1400px) {
-    .cards-list {
-        width: 880px;
-    }
+    
 }
 </style>
 

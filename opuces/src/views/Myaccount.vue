@@ -1,17 +1,7 @@
 <template>
+<div><Header2 />
  <div class="main-container">
-    <div class="headerLink">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <div id="left-header-mobile">
-          <span><Logo /></span>
-          <h2>O'Puces</h2>
-        </div>
-      </router-link>
-    </div>
+    
     <div class="connexion">
       <div class="left">
         <form @submit="handleSubmit">
@@ -70,19 +60,19 @@
         </form>
       </div>
     </div>
-
+</div>
  </div>
 </template>
 
 <script>
-import Logo from "../components/atoms/Logo.vue";
+
 import storage from "../plugins/storage";
 import userService from "../services/userService";
-
+import Header2 from "../components/organisms/Header2.vue"
 export default {
   name: 'Myaccount',
   components: {
-      Logo,
+      Header2
 
   },
   data(){
@@ -181,13 +171,12 @@ methods: {
   padding-left: 15px;
   margin: auto;
   border: 15px;
-  //   border: 2px solid yellow;
 }
 .main-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  //   border: 2px solid red;
   position: absolute;
+  margin-top: 7rem;
 }
 </style>
