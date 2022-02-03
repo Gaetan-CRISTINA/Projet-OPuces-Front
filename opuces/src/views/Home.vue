@@ -1,28 +1,31 @@
 <template>
   <div>
-    <Header />
-    <div class="illusLamp">
-      <IllusLamp />
+    <div class="home-page">
+      <Header />
+      <div class="illusLamp">
+        <IllusLamp />
+      </div>
+
+      <div class="main-container">
+        <div id="display-annonces">
+          <h2>Les Dernières Annonces</h2>
+          <PictoDisplay1 v-on:displayRowHome="displayRowHome" />
+          <PictoDisplay2 v-on:displayColumnHome="displayColumnHome" />
+        </div>
+        <div class="flex">
+          <div class="site-content">
+            <CardsList />
+          </div>
+          <div class="fixe-right">
+            <FiltersDesktop />
+          </div>
+        </div>
+      </div>
+
+      <TabBar />
     </div>
 
-    <div class="main-container">
-      <div id="display-annonces">
-        <h2>Les Dernières Annonces</h2>
-        <PictoDisplay1 v-on:displayRowHome="displayRowHome" />
-        <PictoDisplay2 v-on:displayColumnHome="displayColumnHome" />
-      </div>
-      <div class="flex">
-        <div class="site-content">
-          <CardsList />
-        </div>
-        <div class="fixe-right">
-          <FiltersDesktop />
-        </div>
-      </div>
-    </div>
-
-    <TabBar />
-    
+    <Konami/>
   </div>
 </template>
 
@@ -34,7 +37,7 @@ import PictoDisplay1 from "../components/atoms/PictoDisplay1.vue";
 import PictoDisplay2 from "../components/atoms/PictoDisplay2.vue";
 import TabBar from "../components/molecules/TabBar.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
-
+import Konami from "../components/organisms/Konami.vue";
 
 export default {
   name: "Home",
@@ -46,6 +49,7 @@ export default {
     PictoDisplay2,
     TabBar,
     IllusLamp,
+    Konami,
   },
   methods: {
     displayColumnHome: function (evt) {
