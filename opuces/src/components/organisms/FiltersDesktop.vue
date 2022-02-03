@@ -18,8 +18,10 @@
         <!-- Je boucle sur les categories selectionnées dans selectedCategory -->
         <div class="container-category">
           <div class="category-tag">
-            <p>{{ libelle }}</p>
-              <PictoRemove />
+            <p v-for="taxoSelected in taxosSelected"
+          :key="taxoSelected.categoryFilter">
+           {{ taxoSelected.libelleFilter  }}
+              <PictoRemove /></p>
           </div>
        </div>
         
@@ -28,12 +30,10 @@
         <label for="ville">Ajouter une ville</label>
         <input type="text" id="ville" name="ville" v-model="userCity" />
         
-        <div class="container-category"
-        v-for="city in userCity"
-        :key="city.name"
-        :value="city.id">
+        <div class="container-category">
+
           <div class="category-tag">
-            <p>{{city.name}}</p>
+            <p>{{cityname}}</p>
             <PictoRemove />
           </div>
         </div>
@@ -76,6 +76,7 @@ export default {
       selectedCategory: 0,
       userCity: '',
       filtersDesktop: [],
+      taxosSelected: [],
       minimumPrice: '',
       maximumPrice: ''
     };
@@ -84,29 +85,20 @@ export default {
   
     async SelectCategory(event){
     event.preventDefault();
-    console.log(this.category, this.selectedCategory);
 
     this.typeCusto = "ProductCategory";
     this.oneTaxo = await this.$store.state.services.classified.loadOneCustonomy(this.typeCusto, this.selectedCategory);
 
-    this.arrayTaxoSelected = [this.selectedCategory,this.oneTaxo.name]
-
-          this.$store.commit(
+            this.$store.commit(
                 
-                'saveTaxoList',
+                'addTaxoList',
                 {
                     categoryFilter: this.selectedCategory,
                     libelleFilter: this.oneTaxo.name
                 }
             );
-    // this.filtersDesktop.push(
-    //   {
-    // id: this.selectedCategory,
-    // name: this.$store.state.taxoVuexList.ProductCategory[0].name, 
-    //   }
-    // );
-    // console.log(this.filtersDesktop);
-   },
+    this.taxosSelected = this.$store.state.taxoVuexList;
+    },
   },
   props: {
     category: String,
@@ -115,7 +107,7 @@ export default {
   computed: {
     libelle () {
       return this.$store.state.taxoVuexList.libelleFilter
-    }
+    },
   }
 }
 </script>

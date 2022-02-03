@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     //stockage des données partageable
     state:{ 
         user: null,
-        taxoVuexList: {},
+        taxoVuexList: [],
         services:{
             user: userService,
             storage: storage,
@@ -29,8 +29,11 @@ const store = new Vuex.Store({
         saveTaxoList(state, newTaxoVuexList) {
             state.taxoVuexList = newTaxoVuexList;
           },
-    }
-});
+        addTaxoList(state, data){
+            state.taxoVuexList.push(data);
+        },
+    },
+    });
 
 const userData = storage.get('userData');
 if(userData){
