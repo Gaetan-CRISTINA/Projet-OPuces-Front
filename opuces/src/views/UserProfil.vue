@@ -1,6 +1,9 @@
 <template>
   <div>
     <Header2 />
+    <div class="illusLamp">
+      <IllusLamp />
+    </div>
     <div>
       <UserProfilMobile />
     </div>
@@ -10,11 +13,13 @@
 <script>
 import UserProfilMobile from "../components/organisms/UserProfilMobile.vue";
 import Header2 from "../components/organisms/Header2.vue";
+import IllusLamp from "../components/atoms/IllusLamp.vue";
 export default {
   name: "UserProfil",
   components: {
     UserProfilMobile,
-    Header2
+    Header2,
+    IllusLamp
   },
 };
 </script>
@@ -23,45 +28,35 @@ export default {
 <style scoped lang="scss">
 @import "../assets/scss/main";
 
-.main-container {
-  position: absolute;
-  top: 150px;
-}
-#left-header-mobile {
-  display: inline-block;
-  margin: 5px 0 15px 15px;
-  justify-content: flex-start;
-  
-}
-#left-header-mobile h2{
-  font-size: 20px;
-  font-weight: bold;
-}
-#left-header-mobile h2:hover {
-  transition: all .3s;
-  fill: #2093A7;
+.illusLamp {
+  display: none;
 }
 
-.headerLink{
-  display: flex;
-  justify-content: space-between;
-  margin: 20px ;
+@media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
 }
-button {
-  font-size: 12px;
-  font-weight: 700;
-  color: $main-green;
-  padding: 0.5em 1em;
-  border-radius: 22px;
-  border: solid 1px $main-green;
-  background-color: #fff;
-  margin-top: 0.5em;
-  transition: all 0.3s;
-  cursor: pointer;
+@media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
 }
-button:hover {
-  background-color: $main-green;
-  color: #fff;
-  border: solid 1px $main-green;
+@media screen and (min-width: 992px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 </style>
