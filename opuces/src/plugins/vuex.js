@@ -14,6 +14,8 @@ const store = new Vuex.Store({
     //stockage des données partageable
     state:{ 
         user: null,
+        cart: null,
+        classified: null,
         services:{
             user: userService,
             storage: storage,
@@ -24,8 +26,17 @@ const store = new Vuex.Store({
     mutations: {
         saveUser(state, newUser){
             state.user = newUser;
+        },
+        saveClassified(state, newClassified){
+            state.classified = newClassified;
         }
-    }
+    },
+    getters: {
+        getCart: state => state.cart,
+        getCartLength: (state, getters) => {
+            return getters.getCart.length
+        }
+    },
 });
 
 const userData = storage.get('userData');
@@ -33,4 +44,8 @@ if(userData){
     store.commit('saveUser', userData);
 }
 
+const classifiedData = storage.get('classifiedData');
+if(classifiedData){
+    store.commit('saveClassified', classifiedData);
+}
 export default store;

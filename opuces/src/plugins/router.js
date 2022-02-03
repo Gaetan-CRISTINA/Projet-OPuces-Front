@@ -24,6 +24,7 @@ import DeleteClassified from '../views/DeleteClassified.vue'
 
 import Search from '../views/Search.vue'
 import About from '../views/About.vue'
+import UserCart from '../views/UserCart.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -109,6 +110,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: UserCart
   },
   {
     path: '*',
