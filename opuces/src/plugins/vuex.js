@@ -16,6 +16,7 @@ const store = new Vuex.Store({
         user: null,
         cart: null,
         classified: null,
+        taxoVuexList: [],
         services:{
             user: userService,
             storage: storage,
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
         saveUser(state, newUser){
             state.user = newUser;
         },
+
         saveClassified(state, newClassified){
             state.classified = newClassified;
         }
@@ -39,13 +41,24 @@ const store = new Vuex.Store({
     },
 });
 
+        saveTaxoList(state, newTaxoVuexList) {
+            state.taxoVuexList = newTaxoVuexList;
+          },
+        addTaxoList(state, data){
+            state.taxoVuexList.push(data);
+        },
+    },
+    });
+
 const userData = storage.get('userData');
 if(userData){
     store.commit('saveUser', userData);
 }
 
+
 const classifiedData = storage.get('classifiedData');
 if(classifiedData){
     store.commit('saveClassified', classifiedData);
 }
+
 export default store;
