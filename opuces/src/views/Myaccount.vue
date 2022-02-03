@@ -8,8 +8,8 @@
 
     
     <div class="connexion">
-      <div class="left">
-        <form @submit="handleSubmit">
+      <!-- <div class="left">
+        <form @submit="handleSubmit"> 
           <h6>Nom d'utilisateur</h6>
           <input
             v-model="username"
@@ -63,12 +63,12 @@
           </button>
         </form>
 
-        </div>
+        </div> -->
 
         <div class="right contact">
           <div class="form-contact">
-          <form class="login-form" >
-<!-- @submit="SecondhandleSubmit" -->
+          <form class="login-form" @submit="handleSubmit">
+
             <h6>Code Postal</h6>
             <input 
             v-model="zipcode"
@@ -145,11 +145,13 @@
 
 <script>
 
-import storage from "../plugins/storage";
+// import storage from "../plugins/storage";
 import userService from "../services/userService";
 
 import Header2 from "../components/organisms/Header2.vue"
 import IllusLamp from "../components/atoms/IllusLamp.vue"
+
+import classifiedsService from "..//services/classifiedsService"
 
 export default {
   name: "Myaccount",
@@ -184,62 +186,62 @@ export default {
     };
   },
   methods: {
-    async handleSubmit(event) {
-      event.preventDefault();
-      if (this.username == "") {
-        this.usernameEmpty = true;
-      }
-      if (this.email == "") {
-        this.emailEmpty = true;
-      }
-      if (this.password == "") {
-        this.passwordEmpty = true;
-      }
-      if (this.newPasswordVerify == "") {
-        this.newPasswordVerifyEmpty = true;
-      }
-      if (this.newPassword.length < 8) {
-        this.newPasswordTooShort = true;
-      }
-      if (this.newPassword !== this.newPasswordVerify) {
-        this.passwordConfirm = true;
-      }
+    // async handleSubmit(event) {
+    //   event.preventDefault();
+    //   if (this.username == "") {
+    //     this.usernameEmpty = true;
+    //   }
+    //   if (this.email == "") {
+    //     this.emailEmpty = true;
+    //   }
+    //   if (this.password == "") {
+    //     this.passwordEmpty = true;
+    //   }
+    //   if (this.newPasswordVerify == "") {
+    //     this.newPasswordVerifyEmpty = true;
+    //   }
+    //   if (this.newPassword.length < 8) {
+    //     this.newPasswordTooShort = true;
+    //   }
+    //   if (this.newPassword !== this.newPasswordVerify) {
+    //     this.passwordConfirm = true;
+    //   }
 
-      const userData = storage.get('userData');
-      if (userData != null) {
-        const token = userData.token;
-        if (userService.checkUser(token)) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+    //   const userData = storage.get('userData');
+    //   if (userData != null) {
+    //     const token = userData.token;
+    //     if (userService.checkUser(token)) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }
 
-      if (
-        !this.usernameEmpty &&
-        !this.emailEmpty &&
-        !this.newPasswordEmpty &&
-        !this.newPasswordVerify &&
-        !this.newPasswordTooShort &&
-        !this.newPasswordConfirm &&
-        this.userData == true
-      ) {
-        console.log("Mise à jour du USER");
-        let result = await userService.updateUser(
-          this.newPassword,
-          this.newPasswordVerify,
-          this.username,
-          this.email
-        );
-        console.log(result);
-        if(result) {
-          if(result == true){
-            this.$router.push({ name: "Home" });
-          }
-        }
-      }
-    },
-    async secondHandleSubmit(event){
+    //   if (
+    //     !this.usernameEmpty &&
+    //     !this.emailEmpty &&
+    //     !this.newPasswordEmpty &&
+    //     !this.newPasswordVerify &&
+    //     !this.newPasswordTooShort &&
+    //     !this.newPasswordConfirm &&
+    //     this.userData == true
+    //   ) {
+    //     console.log("Mise à jour du USER");
+    //     let result = await userService.updateUser(
+    //       this.newPassword,
+    //       this.newPasswordVerify,
+    //       this.username,
+    //       this.email
+    //     );
+    //     console.log(result);
+    //     if(result) {
+    //       if(result == true){
+    //         this.$router.push({ name: "Home" });
+    //       }
+    //     }
+    //   }
+    // },
+    async handleSubmit(event){
       event.preventDefault();
       if (this.zipcode == ""){
         this.zipcodeEmpty = true;
@@ -269,9 +271,17 @@ export default {
       )
       {
         console.log('Appel de l\'API pour inscription info USER');
+        const UserId = await classifiedsService.loadAuthor();
+        console.log(UserId);
         let result = await userService.saveUserInformation(
-          //Data à transférer
-
+          
+          this.UserId,
+          this.adress,
+          this.adress2,
+          this.country,
+          this.phoneNumber,
+          this.zipcode,
+          this.city
         );
         console.log(result);
         if(result){
