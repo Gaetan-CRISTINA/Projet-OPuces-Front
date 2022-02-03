@@ -3,12 +3,15 @@
         
         <span class="unitCard" v-for="classified in classifieds"
             :key="classified.id">
-       
-         
+
             <Card 
+            :classifiedProps="classified" 
+            />    
+         
+            <!-- <Card 
             v-on:displayHideCardContent="displayHideCardContent"
             :classifiedProps="classified" 
-            />
+            /> -->
         </span>
 
         
@@ -18,7 +21,6 @@
 <script>
 import Card from "../molecules/Card.vue";
 import classifiedsService from "../../services/classifiedsService";
-
 export default {
   name: 'CardsList',
   components: {
@@ -39,31 +41,33 @@ export default {
 
       // afficher/cacher contenu des cards
 
-      let hideContent = document.querySelectorAll('div.cards-list')[0].children;
-      console.log(hideContent);
+    //   let hideContent = document.querySelectorAll('div.cards-list')[0].children;
+      
 
-    //   let hiddenContentHeight = [];
+    //    Vue.prototype.$hiddenContentHeight = [];
       
 
     //   for (let i = 0; i < hideContent.length; i++) {
-    //     hiddenContentHeight.push(hideContent[i].offsetHeight);
+    //     console.log(hideContent[i]);
+    //     this.$hiddenContentHeight.push(hideContent[i].offsetHeight);
+    //     console.log(hideContent[i]);
     //     hideContent[i].style.height = 0;
     //   }
 
-    //   console.log(hiddenContentHeight);
+      //console.log(this.$hiddenContentHeight);
 
 
 
 
 
   },
-  methods: {
-    displayHideCardContent: function(evt){
-          evt.preventDefault();
-          console.log('poutre');
-      }
+//   methods: {
+//     displayHideCardContent: function(evt){
+//           evt.preventDefault();
+//           console.log('poutre');
+//       }
 
-  },
+//   },
 }
 </script>
 
@@ -80,7 +84,7 @@ export default {
     transition: all .2s ease-in-out
 }
 .unitCard:hover{
-    transform: scale(1.02);
+    // transform: scale(1.02);
 }
 @media screen and (min-width: 576px) {
    

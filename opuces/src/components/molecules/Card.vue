@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 
 // import HeroAnnonce from "../molecules/HeroAnnonce.vue";
 // import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
@@ -110,6 +111,17 @@ async created(){
   typeCusto = "productstate";
   this.productState = await classifiedsService.loadOneCustonomy(typeCusto, this.classifiedProps.ProductState);
   
+  //AFFICHER CACHER CONTENU SUPPLEMENTAIRE CARDS
+  Vue.prototype.$hiddenContentHeight = [];
+  Vue.prototype.$hideContent = document.querySelectorAll('.hide-content'); 
+
+  for (let i = 0; i < this.$hideContent.length; i++) {
+      this.$hiddenContentHeight.push(this.$hideContent[i].offsetHeight);
+    }
+  for (let i = 0; i < this.$hideContent.length; i++) {
+      this.$hideContent[i].style.height = 0;      
+    }  
+  
 },
 
 data() {
@@ -138,6 +150,26 @@ data() {
       // }
     },
   
+  },
+  
+ 
+
+  methods: {
+      displayHideCardContent: function(evt) {
+        evt.preventDefault;
+
+        
+        // console.log(this.$hiddenContentHeight);
+
+        // let hideContent = document.querySelectorAll('.hide-content');
+        // console.log(hideContent.length);
+
+
+      console.log(this.$hiddenContentHeight);
+
+        
+
+      }
   },
   // created(){
   //     let hideContent = document.querySelectorAll('.hide-content');
