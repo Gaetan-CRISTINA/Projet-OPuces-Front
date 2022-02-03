@@ -139,13 +139,15 @@
         <div id="center-header-desktop">
           <SearchBar />
           <router-link
-          v-if="user"
+          
+          v-if="!cart"
           :to="{
             name:'Cart'}">
           <PictoEmptyCart />
           </router-link>
+          
           <router-link
-          v-if="user"
+          v-if="cart"
           :to="{
             name:'Cart'}">
           <PictoFullCart />
@@ -293,6 +295,7 @@ import PictoEmptyCart from "../atoms/PictoEmptyCart.vue";
 import PictoFullCart from "../atoms/PictoFullCart.vue";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
+import storage from "../../plugins/storage";
 
 export default {
   name: "Header",
@@ -318,6 +321,14 @@ export default {
         return false;
       }
     },
+    cart(){
+      const cartFull = storage.get('ClassifiedIdCart');
+      if (cartFull){
+        return true;
+      }else{
+        return false;
+      }
+    }
   },
 };
 </script>
