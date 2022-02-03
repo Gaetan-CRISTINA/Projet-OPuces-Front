@@ -23,6 +23,7 @@ import Myaccount from '../views/Myaccount.vue'
 import DeleteClassified from '../views/DeleteClassified.vue'
 
 import Search from '../views/Search.vue'
+import About from '../views/About.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -103,6 +104,11 @@ const routes = [
     path: '/search',
     name: 'searchMobile',
     component: Search
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   },
   {
     path: '*',
