@@ -1,23 +1,15 @@
 <template>
-
   <div>
     <Header />
     <div class="illusLamp">
-    <IllusLamp />
+      <IllusLamp />
     </div>
-    
+
     <div class="main-container">
-      
       <div id="display-annonces">
-
         <h2>Les Dernières Annonces</h2>
-        <PictoDisplay1 
-          v-on:displayRowHome="displayRowHome"
-        />
-        <PictoDisplay2
-          v-on:displayColumnHome="displayColumnHome"
-        />
-
+        <PictoDisplay1 v-on:displayRowHome="displayRowHome" />
+        <PictoDisplay2 v-on:displayColumnHome="displayColumnHome" />
       </div>
       <div class="flex">
         <div class="site-content">
@@ -25,14 +17,12 @@
         </div>
         <div class="fixe-right">
           <FiltersDesktop />
-          
         </div>
-        
       </div>
-      
     </div>
+
+    <TabBar />
     
-    <TabBar/>
   </div>
 </template>
 
@@ -46,7 +36,6 @@ import TabBar from "../components/molecules/TabBar.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 
 
-
 export default {
   name: "Home",
   components: {
@@ -56,40 +45,45 @@ export default {
     PictoDisplay1,
     PictoDisplay2,
     TabBar,
-    IllusLamp
+    IllusLamp,
   },
   methods: {
-    displayColumnHome: function(evt){
-          evt.preventDefault();
-          let buttonDisplay2 = evt.currentTarget;
-          let buttonDisplay1 = buttonDisplay2.closest('.main-container').querySelector('#display-annonces #picto-display1');
-          let cards = buttonDisplay2.closest('.main-container').querySelectorAll('.flex .site-content .cards-list>span');
-          for (let i = 0; i < cards.length; i++){
-            if(cards[i].querySelector('.card').classList.contains('display2')) {
-              cards[i].querySelector('.card').classList.remove('display2')
-              cards[i].querySelector('.card').classList.add('display1')
-              buttonDisplay2.style.display = 'none';
-              buttonDisplay1.style.display = 'block';  
-            }
-
-          }
-      },
-    displayRowHome: function(evt){
-          evt.preventDefault();
-          let buttonDisplay1 = evt.currentTarget;
-          let buttonDisplay2 = buttonDisplay1.closest('.main-container').querySelector('#display-annonces #picto-display2');
-          let cards = buttonDisplay1.closest('.main-container').querySelectorAll('.flex .site-content .cards-list>span');
-          for (let i = 0; i < cards.length; i++){
-            if(cards[i].querySelector('.card').classList.contains('display1')) {
-              cards[i].querySelector('.card').classList.remove('display1')
-              cards[i].querySelector('.card').classList.add('display2')
-              buttonDisplay1.style.display = 'none';  
-              buttonDisplay2.style.display = 'block';
-            }
-
-          }
-
-      }  
+    displayColumnHome: function (evt) {
+      evt.preventDefault();
+      let buttonDisplay2 = evt.currentTarget;
+      let buttonDisplay1 = buttonDisplay2
+        .closest(".main-container")
+        .querySelector("#display-annonces #picto-display1");
+      let cards = buttonDisplay2
+        .closest(".main-container")
+        .querySelectorAll(".flex .site-content .cards-list>span");
+      for (let i = 0; i < cards.length; i++) {
+        if (cards[i].querySelector(".card").classList.contains("display2")) {
+          cards[i].querySelector(".card").classList.remove("display2");
+          cards[i].querySelector(".card").classList.add("display1");
+          buttonDisplay2.style.display = "none";
+          buttonDisplay1.style.display = "block";
+        }
+      }
+    },
+    displayRowHome: function (evt) {
+      evt.preventDefault();
+      let buttonDisplay1 = evt.currentTarget;
+      let buttonDisplay2 = buttonDisplay1
+        .closest(".main-container")
+        .querySelector("#display-annonces #picto-display2");
+      let cards = buttonDisplay1
+        .closest(".main-container")
+        .querySelectorAll(".flex .site-content .cards-list>span");
+      for (let i = 0; i < cards.length; i++) {
+        if (cards[i].querySelector(".card").classList.contains("display1")) {
+          cards[i].querySelector(".card").classList.remove("display1");
+          cards[i].querySelector(".card").classList.add("display2");
+          buttonDisplay1.style.display = "none";
+          buttonDisplay2.style.display = "block";
+        }
+      }
+    },
   },
 };
 </script>
@@ -102,27 +96,24 @@ export default {
   top: 70px;
 }
 #display-annonces {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 1em;
-  }
-.illusLamp{
-      display: none;
-    }
-   
-  
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1em;
+}
+.illusLamp {
+  display: none;
+}
+
 @media screen and (min-width: 576px) {
-    .illusLamp{
-      display: none;
-    }
-    
+  .illusLamp {
+    display: none;
   }
+}
 @media screen and (min-width: 768px) {
-    .illusLamp{
-      display: none;
-    }
-  
-} 
+  .illusLamp {
+    display: none;
+  }
+}
 @media screen and (min-width: 992px) {
   .main-container {
     top: 100px;
@@ -132,32 +123,27 @@ export default {
   }
   #display-annonces {
     width: 520px;
-
   }
-    .illusLamp{
-    display: none;    
+  .illusLamp {
+    display: none;
   }
-  
 }
 @media screen and (min-width: 1200px) {
-    #display-annonces {
+  #display-annonces {
     width: 700px;
   }
-    .illusLamp{
-      display: none;
-       
+  .illusLamp {
+    display: none;
   }
- 
 }
 @media screen and (min-width: 1400px) {
-    #display-annonces {
+  #display-annonces {
     width: 880px;
   }
-    .illusLamp{
+  .illusLamp {
     display: inline-block;
     position: fixed;
-    margin-left: 6%;    
+    margin-left: 6%;
   }
-  
 }
 </style>
