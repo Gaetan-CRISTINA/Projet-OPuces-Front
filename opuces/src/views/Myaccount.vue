@@ -1,17 +1,10 @@
 <template>
- <div class="main-container">
-    <div class="headerLink">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <div id="left-header-mobile">
-          <span><Logo /></span>
-          <h2>O'Puces</h2>
-        </div>
-      </router-link>
+<div><Header2 />
+<div class="illusLamp">
+    <IllusLamp />
     </div>
+ <div class="main-container">
+    
     <div class="connexion">
       <div class="left">
         <form @submit="handleSubmit">
@@ -70,19 +63,21 @@
         </form>
       </div>
     </div>
-
+</div>
  </div>
 </template>
 
 <script>
-import Logo from "../components/atoms/Logo.vue";
+
 import storage from "../plugins/storage";
 import userService from "../services/userService";
-
+import Header2 from "../components/organisms/Header2.vue"
+import IllusLamp from "../components/atoms/IllusLamp.vue"
 export default {
   name: 'Myaccount',
   components: {
-      Logo,
+      Header2,
+      IllusLamp
 
   },
   data(){
@@ -181,13 +176,43 @@ methods: {
   padding-left: 15px;
   margin: auto;
   border: 15px;
-  //   border: 2px solid yellow;
 }
 .main-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  //   border: 2px solid red;
   position: absolute;
+  margin-top: 7rem;
+}
+.illusLamp {
+  display: none;
+}
+
+@media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 </style>
