@@ -1,5 +1,8 @@
 <template>
 <div><Header2 />
+<div class="illusLamp">
+    <IllusLamp />
+    </div>
  <div class="main-container">
     
     <div class="connexion">
@@ -69,10 +72,12 @@
 import storage from "../plugins/storage";
 import userService from "../services/userService";
 import Header2 from "../components/organisms/Header2.vue"
+import IllusLamp from "../components/atoms/IllusLamp.vue"
 export default {
   name: 'Myaccount',
   components: {
-      Header2
+      Header2,
+      IllusLamp
 
   },
   data(){
@@ -178,5 +183,36 @@ methods: {
   flex-direction: column;
   position: absolute;
   margin-top: 7rem;
+}
+.illusLamp {
+  display: none;
+}
+
+@media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 </style>

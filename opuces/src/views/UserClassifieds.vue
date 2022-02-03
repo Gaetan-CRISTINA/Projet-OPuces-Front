@@ -2,17 +2,17 @@
   <div>
     <Header2 />
     <div class="illusLamp">
-    <IllusLamp />
+      <IllusLamp />
     </div>
     <div class="main-container">
       <div id="display-annonces">
         <h2>Mes Annonces</h2>
       </div>
       <div>
-          <UserCardsList />
+        <UserCardsList />
       </div>
     </div>
-    <TabBar/>  
+    <TabBar />
   </div>
 </template>
 
@@ -28,12 +28,9 @@ export default {
     Header2,
     UserCardsList,
     TabBar,
-    IllusLamp
+    IllusLamp,
   },
-   
 };
-
-
 </script>
 <style scoped lang="scss">
 @import "../assets/scss/main";
@@ -43,46 +40,42 @@ export default {
   top: 70px;
 }
 #display-annonces {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 1em;
-  }
-  h2{
-    margin-top: 3rem;
-  }
-  .illusLamp{
-      display: none;
-    }
-   
-  
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1em;
+}
+h2 {
+  margin-top: 3rem;
+}
+.illusLamp {
+  display: none;
+}
+
 @media screen and (min-width: 576px) {
-    .illusLamp{
-      display: none;
-    }
-    
+  .illusLamp {
+    display: none;
   }
+}
 @media screen and (min-width: 768px) {
-    .illusLamp{
-      display: none;
-    }
-  
-} 
-@media screen and (min-width: 992px) {  
-  .illusLamp{
-    display: none;    
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) {
+  .illusLamp {
+    display: none;
   }
 }
 @media screen and (min-width: 1200px) {
-  .illusLamp{
-      display: none;
-       
+  .illusLamp {
+    display: none;
   }
 }
 @media screen and (min-width: 1400px) {
-  .illusLamp{
+  .illusLamp {
     display: inline-block;
     position: fixed;
-    margin-left: 6%;    
+    margin-left: 6%;
   }
 }
 </style>
