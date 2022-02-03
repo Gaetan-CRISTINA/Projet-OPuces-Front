@@ -7,11 +7,6 @@
             <Card 
             :classifiedProps="classified" 
             />    
-         
-            <!-- <Card 
-            v-on:displayHideCardContent="displayHideCardContent"
-            :classifiedProps="classified" 
-            /> -->
         </span>
 
         
@@ -33,41 +28,7 @@ export default {
   },
   async created(){
       this.classifieds = await classifiedsService.loadClassified();
-
-
-
-
-
-
-      // afficher/cacher contenu des cards
-
-    //   let hideContent = document.querySelectorAll('div.cards-list')[0].children;
-      
-
-    //    Vue.prototype.$hiddenContentHeight = [];
-      
-
-    //   for (let i = 0; i < hideContent.length; i++) {
-    //     console.log(hideContent[i]);
-    //     this.$hiddenContentHeight.push(hideContent[i].offsetHeight);
-    //     console.log(hideContent[i]);
-    //     hideContent[i].style.height = 0;
-    //   }
-
-      //console.log(this.$hiddenContentHeight);
-
-
-
-
-
   },
-//   methods: {
-//     displayHideCardContent: function(evt){
-//           evt.preventDefault();
-//           console.log('poutre');
-//       }
-
-//   },
 }
 </script>
 
