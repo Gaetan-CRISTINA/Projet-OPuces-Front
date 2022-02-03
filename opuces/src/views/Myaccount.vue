@@ -67,8 +67,8 @@
 
         <div class="right contact">
           <div class="form-contact">
-          <form class="login-form" @submit="SecondhandleSubmit">
-
+          <form class="login-form" >
+<!-- @submit="SecondhandleSubmit" -->
             <h6>Code Postal</h6>
             <input 
             v-model="zipcode"
