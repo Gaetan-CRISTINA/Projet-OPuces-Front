@@ -55,7 +55,7 @@
           </select>
         </label>
 
-        <h6>Mode de livraions</h6>
+        <h6>Mode de livraison</h6>
         <label>
           <select name="selectUnderCategory" v-model="selectedDeliveryMethod">
             <option value="">Mode de livraison</option>
