@@ -1,6 +1,9 @@
 <template>
   <div>
     <Header2 />
+    <div class="illusLamp">
+      <IllusLamp />
+    </div>
     <div class="main-container">
       <div class="left">
         <form @submit="handleSubmit">
@@ -71,10 +74,12 @@
 import Header2 from "../components/organisms/Header2.vue";
 import storage from "../plugins/storage";
 import userService from "../services/userService";
+import IllusLamp from "../components/atoms/IllusLamp.vue";
 export default {
   name: "UpdatePassword",
   components: {
     Header2,
+    IllusLamp
   },
   data() {
     return {
@@ -193,14 +198,52 @@ input {
   padding-left: 1em;
   width: 100%;
 }
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+.illusLamp {
+  display: none;
+}
+
 @media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
+  .main-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
 }
 @media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
+  .main-container{
+    flex-direction: column;
+  }
 }
 @media screen and (min-width: 992px) {
+  .illusLamp {
+    display: none;
+  }
+  .main-container{
+    flex-direction: row;
+  }
+  
 }
 @media screen and (min-width: 1200px) {
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 1400px) {
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 </style>

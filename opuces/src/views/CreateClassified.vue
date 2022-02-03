@@ -1,7 +1,9 @@
 <template>
 <div>
 <Header2 />
-
+<div class="illusLamp">
+      <IllusLamp />
+    </div>
   <div class="main-container">
     
     <div class="displayForm">
@@ -104,11 +106,12 @@
 <script>
 import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
-
+import IllusLamp from "../components/atoms/IllusLamp.vue";
 export default {
   name: "CreateClassified",
   components: {
    Header2,
+   IllusLamp
   },
   data() {
     return {
@@ -278,14 +281,35 @@ input:focus {
   margin-top: 3rem;
   align-self: flex-start;
 }
+.illusLamp {
+  display: none;
+}
+
 @media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 992px) {
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 1200px) {
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 1400px) {
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 </style>
