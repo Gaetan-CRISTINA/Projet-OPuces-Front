@@ -25,7 +25,7 @@
       <TabBar />
     </div>
 
-    <Konami/>
+    <Konami style="display: none;"/>
   </div>
 </template>
 
@@ -50,6 +50,10 @@ export default {
     TabBar,
     IllusLamp,
     Konami,
+  },
+  created() {
+    document.querySelector('.home-page').style.display = 'block';
+    document.querySelector('.konami-container').style.display = 'none';
   },
   methods: {
     displayColumnHome: function (evt) {
