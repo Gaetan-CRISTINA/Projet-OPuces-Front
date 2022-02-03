@@ -14,6 +14,7 @@ const store = new Vuex.Store({
     //stockage des données partageable
     state:{ 
         user: null,
+        taxoVuexList: [],
         services:{
             user: userService,
             storage: storage,
@@ -24,13 +25,18 @@ const store = new Vuex.Store({
     mutations: {
         saveUser(state, newUser){
             state.user = newUser;
-        }
-    }
-});
+        },
+        saveTaxoList(state, newTaxoVuexList) {
+            state.taxoVuexList = newTaxoVuexList;
+          },
+        addTaxoList(state, data){
+            state.taxoVuexList.push(data);
+        },
+    },
+    });
 
 const userData = storage.get('userData');
 if(userData){
     store.commit('saveUser', userData);
 }
-
 export default store;
