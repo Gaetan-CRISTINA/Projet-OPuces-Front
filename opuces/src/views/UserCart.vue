@@ -9,11 +9,11 @@
         <h1>Récapitulatif de votre commande</h1>
       </div>
       <h1>Titre de l'annonce</h1>
-      <h2>{{classified.title.rendered}}</h2> 
+      <!-- <h2>{{classified.title.rendered}}</h2>  -->
       <h1>Description</h1>
-      <p v-html="classified.content.rendered"></p>
+      <!-- <p v-html="classified.content.rendered"></p> -->
       <h1>Prix</h1>
-      <h2>{{classified.classifiedPrice}}€</h2>
+      <!-- <h2>{{classified.classifiedPrice}}€</h2> -->
 
       <div>
       
