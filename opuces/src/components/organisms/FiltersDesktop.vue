@@ -4,7 +4,8 @@
       <div class="input-filters">
 
         
-        <select name="selectCategory" v-model="selectedCategory"
+        <select name="selectCategory"
+        v-model="selectedCategory"
         @change="SelectCategory">
           <option value="">Ajouter une catégorie</option>
           <option v-for="category in categories"
@@ -15,12 +16,9 @@
 
 
         <!-- Je boucle sur les categories selectionnées dans selectedCategory -->
-        <div class="container-category"
-        v-for="unitCategory in selectedCategory"
-        :key="unitCategory.id"
-        value="unitCategory.id">
+        <div class="container-category">
           <div class="category-tag">
-            <p>{{unitCategory.name}}</p>
+            <p>{{ libelle }}</p>
               <PictoRemove />
           </div>
        </div>
@@ -58,63 +56,68 @@
 
 <script>
 
-
-import classifiedsService from "../../services/classifiedsService";
 import PictoRemove from "../atoms/PictoRemove.vue";
 
 export default {
+ async created(){
+    // this.categories = await classifiedsService.loadClassifiedProductCategory();
+        // si pas de data dans le store appel à l'api
+            this.categories = await this.$store.state.services.classified.loadClassifiedProductCategory();
+        
+  },
   name: "FiltersDesktop",
   components: {
    PictoRemove,
-   
+      
   },
   data(){
     return{
       categories: [],
-      selectedCategory: '',
+      selectedCategory: 0,
       userCity: '',
+      filtersDesktop: [],
       minimumPrice: '',
       maximumPrice: ''
     };
   },
-  async created(){
-    this.categories = await classifiedsService.loadClassifiedProductCategory();
-  },
   methods:{
-  async created(){
-    if(this.$store.state.categoriesList[this.category]){
-      this.categories = this.$store.categoriesList[this.category];
-    } else {
-      this.categories = await this.$store.state.categories.classified.loadClassifiedProductCategory(this.category);
-      this.$store.commit(
-        'saveCategoriesList',
-        {
-          category: this.category,
-          categories: this.categories
-        }
-      );
-    }
-  },
+  
+    async SelectCategory(event){
+    event.preventDefault();
+    console.log(this.category, this.selectedCategory);
 
+    this.typeCusto = "ProductCategory";
+    this.oneTaxo = await this.$store.state.services.classified.loadOneCustonomy(this.typeCusto, this.selectedCategory);
+
+    this.arrayTaxoSelected = [this.selectedCategory,this.oneTaxo.name]
+
+          this.$store.commit(
+                
+                'saveTaxoList',
+                {
+                    categoryFilter: this.selectedCategory,
+                    libelleFilter: this.oneTaxo.name
+                }
+            );
+    // this.filtersDesktop.push(
+    //   {
+    // id: this.selectedCategory,
+    // name: this.$store.state.taxoVuexList.ProductCategory[0].name, 
+    //   }
+    // );
+    // console.log(this.filtersDesktop);
+   },
+  },
   props: {
-    selectedCategory: Object,
     category: String,
     label: String,
-    userCity: String
-    
   },
-  SelectCategory(event){
-    event.preventDefault();
-    this.$emit(
-      'classified-category-selected',
-      {
-        categoryId: this.selectedOption,
-        category: this.category
-      }
-    )
+  computed: {
+    libelle () {
+      return this.$store.state.taxoVuexList.libelleFilter
+    }
   }
 }
-};
 </script>
 
 <style scoped lang="scss">
