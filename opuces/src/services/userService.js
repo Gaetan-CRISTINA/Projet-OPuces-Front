@@ -90,7 +90,15 @@ const userService = {
 
     updateUser: async function()
     {
-        
-    }
+        const response = await axios.patch(userService.baseURI + '/' );
+        return response.data;
+    },
+
+    saveUserInformation: async function ()
+    {
+        const response = await axios.post(userService.opucesBaseURI + '/user-table');
+        return response.data;
+    },
+
 };
 export default userService;

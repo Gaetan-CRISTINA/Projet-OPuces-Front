@@ -187,9 +187,8 @@ export default {
               console.log(result);
               if(result){
                   if(result.success == true){   
-                let userAutoLog = await userService.login(this.username, this.password);
-                console.log(userAutoLog);
-                this.$router.push({name:'Home'});
+                
+                this.$router.push({name:'Login'});
                       // renvoyer vers la home avec token 
                   }
               }

@@ -205,7 +205,7 @@ export default {
         this.passwordConfirm = true;
       }
 
-      const userData = storage.get("userData");
+      const userData = storage.get('userData');
       if (userData != null) {
         const token = userData.token;
         if (userService.checkUser(token)) {
@@ -232,15 +232,15 @@ export default {
           this.email
         );
         console.log(result);
-        if (result) {
-          if (result.success == true) {
+        if(result) {
+          if(result == true){
             this.$router.push({ name: "Home" });
           }
         }
       }
     },
-    async secondHandleSubmit(evt){
-      evt.preventDefault();
+    async secondHandleSubmit(event){
+      event.preventDefault();
       if (this.zipcode == ""){
         this.zipcodeEmpty = true;
       }
@@ -258,6 +258,25 @@ export default {
       }
       if (this.phoneNumber == ""){
         this.phoneNumberEmpty = true;
+      }
+
+      if(
+        !this.zipcodeEmpty &&
+        !this.cityEmpty &&
+        !this.adressEmpty &&
+        !this.countryEmpty &&
+        !this.phoneNumberEmpty
+      )
+      {
+        console.log('Appel de l\'API pour inscription info USER');
+        let result = await userService.saveUserInformation(
+          //Data à transférer
+
+        );
+        console.log(result);
+        if(result){
+          this.$router.push({name:'Home'});
+        }
       }
 
 

@@ -38,6 +38,7 @@ export default {
       const ClassifiedId =  storage.get('ClassifiedIdCart')
       console.log(ClassifiedId);
       this.classified = await classifiedsService.loadClassifiedsById(ClassifiedId);
+      
   }
   
 };
