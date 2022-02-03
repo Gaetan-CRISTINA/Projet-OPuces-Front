@@ -13,6 +13,7 @@ export default {
   },
   created(){
       storage.unset('userData');
+      storage.unset('ClassifiedIdCart')
       this.$router.push({name:"Home"})  
   }
 }

@@ -187,7 +187,6 @@ export default {
               console.log(result);
               if(result){
                   if(result.success == true){   
-                
                 this.$router.push({name:'Login'});
                       // renvoyer vers la home avec token 
                   }

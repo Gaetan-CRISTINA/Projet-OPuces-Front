@@ -146,7 +146,6 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 10em auto;
 }
 .main-container h6 {
   align-self: flex-start;
