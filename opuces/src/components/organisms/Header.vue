@@ -225,6 +225,14 @@
             
           <li>Contact</li>
           </router-link>
+          <router-link
+            :to="{
+              name: 'About',
+            }"
+          >
+            
+          <li>A propos de nous</li>
+          </router-link>
 
           <router-link
           v-if="user"
