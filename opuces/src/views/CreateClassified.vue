@@ -1,16 +1,11 @@
 <template>
 <div>
-<div class="logoOpuces">
-      <router-link :to="{ name: 'Home' }">
-        <span id="logo-link"><Logo /></span>
-        <h1>O'puces</h1>
-      </router-link>
-    </div>
+<Header2 />
 
   <div class="main-container">
     
     <div class="displayForm">
-      <h1 class="CreateClassifiedFormTitle">CreateClassified Form</h1>
+      <h2 class="CreateClassifiedFormTitle">Créer votre annonce</h2>
       <form @submit="handleSubmit">
         <h6>Titre de votre annonce</h6>
         <label>
@@ -60,7 +55,7 @@
           </select>
         </label>
 
-        <h6>Mode de livraions</h6>
+        <h6>Mode de livraison</h6>
         <label>
           <select name="selectUnderCategory" v-model="selectedDeliveryMethod">
             <option value="">Mode de livraison</option>
@@ -107,13 +102,13 @@
   </div>
 </template>
 <script>
-import Logo from "../components/atoms/Logo.vue";
+import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
 
 export default {
   name: "CreateClassified",
   components: {
-    Logo,
+   Header2,
   },
   data() {
     return {
@@ -280,6 +275,8 @@ input:focus {
 }
 .CreateClassifiedFormTitle {
   margin-bottom: 15px;
+  margin-top: 3rem;
+  align-self: flex-start;
 }
 @media screen and (min-width: 576px) {
 }

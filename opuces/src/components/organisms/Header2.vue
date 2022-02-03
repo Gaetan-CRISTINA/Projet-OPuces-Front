@@ -132,14 +132,6 @@
           </router-link>
           <!-- FIN-->
         </div>
-
-        <!--
-        CENTER HEADER
-        -->
-        <div id="center-header-desktop">
-          <SearchBar />
-        </div>
-
         <!--
         RIGHT HEADER
         -->
@@ -280,14 +272,13 @@ import PictoAdd2 from "../atoms/PictoAdd2.vue";
 
 
 import Logo from "../atoms/Logo";
-import SearchBar from "../molecules/SearchBar";
+
 
 export default {
-  name: "Header",
+  name: "Header2",
   components: {
     PictoUser,
     Logo,
-    SearchBar,
     PictoAnnonces,
     PictoCompte,
     PictoInfo,

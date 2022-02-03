@@ -1,8 +1,13 @@
 <template>
   <div>
     <div class="error-header">
+      <router-link
+      :to="{
+        name: 'Home'
+        }">
       <span><Logo /></span>
       <h2>O'Puces</h2>
+      </router-link>
     </div>
     <div class="error-text">
       <span>OUPS !</span>

@@ -1,18 +1,20 @@
 <template>
   <div>
-      <!-- <Header/> -->
+    <div>
+      <Header2 />
+    </div>
       <ContactUserOffline/> 
   </div>
 </template>
 
 <script>
 import ContactUserOffline from "../components/organisms/ContactUserOffline.vue"
-// import Header from "../components/organisms/Header.vue"
+import Header2 from "../components/organisms/Header2.vue"
 export default {
   name: "ContactPage",
   components: {
    ContactUserOffline,
-   //Header,
+   Header2,
   },
 };
 </script>
