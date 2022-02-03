@@ -1,7 +1,14 @@
 <template>
     <div class="CTA-annonces content-annonce">
         <button id="acheter">ACHETER</button>
-        <button id="contacter">CONTACTER</button>
+        
+        
+        <button id="contacter"><router-link
+        
+        :to="{
+            name: 'ContactPage'
+            }">CONTACTER</router-link></button>
+        
     </div>
 </template>
 
