@@ -4,7 +4,8 @@
       <div class="input-filters">
 
         
-        <select name="selectCategory" v-model="selectedCategory"
+        <select name="selectCategory"
+        v-model="selectedCategory"
         @change="SelectCategory">
           <option value="">Ajouter une catégorie</option>
           <option v-for="category in categories"
@@ -15,13 +16,12 @@
 
 
         <!-- Je boucle sur les categories selectionnées dans selectedCategory -->
-        <div class="container-category"
-        v-for="unitCategory in selectedCategory"
-        :key="unitCategory.id"
-        value="unitCategory.id">
+        <div class="container-category">
           <div class="category-tag">
-            <p>{{unitCategory.name}}</p>
-              <PictoRemove />
+            <p v-for="taxoSelected in taxosSelected"
+          :key="taxoSelected.categoryFilter">
+           {{ taxoSelected.libelleFilter  }}
+              <PictoRemove /></p>
           </div>
        </div>
         
@@ -30,12 +30,10 @@
         <label for="ville">Ajouter une ville</label>
         <input type="text" id="ville" name="ville" v-model="userCity" />
         
-        <div class="container-category"
-        v-for="city in userCity"
-        :key="city.name"
-        :value="city.id">
+        <div class="container-category">
+
           <div class="category-tag">
-            <p>{{city.name}}</p>
+            <p>{{cityname}}</p>
             <PictoRemove />
           </div>
         </div>
@@ -58,63 +56,60 @@
 
 <script>
 
-
-import classifiedsService from "../../services/classifiedsService";
 import PictoRemove from "../atoms/PictoRemove.vue";
 
 export default {
+ async created(){
+    // this.categories = await classifiedsService.loadClassifiedProductCategory();
+        // si pas de data dans le store appel à l'api
+            this.categories = await this.$store.state.services.classified.loadClassifiedProductCategory();
+        
+  },
   name: "FiltersDesktop",
   components: {
    PictoRemove,
-   
+      
   },
   data(){
     return{
       categories: [],
-      selectedCategory: '',
+      selectedCategory: 0,
       userCity: '',
+      filtersDesktop: [],
+      taxosSelected: [],
       minimumPrice: '',
       maximumPrice: ''
     };
   },
-  async created(){
-    this.categories = await classifiedsService.loadClassifiedProductCategory();
-  },
   methods:{
-  async created(){
-    if(this.$store.state.categoriesList[this.category]){
-      this.categories = this.$store.categoriesList[this.category];
-    } else {
-      this.categories = await this.$store.state.categories.classified.loadClassifiedProductCategory(this.category);
-      this.$store.commit(
-        'saveCategoriesList',
-        {
-          category: this.category,
-          categories: this.categories
-        }
-      );
-    }
-  },
+  
+    async SelectCategory(event){
+    event.preventDefault();
 
+    this.typeCusto = "ProductCategory";
+    this.oneTaxo = await this.$store.state.services.classified.loadOneCustonomy(this.typeCusto, this.selectedCategory);
+
+            this.$store.commit(
+                
+                'addTaxoList',
+                {
+                    categoryFilter: this.selectedCategory,
+                    libelleFilter: this.oneTaxo.name
+                }
+            );
+    this.taxosSelected = this.$store.state.taxoVuexList;
+    },
+  },
   props: {
-    selectedCategory: Object,
     category: String,
     label: String,
-    userCity: String
-    
   },
-  SelectCategory(event){
-    event.preventDefault();
-    this.$emit(
-      'classified-category-selected',
-      {
-        categoryId: this.selectedOption,
-        category: this.category
-      }
-    )
+  computed: {
+    libelle () {
+      return this.$store.state.taxoVuexList.libelleFilter
+    },
   }
 }
-};
 </script>
 
 <style scoped lang="scss">

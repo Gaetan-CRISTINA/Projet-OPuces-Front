@@ -138,6 +138,18 @@
         -->
         <div id="center-header-desktop">
           <SearchBar />
+          <router-link
+          v-if="user"
+          :to="{
+            name:'Cart'}">
+          <PictoEmptyCart />
+          </router-link>
+          <router-link
+          v-if="user"
+          :to="{
+            name:'Cart'}">
+          <PictoFullCart />
+          </router-link>
         </div>
 
         <!--
@@ -277,8 +289,8 @@ import PictoText from "../atoms/PictoText";
 import PictoMail from "../atoms/PictoMail";
 import PictoClose from "../atoms/PictoClose.vue";
 import PictoAdd2 from "../atoms/PictoAdd2.vue";
-
-
+import PictoEmptyCart from "../atoms/PictoEmptyCart.vue";
+import PictoFullCart from "../atoms/PictoFullCart.vue";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
 
@@ -294,7 +306,9 @@ export default {
     PictoText,
     PictoMail,
     PictoClose,
-    PictoAdd2
+    PictoAdd2,
+    PictoEmptyCart,
+    PictoFullCart
   },
   computed: {
     user() {

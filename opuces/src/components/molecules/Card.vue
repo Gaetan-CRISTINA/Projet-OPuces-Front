@@ -55,7 +55,26 @@
       <MapWrapper/>
       <AnnonceAuteur/> 
       <VoirMoins/>
-      <CtaAnnonce/>
+      <!-- <CtaAnnonce/> -->
+      <div class="CTA-annonces content-annonce">
+        
+        <button id="acheter" @click="StoreClassified"> 
+          <router-link
+          :to="{
+            name: 'Cart'
+            }">
+            Acheter
+            </router-link>
+        </button>
+        
+        
+        <button id="contacter"><router-link
+        
+        :to="{
+            name: 'ContactPage'
+            }">CONTACTER</router-link></button>
+        
+    </div>
     </div>
 
     <VoirPlus
@@ -81,10 +100,10 @@ import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
 import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
 import VoirMoins from "../molecules/VoirMoins.vue";
-import CtaAnnonce from "../molecules/CtaAnnonce.vue";
+// import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
-
+import storage from "../../plugins/storage";
 export default {
   name: "Card",
   components: {
@@ -92,7 +111,7 @@ export default {
     MapWrapper,
     AnnonceAuteur,
     VoirMoins,
-    CtaAnnonce,
+    // CtaAnnonce,
     PictoEtat1,
     VoirPlus,
      
@@ -149,11 +168,17 @@ data() {
     },
   
   },
-  
- 
 
-  methods: {
-      displayHideCardContent: function(evt) {
+  methods:{
+     async StoreClassified(event){
+       event.preventDefault();
+      storage.set("ClassifiedIdCart", this.classifiedProps.id);
+
+     }
+     
+
+  },
+  displayHideCardContent: function(evt) {
         evt.preventDefault;
         //console.log(evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content'));
         let currentHideContent = evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content');
@@ -176,7 +201,8 @@ data() {
         
 
       }
-  },
+
+
   // created(){
   //     let hideContent = document.querySelectorAll('.hide-content');
   //     let hiddenContentHeight = [];
@@ -196,6 +222,36 @@ data() {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+.CTA-annonces {
+    padding-top: .5em;
+    display: flex;
+    justify-content: space-between;
+}
+button {
+    width: 48%;
+    height: 38px;
+    border-radius: 22px;
+    border: none;
+    font-weight: 600;
+    transition: all .3s;
+    cursor: pointer;
+}
+#acheter {
+    color: #fff;
+    background-color: $main-green;
+}
+#acheter:hover {
+    background-color: $secondary-green;
+}
+#contacter {
+    color: $main-green;
+    background-color: #fff;
+    border: solid 1px $main-green;
+}
+#contacter:hover {
+    color: $secondary-green;
+    border: solid 1px $secondary-green;
+}
 .etat {
   display: flex;
   align-items: center;
