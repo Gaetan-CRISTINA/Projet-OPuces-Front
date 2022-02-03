@@ -20,8 +20,8 @@ export default {
     top: 0;
     z-index: 99999;
     background-color: #fff;
-    width: 100vh;
-    height: 100vh;
+    width: 100%;
+    height: 1000%;
     display: flex;
     justify-content: center;
     align-items: center;
