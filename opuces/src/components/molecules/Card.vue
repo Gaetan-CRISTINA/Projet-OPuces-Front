@@ -117,10 +117,8 @@ async created(){
 
   for (let i = 0; i < this.$hideContent.length; i++) {
       this.$hiddenContentHeight.push(this.$hideContent[i].offsetHeight);
+      this.$hideContent[i].style.height = 0;  
     }
-  for (let i = 0; i < this.$hideContent.length; i++) {
-      this.$hideContent[i].style.height = 0;      
-    }  
   
 },
 
@@ -157,16 +155,24 @@ data() {
   methods: {
       displayHideCardContent: function(evt) {
         evt.preventDefault;
-
+        //console.log(evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content'));
+        let currentHideContent = evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content');
         
-        // console.log(this.$hiddenContentHeight);
-
-        // let hideContent = document.querySelectorAll('.hide-content');
-        // console.log(hideContent.length);
-
-
-      console.log(this.$hiddenContentHeight);
-
+        if(currentHideContent.hasAttribute('style')){
+          currentHideContent.removeAttribute('style');
+          evt.currentTarget.querySelector('#picto-nav').style.transform = 'rotateZ(-90deg)';
+          
+          //Tentative de faire faire un 360 à la flêche à chaque survol...
+          //let rotation = 360;
+          // evt.currentTarget.addEventListener('mouseenter', function(e) {
+          //   e.currentTarget.querySelector('#picto-nav').style.transform = 'rotateZ(' -90 + rotation + 'deg)';
+          // }, false)
+          
+        }else {
+          currentHideContent.style.height = 0;
+        }
+        
+        
         
 
       }
@@ -265,6 +271,7 @@ button:hover {
 }
 .hide-content {
   overflow: hidden;
+  transition: all .3s;
 }
 .show-content {
   height: 100%;
