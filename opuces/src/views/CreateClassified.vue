@@ -219,6 +219,7 @@ form {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 select {
   width: 200px;
@@ -275,6 +276,7 @@ input:focus {
 .displayForm {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .CreateClassifiedFormTitle {
   margin-bottom: 15px;

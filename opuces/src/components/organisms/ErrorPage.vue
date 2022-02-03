@@ -1,13 +1,8 @@
 <template>
   <div>
-    <div class="error-header">
-      <router-link
-      :to="{
-        name: 'Home'
-        }">
-      <span><Logo /></span>
-      <h2>O'Puces</h2>
-      </router-link>
+    <Header2 />
+    <div class="illusLamp">
+      <IllusLamp />
     </div>
     <div class="error-text">
       <span>OUPS !</span>
@@ -39,17 +34,20 @@
         <img src="../../assets/svg/Quatre.svg" alt="" />
       </div>
     </div>
+  
   </div>
 </template>
 
 <script>
-import Logo from "../atoms/Logo";
+import Header2 from "../organisms/Header2";
 import IllusPlane from "../atoms/IllusPlane";
+import IllusLamp from "../atoms/IllusLamp.vue";
 export default {
   name: "ErrorPage",
   components: {
-    Logo,
+    Header2,
     IllusPlane,
+    IllusLamp
   },
 };
 </script>
@@ -133,6 +131,8 @@ export default {
     justify-content: center;
     margin: 10%;
   }
+  
+  
 }
 @media screen and (min-width: 1200px) {
   .error-button {
@@ -140,6 +140,7 @@ export default {
   }
 }
 @media screen and (min-width: 1400px) {
+ 
 }
 </style>
 

@@ -1,27 +1,6 @@
 <template>
   <div>
-    <div class="headerLink">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <div id="left-header-mobile">
-          <span><Logo /></span>
-          <h2>O'Puces</h2>
-        </div>
-      </router-link>
-      <router-link
-        :to="{
-          name: 'Logout',
-        }"
-      >
-        <div id="left-header-mobile">
-          <button>Se Deconnecter</button>
-          
-        </div>
-      </router-link>
-    </div>
+    <Header2 />
     <div>
       <UserProfilMobile />
     </div>
@@ -30,16 +9,16 @@
 
 <script>
 import UserProfilMobile from "../components/organisms/UserProfilMobile.vue";
-import Logo from "../components/atoms/Logo.vue";
-
+import Header2 from "../components/organisms/Header2.vue";
 export default {
   name: "UserProfil",
   components: {
-    Logo,
     UserProfilMobile,
+    Header2
   },
 };
 </script>
+
 
 <style scoped lang="scss">
 @import "../assets/scss/main";
