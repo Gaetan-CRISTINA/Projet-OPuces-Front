@@ -6,10 +6,16 @@
       <span v-if="selectedItem">{{ selectedItem.name }}</span>
       <!-- otherwise display this -->
       <span v-else>Select a category</span>
+
+      <!-- animated icon arrow up and down -->
       <svg 
       :class="isVisible ? 'dropdown' : ''"
-      class= "drop-down-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/></svg>
+      class= "drop-down-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/>
+      </svg>
+      <!--  end of animated icon arrow up and down -->
+
     </div>
+
     <div :class="isVisible ? 'visible' : 'invisible'" class="dropdown-popover">
       <!--<input v-model="searchQuery" type="text" placeholder="Search for categories">
       <span v-if="filteredUser.length == 0">No category found</span>
@@ -20,8 +26,12 @@
         <ul>
           <!-- selectItem is a method -->
           <!-- filteredUser is computed function -->
-          <li @click="selectItem(user)" v-for="(user, index) in filteredUser" :key="`user-${index}`">
-            {{ user.name }}
+          <li 
+          @click="selectItem(category)" 
+          v-for="(category, index) in filteredCategory" 
+          :key="`user-${index}`"
+          >
+          {{ category.name }}
           </li>
           
         </ul>
@@ -46,15 +56,15 @@ export default {
   },
 
   computed: {
-    filteredUser() {
+    filteredCategory() {
       // if the input is empty return the array
       const query = this.searchQuery.toLowerCase()
       if(this.searchQuery == "") {
         return this.categoryArray;
       }
       // checking what you are typing in the input
-      return this.categoryArray.filter((user) => {
-        return Object.values(user).some((word) => String(word).toLowerCase().includes(query)
+      return this.categoryArray.filter((category) => {
+        return Object.values(category).some((word) => String(word).toLowerCase().includes(query)
         );
       });
     },
@@ -70,8 +80,8 @@ export default {
   },
 
   methods: {
-    selectItem(user){
-      this.selectedItem = user;
+    selectItem(category){
+      this.selectedItem = category;
       this.isVisible = false
     },
   },
@@ -111,8 +121,9 @@ export default {
   background-color: white;
   width: 100%;
   visibility: hidden;
-  transition: all 0.5s linear;
+  /*transition: all 0.5s linear;*/
   max-height: 0px;
+  z-index:10;
   overflow: hidden;
   &.visible {
     max-height: 450px;
@@ -150,7 +161,6 @@ li {
   &:hover {
     background: #159ba0;
     color: #fff;
-    font-weight: bold;
 
   }
 

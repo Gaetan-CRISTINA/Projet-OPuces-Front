@@ -7,7 +7,7 @@
       <BaseInputCity />
 
       <BaseInputPrice />
-      <button>Rechercher</button>
+      <button @click="applyFilter">Rechercher</button>
       
     </div> 
     
@@ -30,8 +30,40 @@
     props: {},
 
     data() {
-    return {};
+    return {
+      items: [],
+      filter: {
+        category: '',
+        city: '',
+        price: ''
+      },
+      appliedfilter: null
+    };
     },
+
+    methods: {
+      // to listen for the event click on search button
+      applyFilter(){
+        this.appliedFilter = {...this.filter};
+      }
+    },
+
+    computed: {
+      // to search for multiple items
+      filteredItems() {
+        let resultItems = [...this.items];
+
+        if (this.appliedFilter) {
+          for (const field in this.appliedFilter) {
+            const value = this.appliedFilter[field].trim().toLowerCase();
+            if (value)
+              resultItems = resultItems.filter(index => index[field].toLowerCase() === value);
+          }
+        }
+
+        return resultItems;
+      }
+    }
 
     
 };
@@ -202,18 +234,36 @@
   }
 
   button {
-    background: #f0f;
-    margin-top: 10px;
-    padding: 10px 24px;
-    width: 250px;
-    height: 35px;
-    position: relative;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
+  background-color: $main-green;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-family: arial,sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px 24px;
+  width: 250px;
+  height: 35px;
+  min-width: 54px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+}
 
-  }
+  button:hover {
+  border-color: #dadce0;
+  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+  color: black;
+}
 
+  button:focus {
+  border-color: $main-green;
+  outline: none;
+}
   
 }
 @media screen and (min-width: 1200px) {
