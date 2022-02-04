@@ -59,11 +59,20 @@
       <div class="CTA-annonces content-annonce">
         <button id="acheter" @click="StoreClassified">
           <router-link
+          v-if="user"
             :to="{
               name: 'Cart',
             }"
           >
             Acheter
+          </router-link>
+           <router-link
+          v-if="!user"
+            :to="{
+              name: 'LoginForm',
+            }"
+          >
+            Se connecter
           </router-link>
         </button>
 
@@ -167,6 +176,13 @@ export default {
       //  headingElement.innerHTML = string.charAt(0).toUpperCase() +
       //      string.slice(1); ;
       // }
+    },
+    user() {
+      if (this.$store.state.user) {
+        return this.$store.state.user;
+      } else {
+        return false;
+      }
     },
   },
 

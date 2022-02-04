@@ -138,6 +138,7 @@
         -->
         <div id="center-header-desktop">
           <SearchBar />
+          <div v-if="user">
           <router-link
           
           v-if="!cart"
@@ -152,6 +153,7 @@
             name:'Cart'}">
           <PictoFullCart />
           </router-link>
+          </div>
         </div>
 
         <!--

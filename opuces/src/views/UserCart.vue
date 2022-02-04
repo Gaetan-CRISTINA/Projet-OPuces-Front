@@ -9,28 +9,29 @@
         <h3>Récapitulatif de la commande</h3>
 
         <h1>Titre de l'annonce</h1>
-        <h2>Je suis le titre</h2> 
+        <p>Je suis le titre</p> 
         <h1>Description</h1>
         <p>Je suis la description</p>
         <h1>Prix</h1>
-        <h2>Argent €</h2>
+        <p>Argent €</p>
         <h1>Mode de livraison</h1>
-        <h2>Pigeon voyageur</h2>
+        <p>Pigeon voyageur</p>
       </div>
 
       <div class="display-user">
         <h3>Récapitulatif de la Livraison</h3>
 
         <h1>Nom et prénom</h1>
-        <h2>Team Opuces</h2> 
+        <p>Team Opuces</p> 
         <h1>Adresse</h1>
         <p>215 rue du soleil levant</p>
         <p>3ème planète après le soleil
         <h1>Code Postal</h1>
-        <h2>17 568 12</h2>
+        <p>17 568 12</p>
         <h1>Ville</h1>
-        <h2>Xandar</h2>
+        <p>Xandar</p>
         <h1>Numéro de téléphone</h1>
+        <p>00 1253 78 58 96 12 11</p>
       </div>
       
     </div>
@@ -39,8 +40,13 @@
         name: 'PayementSuccess'
         }"><button class="pay">
       
-      procéder au paiement
+      Procéder au paiement
       </button></router-link>
+      
+      <button class="delete" @click="UnsetStoreSlassified">
+      
+      Annuler ma commande
+      </button>
   </div>
 </template>
 
@@ -63,6 +69,13 @@ export default {
       ClassifiedId
     );
   },
+  methods:{
+    async UnsetStoreSlassified(event){
+      event.preventDefault();
+      storage.unset("ClassifiedIdCart")
+      this.$router.push({ name: "Home" });
+    }
+  }
 };
 </script>
 
@@ -108,6 +121,11 @@ button:hover {
   background-color: $main-green;
   color: #fff;
   border: solid 1px $main-green;
+}
+.delete:hover {
+  background-color: $social-google;
+  color: white;
+  border: solid 1px $social-google;
 }
 @media screen and (min-width: 576px) {
   .illusLamp {
