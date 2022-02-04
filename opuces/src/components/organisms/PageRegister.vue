@@ -187,9 +187,7 @@ export default {
               console.log(result);
               if(result){
                   if(result.success == true){   
-                let userAutoLog = await userService.login(this.username, this.password);
-                console.log(userAutoLog);
-                this.$router.push({name:'Home'});
+                this.$router.push({name:'Login'});
                       // renvoyer vers la home avec token 
                   }
               }
@@ -223,13 +221,7 @@ h1 {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main.scss";
-// .connexion {
-//   width: 100%;
-//   padding-right: 15px;
-//   padding-left: 15px;
-//   margin: auto;
-//   border: 15px;
-// }
+
 .left div:first-child {
   position: relative;
   color: $main-green;

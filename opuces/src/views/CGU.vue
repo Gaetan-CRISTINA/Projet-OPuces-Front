@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header2 />
-    <div class="title-cgu-container">
+    <div class="title-cgu-container" id="scroll-top">
       <router-link
         :to="{
           name: 'Home',
@@ -10,9 +10,10 @@
         <button class="--button connect">Retour à l'accueil</button>
       </router-link>
     </div>
-    <div class="main-container">
-      <div class="cgu-container">
-        <h2>
+    <div id="main-container">
+      
+      <div id="cgu-container">
+        <h2 >
           Conditions générales de vente de prestations de services en ligne à
           des consommateurs particuliers
         </h2>
@@ -26,7 +27,7 @@
           - Située au : 215 rue du soleil levant, 3ème planète après le
           soleil<br />
           - Adresse URL du site : www.opuces.fr<br />
-          - Adresse mail : danslesétoiles@contact-opuces.fr<br />
+          - Adresse mail : opuces5@gmail.com<br />
           - Téléphone : faites l’étoile<br />
           Le client d’déclare avoir pris connaissance et avoir accepté les
           conditions générales de vente antérieurement à la passation de la
@@ -1038,21 +1039,34 @@
           d'emploi issues du site mobilisation-emploi est soumise à la licence
           d'utilisation disponible ici.
         </p>
+        
       </div>
+      <a href="#scroll-top" id="pictoNav"><PictoNav/></a>
     </div>
   </div>
 </template>
 <script>
 import Header2 from "../components/organisms/Header2.vue";
+import PictoNav from "../components/atoms/PictoNav.vue";
 export default {
   name: "CGU",
   components: {
     Header2,
+    PictoNav
   },
 };
 </script>
-
+<style lang="scss">
+#picto-nav {
+  position:absolute;
+  top:13px;
+  right:17px;
+  width:15px;
+  fill:#fff;
+}
+</style>
 <style scoped lang="scss">
+
 @import "../assets/scss/main";
 
 .title-cgu-container {
@@ -1060,6 +1074,7 @@ export default {
   justify-content: flex-start;
   align-items: center;
   margin: 20px;
+  position:relative;
 }
 .title-cgu-container img {
   margin-right: 15px;
@@ -1070,36 +1085,32 @@ export default {
   font-size: 24px;
   font-weight: 900px;
 }
-.cgu-container {
-  margin: 15px;
-  padding: 15px;
-}
-.cgu-container h2 {
+
+#cgu-container h2 {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 900px;
 }
-.--button {
-  border-radius: 19px;
-  padding: 1px;
-  width: 345px;
-  height: 38px;
-  color: white;
-  background-color: $main-green;
-  width: 100%;
-  border: none;
-  margin: 17px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 900px;
-  cursor: pointer;
-  margin-top: 100px;
-  transition: all 0.3s;
+#cgu-container {
+  margin: 0 auto;
+  padding: 15px;
+  
 }
 .--button:hover {
   background-color: $secondary-green;
+}
+#main-container{
+  margin-top:180px;
+}
+#pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
 }
 
 @media screen and (min-width: 576px) {
@@ -1107,9 +1118,33 @@ export default {
 @media screen and (min-width: 768px) {
 }
 @media screen and (min-width: 992px) {
+  #cgu-container {
+  width:55em;
+}
 }
 @media screen and (min-width: 1200px) {
+  
 }
 @media screen and (min-width: 1400px) {
+  .--button {
+  border-radius: 19px;
+  padding: 1px;
+  position:fixed;
+  top:150px;
+  left:150px;
+  height: 38px;
+  color: white;
+  background-color: $main-green;
+  width: 160px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 900px;
+  cursor: pointer;
+
+  transition: all 0.3s;
+}
 }
 </style>

@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     handleSeeMore: function(evt){
-          evt.preventDefault();
           this.$emit('displayHideCardContent', evt);
       }
   },

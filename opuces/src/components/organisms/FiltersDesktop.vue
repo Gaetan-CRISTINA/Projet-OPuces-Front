@@ -2,9 +2,11 @@
   <div class="filters-desktop">
     <div class="input-filters">
 
+
       <BaseSelectCategory />
       
       <BaseInputCity />
+
 
       <BaseInputPrice />
       <button @click="applyFilter" class="search-validate">Rechercher</button>
@@ -67,6 +69,7 @@
 
     
 };
+
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Header />
+    <Header2 />
     <div class="main-container">
       <h2>L'Equipe</h2>
       <div class="picDev">
@@ -57,11 +57,11 @@
 </template>
 
 <script>
-import Header from "../components/organisms/Header.vue";
+import Header2 from "../components/organisms/Header2.vue";
 export default {
   name: "About",
   components: {
-    Header,
+    Header2,
   },
 };
 </script>

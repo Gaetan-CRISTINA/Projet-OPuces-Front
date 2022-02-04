@@ -2,11 +2,7 @@
   <div class="card display2">
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
-      <img
-        src="https://picsum.photos/400/600"
-        alt="classifiedImage"
-        class="img-annoce"
-      />
+      <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce" />
       <div class="flex prix-like">
         <span class="prix">{{ userClassifiedProps.classifiedPrice }}€</span>
       </div>
@@ -51,7 +47,7 @@
     /> -->
 
     <div class="voir-plus">
-      <button>VOIR L'ANNONCE</button>
+      <button>Modifier L'Annonce</button>
 
 
     
@@ -64,7 +60,7 @@
           
         }"
       >
-        <button class="delete">Supprimer L'ANNONCE</button>
+        <button class="delete">Supprimer L'Annonce</button>
       </router-link>
     
 
@@ -124,6 +120,17 @@ export default {
       productState: "",
     };
   },
+  computed: {
+    getImage() {
+      if (this.userClassifiedProps._links["wp:featuredmedia"][1]) {
+        const urlImage = this.userClassifiedProps._links["wp:featuredmedia"][1];
+        console.log(urlImage);
+        return this.urlImage;
+      } else {
+        return "https://picsum.photos/400/600";
+      }
+    }
+  }
 };
 </script>
 

@@ -90,7 +90,28 @@ const userService = {
 
     updateUser: async function()
     {
-        
-    }
+        const response = await axios.patch(userService.baseURI + '/' );
+        return response.data;
+    },
+
+    saveUserInformation: async function (UserId, adress, adress2, country, phoneNumber, zipcode, city)
+    {
+        const response = await axios.post(userService.opucesBaseURI + '/user-table',
+        {
+            userID: UserId,
+            adress1: adress,
+            adress2: adress2,
+            zipcode: zipcode,
+            city: city,
+            country: country,
+            phone_number: phoneNumber
+        }
+        ).catch(function(){
+            console.log('saveUserInfo Error');
+            return false;
+        });
+        return response.data;
+    },
+
 };
 export default userService;

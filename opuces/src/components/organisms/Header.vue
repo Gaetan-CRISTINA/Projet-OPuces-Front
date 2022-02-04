@@ -95,7 +95,7 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter </a>
+            <a id="se-connecter"> Se connecter / Créer un compte</a>
           </router-link>
         </div>
 
@@ -138,6 +138,22 @@
         -->
         <div id="center-header-desktop">
           <SearchBar />
+          <div v-if="user">
+          <router-link
+          
+          v-if="!cart"
+          :to="{
+            name:'Cart'}">
+          <PictoEmptyCart />
+          </router-link>
+          
+          <router-link
+          v-if="cart"
+          :to="{
+            name:'Cart'}">
+          <PictoFullCart />
+          </router-link>
+          </div>
         </div>
 
         <!--
@@ -277,10 +293,11 @@ import PictoText from "../atoms/PictoText";
 import PictoMail from "../atoms/PictoMail";
 import PictoClose from "../atoms/PictoClose.vue";
 import PictoAdd2 from "../atoms/PictoAdd2.vue";
-
-
+import PictoEmptyCart from "../atoms/PictoEmptyCart.vue";
+import PictoFullCart from "../atoms/PictoFullCart.vue";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
+import storage from "../../plugins/storage";
 
 export default {
   name: "Header",
@@ -294,16 +311,28 @@ export default {
     PictoText,
     PictoMail,
     PictoClose,
-    PictoAdd2
+    PictoAdd2,
+    PictoEmptyCart,
+    PictoFullCart
   },
   computed: {
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }
     },
+    cart(){
+      const cartFull = storage.get('ClassifiedIdCart');
+      if (cartFull){
+        return true;
+      }else{
+        return false;
+      }
+    }
   },
 };
 </script>
@@ -430,6 +459,7 @@ li svg {
 }
 #div-logo {
   width: 32px;
+  margin:0.5px auto;
 }
 #left-header-desktop a:hover svg {
   fill: $secondary-green !important;
@@ -437,6 +467,13 @@ li svg {
 #picto-home {
   fill: $main-green !important;
 }
+#txt-link {
+  padding:10px;
+  color:$main-green;
+  font-size: 24px;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 576px) {
 }
 @media screen and (min-width: 768px) {

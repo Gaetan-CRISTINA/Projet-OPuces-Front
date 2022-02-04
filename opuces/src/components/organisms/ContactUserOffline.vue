@@ -107,6 +107,7 @@ PictoEye
           }
         );
         console.log("it works!!!");
+        this.$router.push({ name:'Home'})
       } catch (error) {
         console.log({ error });
       }
@@ -116,6 +117,7 @@ PictoEye
       this.name = "";
       this.email = "";
     },
+    
   },
 };
 </script>

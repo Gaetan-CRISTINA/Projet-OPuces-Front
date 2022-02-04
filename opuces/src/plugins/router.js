@@ -24,6 +24,9 @@ import DeleteClassified from '../views/DeleteClassified.vue'
 
 import Search from '../views/Search.vue'
 import About from '../views/About.vue'
+import UserCart from '../views/UserCart.vue'
+import PayementSuccess from '../views/PayementSuccess.vue'
+import CancelOrder from '../views/CancelOrder.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -109,6 +112,21 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: UserCart
+  },
+  {
+    path: '/payement-success',
+    name: 'PayementSuccess',
+    component: PayementSuccess
+  },
+  {
+    path: '/order-canceled',
+    name: 'CancelOrder',
+    component: CancelOrder
   },
   {
     path: '*',
