@@ -175,7 +175,7 @@ import PictoAdd2 from "../atoms/PictoAdd2.vue";
 
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
-
+import storage from "../../plugins/storage";
 export default {
   name: "Header",
   components: {
@@ -192,8 +192,10 @@ export default {
   },
   computed: {
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }

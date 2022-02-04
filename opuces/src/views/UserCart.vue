@@ -47,6 +47,7 @@
       
       Annuler ma commande
       </button>
+      
   </div>
 </template>
 
@@ -56,11 +57,12 @@ import classifiedsService from "../services/classifiedsService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 import storage from "../plugins/storage";
 
+
 export default {
   name: "UserCart",
   components: {
     Header2,
-    IllusLamp,
+    IllusLamp
   },
   async created() {
     const ClassifiedId = storage.get("ClassifiedIdCart");
@@ -73,7 +75,7 @@ export default {
     async UnsetStoreSlassified(event){
       event.preventDefault();
       storage.unset("ClassifiedIdCart")
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "CancelOrder" });
     }
   }
 };

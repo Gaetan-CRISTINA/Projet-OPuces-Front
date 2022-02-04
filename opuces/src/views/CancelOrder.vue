@@ -7,14 +7,14 @@
     <div class="main-container">
         
         <div class="display-cart">
-            <h2>Confirmation de commande</h2>
-            <h4>Commande N°405-5341864-4125137</h4><br>
+            <h2>Confirmation de l'annulation de votre commande</h2>
+            <br>
 
-            <h2>Bonjour,</h2>
-            <h2>Nous vous remercions de votre commande. Nous vous tiendrons informé par e-mail, lorsque l'article de votre commande aura été expédié.</h2><br>
-
-            <h2>Nous espérons vous revoir bientôt.</h2>
-            <h2>L'équipe O'Puces.</h2>
+            <h1>Bonjour,</h1>
+            <h1>Nous vous confirmons que votre commande à bien été annulé.</h1><br>
+            <h1>Aucun paiement n'à été effectué.</h1><br>
+            <h1>Nous espérons vous revoir bientôt.</h1>
+            <h1>L'équipe O'Puces.</h1>
 
             <div>
              <router-link
@@ -34,17 +34,13 @@
 
 import Header2 from '../components/organisms/Header2.vue'
 import IllusLamp from '../components/atoms/IllusLamp.vue'
-import storage from '../plugins/storage'
 
 export default {
-  name: 'PayementSuccess',
+  name: 'CancelOrder',
   components: {
     Header2,
     IllusLamp
    
-  },
-  async created(){
-    storage.unset("ClassifiedIdCart");
   }
 }
 </script>

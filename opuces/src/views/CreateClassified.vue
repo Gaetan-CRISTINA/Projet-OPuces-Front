@@ -107,6 +107,7 @@
 import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
+import storage from "../plugins/storage";
 export default {
   name: "CreateClassified",
   components: {
@@ -163,8 +164,13 @@ export default {
   },
   computed: {
     user() {
-      this.$store.state.user;
-      return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
+      } else {
+        return false;
+      }
     },
   },
 };
