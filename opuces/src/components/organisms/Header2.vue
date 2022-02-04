@@ -5,7 +5,7 @@
         <router-link v-if="user" :to="{ name: 'Home' }">
           <div id="left-header-mobile">
             <span id="logo-link"><Logo /></span>
-            <h2 id="txt-link">O'Puces</h2>
+            <h1 id="txt-link">O'Puces</h1>
           </div>
         </router-link>
 
@@ -114,7 +114,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -127,7 +127,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -298,7 +298,37 @@ export default {
   },
 };
 </script>
-
+<style lang="scss">
+@import "../../assets/scss/main";
+  #left-header-mobile #logo {
+      fill: $main-green;
+    }
+  #left-header-mobile:hover #logo {
+    fill: $secondary-green;
+    width: 70px;
+  }
+@media screen and (min-width: 576px) {
+   
+  }
+@media screen and (min-width: 768px) {
+  
+}
+@media screen and (min-width: 992px) {
+  #left-header-desktop #logo {
+      fill: $main-green;
+      width: 30px;
+    }
+  #left-header-desktop:hover #logo {
+    fill: $secondary-green;
+  }
+}
+@media screen and (min-width: 1200px) {
+  
+}
+@media screen and (min-width: 1400px) {
+    
+}
+</style>
 <style scoped lang="scss">
 @import "../../assets/scss/main";
 .header-bottom {
@@ -314,7 +344,6 @@ export default {
 .flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
 }
 #right-header-mobile:hover .sub-nav {
@@ -331,12 +360,13 @@ export default {
 #center-header-desktop,
 #right-header-desktop {
   display: none;
+  transition: all .3s;
 }
-#left-header-mobile span, h2{
+#left-header-mobile span, h1{
   transition: all .2s ease-in-out;
 }
-#left-header-mobile span, h2:hover{
-  transform: scale(1.3);
+#left-header-mobile:hover {
+  transform: scale(1.05);
 }
 
 header {
@@ -422,8 +452,12 @@ li svg {
 #div-logo {
   width: 32px;
 }
-#left-header-desktop a:hover svg {
-  fill: $secondary-green !important;
+#left-header-desktop:hover {
+  transform: scale(1.015);
+  cursor:pointer
+}
+#left-header-desktop:hover h1 {
+  color: $secondary-green !important;
 }
 #picto-home {
   fill: $main-green !important;
@@ -470,13 +504,13 @@ li svg {
     display: flex;
     align-items: center;
   }
-  #left-header-desktop a:hover h2 {
+  #left-header-desktop a:hover h1 {
     color: $secondary-green;
   }
   #left-header-desktop #logo-link {
     margin-right: 0.3em;
   }
-  #left-header-desktop h2 {
+  #left-header-desktop h1 {
     position: relative;
     top: -7px;
     font-weight: 900;

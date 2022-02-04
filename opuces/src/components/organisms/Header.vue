@@ -341,6 +341,7 @@ export default {
     }
   #left-header-mobile:hover #logo {
     fill: $secondary-green;
+    width: 30px;
   }
 @media screen and (min-width: 576px) {
    
