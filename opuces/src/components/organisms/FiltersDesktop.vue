@@ -1,115 +1,75 @@
 <template>
   <div class="filters-desktop">
-    <form>
-      <div class="input-filters">
-
-        
-        <select name="selectCategory"
-        v-model="selectedCategory"
-        @change="SelectCategory">
-          <option value="">Ajouter une catégorie</option>
-          <option v-for="category in categories"
-          :key="category.id"
-          :value="category.id"
-          >{{category.name}}</option>
-        </select>
+    <div class="input-filters">
 
 
-        <!-- Je boucle sur les categories selectionnées dans selectedCategory -->
-        <div class="container-category">
-          <div class="category-tag">
-            <p v-for="taxoSelected in taxosSelected"
-          :key="taxoSelected.categoryFilter">
-           {{ taxoSelected.libelleFilter  }}
-              <PictoRemove /></p>
-          </div>
-       </div>
-        
-      </div>
-      <div class="input-filters">
-        <label for="ville">Ajouter une ville</label>
-        <input type="text" id="ville" name="ville" v-model="userCity" />
-        
-        <div class="container-category">
-
-          <div class="category-tag">
-            <p>{{cityname}}</p>
-            <PictoRemove />
-          </div>
-        </div>
-        
-
-      </div>
-      <div class="input-filters">
-        <label for="name">Prix</label>
-        <div class="input-price">
-          <input placeholder="Minimum en Euros" type="text" id="minAmount" name="user_name" v-model="minimumPrice"/> 
-          <input placeholder="Maximum en Euros" type="text" id="maxAmount" name="user_name" 
-          v-model="maximumPrice"/>
-        </div>
-      </div>
+      <BaseSelectCategory />
       
-      <button type="submit" href="#" class="search-validate">RECHERCHER</button>
-    </form>
+      <BaseInputCity />
+
+
+      <BaseInputPrice />
+      <button @click="applyFilter" class="search-validate">Rechercher</button>
+      
+    </div> 
+    
   </div>
 </template>
 
 <script>
+  import BaseSelectCategory from "../organisms/BaseSelectCategory.vue";
+  import BaseInputCity from "../organisms/BaseInputCity.vue";
+  import BaseInputPrice from "../organisms/BaseInputPrice.vue";
 
-import PictoRemove from "../atoms/PictoRemove.vue";
+  export default {
+    name: "FiltersDesktop",
+    components: {
+      BaseSelectCategory,
+      BaseInputCity,
+      BaseInputPrice
 
-export default {
- async created(){
-    // this.categories = await classifiedsService.loadClassifiedProductCategory();
-        // si pas de data dans le store appel à l'api
-            this.categories = await this.$store.state.services.classified.loadClassifiedProductCategory();
-        
-  },
-  name: "FiltersDesktop",
-  components: {
-   PictoRemove,
-      
-  },
-  data(){
-    return{
-      categories: [],
-      selectedCategory: 0,
-      userCity: '',
-      filtersDesktop: [],
-      taxosSelected: [],
-      minimumPrice: '',
-      maximumPrice: ''
+    },
+    props: {},
+
+    data() {
+    return {
+      items: [],
+      filter: {
+        category: '',
+        city: '',
+        price: ''
+      },
+      appliedfilter: null
     };
-  },
-  methods:{
-  
-    async SelectCategory(event){
-    event.preventDefault();
-
-    this.typeCusto = "ProductCategory";
-    this.oneTaxo = await this.$store.state.services.classified.loadOneCustonomy(this.typeCusto, this.selectedCategory);
-
-            this.$store.commit(
-                
-                'addTaxoList',
-                {
-                    categoryFilter: this.selectedCategory,
-                    libelleFilter: this.oneTaxo.name
-                }
-            );
-    this.taxosSelected = this.$store.state.taxoVuexList;
     },
-  },
-  props: {
-    category: String,
-    label: String,
-  },
-  computed: {
-    libelle () {
-      return this.$store.state.taxoVuexList.libelleFilter
+
+    methods: {
+      // to listen for the event click on search button
+      applyFilter(){
+        this.appliedFilter = {...this.filter};
+      }
     },
-  }
-}
+
+    computed: {
+      // to search for multiple items
+      filteredItems() {
+        let resultItems = [...this.items];
+
+        if (this.appliedFilter) {
+          for (const field in this.appliedFilter) {
+            const value = this.appliedFilter[field].trim().toLowerCase();
+            if (value)
+              resultItems = resultItems.filter(index => index[field].toLowerCase() === value);
+          }
+        }
+
+        return resultItems;
+      }
+    }
+
+    
+};
+
 </script>
 
 <style scoped lang="scss">
@@ -129,8 +89,10 @@ export default {
   }
   .filters-desktop {
     position: fixed;
-    margin-left: 20px;
-    width: 420px;
+    margin-top: 20px;
+    margin-left: 25px;
+    width: 255px;
+    
   }
   select {
     width: 100%;
@@ -140,7 +102,7 @@ export default {
     margin-bottom: 1em;
     font-size: 14px;
     cursor: pointer;
-    background-color:white;
+    background-color: white;
   }
   select:focus {
     outline: 0;
@@ -162,7 +124,7 @@ export default {
     border-radius: 6px;
     margin-bottom: 1em;
     background-color: $light-grey;
-    text-indent:25px
+    text-indent: 25px;
   }
   #ville {
     background: url("../../assets/svg/picto-location.svg"), $light-grey;
@@ -180,7 +142,7 @@ export default {
     justify-content: space-between;
   }
   .input-price input {
-    width: 200px;
+    width: 100%;
   }
   .input-price input::placeholder,
   .input-filters input::placeholder {
@@ -188,13 +150,13 @@ export default {
     padding-left: 1em;
   }
   .save-search {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   #savesearch {
-      margin-top: 7px;
-  }  
+    margin-top: 7px;
+  }
   /* The switch - the box around the slider */
   .switch {
     position: relative;
@@ -235,7 +197,7 @@ export default {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-input:checked + .slider {
+  input:checked + .slider {
     background-color: $light-green;
     border: solid 1px $main-green;
   }
@@ -249,7 +211,6 @@ input:checked + .slider {
     transform: translateX(18px);
     background-color: $main-green;
   }
-  
 
   /* Rounded sliders */
   .slider.round {
@@ -260,20 +221,21 @@ input:checked + .slider {
     border-radius: 50%;
   }
   .search-validate {
-      display: block;
-      width: 100%;
-      height: 38px;
-      background-color: $main-green;
-      border-radius: 20px;
-      border: none;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      transition: all .3s;
+    display: block;
+    width: 100%;
+    height: 38px;
+    background-color: $main-green;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
   }
   .search-validate:hover {
     background-color: $secondary-green;
-  } 
+  }
+  
 }
 @media screen and (min-width: 1200px) {
 }
