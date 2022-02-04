@@ -1,119 +1,39 @@
 <template>
   <div class="filters-desktop">
-    <form>
-      <div class="input-filters">
+    <div class="input-filters">
 
-        
-        <select name="selectCategory" v-model="selectedCategory"
-        @change="SelectCategory">
-          <option value="">Ajouter une catégorie</option>
-          <option v-for="category in categories"
-          :key="category.id"
-          :value="category.id"
-          >{{category.name}}</option>
-        </select>
-
-
-        <!-- Je boucle sur les categories selectionnées dans selectedCategory -->
-        <div class="container-category"
-        v-for="unitCategory in selectedCategory"
-        :key="unitCategory.id"
-        value="unitCategory.id">
-          <div class="category-tag">
-            <p>{{unitCategory.name}}</p>
-              <PictoRemove />
-          </div>
-       </div>
-        
-      </div>
-      <div class="input-filters">
-        <label for="ville">Ajouter une ville</label>
-        <input type="text" id="ville" name="ville" v-model="userCity" />
-        
-        <div class="container-category"
-        v-for="city in userCity"
-        :key="city.name"
-        :value="city.id">
-          <div class="category-tag">
-            <p>{{city.name}}</p>
-            <PictoRemove />
-          </div>
-        </div>
-        
-
-      </div>
-      <div class="input-filters">
-        <label for="name">Prix</label>
-        <div class="input-price">
-          <input placeholder="Minimum en Euros" type="text" id="minAmount" name="user_name" v-model="minimumPrice"/> 
-          <input placeholder="Maximum en Euros" type="text" id="maxAmount" name="user_name" 
-          v-model="maximumPrice"/>
-        </div>
-      </div>
+      <BaseSelectCategory />
       
-      <button type="submit" href="#" class="search-validate">RECHERCHER</button>
-    </form>
+      <BaseInputCity />
+
+      <BaseInputPrice />
+      <button>Rechercher</button>
+      
+    </div> 
+    
   </div>
 </template>
 
 <script>
+  import BaseSelectCategory from "../organisms/BaseSelectCategory.vue";
+  import BaseInputCity from "../organisms/BaseInputCity.vue";
+  import BaseInputPrice from "../organisms/BaseInputPrice.vue"
 
+  export default {
+    name: "FiltersDesktop",
+    components: {
+      BaseSelectCategory,
+      BaseInputCity,
+      BaseInputPrice
 
-import classifiedsService from "../../services/classifiedsService";
-import PictoRemove from "../atoms/PictoRemove.vue";
+    },
+    props: {},
 
-export default {
-  name: "FiltersDesktop",
-  components: {
-   PictoRemove,
-   
-  },
-  data(){
-    return{
-      categories: [],
-      selectedCategory: '',
-      userCity: '',
-      minimumPrice: '',
-      maximumPrice: ''
-    };
-  },
-  async created(){
-    this.categories = await classifiedsService.loadClassifiedProductCategory();
-  },
-  methods:{
-  async created(){
-    if(this.$store.state.categoriesList[this.category]){
-      this.categories = this.$store.categoriesList[this.category];
-    } else {
-      this.categories = await this.$store.state.categories.classified.loadClassifiedProductCategory(this.category);
-      this.$store.commit(
-        'saveCategoriesList',
-        {
-          category: this.category,
-          categories: this.categories
-        }
-      );
-    }
-  },
+    data() {
+    return {};
+    },
 
-  props: {
-    selectedCategory: Object,
-    category: String,
-    label: String,
-    userCity: String
     
-  },
-  SelectCategory(event){
-    event.preventDefault();
-    this.$emit(
-      'classified-category-selected',
-      {
-        categoryId: this.selectedOption,
-        category: this.category
-      }
-    )
-  }
-}
 };
 </script>
 
@@ -134,8 +54,10 @@ export default {
   }
   .filters-desktop {
     position: fixed;
-    margin-left: 20px;
+    margin-top: 20px;
+    margin-left: 25px;
     width: 420px;
+    
   }
   select {
     width: 100%;
@@ -145,7 +67,7 @@ export default {
     margin-bottom: 1em;
     font-size: 14px;
     cursor: pointer;
-    background-color:white;
+    background-color: white;
   }
   select:focus {
     outline: 0;
@@ -167,7 +89,7 @@ export default {
     border-radius: 6px;
     margin-bottom: 1em;
     background-color: $light-grey;
-    text-indent:25px
+    text-indent: 25px;
   }
   #ville {
     background: url("../../assets/svg/picto-location.svg"), $light-grey;
@@ -193,13 +115,13 @@ export default {
     padding-left: 1em;
   }
   .save-search {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   #savesearch {
-      margin-top: 7px;
-  }  
+    margin-top: 7px;
+  }
   /* The switch - the box around the slider */
   .switch {
     position: relative;
@@ -240,7 +162,7 @@ export default {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-input:checked + .slider {
+  input:checked + .slider {
     background-color: $light-green;
     border: solid 1px $main-green;
   }
@@ -254,7 +176,6 @@ input:checked + .slider {
     transform: translateX(18px);
     background-color: $main-green;
   }
-  
 
   /* Rounded sliders */
   .slider.round {
@@ -265,20 +186,35 @@ input:checked + .slider {
     border-radius: 50%;
   }
   .search-validate {
-      display: block;
-      width: 100%;
-      height: 38px;
-      background-color: $main-green;
-      border-radius: 20px;
-      border: none;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      transition: all .3s;
+    display: block;
+    width: 100%;
+    height: 38px;
+    background-color: $main-green;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
   }
   .search-validate:hover {
     background-color: $secondary-green;
-  } 
+  }
+
+  button {
+    background: #f0f;
+    margin-top: 10px;
+    padding: 10px 24px;
+    width: 250px;
+    height: 35px;
+    position: relative;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+
+  }
+
+  
 }
 @media screen and (min-width: 1200px) {
 }
