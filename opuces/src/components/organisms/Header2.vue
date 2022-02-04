@@ -371,7 +371,9 @@ export default {
 #left-header-mobile:hover {
   transform: scale(1.05);
 }
-
+#right-header-desktop h3 {
+  font-size: 12px;
+}
 header {
   position: fixed;
   z-index: 1;

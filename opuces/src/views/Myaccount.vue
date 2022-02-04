@@ -107,8 +107,6 @@ import userService from "../services/userService";
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 
-import classifiedsService from "..//services/classifiedsService";
-
 export default {
   name: "Myaccount",
   components: {
@@ -162,10 +160,9 @@ export default {
         !this.phoneNumberEmpty
       ) {
         console.log("Appel de l'API pour inscription info USER");
-        const UserId = await classifiedsService.loadAuthor();
-        console.log(UserId);
+        
         let result = await userService.saveUserInformation(
-          this.UserId,
+          
           this.adress,
           this.adress2,
           this.country,
