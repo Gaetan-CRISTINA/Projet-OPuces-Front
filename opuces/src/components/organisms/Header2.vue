@@ -269,7 +269,10 @@ import PictoText from "../atoms/PictoText";
 import PictoMail from "../atoms/PictoMail";
 import PictoClose from "../atoms/PictoClose.vue";
 import PictoAdd2 from "../atoms/PictoAdd2.vue";
+
+
 import Logo from "../atoms/Logo";
+
 import storage from "../../plugins/storage";
 
 export default {
@@ -349,7 +352,9 @@ export default {
 #right-header-mobile:hover .sub-nav {
   transform: translateX(0);
 }
-
+.right-header-mobile:hover header {
+  background-color: black;
+}
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
@@ -370,12 +375,10 @@ export default {
 header {
   position: fixed;
   z-index: 1;
-  top:0;
   padding: 0.5em 0 !important;
   width: 100%;
   background-color: #fff;
   display: flex;
-  align-items:center;
 }
 
 #se-connecter {
@@ -449,16 +452,8 @@ li svg {
 .disconect--button span {
   color: $main-green;
 }
-#txt-link {
-  padding:10px;
-  color:$main-green;
-  font-size: 24px;
-    font-weight: 600;
-}
-
 #div-logo {
   width: 32px;
-  margin:15px auto;
 }
 #left-header-desktop:hover {
   transform: scale(1.015);
