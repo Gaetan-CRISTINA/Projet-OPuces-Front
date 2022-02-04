@@ -59,7 +59,7 @@ export default {
   },
 
   mounted() {
-    fetch("https://geo.api.gouv.fr/communes/")
+    fetch("/")
     .then(res => res.json())
     .then((json) => {
       console.log(json);
