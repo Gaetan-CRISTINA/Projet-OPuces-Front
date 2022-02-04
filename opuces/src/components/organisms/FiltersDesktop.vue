@@ -17,7 +17,7 @@
 <script>
   import BaseSelectCategory from "../organisms/BaseSelectCategory.vue";
   import BaseInputCity from "../organisms/BaseInputCity.vue";
-  import BaseInputPrice from "../organisms/BaseInputPrice.vue"
+  import BaseInputPrice from "../organisms/BaseInputPrice.vue";
 
   export default {
     name: "FiltersDesktop",
