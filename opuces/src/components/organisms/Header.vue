@@ -317,8 +317,10 @@ export default {
   },
   computed: {
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }

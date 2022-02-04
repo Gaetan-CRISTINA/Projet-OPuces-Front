@@ -97,19 +97,12 @@
 <script>
 import Vue from "vue";
 
-// import HeroAnnonce from "../molecules/HeroAnnonce.vue";
-// import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
-// import EtatAnnonce from "../molecules/EtatAnnonce.vue";
-// import CategorieCardList from "../molecules/CategorieCardList.vue";
-// import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
-// import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
-import VoirPlus from "../molecules/VoirPlus.vue";
 
+import VoirPlus from "../molecules/VoirPlus.vue";
 import Ville from "../atoms/Ville.vue";
 import MapWrapper from "../molecules/MapWrapper.vue";
 import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
 import VoirMoins from "../molecules/VoirMoins.vue";
-// import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
 import storage from "../../plugins/storage";
@@ -120,7 +113,6 @@ export default {
     MapWrapper,
     AnnonceAuteur,
     VoirMoins,
-    // CtaAnnonce,
     PictoEtat1,
     VoirPlus,
   },
@@ -167,19 +159,22 @@ export default {
       } else {
         return "https://picsum.photos/400/600";
       }
+    },
       //TODO
       // author name en Majuscule (1ere lettre)
-      // capitalizeString(){
-      //  let input = document.getElementById("input");
-      //  let headingElement = document.getElementById("modified-string");
-      //  let string = input.value;
-      //  headingElement.innerHTML = string.charAt(0).toUpperCase() +
-      //      string.slice(1); ;
-      // }
-    },
+    //   capitalizeString(){
+    //    let input = document.getElementByClass("auteur-annonce");
+    //    let headingElement = document.getElementById("modified-string");
+    //    let string = input.value;
+    //    headingElement.innerHTML = string.charAt(0).toUpperCase() +
+    //        string.slice(1); ;
+    //   }
+    // },
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }
