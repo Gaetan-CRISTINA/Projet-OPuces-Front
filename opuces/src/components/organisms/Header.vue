@@ -114,7 +114,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -127,7 +127,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -138,8 +138,14 @@
         -->
         <div id="center-header-desktop">
           <SearchBar />
-          <router-link
           
+        </div>
+
+        <!--
+        RIGHT HEADER
+        -->
+        <div id="right-header-desktop">
+          <router-link
           v-if="!cart"
           :to="{
             name:'Cart'}">
@@ -152,12 +158,7 @@
             name:'Cart'}">
           <PictoFullCart />
           </router-link>
-        </div>
 
-        <!--
-        RIGHT HEADER
-        -->
-        <div id="right-header-desktop">
           <h3 v-if="user">Bonjour {{ user.user_nicename }}</h3>
           <!--User Connected-->
           <router-link
@@ -348,7 +349,13 @@ export default {
   
 }
 @media screen and (min-width: 992px) {
-  
+  #left-header-desktop #logo {
+      fill: $main-green;
+      width: 30px;
+    }
+  #left-header-desktop:hover #logo {
+    fill: $secondary-green;
+  }
 }
 @media screen and (min-width: 1200px) {
   
@@ -398,7 +405,7 @@ export default {
 #right-header-desktop {
   display: none;
 }
-#left-header-mobile span, h2{
+#left-header-mobile span, h1{
   transition: all .2s ease-in-out;
 }
 header {
@@ -481,7 +488,7 @@ li svg {
 .disconect--button span {
   color: $main-green;
 }
-#div-logo {
+#div-empty-cart {
   width: 32px;
 }
 #left-header-desktop a:hover svg {
@@ -526,19 +533,27 @@ li svg {
   #right-header-desktop {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+  }
+  #right-header-desktop h3 {
+    font-size: 12px;
   }
   #left-header-desktop a {
     display: flex;
     align-items: center;
   }
-  #left-header-desktop a:hover h2 {
+  #left-header-desktop:hover h1 {
     color: $secondary-green;
+  }
+  #left-header-desktop {
+    transition: all .3s;
+  }
+  #left-header-desktop:hover {
+    transform: scale(1.025);
   }
   #left-header-desktop #logo-link {
     margin-right: 0.3em;
   }
-  #left-header-desktop h2 {
+  #left-header-desktop h1 {
     position: relative;
     top: -7px;
     font-weight: 900;
