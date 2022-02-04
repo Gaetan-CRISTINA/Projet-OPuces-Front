@@ -107,6 +107,7 @@
 import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
+import storage from "../plugins/storage";
 export default {
   name: "CreateClassified",
   components: {
@@ -163,8 +164,13 @@ export default {
   },
   computed: {
     user() {
-      this.$store.state.user;
-      return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
+      } else {
+        return false;
+      }
     },
   },
 };
@@ -226,6 +232,15 @@ button:hover {
   justify-content: flex-start;
 }
 form {
+
+  padding: 20px;
+  border: #2093a7 2px solid;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   width: 100%;
 }
 select {
@@ -282,6 +297,7 @@ input:focus {
 .displayForm {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .CreateClassifiedFormTitle {
   margin-bottom: 15px;

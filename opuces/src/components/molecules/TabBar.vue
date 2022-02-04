@@ -39,6 +39,7 @@ import PictoHome from "../atoms/PictoHome";
 import PictoAdd1 from "../atoms/PictoAdd1";
 import PictoAnnonces from "../atoms/PictoAnnonces";
 import PictoSearch from "../atoms/PictoSearch";
+import storage from "../../plugins/storage";
 
 export default {
   name: "TabBar",
@@ -49,9 +50,11 @@ export default {
     PictoSearch,
   },
   computed: {
-    user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+     user() {
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }

@@ -221,13 +221,7 @@ h1 {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main.scss";
-// .connexion {
-//   width: 100%;
-//   padding-right: 15px;
-//   padding-left: 15px;
-//   margin: auto;
-//   border: 15px;
-// }
+
 .left div:first-child {
   position: relative;
   color: $main-green;
