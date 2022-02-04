@@ -455,6 +455,7 @@ li svg {
 }
 #div-logo {
   width: 32px;
+  margin:0.5px auto;
 }
 #left-header-desktop a:hover svg {
   fill: $secondary-green !important;
@@ -462,6 +463,13 @@ li svg {
 #picto-home {
   fill: $main-green !important;
 }
+#txt-link {
+  padding:10px;
+  color:$main-green;
+  font-size: 24px;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 576px) {
 }
 @media screen and (min-width: 768px) {
