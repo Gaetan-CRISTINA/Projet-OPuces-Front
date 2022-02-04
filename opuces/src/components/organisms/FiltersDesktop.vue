@@ -7,7 +7,7 @@
       <BaseInputCity />
 
       <BaseInputPrice />
-      <button @click="applyFilter">Rechercher</button>
+      <button @click="applyFilter" class="search-validate">Rechercher</button>
       
     </div> 
     
@@ -88,7 +88,7 @@
     position: fixed;
     margin-top: 20px;
     margin-left: 25px;
-    width: 420px;
+    width: 255px;
     
   }
   select {
@@ -139,7 +139,7 @@
     justify-content: space-between;
   }
   .input-price input {
-    width: 200px;
+    width: 100%;
   }
   .input-price input::placeholder,
   .input-filters input::placeholder {
@@ -232,38 +232,6 @@
   .search-validate:hover {
     background-color: $secondary-green;
   }
-
-  button {
-  background-color: $main-green;
-  border: 1px solid #f8f9fa;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-  font-family: arial,sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 10px;
-  padding: 10px 24px;
-  width: 250px;
-  height: 35px;
-  min-width: 54px;
-  text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: pre;
-}
-
-  button:hover {
-  border-color: #dadce0;
-  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
-  color: black;
-}
-
-  button:focus {
-  border-color: $main-green;
-  outline: none;
-}
   
 }
 @media screen and (min-width: 1200px) {
