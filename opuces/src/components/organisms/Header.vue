@@ -5,7 +5,7 @@
         <router-link v-if="user" :to="{ name: 'Home' }">
           <div id="left-header-mobile">
             <span id="logo-link"><Logo /></span>
-            <h2 id="txt-link">O'Puces</h2>
+            <h1 id="txt-link">O'Puces</h1>
           </div>
         </router-link>
 
@@ -333,6 +333,31 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import "../../assets/scss/main";
+  #left-header-mobile #logo {
+      fill: $main-green;
+    }
+  #left-header-mobile:hover #logo {
+    fill: $secondary-green;
+  }
+@media screen and (min-width: 576px) {
+   
+  }
+@media screen and (min-width: 768px) {
+  
+}
+@media screen and (min-width: 992px) {
+  
+}
+@media screen and (min-width: 1200px) {
+  
+}
+@media screen and (min-width: 1400px) {
+    
+}
+</style>
+
 <style scoped lang="scss">
 @import "../../assets/scss/main";
 .header-bottom {
@@ -348,8 +373,13 @@ export default {
 .flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
+}
+#left-header-mobile:hover {
+  transform: scale(1.05);
+}
+#left-header-mobile:hover h1 {
+  color: $secondary-green;
 }
 #right-header-mobile:hover .sub-nav {
   transform: translateX(0);
@@ -360,6 +390,8 @@ export default {
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
+  padding-top: .5em;
+  transition: all .3s;
 }
 #left-header-desktop,
 #center-header-desktop,
@@ -369,14 +401,10 @@ export default {
 #left-header-mobile span, h2{
   transition: all .2s ease-in-out;
 }
-#left-header-mobile span, h2:hover{
-  transform: scale(1.3);
-}
-
 header {
   position: fixed;
   z-index: 1;
-  padding: 0.5em 0 !important;
+  padding: 0.5em 0 0 0 !important;
   width: 100%;
   background-color: #fff;
   display: flex;
