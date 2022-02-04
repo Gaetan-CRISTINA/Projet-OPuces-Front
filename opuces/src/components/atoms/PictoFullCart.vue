@@ -10,7 +10,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 svg {
   transition: all .3s;
+}
+svg:hover {
+  fill: #2093A7;
 }
 </style>

@@ -95,7 +95,7 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter </a>
+            <a id="se-connecter"> Se connecter / Créer un compte</a>
           </router-link>
         </div>
 
@@ -138,6 +138,7 @@
         -->
         <div id="center-header-desktop">
           <SearchBar />
+          <div v-if="user">
           <router-link
           
           v-if="!cart"
@@ -152,6 +153,7 @@
             name:'Cart'}">
           <PictoFullCart />
           </router-link>
+          </div>
         </div>
 
         <!--
@@ -315,8 +317,10 @@ export default {
   },
   computed: {
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }
