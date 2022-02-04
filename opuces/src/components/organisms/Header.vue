@@ -5,7 +5,7 @@
         <router-link v-if="user" :to="{ name: 'Home' }">
           <div id="left-header-mobile">
             <span id="logo-link"><Logo /></span>
-            <h2 id="txt-link">O'Puces</h2>
+            <h1 id="txt-link">O'Puces</h1>
           </div>
         </router-link>
 
@@ -95,7 +95,7 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter / Créer un compte</a>
+            <a id="se-connecter"> Se connecter </a>
           </router-link>
         </div>
 
@@ -114,7 +114,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -127,7 +127,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -138,9 +138,14 @@
         -->
         <div id="center-header-desktop">
           <SearchBar />
-          <div v-if="user">
-          <router-link
           
+        </div>
+
+        <!--
+        RIGHT HEADER
+        -->
+        <div id="right-header-desktop">
+          <router-link
           v-if="!cart"
           :to="{
             name:'Cart'}">
@@ -153,13 +158,7 @@
             name:'Cart'}">
           <PictoFullCart />
           </router-link>
-          </div>
-        </div>
 
-        <!--
-        RIGHT HEADER
-        -->
-        <div id="right-header-desktop">
           <h3 v-if="user">Bonjour {{ user.user_nicename }}</h3>
           <!--User Connected-->
           <router-link
@@ -317,10 +316,8 @@ export default {
   },
   computed: {
     user() {
-      const user = storage.get('userData');
-      if (user || this.$store.state.user) {
-        this.$store.state.user;
-        return user;
+      if (this.$store.state.user) {
+        return this.$store.state.user;
       } else {
         return false;
       }
@@ -337,6 +334,38 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import "../../assets/scss/main";
+  #left-header-mobile #logo {
+      fill: $main-green;
+    }
+  #left-header-mobile:hover #logo {
+    fill: $secondary-green;
+    width: 30px;
+  }
+@media screen and (min-width: 576px) {
+   
+  }
+@media screen and (min-width: 768px) {
+  
+}
+@media screen and (min-width: 992px) {
+  #left-header-desktop #logo {
+      fill: $main-green;
+      width: 30px;
+    }
+  #left-header-desktop:hover #logo {
+    fill: $secondary-green;
+  }
+}
+@media screen and (min-width: 1200px) {
+  
+}
+@media screen and (min-width: 1400px) {
+    
+}
+</style>
+
 <style scoped lang="scss">
 @import "../../assets/scss/main";
 .header-bottom {
@@ -352,8 +381,13 @@ export default {
 .flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
+}
+#left-header-mobile:hover {
+  transform: scale(1.05);
+}
+#left-header-mobile:hover h1 {
+  color: $secondary-green;
 }
 #right-header-mobile:hover .sub-nav {
   transform: translateX(0);
@@ -364,23 +398,21 @@ export default {
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
+  padding-top: .5em;
+  transition: all .3s;
 }
 #left-header-desktop,
 #center-header-desktop,
 #right-header-desktop {
   display: none;
 }
-#left-header-mobile span, h2{
+#left-header-mobile span, h1{
   transition: all .2s ease-in-out;
 }
-#left-header-mobile span, h2:hover{
-  transform: scale(1.3);
-}
-
 header {
   position: fixed;
   z-index: 1;
-  padding: 0.5em 0 !important;
+  padding: 0.5em 0 0 0 !important;
   width: 100%;
   background-color: #fff;
   display: flex;
@@ -457,9 +489,8 @@ li svg {
 .disconect--button span {
   color: $main-green;
 }
-#div-logo {
+#div-empty-cart {
   width: 32px;
-  margin:0.5px auto;
 }
 #left-header-desktop a:hover svg {
   fill: $secondary-green !important;
@@ -467,13 +498,6 @@ li svg {
 #picto-home {
   fill: $main-green !important;
 }
-#txt-link {
-  padding:10px;
-  color:$main-green;
-  font-size: 24px;
-    font-weight: 600;
-}
-
 @media screen and (max-width: 576px) {
 }
 @media screen and (min-width: 768px) {
@@ -510,19 +534,27 @@ li svg {
   #right-header-desktop {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+  }
+  #right-header-desktop h3 {
+    font-size: 12px;
   }
   #left-header-desktop a {
     display: flex;
     align-items: center;
   }
-  #left-header-desktop a:hover h2 {
+  #left-header-desktop:hover h1 {
     color: $secondary-green;
+  }
+  #left-header-desktop {
+    transition: all .3s;
+  }
+  #left-header-desktop:hover {
+    transform: scale(1.025);
   }
   #left-header-desktop #logo-link {
     margin-right: 0.3em;
   }
-  #left-header-desktop h2 {
+  #left-header-desktop h1 {
     position: relative;
     top: -7px;
     font-weight: 900;

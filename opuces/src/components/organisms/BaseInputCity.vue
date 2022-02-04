@@ -58,6 +58,7 @@ export default {
     },
   },
 
+
   mounted() {
     fetch("/")
     .then(res => res.json())
@@ -66,6 +67,7 @@ export default {
       this.cityArray = json;
     })
   },
+
 
   methods: {
     selectItem(city){
