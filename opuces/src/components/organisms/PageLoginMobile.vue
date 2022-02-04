@@ -2,14 +2,7 @@
   <div class="main-container">
     <div class="connexion">
       <div class="left">
-        <router-link
-        :to="{
-          name: 'Home'
-        }">
-        <div>
-          <h1><Logo /> O'Puces</h1>
-        </div>
-        </router-link>
+        
         <h2>Connexion</h2>
 
         <form class="login-form" @submit="handleSubmit">
@@ -81,7 +74,7 @@
 
 
 <script>
-import Logo from "../atoms/Logo";
+
 
 import userService from "../../services/userService.js";
 import storage from "../../plugins/storage.js";
@@ -89,7 +82,7 @@ import storage from "../../plugins/storage.js";
 export default {
   name: "PageLoginMobile",
   components: {
-    Logo,
+    
   },
   data() {
     return {
@@ -303,5 +296,6 @@ input:focus {
   .right img {
     width: 150%;
   }
+  
 }
 </style>
