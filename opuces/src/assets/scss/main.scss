@@ -1,0 +1,118 @@
+//-----------------
+//Typographie
+//-----------------
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,300&display=swap');
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+//-----------------
+//Couleurs
+//-----------------
+$main-green: #2093A7;
+$secondary-green: #31C7C0;
+$light-green: #E3FBFF;
+$light-yellow: #F5F5EE;
+$dark-yellow: #FDD89C;
+$text-color: #484848;
+$light-grey: #F8F8F8;
+$social-fb: #166ADA;
+$social-google: #D44235;
+
+p {
+    line-height: 1.5;
+}
+a {
+    text-decoration: none;
+}
+h1 {
+    font-weight: 700;
+    font-size: 25px;
+    padding-left: .3em;
+}
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: $main-green;
+}
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: $text-color;
+}
+h6 {
+    color: $text-color;
+}
+
+//-------ANNONCES-------//
+
+.date-annonce {
+    font-size: 12px;
+    font-weight: 100;
+    font-style: italic;
+    color: $text-color;
+    padding-bottom: .7em;
+}
+.auteur-annonce {
+    font-size: 12px;
+    font-weight: 700;
+    color: $text-color;
+    padding-bottom: .7em;
+}
+.content-annonce {
+    padding-left:1.5em;
+    padding-right: 1.5em;
+}
+
+//-----------------
+//Mobile
+//-----------------
+.main-container {
+    //background-color: magenta;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+//-----------------
+//Small
+//-----------------    
+@media screen and (min-width: 576px) {
+    .main-container {
+        padding-right: 0;
+        padding-left: 0;
+        width: 540px;
+        margin: 0 auto;
+    }
+  }
+//-----------------
+//Medium
+//-----------------  
+@media screen and (min-width: 768px) {
+    .main-container {
+        width: 720px;
+    }
+}
+//-----------------
+//Large
+//-----------------  
+@media screen and (min-width: 992px) {
+    .main-container {
+        width: 960px;
+    }
+}
+//-----------------
+//X-Large
+//-----------------  
+@media screen and (min-width: 1200px) {
+    .main-container {
+        width: 1140px;
+    }
+}
+//-----------------
+//XX-Large
+//-----------------  
+@media screen and (min-width: 1400px) {
+    .main-container {
+        width: 1320px;
+    }
+}
