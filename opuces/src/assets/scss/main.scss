@@ -28,11 +28,14 @@ a {
 h2 {
     font-size: 24px;
     font-weight: 600;
-    color: $text-color;
+    color: $main-green;
 }
 h3 {
     font-size: 20px;
     font-weight: 600;
+    color: $text-color;
+}
+h6 {
     color: $text-color;
 }
 
