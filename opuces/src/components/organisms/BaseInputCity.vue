@@ -58,14 +58,14 @@ export default {
     },
   },
 
-  mounted() {
-    fetch("https://geo.api.gouv.fr/communes/")
-    .then(res => res.json())
-    .then((json) => {
-      console.log(json);
-      this.cityArray = json;
-    })
-  },
+  // mounted() {
+  //   fetch("https://geo.api.gouv.fr/communes/")
+  //   .then(res => res.json())
+  //   .then((json) => {
+  //     console.log(json);
+  //     this.cityArray = json;
+  //   })
+  // },
 
   methods: {
     selectItem(city){

@@ -95,7 +95,7 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter / Créer un compte</a>
+            <a id="se-connecter"> Se connecter </a>
           </router-link>
         </div>
 
@@ -138,10 +138,7 @@
         -->
         <div id="center-header-desktop">
           <SearchBar />
-
-          <div v-if="user">
-          <router-link
-
+          
         </div>
 
         <!--
@@ -161,10 +158,6 @@
             name:'Cart'}">
           <PictoFullCart />
           </router-link>
-
-          </div>
-        </div>
-
 
           <h3 v-if="user">Bonjour {{ user.user_nicename }}</h3>
           <!--User Connected-->
@@ -323,10 +316,8 @@ export default {
   },
   computed: {
     user() {
-      const user = storage.get('userData');
-      if (user || this.$store.state.user) {
-        this.$store.state.user;
-        return user;
+      if (this.$store.state.user) {
+        return this.$store.state.user;
       } else {
         return false;
       }
@@ -500,7 +491,6 @@ li svg {
 }
 #div-empty-cart {
   width: 32px;
-  margin:0.5px auto;
 }
 #left-header-desktop a:hover svg {
   fill: $secondary-green !important;
@@ -508,13 +498,6 @@ li svg {
 #picto-home {
   fill: $main-green !important;
 }
-#txt-link {
-  padding:10px;
-  color:$main-green;
-  font-size: 24px;
-    font-weight: 600;
-}
-
 @media screen and (max-width: 576px) {
 }
 @media screen and (min-width: 768px) {
