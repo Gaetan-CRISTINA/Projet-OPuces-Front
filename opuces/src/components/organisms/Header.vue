@@ -33,7 +33,7 @@
                   name: 'Myaccount',
                 }"
               >
-                <li><PictoCompte /><span>Mon compte</span></li>
+                <li @click="StoreUserId"><PictoCompte /><span>Mon compte</span></li>
               </router-link>
 
               <router-link
