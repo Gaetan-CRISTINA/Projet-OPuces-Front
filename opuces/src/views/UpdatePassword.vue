@@ -19,9 +19,9 @@
             Vous devez saisir un nom d'utilisateur
           </div>
 
-          <h6>Email</h6>
-          <input v-model="email" type="email" name="email" class="email" />
-          <div class="error" v-if="emailEmpty">Vous devez saisir un email</div>
+          <h6>Mot de passe actuel</h6>
+          <input v-model="currentPassword" type="password" name="currentPassword" class="currentPassword" />
+          <div class="error" v-if="currentPasswordEmpty">Vous devez saisir votre mot de passe actuel</div>
 
           <h6>Nouveau mot de passe</h6>
           <label class="eye-label">
@@ -87,8 +87,8 @@ export default {
       usernameEmpty: false,
       newPassword: "",
       newPasswordEmpty: false,
-      email: "",
-      emailEmtpy: false,
+      currentPassword: "",
+      currentPasswordEmtpy: false,
       newPasswordVerify: "",
       newPasswordTooShort: false,
       newPasswordVerifyEmpty: false,
@@ -101,8 +101,8 @@ export default {
       if (this.username == "") {
         this.usernameEmpty = true;
       }
-      if (this.email == "") {
-        this.emailEmpty = true;
+      if (this.currentPassword == "") {
+        this.currentPasswordEmpty = true;
       }
       if (this.password == "") {
         this.passwordEmpty = true;
@@ -129,7 +129,7 @@ export default {
 
       if (
         !this.usernameEmpty &&
-        !this.emailEmpty &&
+        !this.currentPasswordEmpty &&
         !this.newPasswordEmpty &&
         !this.newPasswordVerify &&
         !this.newPasswordTooShort &&
@@ -137,11 +137,11 @@ export default {
         this.userData == true
       ) {
         console.log("Mise à jour du USER");
-        let result = await userService.updateUser(
+        let result = await userService.updateUserPassword(
           this.newPassword,
           this.newPasswordVerify,
           this.username,
-          this.email
+          this.currentPassword
         );
         console.log(result);
         if (result) {

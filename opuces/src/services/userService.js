@@ -8,7 +8,7 @@ const userService = {
     jwtBaseURI: env.jwtBaseURI,
     baseURI: env.baseURI,
     opucesBaseURI: env.opucesApi,
-
+    wpApi : env.wpApi,
 
     login: async function(login, password){
         let response = await axios.post(
@@ -82,16 +82,57 @@ const userService = {
         storage.unset('userData');
     },
 
-    lostPassword: async function()
+    updateUserPassword: async function(currentPassword, newPassword)
     {
-       const response = await axios.post(userService.baseURI + '/lost-password');
-       return response.data; 
-    },
-
-    updateUser: async function()
-    {
-        const response = await axios.patch(userService.baseURI + '/' );
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const id = storage.get('UserIdLogged');
+        if(token && id){
+            const options = { 
+                headers: {
+                    Authorization: 'Bearer ' + token 
+                }
+            };
+        
+        const response = await axios.put(userService.wpApi + '/users/' + id,
+        {
+            password: currentPassword,
+            new_password: newPassword
+        },
+        options
+        ).catch(function(){
+            console.log('Update Password Failed!');
+            console.log(response);
+            return false;
+        });
+        console.log('Password Updated!');
         return response.data;
+    }
+    },
+    updateUserEmail: async function(newEmail){
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const id = storage.get('UserIdLogged');
+        if(token && id){
+            const options = { 
+                headers: {
+                    Authorization: 'Bearer ' + token 
+                }
+            };
+            const response = await axios.put(userService.wpApi + '/users/' + id,
+            {
+                email: newEmail
+            },
+            options
+            ).catch(function(){
+                console.log('Update Email Failed!');
+                console.log(response);
+                return false;
+            });
+            console.log('Email Updated!');
+            return response.data;
+
+        }
     },
 
     saveUserInformation: async function ( adress, adress2, country, phoneNumber, zipcode, city)

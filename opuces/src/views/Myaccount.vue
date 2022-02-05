@@ -21,7 +21,15 @@
               Mettre à jour mon mot de passe
             </button>
           </router-link>
-
+        <router-link
+            :to="{
+              name: 'UpdateEmail',
+            }"
+          >
+            <button class="--button connect">
+              Mettre à jour mon adresse mail
+            </button>
+          </router-link>
           
         </div>
         <div class="right contact">
@@ -203,7 +211,6 @@ export default {
   display: flex;
   flex-direction: column;
   position: absolute;
-  margin-top: 7rem;
 }
 .illusLamp {
   display: none;
@@ -270,9 +277,6 @@ button:hover {
 }
 h2 {
   color: $main-green;
-}
-.main-container {
-  padding-top: 42px;
 }
 form {
   margin: 0 auto;

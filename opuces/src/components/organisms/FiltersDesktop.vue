@@ -78,6 +78,9 @@
 .filters-desktop {
   display: none;
 }
+.input-filters{
+  width: 300px;
+}
 
 @media screen and (min-width: 576px) {
 }

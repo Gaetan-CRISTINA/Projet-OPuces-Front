@@ -95,7 +95,7 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter </a>
+            <a id="se-connecter"> Se connecter / se créer un compte </a>
           </router-link>
         </div>
 
