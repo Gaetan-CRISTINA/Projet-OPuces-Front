@@ -94,7 +94,7 @@ const userService = {
         return response.data;
     },
 
-    saveUserInformation: async function (userIdLogged, adress, adress2, country, phoneNumber, zipcode, city)
+    saveUserInformation: async function ( adress, adress2, country, phoneNumber, zipcode, city)
     {
         const userData = storage.get('userData');
         const token = userData.token;
