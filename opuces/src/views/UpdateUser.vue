@@ -163,7 +163,7 @@ export default {
         );
         console.log(result);
         if (result) {
-          this.$router.push({ name: "Home" });
+          this.$router.push({ name: 'Myaccount' });
         }
       }
     },
