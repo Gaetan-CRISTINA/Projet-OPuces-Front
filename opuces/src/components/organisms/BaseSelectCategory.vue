@@ -77,7 +77,7 @@ export default {
   },
 
   mounted() {
-    fetch("http://localhost/apotheose/projet-O-Puces-back/public/wp-json/wp/v2/ProductCategory")
+    fetch("http://localhost/OPuces/public/wp-json/wp/v2/ProductCategory")
     .then(res => res.json())
     .then((json) => {
       console.log(json);
