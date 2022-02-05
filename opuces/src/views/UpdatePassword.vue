@@ -136,7 +136,7 @@ export default {
         !this.newPasswordConfirm &&
         this.userData == true
       ) {
-        console.log("Mise à jour du USER");
+        console.log("Mise à jour du Password");
         let result = await userService.updateUserPassword(
           this.newPassword,
           this.newPasswordVerify,

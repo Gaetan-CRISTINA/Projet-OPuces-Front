@@ -20,8 +20,15 @@
           </div>
 
           <h6>Nouvelle adresse mail</h6>
-          <input v-model="newEmail" type="email" name="newEmail" class="newEmail" />
-          <div class="error" v-if="newEmailEmpty">Vous devez saisir une nouvelle adresse mail</div>
+          <input
+            v-model="newEmail"
+            type="email"
+            name="newEmail"
+            class="newEmail"
+          />
+          <div class="error" v-if="newEmailEmpty">
+            Vous devez saisir une nouvelle adresse mail
+          </div>
 
           <h6>Confirmation de votre nouvelle adresse mail</h6>
           <label class="eye-label">
@@ -35,7 +42,7 @@
           <div class="error" v-if="newEmailVerifyEmpty">
             Vous devez saisir une adresse mail
           </div>
-          
+
           <div class="error" v-if="newEmailConfirm">
             Les adresses mail ne correspondent pas.
           </div>
@@ -47,7 +54,7 @@
 
       <div class="right">
         <div class="IllusPlane">
-          <img src="../assets/svg/Groupe-277.svg" alt="" />
+          <img src="../assets/svg/Groupe-256.svg" alt="" />
         </div>
       </div>
     </div>
@@ -56,35 +63,61 @@
 
 <script>
 import Header2 from "../components/organisms/Header2.vue";
-// import storage from "../plugins/storage";
-// import userService from "../services/userService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
+import userService from "../services/userService";
 export default {
   name: "UpdateEmail",
   components: {
     Header2,
-    IllusLamp
+    IllusLamp,
   },
   data() {
     return {
-    currentEmail: "",
-    currentEmailEmpty: false,
+      currentEmail: "",
+      currentEmailEmpty: false,
 
-    newEmail: "",
-    newEmailEmpty: false,
+      newEmail: "",
+      newEmailEmpty: false,
 
-    newEmailVerifyVerify: "",
-    newEmailVerifyEmpty: false,
+      newEmailVerify: "",
+      newEmailVerifyEmpty: false,
 
-    newEmailConfirm: false,
+      newEmailConfirm: false,
     };
   },
   methods: {
     async handleSubmit(event) {
       event.preventDefault();
-    }
-    }
-}
+      if (this.currentEmail == "") {
+        this.currentEmailEmpty = true;
+      }
+      if (this.newEmail == "") {
+        this.newEmailEmpty = true;
+      }
+
+      if (this.newEmailVerify == "") {
+        this.newEmailVerifyEmpty = true;
+      }
+
+      if (this.newEmail !== this.newEmailVerify) {
+        this.newEmailConfirm = true;
+      }
+
+      if (
+        !this.currentEmailEmpty &&
+        !this.newEmailEmpty &&
+        !this.newEmailVerifyEmpty &&
+        !this.newEmailConfirm
+      ) {
+        console.log("Envoie du nouvel email à l'API");
+        let result = await userService.updateUserEmail(this.newEmail);
+        console.log(result);
+        this.$router.push({ name: 'Myaccount' });
+         
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -97,10 +130,11 @@ export default {
   position: absolute;
   margin-top: 7rem;
 }
-.left, .right{
+.left,
+.right {
   margin-top: 10rem;
 }
-.left{
+.left {
   display: flex;
   flex-direction: column;
   margin-right: 15%;
@@ -143,17 +177,17 @@ textarea:focus {
   .illusLamp {
     display: none;
   }
-  .main-container{
+  .main-container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    }
+  }
 }
 @media screen and (min-width: 768px) {
   .illusLamp {
     display: none;
   }
-  .main-container{
+  .main-container {
     flex-direction: column;
   }
 }
@@ -161,10 +195,9 @@ textarea:focus {
   .illusLamp {
     display: none;
   }
-  .main-container{
+  .main-container {
     flex-direction: row;
   }
-  
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
