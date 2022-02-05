@@ -14,6 +14,7 @@ export default {
   created(){
       storage.unset('userData');
       storage.unset('ClassifiedIdCart')
+      storage.unset('UserIdLogged')
       this.$router.push({name:"Home"})  
   }
 }
