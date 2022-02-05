@@ -51,6 +51,7 @@
 
 
 <script>
+import classifiedsService from '../../services/classifiedsService';
 export default {
   data() {
     return{
@@ -76,13 +77,10 @@ export default {
     },
   },
 
-  mounted() {
-    fetch("http://localhost/OPuces/public/wp-json/wp/v2/ProductCategory")
-    .then(res => res.json())
-    .then((json) => {
-      console.log(json);
-      this.categoryArray = json;
-    })
+  async created() {
+    this.json = await classifiedsService.loadClassifiedProductCategory();
+    this.categoryArray = this.json;
+
   },
 
   methods: {
