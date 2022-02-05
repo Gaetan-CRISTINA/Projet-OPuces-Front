@@ -94,8 +94,16 @@ const userService = {
         return response.data;
     },
 
-    saveUserInformation: async function (adress, adress2, country, phoneNumber, zipcode, city)
+    saveUserInformation: async function (userIdLogged, adress, adress2, country, phoneNumber, zipcode, city)
     {
+        const userData = storage.get('userData');
+        const token = userData.token;
+        if(token){
+            const options = { 
+                headers: {
+                    Authorization: 'Bearer ' + token 
+                }
+            };
         const response = await axios.post(userService.opucesBaseURI + '/user-table',
         {
             
@@ -105,13 +113,15 @@ const userService = {
             city: city,
             country: country,
             phone_number: phoneNumber
-        }
+        },
+        options
         ).catch(function(){
             console.log('saveUserInfo Error');
+            console.log(response);
             return false;
         });
         return response.data;
-    },
-
+    }
+}
 };
 export default userService;

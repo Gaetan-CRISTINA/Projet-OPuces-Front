@@ -206,10 +206,8 @@ h1 {
   width: 95px;
   margin-bottom: 1em;
 }
-.home-link:hover h1 {
-  color: $secondary-green;
-}
-.home-link:hover:hover .logo #logo {
+
+.home-link .logo #logo {
   fill: $secondary-green !important;
 }
 .picto-eye {

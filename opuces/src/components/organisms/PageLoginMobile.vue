@@ -119,7 +119,7 @@ export default {
           this.loginFailed = true;
         }
       }
-    },
+    }
   },
 };
 </script>

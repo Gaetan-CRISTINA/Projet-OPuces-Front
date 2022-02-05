@@ -170,6 +170,14 @@
     <div class="header-bottom">
         <ul>
           <router-link
+            :to="{
+              name: 'Home',
+            }"
+          >
+            
+          <li>Accueil</li>
+          </router-link>
+          <router-link
             v-if="user"
             :to="{
               name: 'CreateClassified',

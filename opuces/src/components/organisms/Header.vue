@@ -194,6 +194,14 @@
     <div class="header-bottom">
       <ul>
         <router-link
+            :to="{
+              name: 'Home',
+            }"
+          >
+            
+          <li>Accueil</li>
+          </router-link>
+        <router-link
           v-if="user"
           :to="{
             name: 'CreateClassified',
@@ -207,7 +215,7 @@
             name: 'Myaccount',
           }"
         >
-          <li>Mon compte</li>
+          <li @click="StoreUserId">Mon compte</li>
         </router-link>
         <router-link
           v-if="user"
@@ -215,7 +223,7 @@
             name: 'UserClassifieds',
           }"
         >
-          <li>Mes annonces</li>
+          <li >Mes annonces</li>
         </router-link>
         <router-link
           :to="{
@@ -291,7 +299,7 @@ import PictoFullCart from "../atoms/PictoFullCart.vue";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
 import storage from "../../plugins/storage";
-
+import classifiedsService from "../../services/classifiedsService"
 export default {
   name: "Header",
   components: {
@@ -327,6 +335,14 @@ export default {
       }
     },
   },
+  methods: {
+    async StoreUserId(event){
+      event.preventDefault();
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+      this.$router.push({name: 'Myaccount'});
+    }
+  }
 };
 </script>
 
