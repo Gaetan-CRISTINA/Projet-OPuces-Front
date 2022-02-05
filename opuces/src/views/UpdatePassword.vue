@@ -88,7 +88,7 @@ export default {
       newPassword: "",
       newPasswordEmpty: false,
       currentPassword: "",
-      currentPasswordEmtpy: false,
+      currentPasswordEmpty: false,
       newPasswordVerify: "",
       newPasswordTooShort: false,
       newPasswordVerifyEmpty: false,
@@ -117,7 +117,8 @@ export default {
         this.passwordConfirm = true;
       }
 
-      const userData = storage.get("userData");
+      const userData = storage.get('userData');
+      console.log(userData.token);
       if (userData != null) {
         const token = userData.token;
         if (userService.checkUser(token)) {
@@ -131,7 +132,7 @@ export default {
         !this.usernameEmpty &&
         !this.currentPasswordEmpty &&
         !this.newPasswordEmpty &&
-        !this.newPasswordVerify &&
+        !this.newPasswordVerifyEmpty &&
         !this.newPasswordTooShort &&
         !this.newPasswordConfirm &&
         this.userData == true

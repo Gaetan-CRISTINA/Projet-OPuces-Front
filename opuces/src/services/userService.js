@@ -29,10 +29,18 @@ const userService = {
         return response.data;
     },
     checkUser: async function(token){
-        let response = await axios.post(
-            userService.jwtBaseURI+'/token/validate',
-            { token: token
-            }
+        if(token){
+            const options = {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            };
+       
+        let response = await axios.post( userService.jwtBaseURI+'/token/validate',
+            { 
+                
+            },
+            options
         ).catch(
             function(){
                 console.log('User différent');
@@ -41,9 +49,10 @@ const userService = {
         )
         return {
             'success': true,
+            
             'response': response,
-
-        };
+        }
+        }
     },
 
     userConnected: async function(){
@@ -90,13 +99,15 @@ const userService = {
         if(token && id){
             const options = { 
                 headers: {
-                    Authorization: 'Bearer ' + token 
+                    Authorization: 'Bearer' + token 
                 }
             };
-        
+        // const response = await axios.put(userService.opucesBaseURI + '/UpdatePassword'
+        // );
+
         const response = await axios.put(userService.wpApi + '/users/' + id,
         {
-            password: currentPassword,
+            // password: currentPassword,
             new_password: newPassword
         },
         options
