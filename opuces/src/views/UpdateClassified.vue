@@ -8,7 +8,10 @@
       <div class="updateClassifiedForm">
         <h1>Update Classified</h1>
         <p>Voici le formulaire de modification de votre annonce</p>
-        <form @submit="handleSubmit"></form>
+        <form @submit="handleSubmit">
+            
+            <button>Enregistrer les modifications</button>
+        </form>
 
         <div class="buttonValidation">
           <router-link
