@@ -187,7 +187,7 @@ export default {
               console.log(result);
               if(result){
                   if(result.success == true){   
-                this.$router.push({name:'Login'});
+                this.$router.push({name:'LoginForm'});
                       // renvoyer vers la home avec token 
                   }
               }

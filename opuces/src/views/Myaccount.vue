@@ -39,7 +39,15 @@
               Mettre à jour mon adresse postale
             </button>
           </router-link>
-          
+          <router-link
+            :to="{
+              name: 'UpdateUser',
+            }"
+          >
+            <button class="delete">
+              Supprimer mon compte, attention cette action est irréversible
+            </button>
+          </router-link>
         </div>
        
             
@@ -80,6 +88,11 @@ export default {
 .svg{
   width: 150%;
   align-self: center;
+}
+.delete:hover {
+  background-color: $social-google;
+  color: white;
+  border: solid 1px $social-google;
 }
 @media screen and (min-width: 576px) {
   .illusLamp {

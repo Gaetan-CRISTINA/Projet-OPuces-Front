@@ -3,7 +3,9 @@
     <Header2 />
     <div class="illusLamp">
       <IllusLamp />
-      <h1>Update Classified</h1>
+      <div class="main-container">
+        <h1>Update Classified</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -12,17 +14,15 @@
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 
-
 export default {
-  name: 'UpdateClassified',
+  name: "UpdateClassified",
   components: {
     Header2,
-    IllusLamp
-    
+    IllusLamp,
   },
-  created(){
-      this.id = this.$route.params.id;
-  }
+  created() {
+    this.id = this.$route.params.id;
+  },
 };
 </script>
 
