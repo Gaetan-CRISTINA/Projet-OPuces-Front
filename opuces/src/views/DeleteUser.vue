@@ -28,6 +28,7 @@
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 import userService from "../services/userService";
+import storage from "../plugins/storage"
 
 export default {
   name: "DeleteUser",
@@ -40,7 +41,10 @@ export default {
       event.preventDefault();
       const userDeletion = await userService.deleteUser();
       console.log(userDeletion);
-      if(userDeletion.success){
+      if(userDeletion){
+        storage.unset('userData');
+        storage.unset('ClassifiedIdCart')
+        storage.unset('UserIdLogged')
         this.$router.push({ name: 'DeleteUserConfirmation'});
       }
       
