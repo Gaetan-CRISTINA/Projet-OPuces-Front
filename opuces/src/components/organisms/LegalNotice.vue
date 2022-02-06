@@ -90,7 +90,6 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 20px;
 }
 .title-cgu-container img {
   margin-right: 15px;
@@ -98,8 +97,8 @@ export default {
 }
 .title-cgu-container p {
   color: $main-green;
-  font-size: 24px;
-  font-weight: 900px;
+  font-weight: 900;
+    font-size: 18px;
 }
 .cgu-container {
   margin: 15px;

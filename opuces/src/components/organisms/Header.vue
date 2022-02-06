@@ -353,7 +353,8 @@ export default {
 }
 #left-header-mobile:hover #logo {
   fill: $secondary-green;
-  width: 30px;
+  width: 40px;
+  margin-right: 15px;
 }
 @media screen and (min-width: 576px) {
 }
@@ -421,7 +422,7 @@ h1 {
 header {
   position: fixed;
   z-index: 1;
-  padding: 0.5em 0 0 0 !important;
+  top:0;
   width: 100%;
   background-color: #fff;
   display: flex;

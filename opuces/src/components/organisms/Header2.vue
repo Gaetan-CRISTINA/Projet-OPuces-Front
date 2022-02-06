@@ -326,6 +326,12 @@ export default {
     fill: $secondary-green;
     width: 70px;
   }
+.title-cgu-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position:relative;
+}
 @media screen and (min-width: 576px) {
    
   }
@@ -350,6 +356,7 @@ export default {
 </style>
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+
 .header-bottom {
   display: none;
 }
