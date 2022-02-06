@@ -33,7 +33,7 @@
                   name: 'Myaccount',
                 }"
               >
-                <li><PictoCompte /><span>Mon compte</span></li>
+                <li @click="StoreUserId"><PictoCompte /><span>Mon compte</span></li>
               </router-link>
 
               <router-link
@@ -191,7 +191,7 @@
               name: 'Myaccount',
             }"
           >
-          <li>Mon compte</li>
+          <li @click="StoreUserId">Mon compte</li>
           </router-link>
           <router-link
             v-if="user"
@@ -278,7 +278,7 @@ import PictoMail from "../atoms/PictoMail";
 import PictoClose from "../atoms/PictoClose.vue";
 import PictoAdd2 from "../atoms/PictoAdd2.vue";
 
-
+import classifiedsService from "../../services/classifiedsService"
 import Logo from "../atoms/Logo";
 
 import storage from "../../plugins/storage";
@@ -307,6 +307,14 @@ export default {
       }
     },
   },
+  methods: {
+    async StoreUserId(event){
+      event.preventDefault();
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+      this.$router.push({name: 'Myaccount'});
+    }
+  }
 };
 </script>
 <style lang="scss">

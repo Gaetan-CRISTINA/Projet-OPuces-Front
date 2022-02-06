@@ -45,6 +45,43 @@ const classifiedsService = {
         
     },
 
+    async updateClassified(classifiedId, title, description, selectedState, selectedCategory, price, selectedDeliveryMethod, content, imageId){
+        const userData = storage.get('userData');
+        if(userData !=null){
+            const token = userData.token;
+            if(token){
+                const options = {
+                    headers: {
+                        Authorization: 'Bearer' + token
+                    }
+                };
+            const response = await axios.post(
+            classifiedsService.opucesBaseURI + '/save-classified',
+            {
+                post_id: classifiedId,
+                title: title,
+                description: description,
+                ProductState: selectedState,
+                ProductCategorie: selectedCategory,
+                price: price,
+                DeliveryMethod: selectedDeliveryMethod,
+                content: content,
+                imageId: imageId
+                
+            },
+            options
+        ).catch(
+            function(){
+                console.log('upload classified failed');
+                return false;
+            });
+            
+            return response.data;
+            
+            }
+        }
+    },
+
     async loadClassified(){
         const response = await axios.get(classifiedsService.baseURI + '/classified?_embed=true');
         return response.data;
