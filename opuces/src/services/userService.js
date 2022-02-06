@@ -171,7 +171,35 @@ const userService = {
             return false;
         });
         return response.data;
+        }
+    },
+    deleteUser: async function(){
+        const userId = storage.get('UserIdLogged');
+        console.log(userId);
+        const userData = storage.get('userData');
+        const token = userData.token;
+        console.log(token);
+        if(token){       
+        const response = await axios.delete(userService.wpApi + '/users/' + userId,
+        {
+            headers: {
+                        Authorization: 'Bearer ' + token 
+                    },
+            params:{
+                        // on ne veut pas réassigner les annonces, elles auront donc le status Trash
+                        reassign: false, 
+                        // un user ne peut pas avoir le status Trash on force donc pour la suppression pure
+                        force: true 
+                    },
+        }
+            
+        ).catch(function(){
+            console.log('Failed Deletion User');
+            console.log(response);
+            return false;
+        });
+        return response.data;
+        }
     }
-}
 };
 export default userService;

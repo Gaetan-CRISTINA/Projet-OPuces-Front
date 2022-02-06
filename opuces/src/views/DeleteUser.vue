@@ -7,15 +7,11 @@
         <h1>Delete User Account Confirmation</h1>
         <p>Voulez vous vraiment supprimer votre compte ?</p>
       </div>
-      <router-link
-        :to="{
-          name: 'DeleteUserConfirmation',
-        }"
-      >
-        <button class="delete">
+      
+        <button class="delete" @click="handleClick">
           Supprimer mon compte, attention cette action est irréversible
         </button>
-      </router-link>
+      
 
       <router-link
         :to="{
@@ -31,6 +27,7 @@
 <script>
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
+import userService from "../services/userService";
 
 export default {
   name: "DeleteUser",
@@ -38,6 +35,17 @@ export default {
     Header2,
     IllusLamp,
   },
+  methods: {
+    async handleClick(event){
+      event.preventDefault();
+      const userDeletion = await userService.deleteUser();
+      console.log(userDeletion);
+      if(userDeletion.success){
+        this.$router.push({ name: 'DeleteUserConfirmation'});
+      }
+      
+    }
+  }
 };
 </script>
 

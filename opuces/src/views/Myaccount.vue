@@ -43,7 +43,7 @@
 
           <router-link
             :to="{
-              name: 'DeleteUser',
+              name: 'DeleteUser'
             }"
           >
             <button class="delete">
