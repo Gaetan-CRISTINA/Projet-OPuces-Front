@@ -423,6 +423,7 @@ header {
   position: fixed;
   z-index: 1;
   top:0;
+  padding: 0.5em 0 !important;
   width: 100%;
   background-color: #fff;
   display: flex;
