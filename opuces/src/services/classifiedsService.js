@@ -155,6 +155,7 @@ const classifiedsService = {
     },
 
     async loadClassifiedsByUser(userId){
+        //TODO voir pour rajouter +'?_embed=true'
         const response = await axios.get(classifiedsService.baseURI + '/classified?author=' + userId);
         return response.data;
     },

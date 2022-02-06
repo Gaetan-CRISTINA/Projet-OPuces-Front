@@ -9,7 +9,7 @@
         <h3>Récapitulatif de la commande</h3>
 
         <h1>Titre de l'annonce</h1>
-        <p>Je suis le titre</p> 
+        <p>{{classifiedToBuy}}</p> 
         <h1>Description</h1>
         <p>Je suis la description</p>
         <h1>Prix</h1>
@@ -64,6 +64,7 @@ import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 import storage from "../plugins/storage";
+import userService from "../services/userService"
 
 
 export default {
@@ -72,12 +73,24 @@ export default {
     Header2,
     IllusLamp
   },
+  
   async created() {
-    const ClassifiedId = storage.get("ClassifiedIdCart");
-    console.log(ClassifiedId);
-    this.classified = await classifiedsService.loadClassifiedsById(
-      ClassifiedId
-    );
+    this.ClassifiedId = storage.get('ClassifiedIdCart');
+    console.log(this.ClassifiedId);
+
+    const classifiedToBuy = await classifiedsService.loadClassifiedsById(this.ClassifiedId);
+    console.log(classifiedToBuy);
+    console.log('ClassifiedToBuy Loaded')
+
+    const id = storage.get('UserIdLogged');
+    console.log(id);
+    const userBuyer = await userService.loadUserFromUserTable(id);
+    console.log(userBuyer);
+    console.log('User Information Loaded')
+  },
+  props: {
+    classifiedToBuy: Object,
+    userAdress: Object
   },
   methods:{
     async UnsetStoreSlassified(event){

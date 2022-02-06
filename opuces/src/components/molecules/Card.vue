@@ -185,6 +185,8 @@ export default {
     async StoreClassified(event) {
       event.preventDefault();
       storage.set("ClassifiedIdCart", this.classifiedProps.id);
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
     },
     displayHideCardContent: function (evt) {
       evt.preventDefault;

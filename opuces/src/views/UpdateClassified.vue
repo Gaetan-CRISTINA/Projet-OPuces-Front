@@ -148,7 +148,6 @@ export default {
   async created() {
     this.id = this.$route.params.id;
     this.userClassifieds = await classifiedsService.loadClassifiedsById(this.id);
-
     this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
     this.categories = await classifiedsService.loadClassifiedProductCategory();
     this.states = await classifiedsService.loadProductState();
