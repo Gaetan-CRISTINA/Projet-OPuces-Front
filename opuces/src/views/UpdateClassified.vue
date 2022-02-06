@@ -86,7 +86,7 @@
             <label>
                 <h3>L'image actuelle de votre annonce :</h3>
               <div>
-                <img class="imageDisplay" v-if="image" src="Mustache" />
+                <img class="imageDisplay" :src="getImage" />
               </div>
               <div>
                 <input type="file" @change="uploadImage" />
@@ -187,6 +187,13 @@ export default {
       this.$store.state.user;
       return this.$store.state.user;
     },
+    getImage(){
+        if (this.userClassifieds._embedded['wp:featuredmedia'][0].source_url){
+            return this.userClassifieds._embedded['wp:featuredmedia'][0]['link']
+        } else {
+            return "https://picsum.photos/400/600"
+        }
+    }
   },
 };
 </script>
