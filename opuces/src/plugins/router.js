@@ -31,6 +31,9 @@ import UpdateEmail from '../views/UpdateEmail.vue'
 import UpdateUser from '../views/UpdateUser.vue'
 import UpdateClassified from '../views/UpdateClassified.vue'
 
+import DeleteUser from '../views/DeleteUser.vue'
+import DeleteUserConfirmation from '../views/DeleteUserConfirmation.vue'
+
 
 Vue.use(VueRouter)
 
@@ -147,6 +150,16 @@ const routes = [
     path: '/update-classified',
     name: 'UpdateClassified',
     component: UpdateClassified
+  },
+  {
+    path: '/delete-account',
+    name: 'DeleteUser',
+    component: DeleteUser
+  },
+  {
+    path: '/delete-account-Confirmation',
+    name: 'DeleteUserConfirmation',
+    component: DeleteUserConfirmation
   },
   {
     path: '*',

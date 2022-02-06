@@ -39,13 +39,15 @@
               Mettre à jour mon adresse postale
             </button>
           </router-link>
+
+
           <router-link
             :to="{
-              name: 'UpdateUser',
+              name: 'DeleteUser',
             }"
           >
             <button class="delete">
-              Supprimer mon compte, attention cette action est irréversible
+              Supprimer mon compte
             </button>
           </router-link>
         </div>
