@@ -132,8 +132,6 @@ export default {
         console.log("Mise à jour du Password");
         let result = await userService.updateUserPassword(
           this.newPassword,
-          this.newPasswordVerify,
-          this.username,
           this.currentPassword
         );
         
