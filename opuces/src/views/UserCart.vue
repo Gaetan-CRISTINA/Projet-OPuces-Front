@@ -109,8 +109,6 @@ h3{
   border: 1px solid $main-green;
   margin: 8rem 1rem ;
   padding: 2rem;
-
-  
 }
 button {
   font-size: 12px;
