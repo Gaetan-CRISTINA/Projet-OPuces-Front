@@ -33,7 +33,7 @@
                   name: 'Myaccount',
                 }"
               >
-                <li><PictoCompte /><span>Mon compte</span></li>
+                <li @click="StoreUserId"><PictoCompte /><span>Mon compte</span></li>
               </router-link>
 
               <router-link
@@ -95,7 +95,7 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter </a>
+            <a id="se-connecter"> Se connecter / se créer un compte </a>
           </router-link>
         </div>
 

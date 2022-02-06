@@ -47,6 +47,14 @@
       
       Annuler ma commande
       </button>
+      <router-link
+      :to="{
+        name: 'Home'
+        }">
+      <button>
+        Je réfléchis, encore !
+      </button>
+      </router-link>
       
   </div>
 </template>
@@ -128,6 +136,11 @@ button:hover {
   background-color: $social-google;
   color: white;
   border: solid 1px $social-google;
+}
+.pay:hover{
+  background-color: #10BD4C;
+  border: solid 1px #10BD4C;
+  color: white;
 }
 @media screen and (min-width: 576px) {
   .illusLamp {

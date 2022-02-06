@@ -8,7 +8,7 @@ const userService = {
     jwtBaseURI: env.jwtBaseURI,
     baseURI: env.baseURI,
     opucesBaseURI: env.opucesApi,
-
+    wpApi : env.wpApi,
 
     login: async function(login, password){
         let response = await axios.post(
@@ -29,10 +29,16 @@ const userService = {
         return response.data;
     },
     checkUser: async function(token){
-        let response = await axios.post(
-            userService.jwtBaseURI+'/token/validate',
-            { token: token
-            }
+        if(token){
+            const options = {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            };
+       
+        let response = await axios.post( userService.jwtBaseURI+'/token/validate',
+           null,
+            options
         ).catch(
             function(){
                 console.log('User différent');
@@ -41,9 +47,12 @@ const userService = {
         )
         return {
             'success': true,
+            
             'response': response,
-
-        };
+        }
+        
+        }
+        console.log('checkUser OK');
     },
 
     userConnected: async function(){
@@ -82,16 +91,57 @@ const userService = {
         storage.unset('userData');
     },
 
-    lostPassword: async function()
+    updateUserPassword: async function(currentPassword, newPassword)
     {
-       const response = await axios.post(userService.baseURI + '/lost-password');
-       return response.data; 
-    },
-
-    updateUser: async function()
-    {
-        const response = await axios.patch(userService.baseURI + '/' );
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const id = storage.get('UserIdLogged');
+        if(token && id){
+            const options = { 
+                headers: {
+                    Authorization: 'Bearer' + token 
+                }
+            };
+        
+        const response = await axios.put(userService.wpApi + '/users/' + id,
+        {
+            password: currentPassword,
+            new_password: newPassword
+        },
+        options
+        ).catch(function(){
+            console.log('Update Password Failed!');
+            console.log(response);
+            return false;
+        });
+        console.log('Password Updated!');
         return response.data;
+    }
+    },
+    updateUserEmail: async function(newEmail){
+        const userData = storage.get('userData');
+        const token = userData.token;
+        const id = storage.get('UserIdLogged');
+        if(token && id){
+            const options = { 
+                headers: {
+                    Authorization: 'Bearer ' + token 
+                }
+            };
+            const response = await axios.put(userService.wpApi + '/users/' + id,
+            {
+                email: newEmail
+            },
+            options
+            ).catch(function(){
+                console.log('Update Email Failed!');
+                console.log(response);
+                return false;
+            });
+            console.log('Email Updated!');
+            return response.data;
+
+        }
     },
 
     saveUserInformation: async function ( adress, adress2, country, phoneNumber, zipcode, city)
