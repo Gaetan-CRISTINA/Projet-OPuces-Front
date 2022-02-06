@@ -29,6 +29,9 @@ import PayementSuccess from '../views/PayementSuccess.vue'
 import CancelOrder from '../views/CancelOrder.vue'
 import UpdateEmail from '../views/UpdateEmail.vue'
 import UpdateUser from '../views/UpdateUser.vue'
+import UpdateClassified from '../views/UpdateClassified.vue'
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -139,6 +142,11 @@ const routes = [
     path: '/update-user',
     name: 'UpdateUser',
     component: UpdateUser
+  },
+  {
+    path: '/update-classified',
+    name: 'UpdateClassified',
+    component: UpdateClassified
   },
   {
     path: '*',

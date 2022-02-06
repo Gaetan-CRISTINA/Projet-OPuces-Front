@@ -82,9 +82,17 @@
               </div>
 
               <button class="--button connect">
-                ENREGISTRER LES MODIFICATIONS
+                Enregistrer les modifications
               </button>
             </form>
+            <router-link
+        :to="{
+          name: 'Home'
+          }">
+        <button class="--button connect">
+            Annuler et retourner à l'accueil
+          </button>
+        </router-link>
           </div>
         </div>
       </div>
