@@ -72,7 +72,7 @@
 
 <script>
 import Header2 from "../components/organisms/Header2.vue";
-import storage from "../plugins/storage";
+// import storage from "../plugins/storage";
 import userService from "../services/userService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 export default {
@@ -117,16 +117,7 @@ export default {
         this.passwordConfirm = true;
       }
 
-      const userData = storage.get('userData');
-      console.log(userData.token);
-      if (userData != null) {
-        const token = userData.token;
-        if (userService.checkUser(token)) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+     
 
       if (
         !this.usernameEmpty &&
@@ -134,9 +125,10 @@ export default {
         !this.newPasswordEmpty &&
         !this.newPasswordVerifyEmpty &&
         !this.newPasswordTooShort &&
-        !this.newPasswordConfirm &&
-        this.userData == true
-      ) {
+        !this.newPasswordConfirm 
+        
+      ) 
+      {
         console.log("Mise à jour du Password");
         let result = await userService.updateUserPassword(
           this.newPassword,
@@ -144,9 +136,9 @@ export default {
           this.username,
           this.currentPassword
         );
-        console.log(result);
+        
         if (result) {
-          if (result == true) {
+          if (result) {
             this.$router.push({ name: "Home" });
           }
         }

@@ -37,9 +37,7 @@ const userService = {
             };
        
         let response = await axios.post( userService.jwtBaseURI+'/token/validate',
-            { 
-                
-            },
+           null,
             options
         ).catch(
             function(){
@@ -52,7 +50,9 @@ const userService = {
             
             'response': response,
         }
+        
         }
+        console.log('checkUser OK');
     },
 
     userConnected: async function(){
@@ -102,12 +102,10 @@ const userService = {
                     Authorization: 'Bearer' + token 
                 }
             };
-        // const response = await axios.put(userService.opucesBaseURI + '/UpdatePassword'
-        // );
-
+        
         const response = await axios.put(userService.wpApi + '/users/' + id,
         {
-            // password: currentPassword,
+            password: currentPassword,
             new_password: newPassword
         },
         options
