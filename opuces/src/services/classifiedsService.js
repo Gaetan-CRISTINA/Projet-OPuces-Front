@@ -150,7 +150,7 @@ const classifiedsService = {
     },
 
     async loadClassifiedsById(classifiedId){
-        const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId );
+        const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId  +'?_embed=true');
         return response.data;
     },
 

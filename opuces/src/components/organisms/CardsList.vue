@@ -41,12 +41,12 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
 }
-.unitCard{
-    transition: all .2s ease-in-out
-}
-.unitCard:hover{
-    // transform: scale(1.02);
-}
+// .unitCard{
+//     transition: all .2s ease-in-out
+// }
+// .unitCard:hover{
+//     // transform: scale(1.02);
+// }
 @media screen and (min-width: 576px) {
    
 }
