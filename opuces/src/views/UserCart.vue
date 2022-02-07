@@ -82,6 +82,7 @@ export default {
     console.log('ClassifiedToBuy Loaded')
 
     this.id = storage.get('UserIdLogged');
+    console.log(this.id);
     this.userAdress = await userService.loadUserFromUserTable(this.id);
     console.log(this.userAdress);
     console.log('User Information Loaded')

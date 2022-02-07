@@ -4,28 +4,17 @@
       <svg class="icon">
         <use xlink:href="#icon-search"></use>
       </svg>
-      <!--  computed function for when you start entering a value on the input, it starts searching at the same time --> 
+      <form @submit="handleSearch">
       <input v-model="searchQuery" type="text" placeholder="Rechercher" />
-      <!-- if there's a selected item display selected item by name -->
-      <span v-if="selectedItem">{{ selectedItem.id }}</span>
-      <!-- and if it doesn't find what you're searching for, it will say... -->
-      <span v-if="filteredClassified.length == 0">Recherche introuvable</span>
+      </form>
     </label>
 
-    <svg class="spritesheet">
-      <symbol id="icon-search" viewBox="0 0 32 32">
-        <title>search</title>
-        <path
-          class="cls-1"
-          d="M15.73,15.24a9,9,0,1,0-.72.7l4.83,4.6.69-.72ZM1,9.07a8.08,8.08,0,1,1,8.07,8.08A8.08,8.08,0,0,1,1,9.07Z"
-        />
-      </symbol>
-    </svg>
+    
   </div>
 </template>
 
 <script>
-import classifiedsService from "../../services/classifiedsService";
+import storage from "../../plugins/storage";
 
 export default {
   data() {
@@ -35,32 +24,13 @@ export default {
       classifiedsArray: [],
     };
   },
-
-  
-  // filter function for search city
-  computed: {
-    filteredClassified() {
-      // if the input is empty return the array
-      const query = this.searchQuery.toLowerCase()
-      if(this.searchQuery == "") {
-        return this.classifiedsArray;
-      }
-      // checking what you are typing in the input
-      return this.classifiedsArray.filter((classified) => {
-        return Object.values(classified).some((word) => String(word).toLowerCase().includes(query)
-        );
-      });
-    },
-  },
-
-  async created(){
-    this.classifiedsArray = await classifiedsService.loadClassified();
-  },
-
   methods: {
-    selectItem(classified){
-      this.selectedItem = classified;
-    },
+    async handleSearch(event){
+      event.preventDefault();
+      this.searchQuery = storage.set('searchQuery', this.searchQuery);
+      
+      this.$router.push({ name : 'SearchCardsList'});
+    }
   },
 
 }
