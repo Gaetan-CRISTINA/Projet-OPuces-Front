@@ -188,7 +188,7 @@ export default {
     },
     getImage(){
         if (this.userClassifieds._embedded['wp:featuredmedia'][0].source_url){
-            return this.userClassifieds._embedded['wp:featuredmedia'][0]['link']
+            return this.userClassifieds._embedded['wp:featuredmedia'][0].source_url
         } else {
             return "https://picsum.photos/400/600"
         }

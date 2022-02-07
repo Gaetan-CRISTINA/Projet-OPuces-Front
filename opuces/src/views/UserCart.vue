@@ -43,7 +43,7 @@
       Procéder au paiement
       </button></router-link>
       
-      <button class="delete" @click="UnsetStoreSlassified">
+      <button class="delete" @click="UnsetStoreClassified">
       
       Annuler ma commande
       </button>
@@ -93,7 +93,7 @@ export default {
     userAdress: Object
   },
   methods:{
-    async UnsetStoreSlassified(event){
+    async UnsetStoreClassified(event){
       event.preventDefault();
       storage.unset("ClassifiedIdCart")
       this.$router.push({ name: "CancelOrder" });

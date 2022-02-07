@@ -88,7 +88,7 @@ export default {
   display: none;
 }
 .svg{
-  width: 150%;
+  width: 100%;
   align-self: center;
 }
 .delete:hover {
