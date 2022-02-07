@@ -1,6 +1,6 @@
 <template>
   <div class="filters-desktop">
-    <div class="input-filters">
+    <form class="input-filters">
 
       <!-- Composants pour sélectionner une catégorie -->
       <BaseSelectCategory />
@@ -11,7 +11,7 @@
       <BaseInputPrice />
       <button @click="applyFilter" class="search-validate">Rechercher</button>
       
-    </div> 
+    </form> 
     
   </div>
 </template>
@@ -29,7 +29,6 @@
       BaseInputPrice
 
     },
-    props: {},
 
     data() {
     return {

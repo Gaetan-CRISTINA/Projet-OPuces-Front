@@ -3,10 +3,7 @@
     <div>
 
     <!--  computed function for when you start entering a value on the input, it starts searching at the same time --> 
-      <input v-model="searchQuery" type="text" placeholder="Villes" class="selected-item">
-
-      <!-- and if it doesn't find what you're searching for, it will say... -->
-      <span v-if="filteredCity.length == 0">Ville introuvable</span>
+      <input type="text" placeholder="Villes" class="selected-item">
        
       
     </div>
@@ -17,58 +14,12 @@
 
 
 <script>
-import classifiedsService from "../../services/classifiedsService";
-
-export default {
-  data() {
-    return{
-      searchQuery: "",
-      selectedItem: null,
-      cityArray: [],
-    };
-  },
-
-  
-  // filter function for search city
-  computed: {
-    filteredCity() {
-      // if the input is empty return the array
-      const query = this.searchQuery.toLowerCase()
-      if(this.searchQuery == "") {
-        return this.cityArray;
-      }
-      // checking what you are typing in the input
-      return this.cityArray.filter((city) => {
-        return Object.values(city).some((word) => String(word).toLowerCase().includes(query)
-        );
-      });
-    },
-  },
 
 
-  async created(){
-    this.cityArray = await classifiedsService.loadClassified();
-    this.cityArray = json;
-    }
 
-  },
-
-
-  methods: {
-    selectItem(city){
-      this.selectedItem = city;
-    },
-  },
-  
-
-}
 </script>
 <style scoped lang="scss">
 @import "../../assets/scss/main";
-
-.selected-item{
-  width: 300px;
-}
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {
