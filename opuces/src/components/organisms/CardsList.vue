@@ -1,14 +1,20 @@
 <template>
     <div class="cards-list"> 
         
-        <span class="unitCard" v-for="classified in classifieds"
+        <!-- <span class="unitCard" v-for="classified in classifieds"
             :key="classified.id">
 
             <Card 
             :classifiedProps="classified" 
             />    
-        </span>
+        </span> -->
 
+            <Card 
+            class="unitCard" 
+            v-for="classified in classifieds"
+            :key="classified.id"
+            :classifiedProps="classified" 
+            />
         
     </div>
 </template>

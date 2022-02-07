@@ -64,11 +64,11 @@ export default {
         .querySelector("#display-annonces #picto-display1");
       let cards = buttonDisplay2
         .closest(".main-container")
-        .querySelectorAll(".flex .site-content .cards-list>span");
+        .querySelectorAll(".flex .site-content .cards-list>div");
       for (let i = 0; i < cards.length; i++) {
-        if (cards[i].querySelector(".card").classList.contains("display2")) {
-          cards[i].querySelector(".card").classList.remove("display2");
-          cards[i].querySelector(".card").classList.add("display1");
+        if (cards[i].classList.contains("display2")) {
+          cards[i].classList.remove("display2");
+          cards[i].classList.add("display1");
           buttonDisplay2.style.display = "none";
           buttonDisplay1.style.display = "block";
         }
@@ -82,11 +82,11 @@ export default {
         .querySelector("#display-annonces #picto-display2");
       let cards = buttonDisplay1
         .closest(".main-container")
-        .querySelectorAll(".flex .site-content .cards-list>span");
+        .querySelectorAll(".flex .site-content .cards-list>.unitCard");
       for (let i = 0; i < cards.length; i++) {
-        if (cards[i].querySelector(".card").classList.contains("display1")) {
-          cards[i].querySelector(".card").classList.remove("display1");
-          cards[i].querySelector(".card").classList.add("display2");
+        if (cards[i].classList.contains("display1")) {
+          cards[i].classList.remove("display1");
+          cards[i].classList.add("display2");
           buttonDisplay1.style.display = "none";
           buttonDisplay2.style.display = "block";
         }
