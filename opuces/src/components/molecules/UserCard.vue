@@ -55,7 +55,9 @@
       <router-link
         :to="{
           name: 'deleteClassified',
-          
+          params: {
+            id: userClassifiedProps.id
+          }
         }"
       >
         <button class="delete">Supprimer L'Annonce</button>
