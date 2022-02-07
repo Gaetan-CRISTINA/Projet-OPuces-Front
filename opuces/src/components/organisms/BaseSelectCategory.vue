@@ -51,13 +51,15 @@
 
 
 <script>
+import classifiedsService from "../../services/classifiedsService";
+
 export default {
   data() {
     return{
       searchQuery: "",
       selectedItem: null,
       isVisible: false,
-      categoryArray: [],
+      categoryArray: []
     };
   },
 
@@ -75,14 +77,10 @@ export default {
       });
     },
   },
-
-  mounted() {
-    fetch("http://localhost/apotheose/projet-O-Puces-back/public/wp-json/wp/v2/ProductCategory")
-    .then(res => res.json())
-    .then((json) => {
-      console.log(json);
-      this.categoryArray = json;
-    })
+  
+  
+  async created(){
+    this.categoryArray = await classifiedsService.loadClassifiedProductCategory();
   },
 
   methods: {

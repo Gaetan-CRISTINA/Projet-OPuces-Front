@@ -2,7 +2,7 @@
   <div class="filters-desktop">
     <div class="input-filters">
 
-
+      <!-- Composants pour sélectionner une catégorie -->
       <BaseSelectCategory />
       
       <BaseInputCity />
