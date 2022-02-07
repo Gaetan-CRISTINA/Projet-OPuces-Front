@@ -10,7 +10,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-svg {
+svg:hover {
   fill: #2093A7;
 }
 
