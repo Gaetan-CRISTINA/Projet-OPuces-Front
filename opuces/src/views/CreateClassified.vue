@@ -200,23 +200,21 @@ button {
   margin-top: 0.5em;
   transition: all 0.3s;
   cursor: pointer;
+  border: none;
 }
 .button-enregistrer {
   margin-top: 2em;
   background-color: $main-green;
   color:#fff;
-  border: solid 1px $main-green;
   width: 100%;
 }
 .button-retour-home {
   background-color: #fff;
   color:$main-green;
-  border: solid 1px $main-green
 }
 button:hover {
-  background-color: $main-green;
+  background-color: $secondary-green;
   color: #fff;
-  border: solid 1px $main-green;
 }
 .main-container div:first-child {
   position: relative;
