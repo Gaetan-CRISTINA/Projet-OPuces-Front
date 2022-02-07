@@ -153,6 +153,19 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId  +'?_embed=true');
         return response.data;
     },
+    async loadUserTrashedClassifieds(id){
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/trashed-classifieds',
+        {
+            userId: id
+            
+        }).catch(function(){
+            console.log('Error or No Trashed Classifieds');
+            return response;
+        });
+        console.log ('Trashed Classifieds Loaded');
+        console.log(response.data);
+        return response.data;
+    },
 
     async loadClassifiedsByUser(userId){
         //TODO voir pour rajouter +'?_embed=true'

@@ -2,21 +2,18 @@
   <div class="main-container">
     <h2>Tableau de Bord Vendeur</h2>
     <div class="display-cart">
-      
       <h6>Annonces en ligne</h6>
-      <span></span>
+      <span>{{ countUserClassifieds }}</span>
 
       <h6>Annonces supprimées</h6>
-      <span></span>
+      <span>{{countTrashedClassifieds}}</span>
     </div>
 
     <router-link
       :to="{
         name: 'Home',
       }"
-      ><button class="--button connect">
-        Retour à l'Accueil
-        </button>
+      ><button class="--button connect">Retour à l'Accueil</button>
     </router-link>
   </div>
 </template>
@@ -24,14 +21,26 @@
 
 
 <script>
-
+import storage from "../../plugins/storage";
+import classifiedsService from "../../services/classifiedsService";
 
 export default {
   name: "UserPRofilMobile",
-  components: {
-
+  components: {},
+  props: {
+    countUserClassifieds: Object,
   },
- 
+  async created() {
+    this.id = storage.get("UserIdLogged");
+    this.userClassifieds = await classifiedsService.loadClassifiedsByUser(
+      this.id
+    );
+    console.log(this.userClassifieds);
+    this.countUserClassifieds = this.userClassifieds.length;
+
+    this.userTrashedClassifieds = await classifiedsService.loadUserTrashedClassifieds(this.id);
+    this.countTrashedClassifieds = this.userTrashedClassifieds.length;
+  },
 };
 </script>
 
@@ -39,13 +48,13 @@ export default {
 @import "../../assets/scss/main.scss";
 
 .display-cart {
-    border-radius: 44px;
-    -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 44px;
+  -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
-  margin-top:130px;
+  margin-top: 130px;
   padding: 2rem;
-  }
+}
 
 .main-container {
   display: flex;
@@ -74,7 +83,7 @@ button {
   font-size: 14px;
   font-weight: 900px;
   cursor: pointer;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 button:hover {
   background-color: $secondary-green;

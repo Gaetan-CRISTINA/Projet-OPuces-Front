@@ -24,7 +24,7 @@
                   name: 'UserProfil',
                 }"
               >
-                <li><PictoUser /><span>Mon profil</span></li>
+                <li @click="handleClick"><PictoUser /><span>Mon profil</span></li>
               </router-link>
 
               <router-link
@@ -169,12 +169,9 @@
             v-if="user"
             :to="{
               name: 'UserProfil',
-              //params: {
-              //id: userProps.id,
-              //}
             }"
           >
-            <img class="userPicto" src="https://picsum.photos/30" alt="" />
+            <img class="userPicto" src="https://picsum.photos/30" alt="" @click="handleClick"/>
           </router-link>
           <!--FIN-->
 
@@ -341,6 +338,12 @@ export default {
       this.id = await classifiedsService.loadAuthor();
       storage.set("UserIdLogged", this.id);
       this.$router.push({name: 'Myaccount'});
+    },
+    async handleClick(event){
+      event.preventDefault();
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+      this.$router.push({name: 'UserProfil'});
     }
   }
 };
