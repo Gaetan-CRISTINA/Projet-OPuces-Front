@@ -55,9 +55,6 @@
       <router-link
         :to="{
           name: 'deleteClassified',
-          params: {
-            id: userClassifiedProps.id
-          }
           
         }"
       >

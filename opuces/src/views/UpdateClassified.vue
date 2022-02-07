@@ -11,12 +11,14 @@
           
           <label>
               <h3>Le titre de votre annonce:</h3>
+              <h4>{{userClassifieds.title.rendered}}</h4>
             <input v-model="title" name="title" class="title" />
           </label>
 
           
           <label>
               <h3>La description :</h3>
+              <h4 v-html="userClassifieds.excerpt.rendered"></h4>
             <textarea
               v-model="description"
               name="description"
@@ -26,12 +28,14 @@
 
           <label>
               <h3>Le contenu votre annonce :</h3>
+              <h4 v-html="userClassifieds.content.rendered"></h4>
             <textarea v-model="content" name="content" class="content" />
           </label>
 
           <h6>Votre prix</h6>
           <label class="label-price">
               <h3>Le prix de votre bien :</h3>
+              <h4>{{userClassifieds.classifiedPrice}}€</h4>
             <input v-model="price" name="price" class="price" />
             <p>€</p>
           </label>
@@ -46,10 +50,7 @@
               </option>
             </select>
           </label>
-          <div class="error" v-if="selectedStateEmpty">
-            Vous confirmer l'état de votre bien
-          </div>
-
+          
           
           <label>
               <h3>La catégorie actuelle de votre bien :</h3>
@@ -65,9 +66,7 @@
               </option>
             </select>
           </label>
-          <div class="error" v-if="selectedCategoryEmpty">
-            Vous confirmer la catégorie dans laquelle se trouve votre bien
-          </div>
+          
 
           <label>
               <h3>Le mode de livraison actuel de votre bien :</h3>
@@ -83,15 +82,13 @@
               </option>
             </select>
           </label>
-          <div class="error" v-if="selectedDeliveryMethodEmpty">
-            Vous confirmer la méthode de livraison 
-          </div>
+          
           
           <div class="uploadImageForm">
             <label>
                 <h3>L'image actuelle de votre annonce :</h3>
               <div>
-                <!-- <img class="imageDisplay" :src="getImage" /> -->
+                <img class="imageDisplay" :src="getImage" />
               </div>
               <div>
                 <input type="file" @change="uploadImage" />
@@ -106,7 +103,7 @@
           </div>
 
           <div>
-            <button class="button-enregistrer">Enregistrer les modifications</button>
+            <button class="button-enregistrer" @submit="handleSubmit">Enregistrer les modifications</button>
           </div>
         </form>
 
@@ -138,8 +135,6 @@ export default {
   props: {
       userClassifieds: Object,
   },
-// {{ userClassifieds.classifiedPrice}}
-  
   data() {
     return {
       title: "",
@@ -147,11 +142,8 @@ export default {
       states: [],
       price: "",
       selectedState: "",
-      selectedStateEmpty: false,
       selectedCategory: "",
-      selectedCategoryEmpty: false,
       selectedDeliveryMethod: "",
-      selectedDeliveryMethodEmpty: false,
       content: "",
       image: null,
       imageId: null,
@@ -161,12 +153,6 @@ export default {
   async created() {
     this.id = storage.get('ClassifiedToUpdate');
     this.userClassifieds = await classifiedsService.loadClassifiedsById(this.id);
-      this.price = this.userClassifieds.classifiedPrice;
-      this.title = this.userClassifieds.title.rendered;
-      this.description = this.userClassifieds.excerpt.rendered;
-      this.content = this.userClassifieds.content.rendered;
-
-
     this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
     this.categories = await classifiedsService.loadClassifiedProductCategory();
     this.states = await classifiedsService.loadProductState();
@@ -175,7 +161,9 @@ export default {
   methods: {
     async handleSubmit(event) {
       event.preventDefault();
-      const result = await classifiedsService.createClassified(
+      this.id = storage.get('ClassifiedToUpdate');
+      const result = await classifiedsService.updateClassified(
+        this.id,
         this.title,
         this.description,
         this.selectedState,
@@ -209,7 +197,7 @@ export default {
         if (this.userClassifieds._embedded['wp:featuredmedia'][0].source_url){
             return this.userClassifieds._embedded['wp:featuredmedia'][0].source_url
         } else {
-            return "https://picsum.photos/400/600"
+        return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
         }
     }
   },

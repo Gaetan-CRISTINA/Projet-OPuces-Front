@@ -45,7 +45,7 @@ const classifiedsService = {
         
     },
 
-    async updateClassified(classifiedId, title, description, selectedState, selectedCategory, price, selectedDeliveryMethod, content, imageId){
+    async updateClassified(id, title, description, selectedState, selectedCategory, price, selectedDeliveryMethod, content, imageId){
         const userData = storage.get('userData');
         if(userData !=null){
             const token = userData.token;
@@ -56,9 +56,9 @@ const classifiedsService = {
                     }
                 };
             const response = await axios.post(
-            classifiedsService.opucesBaseURI + '/save-classified',
+            classifiedsService.opucesBaseURI + '/update-classified',
             {
-                post_id: classifiedId,
+                post_id: id,
                 title: title,
                 description: description,
                 ProductState: selectedState,
