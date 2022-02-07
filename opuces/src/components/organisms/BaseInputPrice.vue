@@ -4,8 +4,8 @@
         <label for="name"> {{title}} </label>
     </div>
     <div class="input-price">
-        <input placeholder="Min" type="text" id="minAmount" name="user_name"/> 
-        <input placeholder="Max" type="text" id="maxAmount" name="user_name"/>
+        <input placeholder="Min" type="text" id="minAmount" name="user_name" v-model="priceMin" /> 
+        <input placeholder="Max" type="text" id="maxAmount" name="user_name" v-model="priceMax" />
     </div>
 </section>
     
@@ -17,6 +17,14 @@ export default {
       type: String, 
       default: 'Prix'
     }
+  },
+
+  data() {
+    return {
+      priceMin: '',
+      priceMax: ''
+    }
+    
   }
 }
 
