@@ -81,9 +81,10 @@
             :to="{
               name: 'ContactPage',
             }"
-            >CONTACTER</router-link
+            >Contacter le vendeur</router-link
           >
         </button>
+        
       </div>
     </div>
 
@@ -369,6 +370,7 @@ button:hover {
   position: absolute;
   right: 0;
 }
+
 
 @media screen and (min-width: 576px) {
   .display2 {

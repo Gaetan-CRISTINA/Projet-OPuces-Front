@@ -7,7 +7,7 @@
     <div class="main-container">
         
         <div class="display-cart">
-            
+            <h2>Nous aimerions en savoir plus à propos vous</h2><br>
             <form class="login-form" @submit="handleSubmit">
               <h6>Civilité</h6>
               <select name="sex" v-model="sex">
@@ -212,11 +212,15 @@ select {
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   margin-top:130px;
   padding: 2rem;
+  width: 100%;
   }
-
+h6{
+  margin-top: 0.5rem;
+}
 .main-container {
   display: flex;
   justify-content: space-around;
+  width: 40%;
 }
 button {
   border-radius: 19px;
@@ -271,17 +275,28 @@ textarea:focus {
   .illusLamp {
     display: none;
   }
+  .main-container{
+    width: 70%;
+  }
+  
 }
 @media screen and (min-width: 768px) {
 
  .illusLamp {
     display: none;
   }
+  .main-container{
+    width: 50%;
+  }
+  
 }
 
 @media screen and (min-width: 992px) {
   .illusLamp {
     display: none;
+  }
+  .main-container{
+    width: 50%;
   }
   
 }
@@ -289,12 +304,18 @@ textarea:focus {
   .illusLamp {
     display: none;
   }
+  .main-container{
+    width: 50%;
+  }
 }
 @media screen and (min-width: 1400px) {
   .illusLamp {
     display: block;
     position: fixed;
     margin-left: 6%;
+  }
+  .main-container{
+    width: 40%;
   }
 }
 </style>
