@@ -82,9 +82,7 @@
                   name: 'Logout',
                 }"
               >
-                <a class="disconect--button"
-                  ><PictoClose /><span>Se déconnecter</span></a
-                >
+                <li class="disconect--button"><PictoClose /><span>Se déconnecter</span></li>
               </router-link>
             </ul>
           </nav>
@@ -95,7 +93,7 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter / se créer un compte </a>
+            <li id="se-connecter"> Se connecter / se créer un compte </li>
           </router-link>
         </div>
 
@@ -379,6 +377,7 @@ export default {
 @import "../../assets/scss/main";
 .header-bottom {
   display: none;
+  text-align: center;
 }
 .sub-nav img {
   border-radius: 100%;
