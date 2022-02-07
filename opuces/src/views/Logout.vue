@@ -15,6 +15,10 @@ export default {
       storage.unset('userData');
       storage.unset('ClassifiedIdCart')
       storage.unset('UserIdLogged')
+      storage.unset('searchQueries');
+      storage.unset('searchQuery');
+      storage.unset('ClassifiedToUpdate');
+      storage.unset('UserInfos');
       this.$router.push({name:"Home"})  
   }
 }

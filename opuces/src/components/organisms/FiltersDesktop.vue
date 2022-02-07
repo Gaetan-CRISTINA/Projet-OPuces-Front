@@ -1,6 +1,6 @@
 <template>
   <div class="filters-desktop">
-    <form class="input-filters" @submit="processForm" >
+    <form class="input-filters" @submit="handleForm" >
       <div class="input-filters">
 
         <!-- Select a category -->
@@ -98,7 +98,7 @@ import storage from "../../plugins/storage";
     },
 
     // to listen for the event click on search button
-    async processForm(event){
+    async handleForm(event){
       event.preventDefault();
       this.searchQueries = storage.set('searchQueries', [this.selectedCategory, this.city, this.priceMin, this.priceMax]);
       this.$router.push({ name : 'SearchClassifiedsList'});
