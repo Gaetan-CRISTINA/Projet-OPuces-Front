@@ -5,19 +5,36 @@
       <span v-if="selectedItem">{{ selectedItem.nom }}</span>
       <!-- otherwise display this -->
       <span v-else>Saisissez une ville</span>
+
+    <!-- animated icon arrow up and down for drop down menu-->
       <svg 
       :class="isVisible ? 'dropdown' : ''"
-      class= "drop-down-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/></svg>
+      class= "drop-down-icon" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      width="24" 
+      height="24">
+      <path fill="none" d="M0 0h24v24H0z"/>
+      <path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/>
+      </svg>
+    <!-- end of animated icon arrow up and down for drop down menu-->
+
     </div>
+
+    <!--  To toggle (hide and show) the dropdown menu cities -->
     <div :class="isVisible ? 'visible' : 'invisible'" class="dropdown-popover">
+
+    <!--  computed function for when you start entering a value on the input, it starts searching at the same time --> 
       <input v-model="searchQuery" type="text" placeholder="Villes">
+
+      <!-- and if it doesn't find what you're searching for, it will say... -->
       <span v-if="filteredCity.length == 0">Ville introuvable</span>
       
       
       <div class="">
         <ul>
           <!-- selectItem is a method -->
-          <!-- filteredUser is computed function -->
+          <!-- filteredCity is computed function -->
           <li @click="selectItem(city)" v-for="(city, index) in filteredCity" :key="`city-${index}`">
             {{ city.nom }}
           </li>
@@ -33,6 +50,8 @@
 
 
 <script>
+import classifiedsService from "../../services/classifiedsService";
+
 export default {
   data() {
     return{
@@ -58,13 +77,8 @@ export default {
     },
   },
 
-  mounted() {
-    fetch("")
-    .then(res => res.json())
-    .then((json) => {
-      console.log(json);
-      this.cityArray = json;
-    })
+  async created(){
+    this.cityArray = await classifiedsService.loadClassifiedProductCategory();
   },
 
   methods: {
