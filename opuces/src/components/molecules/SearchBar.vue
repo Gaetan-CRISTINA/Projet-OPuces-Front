@@ -27,8 +27,8 @@ export default {
   methods: {
     async handleSearch(event){
       event.preventDefault();
+      storage.unset('searchQuery');
       this.searchQuery = storage.set('searchQuery', this.searchQuery);
-      
       this.$router.push({ name : 'SearchClassifiedsList'});
     }
   },
