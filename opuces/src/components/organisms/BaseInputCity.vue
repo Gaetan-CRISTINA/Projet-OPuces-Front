@@ -77,8 +77,10 @@ export default {
     },
   },
 
+  //TODO: need an API for cities
+
   async created(){
-    this.cityArray = await classifiedsService.loadClassifiedProductCategory();
+    this.cityArray = await classifiedsService.loadClassifiedsByCity();
   },
 
   methods: {
