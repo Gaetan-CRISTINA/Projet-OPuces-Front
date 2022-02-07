@@ -47,18 +47,9 @@
     /> -->
 
     <div class="voir-plus">
-      <router-link
-        :to="{
-          name: 'UpdateClassified',
-          params: {
-            id: userClassifiedProps.id
-          }
-          
-        }"
-      >
-      <button class="modify">Modifier L'Annonce</button>
-      </router-link>
-
+      
+      <button @click="handleClick" class="modify">Modifier L'Annonce</button>
+      
 
     
       <router-link
@@ -94,6 +85,7 @@ import VoirMoins from "../molecules/VoirMoins.vue";
 import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
+import storage from "../../plugins/storage"
 
 export default {
   name: "UserCard",
@@ -139,6 +131,13 @@ export default {
       } else {
         return "https://picsum.photos/400/600";
       }
+    }
+  },
+  methods: {
+    async handleClick(event){
+      event.preventDefault();
+      storage.set('ClassifiedToUpdate', this.userClassifiedProps.id);
+      this.$router.push({ name: 'UpdateClassified'})
     }
   }
 };

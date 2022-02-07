@@ -188,7 +188,7 @@ const classifiedsService = {
                     'Authorization' : 'Bearer ' + token
                 }
         });
-        console.log('ok');
+        console.log('Classified Deleted !');
         return response.data;
     }
 

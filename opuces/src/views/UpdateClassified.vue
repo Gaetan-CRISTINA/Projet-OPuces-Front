@@ -122,6 +122,7 @@
 import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
+import storage from "../plugins/storage"
 export default {
   name: "UpdateClassified",
   components: {
@@ -146,7 +147,7 @@ export default {
     };
   },
   async created() {
-    this.id = this.$route.params.id;
+    this.id = storage.get('ClassifiedToUpdate');
     this.userClassifieds = await classifiedsService.loadClassifiedsById(this.id);
     this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
     this.categories = await classifiedsService.loadClassifiedProductCategory();
