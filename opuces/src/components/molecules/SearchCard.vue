@@ -2,24 +2,24 @@
   <div class="card display2">
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
-      <!-- <img :src="getImage" alt="classifiedImage" class="img-annoce" /> -->
+      <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce" />
       <div class="flex prix-like">
-        <span class="prix">{{SearchCardProps.classifiedPrice}} €</span>
+        <span class="prix">{{ SearchCardProps.classifiedPrice }} €</span>
       </div>
     </div>
 
     <!-- <HeaderAnnonce/> -->
     <div class="header-annonce content-annonce">
-      <!-- <h3>{{ classifiedProps.title.rendered }}</h3> -->
-      <p class="date-annonce">Annonce parue le {{SearchCardProps.date}}</p>
+      <h3>{{ SearchCardProps.title.rendered }}</h3>
+      <p class="date-annonce">Annonce parue le {{ SearchCardProps.date }}</p>
       <p class="auteur-annonce">
-        {{ SearchCardProps }}
+        {{ SearchCardProps.id }}
       </p>
     </div>
 
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
-      <div class="picto-etat"><PictoEtat1 />{{SearchCardProps.content.rendered}}</div>
+      <div class="picto-etat"><PictoEtat1 /></div>
       <p>{{ productState.name }}</p>
     </div>
 
@@ -136,9 +136,6 @@ export default {
       typeCusto,
       this.SearchCardProps.ProductState
     );
-    this.keyword = storage.get('searchQuery');
-    this.searchCards = await this.classifiedsService.loadClassifiedsByKeyWord(this.keyword);
-    
 
     //AFFICHER CACHER CONTENU SUPPLEMENTAIRE CARDS
     Vue.prototype.$hiddenContentHeight = [];
@@ -188,7 +185,7 @@ export default {
   methods: {
     async StoreClassified(event) {
       event.preventDefault();
-      storage.set("ClassifiedIdCart", this.classifiedProps.id);
+      storage.set("ClassifiedIdCart", this.SearchCardProps.id);
       this.id = await classifiedsService.loadAuthor();
       storage.set("UserIdLogged", this.id);
 

@@ -29,7 +29,7 @@ export default {
       event.preventDefault();
       this.searchQuery = storage.set('searchQuery', this.searchQuery);
       
-      this.$router.push({ name : 'SearchCardsList'});
+      this.$router.push({ name : 'SearchClassifiedsList'});
     }
   },
 

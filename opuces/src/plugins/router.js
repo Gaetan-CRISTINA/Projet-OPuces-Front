@@ -33,7 +33,7 @@ import UpdateClassified from '../views/UpdateClassified.vue'
 
 import DeleteUser from '../views/DeleteUser.vue'
 import DeleteUserConfirmation from '../views/DeleteUserConfirmation.vue'
-import SearchCardsList from '../components/organisms/SearchCardsList.vue';
+import SearchClassifiedsList from '../views/SearchClassifiedsList.vue';
 
 
 Vue.use(VueRouter)
@@ -164,8 +164,8 @@ const routes = [
   },
   {
     path: '/search-list',
-    name: 'SearchCardsList',
-    component: SearchCardsList
+    name: 'SearchClassifiedsList',
+    component: SearchClassifiedsList
   },
   {
     path: '*',
