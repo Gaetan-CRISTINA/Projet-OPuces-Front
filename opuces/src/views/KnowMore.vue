@@ -10,10 +10,10 @@
             <h2>Nous aimerions en savoir plus à propos vous</h2><br>
             <form class="login-form" @submit="handleSubmit">
               <h6>Civilité</h6>
-              <select name="sex" v-model="sex">
-                <option value="1">Homme</option>
-                <option value="2">Femme</option>
-                <option value="3">Autres</option>
+              <select name="sex" v-model="selectedSex">
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+                <option value="autres">Autres</option>
               </select>  
               
 
@@ -88,7 +88,8 @@
               <h6>Numéro de téléphone</h6>
               <input
                 v-model="phoneNumber"
-                type="number"
+                type="tel"
+                pattern="[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}"
                 name="phoneNumber"
                 class="phoneNumber"
               />
@@ -139,6 +140,9 @@ export default {
       countryEmpty: false,
       phoneNumber: "",
       phoneNumberEmpty: false,
+      selectedSex : "",
+      firstname: "",
+      lastname: ""
     };
   },
   methods: {
