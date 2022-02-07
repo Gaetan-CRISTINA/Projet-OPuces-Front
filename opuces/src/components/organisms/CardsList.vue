@@ -50,9 +50,6 @@ export default {
 .unitCard{
     transition: all .2s ease-in-out
 }
-.unitCard:hover{
-    // transform: scale(1.02);
-}
 @media screen and (min-width: 576px) {
    
 }

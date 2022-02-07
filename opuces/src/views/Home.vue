@@ -135,6 +135,10 @@ export default {
   .illusLamp {
     display: none;
   }
+  .fixe-right {
+    margin-left: 20px;
+    width: 100%;
+  }
 }
 @media screen and (min-width: 1200px) {
   #display-annonces {
