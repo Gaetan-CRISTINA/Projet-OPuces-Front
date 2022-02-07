@@ -2,18 +2,18 @@
   <div class="card display2">
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
-      <img :src="getImage" alt="classifiedImage" class="img-annoce" />
+      <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce" />
       <div class="flex prix-like">
-        <span class="prix">{{ classifiedProps.classifiedPrice }} €</span>
+        <span class="prix">{{ SearchCardProps.classifiedPrice }} €</span>
       </div>
     </div>
 
     <!-- <HeaderAnnonce/> -->
     <div class="header-annonce content-annonce">
-      <h3>{{ classifiedProps.title.rendered }}</h3>
-      <p class="date-annonce">Annonce parue le {{ classifiedProps.date }}</p>
+      <h3>{{ SearchCardProps.title.rendered }}</h3>
+      <p class="date-annonce">Annonce parue le {{ SearchCardProps.date }}</p>
       <p class="auteur-annonce">
-        {{ classifiedProps._embedded["author"][0].name }}
+        {{ SearchCardProps.id }}
       </p>
     </div>
 
@@ -34,7 +34,7 @@
     <!-- <ExcerptAnnonce class="show-content"/>  -->
     <p
       class="excerpt-annonce content-annonce"
-      v-html="classifiedProps.excerpt.rendered + '[...]'"
+      v-html="SearchCardProps.excerpt.rendered + '[...]'"
     ></p>
 
     <!-- <div class="voir-plus">
@@ -49,7 +49,7 @@
       <!--<DescriptionAnnonce class="hide-content"/>-->
       <p
         class="description-annonce content-annonce"
-        v-html="classifiedProps.content.rendered"
+        v-html="SearchCardProps.content.rendered"
       ></p>
       <Ville />
       <MapWrapper />
@@ -118,7 +118,7 @@ export default {
     VoirPlus,
   },
   props: {
-    classifiedProps: Object,
+    SearchCardProps: Object,
   },
 
   async load() {
@@ -129,12 +129,12 @@ export default {
     let typeCusto = "ProductCategory";
     this.categoryName = await classifiedsService.loadOneCustonomy(
       typeCusto,
-      this.classifiedProps.ProductCategory[0]
+      this.SearchCardProps.ProductCategory[0]
     );
     typeCusto = "productstate";
     this.productState = await classifiedsService.loadOneCustonomy(
       typeCusto,
-      this.classifiedProps.ProductState
+      this.SearchCardProps.ProductState
     );
 
     //AFFICHER CACHER CONTENU SUPPLEMENTAIRE CARDS
@@ -155,8 +155,8 @@ export default {
   },
   computed: {
     getImage() {
-      if (this.classifiedProps._embedded["wp:featuredmedia"]) {
-        return this.classifiedProps._embedded["wp:featuredmedia"][0].source_url;
+      if (this.SearchCardProps._embedded["wp:featuredmedia"]) {
+        return this.SearchCardProps._embedded["wp:featuredmedia"][0].source_url;
       } else {
         return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
       }
@@ -185,7 +185,7 @@ export default {
   methods: {
     async StoreClassified(event) {
       event.preventDefault();
-      storage.set("ClassifiedIdCart", this.classifiedProps.id);
+      storage.set("ClassifiedIdCart", this.SearchCardProps.id);
       this.id = await classifiedsService.loadAuthor();
       storage.set("UserIdLogged", this.id);
 

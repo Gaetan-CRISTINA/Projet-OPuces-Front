@@ -9,13 +9,13 @@
         <h3>Récapitulatif de la commande</h3>
 
         <h1>Titre de l'annonce</h1>
-        <p>{{classifiedToBuy}}</p> 
+        <p>{{classifiedToBuy.title.rendered}}</p> 
         <h1>Description</h1>
-        <p>Je suis la description</p>
+        <p v-html="classifiedToBuy.content.rendered"></p>
         <h1>Prix</h1>
-        <p>Argent €</p>
+        <p>{{classifiedToBuy.classifiedPrice}} €</p>
         <h1>Mode de livraison</h1>
-        <p>Pigeon voyageur</p>
+        <p>{{classifiedToBuy._embedded['wp:term'][1][0]['name']}}</p>
       </div>
 
       <div class="display-user">
@@ -78,14 +78,13 @@ export default {
     this.ClassifiedId = storage.get('ClassifiedIdCart');
     console.log(this.ClassifiedId);
 
-    const classifiedToBuy = await classifiedsService.loadClassifiedsById(this.ClassifiedId);
-    console.log(classifiedToBuy);
+    this.classifiedToBuy = await classifiedsService.loadClassifiedsById(this.ClassifiedId);
     console.log('ClassifiedToBuy Loaded')
 
-    const id = storage.get('UserIdLogged');
-    console.log(id);
-    const userBuyer = await userService.loadUserFromUserTable(id);
-    console.log(userBuyer);
+    this.id = storage.get('UserIdLogged');
+    console.log(this.id);
+    this.userAdress = await userService.loadUserFromUserTable(this.id);
+    console.log(this.userAdress);
     console.log('User Information Loaded')
   },
   props: {

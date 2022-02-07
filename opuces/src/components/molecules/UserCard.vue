@@ -2,7 +2,7 @@
   <div class="card display2">
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
-      <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce" />
+      <img src="https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=" alt="classifiedImage" class="img-annoce" />
       <div class="flex prix-like">
         <span class="prix">{{ userClassifiedProps.classifiedPrice }}€</span>
       </div>
@@ -112,6 +112,8 @@ export default {
       typeCusto,
       this.userClassifiedProps.ProductState
     );
+    this.id = this.userClassifiedProps.id;
+    this.imageClassified = await classifiedsService.loadClassifiedsById(this.id);
   },
   data() {
     return {
@@ -120,15 +122,13 @@ export default {
     };
   },
   computed: {
-    getImage() {
-      if (this.userClassifiedProps._links["wp:featuredmedia"][1]) {
-        const urlImage = this.userClassifiedProps._links["wp:featuredmedia"][1];
-        console.log(urlImage);
-        return this.urlImage;
-      } else {
-        return "https://picsum.photos/400/600";
-      }
-    }
+    // getImage(){
+    //     if (this.imageClassified._embedded['wp:featuredmedia']){
+    //         return this.imageClassified._embedded['wp:featuredmedia'][0].source_url;
+    //     } else {
+    //     return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
+    //     }
+    // }
   },
   methods: {
     async handleClick(event){

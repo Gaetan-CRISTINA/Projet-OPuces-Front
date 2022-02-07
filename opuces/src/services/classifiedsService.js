@@ -190,6 +190,11 @@ const classifiedsService = {
         });
         console.log('Classified Deleted !');
         return response.data;
+    },
+
+    async loadClassifiedsByKeyWord(keyword){
+        const response = await axios.get(classifiedsService.baseURI+ '/classified?search=' + keyword);
+        return response.data;
     }
 
 
