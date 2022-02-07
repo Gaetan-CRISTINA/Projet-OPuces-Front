@@ -1,6 +1,6 @@
 <template>
   <div class="filters-desktop">
-    <form id="search-form" @submit.prevent="processForm" class="input-filters">
+    <form class="input-filters">
 
       <!-- Composants pour sélectionner une catégorie -->
       <BaseSelectCategory />
@@ -30,20 +30,41 @@
 
     },
 
-    data: {
-      city: '',
-      priceMin: '',
-      priceMax: ''
+    data() {
+    return {
+      items: [],
+      filter: {
+        category: '',
+        city: '',
+        price: ''
+      },
+      appliedfilter: null
+    };
     },
 
     methods: {
       // to listen for the event click on search button
-      processForm: function() {
-        console.log({city: this.city, priceMin: this.priceMin, priceMax: this.priceMax});
-        alert('Processing...!')
-
+      applyFilter(){
+        this.appliedFilter = {...this.filter};
       }
     },
+
+    computed: {
+      // to search for multiple items
+      filteredItems() {
+        let resultItems = [...this.items];
+
+        if (this.appliedFilter) {
+          for (const field in this.appliedFilter) {
+            const value = this.appliedFilter[field].trim().toLowerCase();
+            if (value)
+              resultItems = resultItems.filter(index => index[field].toLowerCase() === value);
+          }
+        }
+
+        return resultItems;
+      }
+    }
 
     
 };
