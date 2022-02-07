@@ -1,6 +1,6 @@
 <template>
   <div class="filters-desktop">
-    <form class="input-filters" @submit.prevent="processForm" >
+    <form class="input-filters" @submit="processForm" >
       <div class="input-filters">
 
         <!-- Select a category -->
@@ -22,7 +22,7 @@
         type="text" 
         placeholder="Villes" 
         class="selected-item"
-        v-model="ville"
+        v-model="city"
         >
       
       </div>
@@ -47,8 +47,8 @@
 </template>
 
 <script>
-  import classifiedsService from "../../services/classifiedsService";
-
+import classifiedsService from "../../services/classifiedsService";
+import storage from "../../plugins/storage";
   export default {
     name: "FiltersDesktop",
     components: {
@@ -64,7 +64,7 @@
 
     data() {
     return{
-      ville: '',
+      city: '',
       priceMin: '',
       priceMax: '',
       searchQuery: "",
@@ -98,9 +98,10 @@
     },
 
     // to listen for the event click on search button
-    processForm(){
-      console.log({category: this.selectedCategory, city: this.ville, priceMin: this.priceMin, priceMax: this.priceMax});
-      alert('Processing!');
+    async processForm(event){
+      event.preventDefault();
+      this.searchQueries = storage.set('searchQueries', [this.selectedCategory, this.city, this.priceMin, this.priceMax]);
+      this.$router.push({ name : 'SearchClassifiedsList'});
     },
 
 

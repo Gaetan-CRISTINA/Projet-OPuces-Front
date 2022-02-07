@@ -195,6 +195,25 @@ const classifiedsService = {
     async loadClassifiedsByKeyWord(keyword){
         const response = await axios.get(classifiedsService.baseURI+ '/classified?search=' + keyword);
         return response.data;
+    },
+
+    async getQueryClassified(keyWords)
+    {
+        this.category = keyWords[0],
+        this.city = keyWords[1],
+        this.priceMin = keyWords[2],
+        this.priceMax = keyWords[3];
+
+        const response = await axios.get(classifiedsService.opucesBaseURI+ '/queryClassified',
+        {
+            city : this.city,
+            category: this.category,
+            priceMin: this.priceMin,
+            priceMax: this.priceMax
+        }
+        );
+        console.log(response);
+        return response.data;
     }
 
 
