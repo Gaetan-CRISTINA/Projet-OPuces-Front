@@ -192,6 +192,7 @@ export default {
   width: 100%;
 }
 button {
+  height: 38px;
   font-size: 12px;
   font-weight: 700;
   padding: 0.5em 1em;
