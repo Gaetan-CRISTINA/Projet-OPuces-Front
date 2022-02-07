@@ -4,7 +4,12 @@
       <svg class="icon">
         <use xlink:href="#icon-search"></use>
       </svg>
-      <input type="text" placeholder="Rechercher" />
+      <!--  computed function for when you start entering a value on the input, it starts searching at the same time --> 
+      <input v-model="searchQuery" type="text" placeholder="Rechercher" />
+      <!-- if there's a selected item display selected item by name -->
+      <span v-if="selectedItem">{{ selectedItem.id }}</span>
+      <!-- and if it doesn't find what you're searching for, it will say... -->
+      <span v-if="filteredClassified.length == 0">Recherche introuvable</span>
     </label>
 
     <svg class="spritesheet">
@@ -20,9 +25,46 @@
 </template>
 
 <script>
+import classifiedsService from "../../services/classifiedsService";
+
 export default {
-  name: "SearchBar",
-};
+  data() {
+    return{
+      searchQuery: "",
+      selectedItem: null,
+      classifiedsArray: [],
+    };
+  },
+
+  
+  // filter function for search city
+  computed: {
+    filteredClassified() {
+      // if the input is empty return the array
+      const query = this.searchQuery.toLowerCase()
+      if(this.searchQuery == "") {
+        return this.classifiedsArray;
+      }
+      // checking what you are typing in the input
+      return this.classifiedsArray.filter((classified) => {
+        return Object.values(classified).some((word) => String(word).toLowerCase().includes(query)
+        );
+      });
+    },
+  },
+
+  async created(){
+    this.classifiedsArray = await classifiedsService.loadClassified();
+  },
+
+  methods: {
+    selectItem(classified){
+      this.selectedItem = classified;
+    },
+  },
+
+}
+  
 </script>
 
 <style scoped lang="scss">
