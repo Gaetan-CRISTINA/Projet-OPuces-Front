@@ -193,7 +193,7 @@ export default {
                     if(userData){
                       storage.set("userData", userData);
                     }
-                  this.$router.push({name:'Home'});
+                  this.$router.push({name:'KnowMore'});
                       // renvoyer vers la home avec token 
                   }
               }
