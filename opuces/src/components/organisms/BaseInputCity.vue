@@ -3,7 +3,14 @@
     <div>
 
     <!--  computed function for when you start entering a value on the input, it starts searching at the same time --> 
-      <input type="text" placeholder="Villes" class="selected-item">
+      <input 
+      type="text" 
+      placeholder="Villes" 
+      class="selected-item"
+      v-model="city"
+      @change="findCity"
+      
+      >
        
       
     </div>
@@ -14,7 +21,19 @@
 
 
 <script>
+export default {
+  data() {
+    return {
+      city: ''
+    }
+  },
 
+  methods: {
+    findCity (event) {
+      this.$emit("findcity", event.target.value)
+    },
+  }
+}
 
 
 </script>
