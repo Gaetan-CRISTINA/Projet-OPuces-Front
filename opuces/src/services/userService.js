@@ -202,7 +202,7 @@ const userService = {
         }
     },
 
-    loadUserFromUserTable: async function(id){
+    async loadUserFromUserTable(id){
 
     const response = await axios.get(userService.opucesBaseURI + '/user-table',
         {
@@ -210,11 +210,11 @@ const userService = {
         }
         ).catch(function(){
             console.log('Failed To Load User Informations');
-            console.log(response);
-            return response.data;
+            return false;
         });
-        
+        console.log('User Informations Loaded');
         return response.data;
+        
     },
 };
 export default userService;

@@ -79,12 +79,11 @@ export default {
     console.log(this.ClassifiedId);
 
     this.classifiedToBuy = await classifiedsService.loadClassifiedsById(this.ClassifiedId);
-    console.log(this.classifiedToBuy);
     console.log('ClassifiedToBuy Loaded')
 
     this.id = storage.get('UserIdLogged');
-    this.userBuyer = await userService.loadUserFromUserTable(this.id);
-    console.log(this.userBuyer);
+    this.userAdress = await userService.loadUserFromUserTable(this.id);
+    console.log(this.userAdress);
     console.log('User Information Loaded')
   },
   props: {

@@ -106,6 +106,7 @@ import VoirMoins from "../molecules/VoirMoins.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
 import storage from "../../plugins/storage";
+import userService from "../../services/userService";
 export default {
   name: "Card",
   components: {
@@ -187,6 +188,10 @@ export default {
       storage.set("ClassifiedIdCart", this.classifiedProps.id);
       this.id = await classifiedsService.loadAuthor();
       storage.set("UserIdLogged", this.id);
+
+      this.userInfos = await userService.loadUserFromUserTable(this.id);
+      storage.set('UserInfos', this.userInfos);
+
     },
     displayHideCardContent: function (evt) {
       evt.preventDefault;
