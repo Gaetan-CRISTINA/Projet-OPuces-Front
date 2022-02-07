@@ -1,7 +1,7 @@
 <template>
 <section class="input-filters">
     <div>
-        <label for="name">Prix</label>
+        <label for="name"> {{title}} </label>
     </div>
     <div class="input-price">
         <input placeholder="Min" type="text" id="minAmount" name="user_name"/> 
@@ -11,6 +11,14 @@
     
 </template>
 <script>
+export default {
+  props: {
+    title: {
+      type: String, 
+      default: 'Prix'
+    }
+  }
+}
 
 </script>
 <style scoped lang="scss">

@@ -1,29 +1,13 @@
 <template>
-  <section class="dropdown-wrapper">
-    <div @click="isVisible = !isVisible" class="selected-item">
-      <!-- if there's a selected item display selected item by name -->
-      <span v-if="selectedItem">{{ selectedItem.nom }}</span>
-      <!-- otherwise display this -->
-      <span v-else>Saisissez une ville</span>
-      <svg 
-      :class="isVisible ? 'dropdown' : ''"
-      class= "drop-down-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/></svg>
-    </div>
-    <div :class="isVisible ? 'visible' : 'invisible'" class="dropdown-popover">
-      <input v-model="searchQuery" type="text" placeholder="Villes">
+  <section class="input-filters">
+    <div>
+
+    <!--  computed function for when you start entering a value on the input, it starts searching at the same time --> 
+      <input v-model="searchQuery" type="text" placeholder="Villes" class="selected-item">
+
+      <!-- and if it doesn't find what you're searching for, it will say... -->
       <span v-if="filteredCity.length == 0">Ville introuvable</span>
-      
-      
-      <div class="">
-        <ul>
-          <!-- selectItem is a method -->
-          <!-- filteredUser is computed function -->
-          <li @click="selectItem(city)" v-for="(city, index) in filteredCity" :key="`city-${index}`">
-            {{ city.nom }}
-          </li>
-          
-        </ul>
-       </div> 
+       
       
     </div>
   
@@ -33,16 +17,19 @@
 
 
 <script>
+import classifiedsService from "../../services/classifiedsService";
+
 export default {
   data() {
     return{
       searchQuery: "",
       selectedItem: null,
-      isVisible: false,
       cityArray: [],
     };
   },
 
+  
+  // filter function for search city
   computed: {
     filteredCity() {
       // if the input is empty return the array
@@ -59,20 +46,17 @@ export default {
   },
 
 
-  mounted() {
-    fetch("/")
-    .then(res => res.json())
-    .then((json) => {
-      console.log(json);
-      this.cityArray = json;
-    })
+  async created(){
+    this.cityArray = await classifiedsService.loadClassified();
+    this.cityArray = json;
+    }
+
   },
 
 
   methods: {
     selectItem(city){
       this.selectedItem = city;
-      this.isVisible = false
     },
   },
   
@@ -102,7 +86,6 @@ export default {
   height: 40px;
   border-radius: 5px;
   margin-bottom: 30px;
-  padding-left: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
