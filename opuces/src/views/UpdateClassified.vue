@@ -10,15 +10,13 @@
         <form @submit="handleSubmit">
           
           <label>
-              <h3>Le titre actuel:</h3>
-              <h4>{{ userClassifieds.title.rendered }}</h4>
+              <h3>Le titre de votre annonce:</h3>
             <input v-model="title" name="title" class="title" />
           </label>
 
           
           <label>
-              <h3>La description rapide actuelle :</h3>
-              <h4 v-html="userClassifieds.excerpt.rendered"></h4>
+              <h3>La description :</h3>
             <textarea
               v-model="description"
               name="description"
@@ -27,21 +25,19 @@
           </label>
 
           <label>
-              <h3>Le contenu actuel de votre annonce :</h3>
-              <h4 v-html="userClassifieds.content.rendered"></h4>
+              <h3>Le contenu votre annonce :</h3>
             <textarea v-model="content" name="content" class="content" />
           </label>
 
           <h6>Votre prix</h6>
           <label class="label-price">
-              <h3>Le prix actuel de votre bien :</h3>
-              <h4>{{ userClassifieds.classifiedPrice}} €</h4>
+              <h3>Le prix de votre bien :</h3>
             <input v-model="price" name="price" class="price" />
             <p>€</p>
           </label>
 
           <label>
-              <h3>L'état actuel de votre bien :</h3>
+              <h3>L'état de votre bien :</h3>
               <h4>{{ userClassifieds._embedded['wp:term'][0][0]['name'] }}</h4>
             <select name="selectState" v-model="selectedState">
               <option value="">Etat du produit</option>
@@ -50,6 +46,9 @@
               </option>
             </select>
           </label>
+          <div class="error" v-if="selectedStateEmpty">
+            Vous confirmer l'état de votre bien
+          </div>
 
           
           <label>
@@ -66,6 +65,9 @@
               </option>
             </select>
           </label>
+          <div class="error" v-if="selectedCategoryEmpty">
+            Vous confirmer la catégorie dans laquelle se trouve votre bien
+          </div>
 
           <label>
               <h3>Le mode de livraison actuel de votre bien :</h3>
@@ -81,12 +83,15 @@
               </option>
             </select>
           </label>
+          <div class="error" v-if="selectedDeliveryMethodEmpty">
+            Vous confirmer la méthode de livraison 
+          </div>
           
           <div class="uploadImageForm">
             <label>
                 <h3>L'image actuelle de votre annonce :</h3>
               <div>
-                <img class="imageDisplay" :src="getImage" />
+                <!-- <img class="imageDisplay" :src="getImage" /> -->
               </div>
               <div>
                 <input type="file" @change="uploadImage" />
@@ -105,7 +110,7 @@
           </div>
         </form>
 
-        <!-- <div class="homeLink">
+        <div class="homeLink">
           <router-link
             :to="{
               name: 'Home',
@@ -113,9 +118,10 @@
           >
             <button class="button-retour-home">Retouner vers la page d'accueil</button>
           </router-link>
-        </div> -->
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -132,6 +138,8 @@ export default {
   props: {
       userClassifieds: Object,
   },
+// {{ userClassifieds.classifiedPrice}}
+  
   data() {
     return {
       title: "",
@@ -139,16 +147,26 @@ export default {
       states: [],
       price: "",
       selectedState: "",
+      selectedStateEmpty: false,
       selectedCategory: "",
+      selectedCategoryEmpty: false,
       selectedDeliveryMethod: "",
+      selectedDeliveryMethodEmpty: false,
       content: "",
       image: null,
       imageId: null,
     };
   },
+  
   async created() {
     this.id = storage.get('ClassifiedToUpdate');
     this.userClassifieds = await classifiedsService.loadClassifiedsById(this.id);
+      this.price = this.userClassifieds.classifiedPrice;
+      this.title = this.userClassifieds.title.rendered;
+      this.description = this.userClassifieds.excerpt.rendered;
+      this.content = this.userClassifieds.content.rendered;
+
+
     this.deliveryMethods = await classifiedsService.loadDeliveryMethods();
     this.categories = await classifiedsService.loadClassifiedProductCategory();
     this.states = await classifiedsService.loadProductState();
