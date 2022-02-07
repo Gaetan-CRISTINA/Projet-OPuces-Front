@@ -5,7 +5,7 @@
         <router-link v-if="user" :to="{ name: 'Home' }">
           <div id="left-header-mobile">
             <span id="logo-link"><Logo /></span>
-            <h2 id="txt-link">O'Puces</h2>
+            <h1 id="txt-link">O'Puces</h1>
           </div>
         </router-link>
 
@@ -33,7 +33,7 @@
                   name: 'Myaccount',
                 }"
               >
-                <li><PictoCompte /><span>Mon compte</span></li>
+                <li @click="StoreUserId"><PictoCompte /><span>Mon compte</span></li>
               </router-link>
 
               <router-link
@@ -114,7 +114,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -127,7 +127,7 @@
           >
             <a>
               <span id="logo-link"><Logo /></span>
-              <h2 id="txt-link">O'Puces</h2>
+              <h1 id="txt-link">O'Puces</h1>
             </a>
           </router-link>
           <!-- FIN-->
@@ -170,6 +170,14 @@
     <div class="header-bottom">
         <ul>
           <router-link
+            :to="{
+              name: 'Home',
+            }"
+          >
+            
+          <li>Accueil</li>
+          </router-link>
+          <router-link
             v-if="user"
             :to="{
               name: 'CreateClassified',
@@ -183,7 +191,7 @@
               name: 'Myaccount',
             }"
           >
-          <li>Mon compte</li>
+          <li @click="StoreUserId">Mon compte</li>
           </router-link>
           <router-link
             v-if="user"
@@ -269,7 +277,10 @@ import PictoText from "../atoms/PictoText";
 import PictoMail from "../atoms/PictoMail";
 import PictoClose from "../atoms/PictoClose.vue";
 import PictoAdd2 from "../atoms/PictoAdd2.vue";
+
+import classifiedsService from "../../services/classifiedsService"
 import Logo from "../atoms/Logo";
+
 import storage from "../../plugins/storage";
 
 export default {
@@ -296,11 +307,56 @@ export default {
       }
     },
   },
+  methods: {
+    async StoreUserId(event){
+      event.preventDefault();
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+      this.$router.push({name: 'Myaccount'});
+    }
+  }
 };
 </script>
-
+<style lang="scss">
+@import "../../assets/scss/main";
+  #left-header-mobile #logo {
+      fill: $main-green;
+    }
+  #left-header-mobile:hover #logo {
+    fill: $secondary-green;
+    width: 70px;
+  }
+.title-cgu-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position:relative;
+}
+@media screen and (min-width: 576px) {
+   
+  }
+@media screen and (min-width: 768px) {
+  
+}
+@media screen and (min-width: 992px) {
+  #left-header-desktop #logo {
+      fill: $main-green;
+      width: 30px;
+    }
+  #left-header-desktop:hover #logo {
+    fill: $secondary-green;
+  }
+}
+@media screen and (min-width: 1200px) {
+  
+}
+@media screen and (min-width: 1400px) {
+    
+}
+</style>
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+
 .header-bottom {
   display: none;
 }
@@ -314,13 +370,14 @@ export default {
 .flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
 }
 #right-header-mobile:hover .sub-nav {
   transform: translateX(0);
 }
-
+.right-header-mobile:hover header {
+  background-color: black;
+}
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
@@ -329,23 +386,24 @@ export default {
 #center-header-desktop,
 #right-header-desktop {
   display: none;
+  transition: all .3s;
 }
-#left-header-mobile span, h2{
+#left-header-mobile span, h1{
   transition: all .2s ease-in-out;
 }
-#left-header-mobile span, h2:hover{
-  transform: scale(1.3);
+#left-header-mobile:hover {
+  transform: scale(1.05);
 }
-
+#right-header-desktop h3 {
+  font-size: 12px;
+}
 header {
   position: fixed;
   z-index: 1;
-  top:0;
   padding: 0.5em 0 !important;
   width: 100%;
   background-color: #fff;
   display: flex;
-  align-items:center;
 }
 
 #se-connecter {
@@ -419,19 +477,15 @@ li svg {
 .disconect--button span {
   color: $main-green;
 }
-#txt-link {
-  padding:10px;
-  color:$main-green;
-  font-size: 24px;
-    font-weight: 600;
-}
-
 #div-logo {
   width: 32px;
-  margin:15px auto;
 }
-#left-header-desktop a:hover svg {
-  fill: $secondary-green !important;
+#left-header-desktop:hover {
+  transform: scale(1.015);
+  cursor:pointer
+}
+#left-header-desktop:hover h1 {
+  color: $secondary-green !important;
 }
 #picto-home {
   fill: $main-green !important;
@@ -478,13 +532,13 @@ li svg {
     display: flex;
     align-items: center;
   }
-  #left-header-desktop a:hover h2 {
+  #left-header-desktop a:hover h1 {
     color: $secondary-green;
   }
   #left-header-desktop #logo-link {
     margin-right: 0.3em;
   }
-  #left-header-desktop h2 {
+  #left-header-desktop h1 {
     position: relative;
     top: -7px;
     font-weight: 900;

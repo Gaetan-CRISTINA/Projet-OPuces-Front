@@ -48,7 +48,11 @@ export default {
 
   async created(){
     this.cityArray = await classifiedsService.loadClassified();
+    this.cityArray = json;
+    }
+
   },
+
 
   methods: {
     selectItem(city){
@@ -61,6 +65,10 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+
+.selected-item{
+  width: 300px;
+}
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {

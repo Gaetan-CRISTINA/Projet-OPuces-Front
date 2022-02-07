@@ -18,3 +18,12 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+
+@import "../assets/scss/main";
+.title-cgu-container p {
+  color: $main-green;
+  font-weight: 900;
+    font-size: 18px;
+}
+</style>

@@ -87,6 +87,7 @@ export default {
   .input-price {
     display: flex;
     gap: 20px;
+    justify-content: space-around;
   }
   .input-price input {
     width: 115px;

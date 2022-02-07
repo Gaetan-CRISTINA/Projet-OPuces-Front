@@ -55,7 +55,8 @@
 
 
 <script>
-import classifiedsService from "../../services/classifiedsService";
+
+import classifiedsService from '../../services/classifiedsService';
 
 export default {
   data() {
@@ -84,6 +85,10 @@ export default {
   
   async created(){
     this.categoryArray = await classifiedsService.loadClassifiedProductCategory();
+
+    this.categoryArray = this.json;
+
+
   },
 
   methods: {

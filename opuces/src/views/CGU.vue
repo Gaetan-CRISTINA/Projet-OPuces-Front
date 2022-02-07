@@ -1073,7 +1073,6 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 20px;
   position:relative;
 }
 .title-cgu-container img {

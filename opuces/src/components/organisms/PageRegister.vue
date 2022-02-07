@@ -187,7 +187,7 @@ export default {
               console.log(result);
               if(result){
                   if(result.success == true){   
-                this.$router.push({name:'Login'});
+                this.$router.push({name:'LoginForm'});
                       // renvoyer vers la home avec token 
                   }
               }
@@ -206,10 +206,8 @@ h1 {
   width: 95px;
   margin-bottom: 1em;
 }
-.home-link:hover h1 {
-  color: $secondary-green;
-}
-.home-link:hover:hover .logo #logo {
+
+.home-link .logo #logo {
   fill: $secondary-green !important;
 }
 .picto-eye {

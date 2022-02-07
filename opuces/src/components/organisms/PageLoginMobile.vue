@@ -107,8 +107,7 @@ export default {
 
       if (!this.passwordEmpty && !this.loginEmpty) {
         let userData = await userService.login(this.login, this.password);
-        console.log(userData);
-
+        
         if (userData) {
           console.log("SUCCESS!");
           storage.set("userData", userData);
@@ -119,7 +118,7 @@ export default {
           this.loginFailed = true;
         }
       }
-    },
+    }
   },
 };
 </script>

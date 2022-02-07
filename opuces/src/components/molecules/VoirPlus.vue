@@ -27,11 +27,12 @@ export default {
 <style lang="scss">
 @import "../../assets/scss/main";
 #picto-nav {
+  position:absolute;
   transform: rotateZ(90deg);
   width: 7px;
-  margin-left: 1em;
   fill: $main-green;
   transition: all .3s;
+  
 }
 button:hover #picto-nav {
   transform: rotateZ(-270deg);
@@ -43,7 +44,7 @@ button:hover #picto-nav {
 <style scoped lang="scss">
 @import "../../assets/scss/main";
 button {
-
+position:relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -64,6 +65,7 @@ button:hover {
   border-top: solid 1px $secondary-green;
 }
 .voir-plus {
+ 
   text-align: center;
 }
 @media screen and (min-width: 576px) {

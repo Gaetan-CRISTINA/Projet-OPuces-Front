@@ -27,6 +27,14 @@ import About from '../views/About.vue'
 import UserCart from '../views/UserCart.vue'
 import PayementSuccess from '../views/PayementSuccess.vue'
 import CancelOrder from '../views/CancelOrder.vue'
+import UpdateEmail from '../views/UpdateEmail.vue'
+import UpdateUser from '../views/UpdateUser.vue'
+import UpdateClassified from '../views/UpdateClassified.vue'
+
+import DeleteUser from '../views/DeleteUser.vue'
+import DeleteUserConfirmation from '../views/DeleteUserConfirmation.vue'
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -127,6 +135,31 @@ const routes = [
     path: '/order-canceled',
     name: 'CancelOrder',
     component: CancelOrder
+  },
+  {
+    path: '/update-email',
+    name: 'UpdateEmail',
+    component: UpdateEmail
+  },
+  {
+    path: '/update-user',
+    name: 'UpdateUser',
+    component: UpdateUser
+  },
+  {
+    path: '/update-classified',
+    name: 'UpdateClassified',
+    component: UpdateClassified
+  },
+  {
+    path: '/delete-account',
+    name: 'DeleteUser',
+    component: DeleteUser
+  },
+  {
+    path: '/delete-account-Confirmation',
+    name: 'DeleteUserConfirmation',
+    component: DeleteUserConfirmation
   },
   {
     path: '*',

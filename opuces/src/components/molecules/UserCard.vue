@@ -47,7 +47,17 @@
     /> -->
 
     <div class="voir-plus">
-      <button>Modifier L'Annonce</button>
+      <router-link
+        :to="{
+          name: 'UpdateClassified',
+          params: {
+            id: userClassifiedProps.id
+          }
+          
+        }"
+      >
+      <button class="modify">Modifier L'Annonce</button>
+      </router-link>
 
 
     
@@ -262,7 +272,11 @@ button:hover {
   position: absolute;
   right: 0;
 }
-
+.modify:hover{
+background-color: #10BD4C;
+  border: solid 1px #10BD4C;
+  color: white;
+}
 @media screen and (min-width: 576px) {
   .display2 {
     width: 262.5px;
