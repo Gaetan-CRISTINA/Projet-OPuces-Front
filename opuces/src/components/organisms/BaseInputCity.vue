@@ -49,9 +49,7 @@ export default {
   async created(){
     this.cityArray = await classifiedsService.loadClassified();
     this.cityArray = json;
-    }
-
-  },
+    },
 
 
   methods: {
