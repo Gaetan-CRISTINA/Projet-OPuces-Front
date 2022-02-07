@@ -157,7 +157,7 @@ export default {
       if (this.classifiedProps._embedded["wp:featuredmedia"]) {
         return this.classifiedProps._embedded["wp:featuredmedia"][0].source_url;
       } else {
-        return "https://picsum.photos/400/600";
+        return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
       }
     },
       //TODO
@@ -185,6 +185,8 @@ export default {
     async StoreClassified(event) {
       event.preventDefault();
       storage.set("ClassifiedIdCart", this.classifiedProps.id);
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
     },
     displayHideCardContent: function (evt) {
       evt.preventDefault;

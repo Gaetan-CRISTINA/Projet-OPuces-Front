@@ -45,7 +45,7 @@ const classifiedsService = {
         
     },
 
-    async updateClassified(classifiedId, title, description, selectedState, selectedCategory, price, selectedDeliveryMethod, content, imageId){
+    async updateClassified(id, title, description, selectedState, selectedCategory, price, selectedDeliveryMethod, content, imageId){
         const userData = storage.get('userData');
         if(userData !=null){
             const token = userData.token;
@@ -56,9 +56,9 @@ const classifiedsService = {
                     }
                 };
             const response = await axios.post(
-            classifiedsService.opucesBaseURI + '/save-classified',
+            classifiedsService.opucesBaseURI + '/update-classified',
             {
-                post_id: classifiedId,
+                post_id: id,
                 title: title,
                 description: description,
                 ProductState: selectedState,
@@ -150,11 +150,12 @@ const classifiedsService = {
     },
 
     async loadClassifiedsById(classifiedId){
-        const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId );
+        const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId  +'?_embed=true');
         return response.data;
     },
 
     async loadClassifiedsByUser(userId){
+        //TODO voir pour rajouter +'?_embed=true'
         const response = await axios.get(classifiedsService.baseURI + '/classified?author=' + userId);
         return response.data;
     },
@@ -187,7 +188,7 @@ const classifiedsService = {
                     'Authorization' : 'Bearer ' + token
                 }
         });
-        console.log('ok');
+        console.log('Classified Deleted !');
         return response.data;
     }
 
