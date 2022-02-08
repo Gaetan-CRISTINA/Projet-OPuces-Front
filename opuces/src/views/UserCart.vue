@@ -22,16 +22,16 @@
         <h3>Récapitulatif de la Livraison</h3>
 
         <h1>Nom et prénom</h1>
-        <p>Team Opuces</p> 
+        <p>{{userAdress[0].lastname}} {{userAdress[0].firstname}}</p> 
         <h1>Adresse</h1>
-        <p>215 rue du soleil levant</p>
-        <p>3ème planète après le soleil
+        <p>{{userAdress[0].adress1}}</p>
+        <p>{{userAdress[0].adress2}}
         <h1>Code Postal</h1>
-        <p>17 568 12</p>
+        <p>{{userAdress[0].zipcode}}</p>
         <h1>Ville</h1>
-        <p>Xandar</p>
+        <p>{{userAdress[0].city}}</p>
         <h1>Numéro de téléphone</h1>
-        <p>00 1253 78 58 96 12 11</p>
+        <p>0{{userAdress[0].phone_number}}</p>
       </div>
       
     </div>
