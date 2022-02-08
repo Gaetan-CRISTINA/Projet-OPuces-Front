@@ -96,7 +96,7 @@ PictoEye
       try {
         emailjs.sendForm(
           "service_23ritqp",
-          "template_t6hafqo",
+          "template_7p13msm",
           e.target,
           "user_S0Gnpuir0FKyLOHzHOp9L",
           {
