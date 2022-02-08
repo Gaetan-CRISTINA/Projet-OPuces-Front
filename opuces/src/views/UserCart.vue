@@ -85,7 +85,11 @@ export default {
     console.log(this.id);
     this.userAdress = await userService.loadUserFromUserTable(this.id);
     console.log(this.userAdress);
-    console.log('User Information Loaded')
+    console.log('User Information Loaded');
+
+    this.userData = storage.get('userData');
+    this.userEmail = this.userData.user_email;
+    console.log(this.userEmail);
   },
   props: {
     classifiedToBuy: Object,
