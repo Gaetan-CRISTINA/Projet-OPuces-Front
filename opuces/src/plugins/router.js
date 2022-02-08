@@ -34,6 +34,7 @@ import UpdateClassified from '../views/UpdateClassified.vue'
 import DeleteUser from '../views/DeleteUser.vue'
 import DeleteUserConfirmation from '../views/DeleteUserConfirmation.vue'
 import SearchClassifiedsList from '../views/SearchClassifiedsList.vue'
+import SearchClassifiedsListByMulti from '../views/SearchClassifiedsListByMulti.vue'
 import KnowMore from '../views/KnowMore.vue'
 import BuyOrContinue from '../views/BuyOrContinue.vue'
 import CartEmpty from '../views/CartEmpty.vue'
@@ -169,6 +170,11 @@ const routes = [
     path: '/search-list',
     name: 'SearchClassifiedsList',
     component: SearchClassifiedsList
+  },
+  {
+    path: '/search-list-multi',
+    name: 'SearchClassifiedsListByMulti',
+    component: SearchClassifiedsListByMulti
   },
   {
     path: '/about-you',
