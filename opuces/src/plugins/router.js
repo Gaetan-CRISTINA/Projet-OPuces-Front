@@ -35,6 +35,8 @@ import DeleteUser from '../views/DeleteUser.vue'
 import DeleteUserConfirmation from '../views/DeleteUserConfirmation.vue'
 import SearchClassifiedsList from '../views/SearchClassifiedsList.vue'
 import KnowMore from '../views/KnowMore.vue'
+import BuyOrContinue from '../views/BuyOrContinue.vue'
+import CartEmpty from '../views/CartEmpty.vue'
 
 
 Vue.use(VueRouter)
@@ -172,6 +174,16 @@ const routes = [
     path: '/about-you',
     name: 'KnowMore',
     component: KnowMore
+  },
+  {
+    path: '/continue',
+    name: 'BuyOrContinue',
+    component: BuyOrContinue
+  },
+  {
+    path: '/cart-empty',
+    name: 'CartEmpty',
+    component: CartEmpty
   },
   {
     path: '*',

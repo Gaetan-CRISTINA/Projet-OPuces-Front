@@ -146,7 +146,7 @@
             <router-link
               v-if="!cart"
               :to="{
-                name: 'Cart',
+                name: 'CartEmpty',
               }"
             >
               <PictoEmptyCart />
