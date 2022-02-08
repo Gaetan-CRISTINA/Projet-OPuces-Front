@@ -4,146 +4,114 @@
     <div class="illusLamp">
       <IllusLamp />
     </div>
+
     <div class="main-container">
-      <div class="connexion">
-
-
+      
         <div class="left">
-          <div class="svg">
-          <IllusTree />
-          </div>
-          
-          
-        </div>
-        <div class="right contact">
           <div class="form-contact">
             <form class="login-form" @submit="handleSubmit">
-              
               <h6>Civilité</h6>
               <select name="civility" v-model="civility">
                 <option value="Madame">Madame</option>
                 <option value="Monsieur">Monsieur</option>
                 <option value="Autres">Autres</option>
-              </select> 
+              </select>
               <div class="error" v-if="civilityEmpty">
                 Merci de choisir une civilité
               </div>
 
               <h6>Nom</h6>
-              <input
-                v-model="lastname"
-                type="text"
-                name="lastname"
-              />
-              
+              <input v-model="lastname" type="text" name="lastname" />
+
               <div class="error" v-if="lastnameEmpty">
                 Merci de saisir votre nom
               </div>
 
               <h6>Prénom</h6>
-              <input
-                v-model="firstname"
-                type="text"
-                name="firstname"
-              />
+              <input v-model="firstname" type="text" name="firstname" />
               <div class="error" v-if="firstnameEmpty">
                 Merci de saisir votre prénom
               </div>
 
               <h6>Adresse</h6>
-              <input
-                v-model="adress"
-                type="text"
-                name="adress1"
-              />
+              <input v-model="adress" type="text" name="adress1" />
 
               <div class="error" v-if="adressEmpty">
                 Vous devez saisir un email
               </div>
 
               <h6>Complément d'adresse</h6>
-              <input
-                v-model="adress2"
-                type="text"
-                name="adress2"
-              />
+              <input v-model="adress2" type="text" name="adress2" />
 
               <h6>Code Postal</h6>
-              <input
-                v-model="zipcode"
-                type="number"
-                name="zipcode"
-              />
+              <input v-model="zipcode" type="number" name="zipcode" />
 
               <div class="error" v-if="zipcodeEmpty">
                 Vous devez saisir un code postal
               </div>
 
               <h6>Ville</h6>
-              <input v-model="city" type="text" name="city"/>
+              <input v-model="city" type="text" name="city" />
 
               <div class="error" v-if="cityEmpty">
                 Vous devez saisir une ville
               </div>
 
               <h6>Pays</h6>
-              <input
-                v-model="country"
-                type="text"
-                name="country"
-              />
+              <input v-model="country" type="text" name="country" />
 
               <div class="error" v-if="countryEmpty">
                 Vous devez saisir un Pays
               </div>
 
               <h6>Numéro de téléphone</h6>
-              <input
-                v-model="phoneNumber"
-                type="number"
-                name="phoneNumber"
-              />
+              <input v-model="phoneNumber" type="number" name="phoneNumber" />
 
               <div class="error" v-if="phoneNumberEmpty">
                 Vous devez saisir un numéro de téléphone
               </div>
 
-              <button class="--button connect">
+              <button class="--button">
                 Enregistrer les modifications
               </button>
+              <router-link
+              :to="{
+                name: 'Home',
+              }"
+            >
+              <button class="--button">
+                Annuler et retourner à l'accueil
+              </button>
+            </router-link>
             </form>
-            <router-link
-        :to="{
-          name: 'Home'
-          }">
-        <button class="--button connect">
-            Annuler et retourner à l'accueil
-          </button>
-        </router-link>
+            
           </div>
         </div>
-      </div>
+
+        <div class="right">
+          <img src="../assets/svg/tree.svg" alt="">
+        </div>
+      
     </div>
   </div>
 </template>
 
 <script>
-import IllusTree from "../components/atoms/IllusTree.vue";
+
 import userService from "../services/userService";
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
-import storage from "../plugins/storage"
+import storage from "../plugins/storage";
 
 export default {
   name: "UpdateUser",
   components: {
     Header2,
     IllusLamp,
-    IllusTree
+    
   },
   data() {
     return {
-      
       zipcode: "",
       zipcodeEmpty: false,
       city: "",
@@ -160,7 +128,7 @@ export default {
       firstname: "",
       firstnameEmpty: false,
       lastname: "",
-      lastnameEmpty: false
+      lastnameEmpty: false,
     };
   },
   methods: {
@@ -169,13 +137,13 @@ export default {
       if (this.zipcode == "") {
         this.zipcodeEmpty = true;
       }
-      if (this.civility == ""){
+      if (this.civility == "") {
         this.civilityEmpty = true;
       }
-      if (this.firstname == ""){
+      if (this.firstname == "") {
         this.civilityEmpty = true;
       }
-      if (this.lastname == ""){
+      if (this.lastname == "") {
         this.lastnameEmpty = true;
       }
       if (this.city == "") {
@@ -191,7 +159,7 @@ export default {
         this.phoneNumberEmpty = true;
       }
 
-       if (
+      if (
         !this.zipcodeEmpty &&
         !this.cityEmpty &&
         !this.adressEmpty &&
@@ -202,9 +170,8 @@ export default {
         !this.firstnameEmpty
       ) {
         console.log("Mise à jour des infos user");
-        
+
         let result = await userService.saveUserInformation(
-          
           this.adress,
           this.adress2,
           this.country,
@@ -217,8 +184,18 @@ export default {
         );
         console.log(result);
         if (result) {
-          storage.set("UserInfos", [this.civility, this.firstname, this.lastname, this.adress, this.adress2, this.country, this.phoneNumber, this.zipcode, this.city])
-          this.$router.push({ name: 'Myaccount' });
+          storage.set("UserInfos", [
+            this.civility,
+            this.firstname,
+            this.lastname,
+            this.adress,
+            this.adress2,
+            this.country,
+            this.phoneNumber,
+            this.zipcode,
+            this.city,
+          ]);
+          this.$router.push({ name: "Myaccount" });
         }
       }
     },
@@ -228,60 +205,46 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/main.scss";
-
-.headerLink {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
-}
-.connexion {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin: 200px auto;
-  border: 15px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
 .main-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  form {
   width: 100%;
+  max-width: 400px;
+}
+h6 {
+  padding-top: 1.5em;
+}
+.--button {
+  border-radius: 19px;
+  padding: 1px;
+  width: 100%;
+  height: 38px;
+  color: white;
+  width: 100%;
+  border: none;
+  margin: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 900px;
+  cursor: pointer;
+  transition: all .3s;
+}
+.--button:hover {
+  background-color: $secondary-green;
+}
+.left {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  width: 100%;
 }
 .illusLamp {
   display: none;
-}
-.svg{
-  width: 500%;
-}
-@media screen and (min-width: 576px) {
-  .illusLamp {
-    display: none;
-  }
-}
-@media screen and (min-width: 768px) {
-  .illusLamp {
-    display: none;
-  }
-}
-@media screen and (min-width: 992px) {
-  .illusLamp {
-    display: none;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .illusLamp {
-    display: none;
-  }
-}
-@media screen and (min-width: 1400px) {
-  .illusLamp {
-    display: inline-block;
-    position: fixed;
-    margin-left: 6%;
-  }
 }
 button {
   margin-top: 2em;
@@ -297,25 +260,6 @@ button {
   cursor: pointer;
   transition: all 0.3s;
 }
-button:hover {
-  background-color: $secondary-green;
-}
-.infos-desktop {
-  display: none;
-}
-.infos-mobile {
-  display: block;
-}
-.infos {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 33em;
-}
-h2 {
-  color: $main-green;
-}
 form {
   margin: 0 auto;
   width: 100%;
@@ -323,11 +267,6 @@ form {
 form > * {
   display: block;
   width: 100%;
-}
-
-label {
-  font-weight: 600;
-  padding-top: 1.5em;
 }
 input {
   height: 38px;
@@ -351,4 +290,44 @@ select:focus,
 textarea:focus {
   outline: none;
 }
+@media screen and (min-width: 576px) {
+  
+}
+@media screen and (min-width: 768px) {
+  .right img {
+    width: 400px;
+  }
+ 
+  .main-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .left {
+    width: 50%;
+  }
+  .right {
+    text-align: center;
+    width: 50%;
+    display: block;
+  }
+}
+@media screen and (min-width: 992px) {
+  
+  .left {
+    padding-top:20px;
+    border-radius: 44px;
+    -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+  }
+}
+@media screen and (min-width: 1200px) {
+  
+}
+@media screen and (min-width: 1400px) {
+  
+}
+
 </style>
