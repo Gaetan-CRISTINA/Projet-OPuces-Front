@@ -123,6 +123,7 @@ import storage from "../../plugins/storage";
     font-size: 14px;
     cursor: pointer;
     background-color: white;
+    width:100%;
   }
   select:focus {
     outline: 0;
