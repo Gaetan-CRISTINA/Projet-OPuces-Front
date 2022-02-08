@@ -20,6 +20,7 @@
       </div>
 
       <div class="display-user">
+        
         <h3>Récapitulatif de la Livraison</h3>
 
         <h1>Nom et prénom</h1>
@@ -35,9 +36,17 @@
         <p>0{{ userAdress[0].phone_number }}</p>
         <h1>Adresse Email</h1>
         <p>{{ userEmail }}</p>
+        <router-link
+:to="{
+  name: 'UpdateUser'
+}">
+        <button>
+          Modifier mes informations
+          </button>
+          </router-link>
       </div>
     </div>
-
+  <div class="align-buttons">
     <form @submit.prevent="sendEmail">
       <label>Nom</label>
       <input
@@ -107,18 +116,21 @@
       <input name="city" v-model="city" cols="30" rows="5" placeholder="city" />
 
       <button class="pay">Procéder au paiement</button>
-    </form>
-
-    <button class="delete" @click="UnsetStoreClassified">
+      <span class="delete" @click="UnsetStoreClassified">
       Annuler ma commande
-    </button>
+    </span>
     <router-link
       :to="{
         name: 'Home',
       }"
     >
-      <button>Je réfléchis, encore !</button>
+      <span>Je réfléchis, encore !</span>
     </router-link>
+    </form>
+
+    
+    </div>
+  
   </div>
 </template>
 
@@ -245,13 +257,10 @@ export default {
 h3 {
   margin-bottom: 15px;
 }
-.display-user,
-.display-cart {
-  border: 1px solid $main-green;
-  margin: 8rem 1rem;
-  padding: 2rem;
+form:not(span) {
+  display:none;  
 }
-button {
+form .pay {
   font-size: 12px;
   font-weight: 700;
   color: $main-green;
@@ -259,13 +268,33 @@ button {
   border-radius: 22px;
   border: solid 1px $main-green;
   background-color: #fff;
-  margin-top: 0.5em;
+  margin:10px;
   transition: all 0.3s;
   cursor: pointer;
-  margin-left: 70%;
-  margin-top: 0.5rem;
+  
 }
-
+form span {
+ 
+  margin:10px;
+}
+.display-user,
+.display-cart {
+  border: 1px solid $main-green;
+  margin: 8rem 1rem;
+  padding: 2rem;
+}
+span, button {
+  font-size: 12px;
+  font-weight: 700;
+  color: $main-green;
+  padding: 0.5em 1em;
+  border-radius: 22px;
+  border: solid 1px $main-green;
+  background-color: #fff;
+  margin-top: 1.5em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
 button:hover {
   background-color: $main-green;
   color: #fff;
