@@ -116,18 +116,18 @@
       <input name="city" v-model="city" cols="30" rows="5" placeholder="city" />
 
       <button class="pay">Procéder au paiement</button>
-      <span class="delete" @click="UnsetStoreClassified">
-      Annuler ma commande
-    </span>
-    <router-link
+      
+    
+    </form>
+<router-link
       :to="{
         name: 'Home',
       }"
     >
       <span>Je réfléchis, encore !</span>
-    </router-link>
-    </form>
-
+    </router-link><span class="delete" @click="UnsetStoreClassified">
+      Annuler ma commande
+    </span>
     
     </div>
   
@@ -257,9 +257,9 @@ export default {
 h3 {
   margin-bottom: 15px;
 }
-form:not(span) {
-  display:none;  
-}
+// form:not(span) {
+//   display:none;  
+// }
 form .pay {
   font-size: 12px;
   font-weight: 700;
