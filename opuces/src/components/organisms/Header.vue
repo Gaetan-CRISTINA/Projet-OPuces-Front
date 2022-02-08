@@ -24,7 +24,9 @@
                   name: 'UserProfil',
                 }"
               >
-                <li @click="handleClick"><PictoUser /><span>Mon profil</span></li>
+                <li @click="handleClick">
+                  <PictoUser /><span>Mon profil</span>
+                </li>
               </router-link>
 
               <router-link
@@ -33,7 +35,9 @@
                   name: 'Myaccount',
                 }"
               >
-                <li @click="StoreUserId"><PictoCompte /><span>Mon compte</span></li>
+                <li @click="StoreUserId">
+                  <PictoCompte /><span>Mon compte</span>
+                </li>
               </router-link>
 
               <router-link
@@ -82,7 +86,9 @@
                   name: 'Logout',
                 }"
               >
-                <li class="disconect--button"><PictoClose /><span>Se déconnecter</span></li>
+                <li class="disconect--button">
+                  <PictoClose /><span>Se déconnecter</span>
+                </li>
               </router-link>
             </ul>
           </nav>
@@ -93,7 +99,7 @@
               name: 'LoginForm',
             }"
           >
-            <li id="se-connecter"> Se connecter / se créer un compte </li>
+            <li id="se-connecter">Se connecter / se créer un compte</li>
           </router-link>
         </div>
 
@@ -134,10 +140,13 @@
         CENTER HEADER
         -->
         <div id="center-header-desktop">
-          
-          <SearchBar />
+          <div v-if="!searchQuery">
+            <SearchBar />
+          </div>
+          <div v-if="searchQuery">
+            <button @click="UnsetSearchQuery">Nouvelle Recherche</button>
+          </div>
         </div>
-
         <!--
         RIGHT HEADER
         -->
@@ -169,7 +178,12 @@
               name: 'UserProfil',
             }"
           >
-            <img class="userPicto" src="https://picsum.photos/30" alt="" @click="handleClick"/>
+            <img
+              class="userPicto"
+              src="https://picsum.photos/30"
+              alt=""
+              @click="handleClick"
+            />
           </router-link>
           <!--FIN-->
 
@@ -189,13 +203,12 @@
     <div class="header-bottom">
       <ul>
         <router-link
-            :to="{
-              name: 'Home',
-            }"
-          >
-            
+          :to="{
+            name: 'Home',
+          }"
+        >
           <li>Accueil</li>
-          </router-link>
+        </router-link>
         <router-link
           v-if="user"
           :to="{
@@ -218,7 +231,7 @@
             name: 'UserClassifieds',
           }"
         >
-          <li >Mes annonces</li>
+          <li>Mes annonces</li>
         </router-link>
         <router-link
           :to="{
@@ -294,7 +307,7 @@ import PictoFullCart from "../atoms/PictoFullCart.vue";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
 import storage from "../../plugins/storage";
-import classifiedsService from "../../services/classifiedsService"
+import classifiedsService from "../../services/classifiedsService";
 export default {
   name: "Header",
   components: {
@@ -329,21 +342,34 @@ export default {
         return false;
       }
     },
+    searchQuery() {
+      const searchQuery = storage.get("searchQuery");
+      if (searchQuery) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
-    async StoreUserId(event){
+    async StoreUserId(event) {
       event.preventDefault();
       this.id = await classifiedsService.loadAuthor();
       storage.set("UserIdLogged", this.id);
-      this.$router.push({name: 'Myaccount'});
+      this.$router.push({ name: "Myaccount" });
     },
-    async handleClick(event){
+    async handleClick(event) {
       event.preventDefault();
       this.id = await classifiedsService.loadAuthor();
       storage.set("UserIdLogged", this.id);
-      this.$router.push({name: 'UserProfil'});
-    }
-  }
+      this.$router.push({ name: "UserProfil" });
+    },
+    async UnsetSearchQuery(event) {
+      event.preventDefault();
+      storage.unset("searchQuery");
+      this.$router.push({ name: "Home" });
+    },
+  },
 };
 </script>
 
@@ -378,6 +404,25 @@ export default {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+
+button {
+  font-size: 12px;
+  font-weight: 700;
+  color: $main-green;
+  padding: 0.5em 1em;
+  border-radius: 22px;
+  border: solid 1px $main-green;
+  background-color: #fff;
+  margin-top: 0.5em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: $main-green;
+  color: #fff;
+  border: solid 1px $main-green;
+}
+
 .header-bottom {
   display: none;
   text-align: center;
@@ -424,7 +469,7 @@ h1 {
 header {
   position: fixed;
   z-index: 1;
-  top:0;
+  top: 0;
   padding: 0.5em 0 !important;
   width: 100%;
   background-color: #fff;

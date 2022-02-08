@@ -29,7 +29,7 @@ export default {
     SearchCardsList,
     TabBar,
     IllusLamp,
-  },
+  }
 };
 </script>
 <style scoped lang="scss">

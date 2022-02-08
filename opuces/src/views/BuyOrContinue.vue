@@ -8,8 +8,15 @@
         
         <div class="display-cart">
             <h2>Poursuivre mes achats ou Voir mon panier</h2>
+               
+               
+               
+                <img src="../assets/svg/Pay.svg" alt="">
+            
+            
+            
+            <div class="button">
 
-            <div>
              <router-link
                 :to="{
                     name: 'Home'}
@@ -56,8 +63,15 @@ export default {
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   margin-top:130px;
   padding: 2rem;
-  }
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+img{
+    width: 40%;
+    margin-top: 2rem;
+}
 .main-container {
   display: flex;
   justify-content: space-around;
@@ -81,6 +95,9 @@ button {
 }
 button:hover {
   background-color: $secondary-green;
+}
+.button{
+    width: 50%;
 }
 .connect {
   background-color: $main-green;

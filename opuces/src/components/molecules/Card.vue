@@ -51,11 +51,7 @@
         class="description-annonce content-annonce"
         v-html="classifiedProps.content.rendered"
       ></p>
-      <!-- <Ville /> -->
-      <!-- <MapWrapper /> -->
-      <!-- <AnnonceAuteur /> -->
       <VoirMoins />
-      <!-- <CtaAnnonce/> -->
       <div class="CTA-annonces content-annonce">
         <button id="acheter" @click="StoreClassified">
           <router-link
@@ -100,9 +96,6 @@ import Vue from "vue";
 
 
 import VoirPlus from "../molecules/VoirPlus.vue";
-// import Ville from "../atoms/Ville.vue";
-// import MapWrapper from "../molecules/MapWrapper.vue";
-// import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
 import VoirMoins from "../molecules/VoirMoins.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
@@ -111,10 +104,7 @@ import userService from "../../services/userService";
 export default {
   name: "Card",
   components: {
-    // Ville,
-    // MapWrapper,
-    // AnnonceAuteur,
-    VoirMoins,
+     VoirMoins,
     PictoEtat1,
     VoirPlus,
   },
