@@ -219,10 +219,12 @@ const classifiedsService = {
 
         const response = await axios.get(classifiedsService.opucesBaseURI+ '/queryClassified',
         {
+            params:{
             city : this.city,
             category: this.category,
             priceMin: this.priceMin,
             priceMax: this.priceMax
+            }
         }
         );
         console.log(response);
