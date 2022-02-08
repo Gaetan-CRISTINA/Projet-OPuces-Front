@@ -9,13 +9,13 @@
         <h3>Récapitulatif de la commande</h3>
 
         <h1>Titre de l'annonce</h1>
-        <p>Je suis le titre</p> 
+        <p>{{classifiedToBuy.title.rendered}}</p> 
         <h1>Description</h1>
-        <p>Je suis la description</p>
+        <p v-html="classifiedToBuy.content.rendered"></p>
         <h1>Prix</h1>
-        <p>Argent €</p>
+        <p>{{classifiedToBuy.classifiedPrice}} €</p>
         <h1>Mode de livraison</h1>
-        <p>Pigeon voyageur</p>
+        <p>{{classifiedToBuy._embedded['wp:term'][1][0]['name']}}</p>
       </div>
 
       <div class="display-user">
@@ -43,7 +43,7 @@
       Procéder au paiement
       </button></router-link>
       
-      <button class="delete" @click="UnsetStoreSlassified">
+      <button class="delete" @click="UnsetStoreClassified">
       
       Annuler ma commande
       </button>
@@ -64,6 +64,7 @@ import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 import storage from "../plugins/storage";
+import userService from "../services/userService"
 
 
 export default {
@@ -72,15 +73,26 @@ export default {
     Header2,
     IllusLamp
   },
+  
   async created() {
-    const ClassifiedId = storage.get("ClassifiedIdCart");
-    console.log(ClassifiedId);
-    this.classified = await classifiedsService.loadClassifiedsById(
-      ClassifiedId
-    );
+    this.ClassifiedId = storage.get('ClassifiedIdCart');
+    console.log(this.ClassifiedId);
+
+    this.classifiedToBuy = await classifiedsService.loadClassifiedsById(this.ClassifiedId);
+    console.log('ClassifiedToBuy Loaded')
+
+    this.id = storage.get('UserIdLogged');
+    console.log(this.id);
+    this.userAdress = await userService.loadUserFromUserTable(this.id);
+    console.log(this.userAdress);
+    console.log('User Information Loaded')
+  },
+  props: {
+    classifiedToBuy: Object,
+    userAdress: Object
   },
   methods:{
-    async UnsetStoreSlassified(event){
+    async UnsetStoreClassified(event){
       event.preventDefault();
       storage.unset("ClassifiedIdCart")
       this.$router.push({ name: "CancelOrder" });

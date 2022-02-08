@@ -7,7 +7,7 @@
       <!-- otherwise display this -->
       <span v-else>Choisissez une categorie</span>
 
-      <!-- animated icon arrow up and down -->
+      <!-- animated icon arrow up and down for drop down menu -->
       <svg 
       :class="isVisible ? 'dropdown' : ''"
       class= "drop-down-icon" 
@@ -18,12 +18,16 @@
       <path fill="none" d="M0 0h24v24H0z"/>
       <path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/>
       </svg>
-      <!--  end of animated icon arrow up and down -->
+      <!--  end of animated icon arrow up and down for drop down menu -->
 
     </div>
 
+    <!--  To toggle (hide and show) the dropdown menu categories -->
     <div :class="isVisible ? 'visible' : 'invisible'" class="dropdown-popover">
-      <!--<input v-model="searchQuery" type="text" placeholder="Search for categories">
+      
+
+      <!--
+      <input v-model="searchQuery" type="text" placeholder="Search for categories">
       <span v-if="filteredUser.length == 0">No category found</span>
       -->
       
@@ -51,14 +55,15 @@
 
 
 <script>
-import classifiedsService from '../../services/classifiedsService';
+import classifiedsService from "../../services/classifiedsService";
+
 export default {
   data() {
     return{
       searchQuery: "",
       selectedItem: null,
       isVisible: false,
-      categoryArray: [],
+      categoryArray: []
     };
   },
 
@@ -76,11 +81,9 @@ export default {
       });
     },
   },
-
-  async created() {
-    this.json = await classifiedsService.loadClassifiedProductCategory();
-    this.categoryArray = this.json;
-
+  
+  async created(){
+    this.categoryArray = await classifiedsService.loadClassifiedProductCategory();
   },
 
   methods: {

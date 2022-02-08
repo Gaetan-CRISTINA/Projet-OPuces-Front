@@ -1,71 +1,110 @@
 <template>
   <div class="filters-desktop">
-    <div class="input-filters">
+    <form class="input-filters" @submit.prevent="processForm" >
+      <div class="input-filters">
 
-
-      <BaseSelectCategory />
+        <!-- Select a category -->
+        <label for="name">Choisissez une categorie</label>
+        <select v-model="selectedCategory">
+          <option @click="selectItem(category)" 
+          v-for="(category, index) in filteredCategory" 
+          :key="`user-${index}`"
+          >
+          {{ category.name }}
+          </option>
+        </select>
+       </div> 
       
-      <BaseInputCity />
-
-
-      <BaseInputPrice />
-      <button @click="applyFilter" class="search-validate">Rechercher</button>
+        <!-- Enter city -->
+        <div>
+          <label for="name"> Saisissez une ville </label>
+        <input 
+        type="text" 
+        placeholder="Villes" 
+        class="selected-item"
+        v-model="ville"
+        >
       
-    </div> 
+      </div>
+
+        <!-- Enter price -->
+
+        <div>
+          <label for="name"> {{title}} </label>
+        </div>
+
+        <div class="input-price">
+          <input placeholder="Min" type="text" id="minAmount" name="user_name" v-model="priceMin" /> 
+          <input placeholder="Max" type="text" id="maxAmount" name="user_name" v-model="priceMax" />
+        </div>
+
+        <!-- Submit form button -->
+        <button class="search-validate">Rechercher</button>
+      
+    </form> 
     
   </div>
 </template>
 
 <script>
-  import BaseSelectCategory from "../organisms/BaseSelectCategory.vue";
-  import BaseInputCity from "../organisms/BaseInputCity.vue";
-  import BaseInputPrice from "../organisms/BaseInputPrice.vue";
+  import classifiedsService from "../../services/classifiedsService";
 
   export default {
     name: "FiltersDesktop",
     components: {
-      BaseSelectCategory,
-      BaseInputCity,
-      BaseInputPrice
 
     },
-    props: {},
+
+    props: {
+    title: {
+      type: String, 
+      default: 'Prix'
+    }
+  },
 
     data() {
-    return {
-      items: [],
-      filter: {
-        category: '',
-        city: '',
-        price: ''
-      },
-      appliedfilter: null
+    return{
+      ville: '',
+      priceMin: '',
+      priceMax: '',
+      searchQuery: "",
+      selectedCategory: null,
+      categoryArray: []
     };
+  },
+
+  computed: {
+    filteredCategory() {
+      // if the input is empty return the array
+      const query = this.searchQuery.toLowerCase()
+      if(this.searchQuery == "") {
+        return this.categoryArray;
+      }
+      // checking what you are typing in the input
+      return this.categoryArray.filter((category) => {
+        return Object.values(category).some((word) => String(word).toLowerCase().includes(query)
+        );
+      });
+    },
+  },
+
+  async created(){
+    this.categoryArray = await classifiedsService.loadClassifiedProductCategory();
+  },
+
+  methods: {
+    selectItem(category){
+      this.selectedCategory = category;
     },
 
-    methods: {
-      // to listen for the event click on search button
-      applyFilter(){
-        this.appliedFilter = {...this.filter};
-      }
+    // to listen for the event click on search button
+    processForm(){
+      console.log({category: this.selectedCategory, city: this.ville, priceMin: this.priceMin, priceMax: this.priceMax});
+      alert('Processing!');
     },
 
-    computed: {
-      // to search for multiple items
-      filteredItems() {
-        let resultItems = [...this.items];
 
-        if (this.appliedFilter) {
-          for (const field in this.appliedFilter) {
-            const value = this.appliedFilter[field].trim().toLowerCase();
-            if (value)
-              resultItems = resultItems.filter(index => index[field].toLowerCase() === value);
-          }
-        }
-
-        return resultItems;
-      }
-    }
+  }, 
 
     
 };
@@ -127,6 +166,21 @@
     background-color: $light-grey;
     text-indent: 25px;
   }
+
+ .input-price {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+  }
+  .input-price input {
+    width: 115px;
+  }
+  .input-price input::placeholder,
+  .input-filters input::placeholder {
+    font-style: italic;
+    padding-left: 2px;
+  }
+
   #ville {
     background: url("../../assets/svg/picto-location.svg"), $light-grey;
     background-repeat: no-repeat;

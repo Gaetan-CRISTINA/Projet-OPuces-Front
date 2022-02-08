@@ -78,6 +78,11 @@ export default {
 .illusLamp {
   display: none;
 }
+
+.svg{
+  width: 100%;
+  align-self: center;
+}
 .delete:hover {
   background-color: $social-google;
   color: white;

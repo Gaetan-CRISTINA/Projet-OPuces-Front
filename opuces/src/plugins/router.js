@@ -33,6 +33,7 @@ import UpdateClassified from '../views/UpdateClassified.vue'
 
 import DeleteUser from '../views/DeleteUser.vue'
 import DeleteUserConfirmation from '../views/DeleteUserConfirmation.vue'
+import SearchClassifiedsList from '../views/SearchClassifiedsList.vue';
 
 
 Vue.use(VueRouter)
@@ -160,6 +161,11 @@ const routes = [
     path: '/delete-account-Confirmation',
     name: 'DeleteUserConfirmation',
     component: DeleteUserConfirmation
+  },
+  {
+    path: '/search-list',
+    name: 'SearchClassifiedsList',
+    component: SearchClassifiedsList
   },
   {
     path: '*',

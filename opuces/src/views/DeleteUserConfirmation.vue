@@ -37,7 +37,7 @@ export default {
     IllusLamp,
   },
   created() {
-    //TODO Pour le moment, logout, fonction deleteUser à faire
+    
     storage.unset("userData");
     storage.unset("ClassifiedIdCart");
     storage.unset("UserIdLogged");

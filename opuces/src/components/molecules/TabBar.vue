@@ -27,7 +27,7 @@
 
     
 
-
+  <div v-if="user">
     <router-link
       v-if="!cart"
       :to="{
@@ -45,7 +45,7 @@
     >
       <PictoFullCart />
     </router-link>
-
+  </div>
 
 
 
@@ -80,11 +80,19 @@ export default {
     PictoEmptyCart,
   },
   computed: {
-     user() {
-      const user = storage.get('userData');
+    user() {
+      const user = storage.get("userData");
       if (user || this.$store.state.user) {
         this.$store.state.user;
         return user;
+      } else {
+        return false;
+      }
+    },
+    cart() {
+      const cartFull = storage.get("ClassifiedIdCart");
+      if (cartFull) {
+        return true;
       } else {
         return false;
       }

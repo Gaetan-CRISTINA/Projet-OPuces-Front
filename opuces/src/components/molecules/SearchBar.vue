@@ -4,25 +4,37 @@
       <svg class="icon">
         <use xlink:href="#icon-search"></use>
       </svg>
-      <input type="text" placeholder="Rechercher" />
+      <form @submit="handleSearch">
+      <input v-model="searchQuery" type="text" placeholder="Rechercher" />
+      </form>
     </label>
 
-    <svg class="spritesheet">
-      <symbol id="icon-search" viewBox="0 0 32 32">
-        <title>search</title>
-        <path
-          class="cls-1"
-          d="M15.73,15.24a9,9,0,1,0-.72.7l4.83,4.6.69-.72ZM1,9.07a8.08,8.08,0,1,1,8.07,8.08A8.08,8.08,0,0,1,1,9.07Z"
-        />
-      </symbol>
-    </svg>
+    
   </div>
 </template>
 
 <script>
+import storage from "../../plugins/storage";
+
 export default {
-  name: "SearchBar",
-};
+  data() {
+    return{
+      searchQuery: "",
+      selectedItem: null,
+      classifiedsArray: [],
+    };
+  },
+  methods: {
+    async handleSearch(event){
+      event.preventDefault();
+      storage.unset('searchQuery');
+      this.searchQuery = storage.set('searchQuery', this.searchQuery);
+      this.$router.push({ name : 'SearchClassifiedsList'});
+    }
+  },
+
+}
+  
 </script>
 
 <style scoped lang="scss">

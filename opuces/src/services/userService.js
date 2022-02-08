@@ -9,7 +9,7 @@ const userService = {
     baseURI: env.baseURI,
     opucesBaseURI: env.opucesApi,
     wpApi : env.wpApi,
-
+  
     login: async function(login, password){
         let response = await axios.post(
             userService.jwtBaseURI+'/token',
@@ -200,6 +200,21 @@ const userService = {
         });
         return response.data;
         }
-    }
+    },
+
+    async loadUserFromUserTable(id){
+
+    const response = await axios.get(userService.opucesBaseURI + '/user-table',
+        {
+            userID: id
+        }
+        ).catch(function(){
+            console.log('Failed To Load User Informations');
+            return false;
+        });
+        console.log('User Informations Loaded');
+        return response.data;
+        
+    },
 };
 export default userService;
