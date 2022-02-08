@@ -4,14 +4,14 @@
     <div class="img-annoce">
       <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce" />
       <div class="flex prix-like">
-        <span class="prix">{{ SearchCardProps.classifiedPrice }} €</span>
+        <span class="prix">{{ SearchCardProps.meta_value }} €</span>
       </div>
     </div>
 
     <!-- <HeaderAnnonce/> -->
     <div class="header-annonce content-annonce">
       <h3>{{ SearchCardProps.post_title }}</h3>
-      <p class="date-annonce">Annonce parue le {{ SearchCardProps.date }}</p>
+      <p class="date-annonce">Annonce parue le {{ SearchCardProps.post_date }}</p>
       <p class="auteur-annonce">
       </p>
     </div>
