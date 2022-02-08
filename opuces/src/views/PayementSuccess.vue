@@ -8,7 +8,7 @@
         
         <div class="display-cart">
             <h2>Confirmation de commande</h2>
-            <h4>Commande N°{{classifiedToBuy.id}}</h4><br>
+            <h4>Commande N°{{ClassifiedId}}</h4><br>
 
             <h2>Bonjour,</h2>
             <h2>Nous vous remercions de votre commande. Nous vous tiendrons informé par e-mail, lorsque l'article de votre commande aura été expédié.</h2><br>
@@ -38,6 +38,7 @@ import Header2 from '../components/organisms/Header2.vue'
 import IllusLamp from '../components/atoms/IllusLamp.vue'
 import storage from '../plugins/storage'
 
+
 export default {
   name: 'PayementSuccess',
   components: {
@@ -46,7 +47,10 @@ export default {
    
   },
   async created(){
-    storage.unset("ClassifiedIdCart");
+    // storage.unset("ClassifiedIdCart");
+    this.ClassifiedId = storage.get("ClassifiedIdCart");
+    console.log(this.ClassifiedId);
+
   }
 }
 </script>

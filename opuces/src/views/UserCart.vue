@@ -6,7 +6,7 @@
     </div>
     <div class="main-container">
       <div class="display-cart">
-        <h3>Récapitulatif de la commande</h3>
+        <h3>Récapitulatif de la commande n° {{classifiedToBuy.id}}</h3>
 
         <h1>Titre de l'annonce</h1>
         <p>{{ classifiedToBuy.title.rendered }}</p>
@@ -39,7 +39,74 @@
     </div>
 
     <form @submit.prevent="sendEmail">
-    <button class="pay">Procéder au paiement</button>
+      <label>Nom</label>
+      <input
+        name="lastname"
+        v-model="lastname"
+        cols="30"
+        rows="5"
+        placeholder="Nom"
+      />
+      <label>prénom</label>
+      <input
+        name="firstname"
+        v-model="firstname"
+        cols="30"
+        rows="5"
+        placeholder="Nom"
+      />
+      <label>email</label>
+      <input
+        name="to_email"
+        v-model="to_email"
+        cols="30"
+        rows="5"
+        placeholder="Nom"
+      />
+      <label>article</label>
+      <input
+        name="article"
+        v-model="article"
+        cols="30"
+        rows="5"
+        placeholder="Nom"
+      />
+      <label>Price</label>
+      <input
+        name="price"
+        v-model="price"
+        cols="30"
+        rows="5"
+        placeholder="Nom"
+      />
+      <label>order</label>
+      <input
+        name="order"
+        v-model="order"
+        cols="30"
+        rows="5"
+        placeholder="order"
+      />
+      <label>address</label>
+      <input
+        name="address"
+        v-model="address"
+        cols="30"
+        rows="5"
+        placeholder="address"
+      />
+      <label>zipcode</label>
+      <input
+        name="zipcode"
+        v-model="zipcode"
+        cols="30"
+        rows="5"
+        placeholder="zipcode"
+      />
+      <label>city</label>
+      <input name="city" v-model="city" cols="30" rows="5" placeholder="city" />
+
+      <button class="pay">Procéder au paiement</button>
     </form>
 
     <button class="delete" @click="UnsetStoreClassified">
@@ -69,7 +136,7 @@ export default {
     Header2,
     IllusLamp,
   },
-  
+
   async created() {
     this.ClassifiedId = storage.get("ClassifiedIdCart");
     console.log(this.ClassifiedId);
@@ -89,22 +156,34 @@ export default {
     this.userEmail = this.userData.user_email;
     console.log(this.userEmail);
 
-    this.lastname= this.userAdress[0].lastname;
-    this.firstname= this.userAdress[0].firstname;
-    this.to_email= this.userEmail;
+    this.lastname = this.userAdress[0].lastname;
+    this.firstname = this.userAdress[0].firstname;
+    this.to_email = this.userEmail;
 
-    this.article= this.classifiedToBuy.title.rendered;
-    this.price= this.classifiedToBuy.classifiedPrice;
-    this.orderID= this.classifiedToBuy.id;
+    this.article = this.classifiedToBuy.title.rendered;
+    this.price = this.classifiedToBuy.classifiedPrice;
+    this.order = this.classifiedToBuy.id;
 
-    this.address= this.userAdress[0].adress1;
-    this.zipcode= this.userAdress[0].zipcode;
-    this.city= this.userAdress[0].city;
-  
+    this.address = this.userAdress[0].adress1;
+    this.zipcode = this.userAdress[0].zipcode;
+    this.city = this.userAdress[0].city;
   },
   props: {
     classifiedToBuy: Object,
     userAdress: Object,
+  },
+  data() {
+    return {
+      lastname: "",
+      firstname: "",
+      to_email: "",
+      article: "",
+      price: "",
+      order: "",
+      address: "",
+      zipcode: "",
+      city: "",
+    };
   },
   methods: {
     async UnsetStoreClassified(event) {
@@ -127,7 +206,7 @@ export default {
 
             article: this.article,
             price: this.price,
-            orderID: this.orderID,
+            order: this.order,
 
             address: this.address,
             zipcode: this.zipcode,
