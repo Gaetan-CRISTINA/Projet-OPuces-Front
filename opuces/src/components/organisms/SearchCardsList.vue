@@ -35,7 +35,7 @@ export default {
   
     this.keyWord = storage.get('searchQueries');
     console.log(this.keyWord);
-    this.searchCards = await this.$store.satate.services.classified.loadClassifiedsByKeyWord(this.keyWord);
+    this.searchCards = await this.$store.satate.services.classified.getQueryClassified(this.keyWord);
   
   
   },
