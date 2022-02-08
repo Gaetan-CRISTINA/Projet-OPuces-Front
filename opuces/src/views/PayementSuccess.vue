@@ -8,10 +8,12 @@
         
         <div class="display-cart">
             <h2>Confirmation de commande</h2>
-            <h4>Commande N°405-5341864-4125137</h4><br>
+            <h4>Commande N°{{classifiedToBuy.id}}</h4><br>
 
             <h2>Bonjour,</h2>
             <h2>Nous vous remercions de votre commande. Nous vous tiendrons informé par e-mail, lorsque l'article de votre commande aura été expédié.</h2><br>
+
+            <h2>Vous allez recevoir un email de confirmation, avec le récapitulatif de votre commande.</h2><br>
 
             <h2>Nous espérons vous revoir bientôt.</h2>
             <h2>L'équipe O'Puces.</h2>

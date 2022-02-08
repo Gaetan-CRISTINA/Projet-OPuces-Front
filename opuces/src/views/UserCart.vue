@@ -9,55 +9,49 @@
         <h3>Récapitulatif de la commande</h3>
 
         <h1>Titre de l'annonce</h1>
-        <p>{{classifiedToBuy.title.rendered}}</p> 
+        <p>{{ classifiedToBuy.title.rendered }}</p>
         <h1>Description</h1>
         <p v-html="classifiedToBuy.content.rendered"></p>
         <h1>Prix</h1>
-        <p>{{classifiedToBuy.classifiedPrice}} €</p>
+        <p>{{ classifiedToBuy.classifiedPrice }} €</p>
+
         <h1>Mode de livraison</h1>
-        <p>{{classifiedToBuy._embedded['wp:term'][1][0]['name']}}</p>
+        <p>{{ classifiedToBuy._embedded["wp:term"][1][0]["name"] }}</p>
       </div>
 
       <div class="display-user">
         <h3>Récapitulatif de la Livraison</h3>
 
         <h1>Nom et prénom</h1>
-        <p>{{userAdress[0].lastname}} {{userAdress[0].firstname}}</p> 
+        <p>{{ userAdress[0].lastname }} {{ userAdress[0].firstname }}</p>
         <h1>Adresse</h1>
-        <p>{{userAdress[0].adress1}}</p>
-        <p>{{userAdress[0].adress2}}
+        <p>{{ userAdress[0].adress1 }}</p>
+        <p>{{ userAdress[0].adress2 }}</p>
         <h1>Code Postal</h1>
-        <p>{{userAdress[0].zipcode}}</p>
+        <p>{{ userAdress[0].zipcode }}</p>
         <h1>Ville</h1>
-        <p>{{userAdress[0].city}}</p>
+        <p>{{ userAdress[0].city }}</p>
         <h1>Numéro de téléphone</h1>
-        <p>0{{userAdress[0].phone_number}}</p>
+        <p>0{{ userAdress[0].phone_number }}</p>
         <h1>Adresse Email</h1>
-        <p>{{userEmail}}</p>
+        <p>{{ userEmail }}</p>
       </div>
-      
     </div>
+
+    <form @submit.prevent="sendEmail">
+    <button class="pay">Procéder au paiement</button>
+    </form>
+
+    <button class="delete" @click="UnsetStoreClassified">
+      Annuler ma commande
+    </button>
     <router-link
       :to="{
-        name: 'PayementSuccess'
-        }"><button class="pay">
-      
-      Procéder au paiement
-      </button></router-link>
-      
-      <button class="delete" @click="UnsetStoreClassified">
-      
-      Annuler ma commande
-      </button>
-      <router-link
-      :to="{
-        name: 'Home'
-        }">
-      <button>
-        Je réfléchis, encore !
-      </button>
-      </router-link>
-      
+        name: 'Home',
+      }"
+    >
+      <button>Je réfléchis, encore !</button>
+    </router-link>
   </div>
 </template>
 
@@ -66,66 +60,116 @@ import Header2 from "../components/organisms/Header2.vue";
 import classifiedsService from "../services/classifiedsService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 import storage from "../plugins/storage";
-import userService from "../services/userService"
-
+import userService from "../services/userService";
+import emailjs from "emailjs-com";
 
 export default {
   name: "UserCart",
   components: {
     Header2,
-    IllusLamp
+    IllusLamp,
   },
   
   async created() {
-    this.ClassifiedId = storage.get('ClassifiedIdCart');
+    this.ClassifiedId = storage.get("ClassifiedIdCart");
     console.log(this.ClassifiedId);
 
-    this.classifiedToBuy = await classifiedsService.loadClassifiedsById(this.ClassifiedId);
-    console.log('ClassifiedToBuy Loaded')
+    this.classifiedToBuy = await classifiedsService.loadClassifiedsById(
+      this.ClassifiedId
+    );
+    console.log("ClassifiedToBuy Loaded");
 
-    this.id = storage.get('UserIdLogged');
+    this.id = storage.get("UserIdLogged");
     console.log(this.id);
     this.userAdress = await userService.loadUserFromUserTable(this.id);
     console.log(this.userAdress);
-    console.log('User Information Loaded');
+    console.log("User Information Loaded");
 
-    this.userData = storage.get('userData');
+    this.userData = storage.get("userData");
     this.userEmail = this.userData.user_email;
     console.log(this.userEmail);
+
+    this.lastname= this.userAdress[0].lastname;
+    this.firstname= this.userAdress[0].firstname;
+    this.to_email= this.userEmail;
+
+    this.article= this.classifiedToBuy.title.rendered;
+    this.price= this.classifiedToBuy.classifiedPrice;
+    this.orderID= this.classifiedToBuy.id;
+
+    this.address= this.userAdress[0].adress1;
+    this.zipcode= this.userAdress[0].zipcode;
+    this.city= this.userAdress[0].city;
+  
   },
   props: {
     classifiedToBuy: Object,
-    userAdress: Object
+    userAdress: Object,
   },
-  methods:{
-    async UnsetStoreClassified(event){
+  methods: {
+    async UnsetStoreClassified(event) {
       event.preventDefault();
-      storage.unset("ClassifiedIdCart")
+      storage.unset("ClassifiedIdCart");
       this.$router.push({ name: "CancelOrder" });
-    }
-  }
+    },
+
+    sendEmail(e) {
+      try {
+        emailjs.sendForm(
+          "service_23ritqp",
+          "template_suw6ljd",
+          e.target,
+          "user_S0Gnpuir0FKyLOHzHOp9L",
+          {
+            lastname: this.lastname,
+            firstname: this.firstname,
+            to_email: this.to_email,
+
+            article: this.article,
+            price: this.price,
+            orderID: this.orderID,
+
+            address: this.address,
+            zipcode: this.zipcode,
+            city: this.city,
+          }
+        );
+        console.log("it works!!!");
+        this.$router.push({ name: "PayementSuccess" });
+      } catch (error) {
+        console.log({ error });
+      }
+      // Reset form field
+      this.subject = "";
+      this.message = "";
+      this.name = "";
+      this.email = "";
+    },
+  },
 };
 </script>
 
 
 <style scoped lang="scss">
 @import "../assets/scss/main";
-.display-cart, .display-user {
-    border-radius: 44px;
-    -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+.display-cart,
+.display-user {
+  border-radius: 44px;
+  -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
-  }
+}
 .main-container {
   display: flex;
   justify-content: space-around;
 }
-h3{
+h3 {
   margin-bottom: 15px;
 }
-.display-user, .display-cart{
+.display-user,
+.display-cart {
   border: 1px solid $main-green;
-  margin: 8rem 1rem ;
+  margin: 8rem 1rem;
   padding: 2rem;
 }
 button {
@@ -153,9 +197,9 @@ button:hover {
   color: white;
   border: solid 1px $social-google;
 }
-.pay:hover{
-  background-color: #10BD4C;
-  border: solid 1px #10BD4C;
+.pay:hover {
+  background-color: #10bd4c;
+  border: solid 1px #10bd4c;
   color: white;
 }
 @media screen and (min-width: 576px) {
@@ -164,7 +208,8 @@ button:hover {
   }
 }
 @media screen and (min-width: 768px) {
-  .display-user, .display-cart {
+  .display-user,
+  .display-cart {
     text-align: center;
     width: 50%;
     display: block;
@@ -177,7 +222,6 @@ button:hover {
   .illusLamp {
     display: none;
   }
-  
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
