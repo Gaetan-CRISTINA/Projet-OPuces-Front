@@ -223,5 +223,31 @@ const userService = {
         return response.data;
         
     },
+
+    async loadUserEmail()
+    {
+        const userId = storage.get('UserIdLogged');
+        console.log(userId);
+        const userData = storage.get('userData');
+        const token = userData.token;
+        // console.log(token);
+        if(token){
+        const response = await axios.get(userService.opucesBaseURI + '/load-user-email',
+            {
+                headers: {
+                    Authorization: 'Bearer ' + token 
+                },
+                params:{
+                    ID: this.userID
+                }
+            }
+            
+            ).catch(function(){
+                console.log('User Forbidden');
+                return response;
+            })
+            return response;
+         }
+    }
 };
 export default userService;
