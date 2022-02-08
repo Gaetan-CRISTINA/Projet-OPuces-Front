@@ -6,7 +6,7 @@
     </div>
     <div class="main-container">
       <div class="display-cart">
-        <h3>Récapitulatif de la commande n° {{classifiedToBuy.id}}</h3>
+        <h3>Récapitulatif de la commande n° {{ classifiedToBuy.id }}</h3>
 
         <h1>Titre de l'annonce</h1>
         <p>{{ classifiedToBuy.title.rendered }}</p>
@@ -20,7 +20,6 @@
       </div>
 
       <div class="display-user">
-        
         <h3>Récapitulatif de la Livraison</h3>
 
         <h1>Nom et prénom</h1>
@@ -36,101 +35,114 @@
         <p>0{{ userAdress[0].phone_number }}</p>
 
         <router-link
-:to="{
-  name: 'UpdateUser'
-}">
-        <button>
-          Modifier mes informations
-          </button>
-          </router-link>
-
+          :to="{
+            name: 'UpdateUser',
+          }"
+        >
+          <button>Modifier mes informations</button>
+        </router-link>
       </div>
     </div>
-  <div class="align-buttons">
-    <form @submit.prevent="sendEmail">
-      <label>Nom</label>
-      <input
-        name="lastname"
-        v-model="lastname"
-        cols="30"
-        rows="5"
-        placeholder="Nom"
-      />
-      <label>prénom</label>
-      <input
-        name="firstname"
-        v-model="firstname"
-        cols="30"
-        rows="5"
-        placeholder="Nom"
-      />
-      <label>email</label>
-      <input
-        name="to_email"
-        v-model="to_email"
-        cols="30"
-        rows="5"
-        placeholder="Nom"
-      />
-      <label>article</label>
-      <input
-        name="article"
-        v-model="article"
-        cols="30"
-        rows="5"
-        placeholder="Nom"
-      />
-      <label>Price</label>
-      <input
-        name="price"
-        v-model="price"
-        cols="30"
-        rows="5"
-        placeholder="Nom"
-      />
-      <label>order</label>
-      <input
-        name="order"
-        v-model="order"
-        cols="30"
-        rows="5"
-        placeholder="order"
-      />
-      <label>address</label>
-      <input
-        name="address"
-        v-model="address"
-        cols="30"
-        rows="5"
-        placeholder="address"
-      />
-      <label>zipcode</label>
-      <input
-        name="zipcode"
-        v-model="zipcode"
-        cols="30"
-        rows="5"
-        placeholder="zipcode"
-      />
-      <label>city</label>
-      <input name="city" v-model="city" cols="30" rows="5" placeholder="city" />
+    <div class="align-buttons">
+      <form @submit.prevent="sendEmail">
+        <label class="hidden">Nom</label>
+        <input
+          name="lastname"
+          v-model="lastname"
+          cols="30"
+          rows="5"
+          placeholder="Nom"
+          class="hidden"
+        />
+        <label class="hidden">prénom</label>
+        <input
+          name="firstname"
+          v-model="firstname"
+          cols="30"
+          rows="5"
+          placeholder="Nom"
+          class="hidden"
+        />
+        <label class="hidden">email</label>
+        <input
+          name="to_email"
+          v-model="to_email"
+          cols="30"
+          rows="5"
+          placeholder="Nom"
+          class="hidden"
+        />
+        <label class="hidden">article</label>
+        <input
+          name="article"
+          v-model="article"
+          cols="30"
+          rows="5"
+          placeholder="Nom"
+          class="hidden"
+        />
+        <label class="hidden">Price</label>
+        <input
+          name="price"
+          v-model="price"
+          cols="30"
+          rows="5"
+          placeholder="Nom"
+          class="hidden"
+        />
+        <label class="hidden">order</label>
+        <input
+          name="order"
+          v-model="order"
+          cols="30"
+          rows="5"
+          placeholder="order"
+          class="hidden"
+        />
+        <label class="hidden">address</label>
+        <input
+          name="address"
+          v-model="address"
+          cols="30"
+          rows="5"
+          placeholder="address"
+          class="hidden"
+        />
+        <label class="hidden">zipcode</label>
+        <input
+          name="zipcode"
+          v-model="zipcode"
+          cols="30"
+          rows="5"
+          placeholder="zipcode"
+          class="hidden"
+        />
+        <label class="hidden">city</label>
+        <input
+          name="city"
+          v-model="city"
+          cols="30"
+          rows="5"
+          placeholder="city"
+          class="hidden"
+        />
 
-      <button class="pay">Procéder au paiement</button>
-      
-    
-    </form>
-<router-link
-      :to="{
-        name: 'Home',
-      }"
-    >
-      <span>Je réfléchis, encore !</span>
-    </router-link><span class="delete" @click="UnsetStoreClassified">
-      Annuler ma commande
-    </span>
-    
+        <button class="pay">Procéder au paiement</button>
+      </form>
+      <div class="span">
+      <router-link
+        :to="{
+          name: 'Home',
+        }"
+      >
+        <span class="waitToPay">Je réfléchis, encore !</span>
+      </router-link>
+
+      <span class="delete" @click="UnsetStoreClassified">
+        Annuler ma commande
+      </span>
+      </div>
     </div>
-  
   </div>
 </template>
 
@@ -164,7 +176,6 @@ export default {
     console.log(this.userAdress);
     console.log("User Information Loaded");
 
-    
     this.userEmail = await userService.loadUserEmail();
     console.log(this.userEmail.data[0].user_email);
 
@@ -257,9 +268,7 @@ export default {
 h3 {
   margin-bottom: 15px;
 }
-// form:not(span) {
-//   display:none;  
-// }
+
 form .pay {
   font-size: 12px;
   font-weight: 700;
@@ -268,14 +277,23 @@ form .pay {
   border-radius: 22px;
   border: solid 1px $main-green;
   background-color: #fff;
-  margin:10px;
+  margin: 10px 0;
   transition: all 0.3s;
   cursor: pointer;
-  
+}
+.hidden {
+  display: none;
+}
+.span span{
+  margin-left: 10px;
+}
+.align-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 form span {
- 
-  margin:10px;
+  margin: 10px;
 }
 .display-user,
 .display-cart {
@@ -283,7 +301,8 @@ form span {
   margin: 8rem 1rem;
   padding: 2rem;
 }
-span, button {
+span,
+button {
   font-size: 12px;
   font-weight: 700;
   color: $main-green;
@@ -295,7 +314,7 @@ span, button {
   transition: all 0.3s;
   cursor: pointer;
 }
-button:hover {
+.waitToPay:hover {
   background-color: $main-green;
   color: #fff;
   border: solid 1px $main-green;
