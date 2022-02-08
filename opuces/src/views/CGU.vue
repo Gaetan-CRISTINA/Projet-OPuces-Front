@@ -1084,7 +1084,6 @@ export default {
   font-size: 24px;
   font-weight: 900px;
 }
-
 #cgu-container h2 {
   margin-bottom: 20px;
   font-size: 24px;
@@ -1093,7 +1092,6 @@ export default {
 #cgu-container {
   margin: 0 auto;
   padding: 15px;
-  
 }
 .--button:hover {
   background-color: $secondary-green;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="title-cgu-container">
+    <div class="title-cgu-container" id="scroll-top">
       <router-link
         :to="{
           name: 'Home',
@@ -75,12 +75,16 @@
         </p>
       </div>
     </div>
+    <a href="#scroll-top" id="pictoNav"><PictoNav/></a>
   </div>
 </template>
 <script>
+import PictoNav from "../atoms/PictoNav"
 export default {
   name: "CGU",
-  components: {},
+  components: {
+    PictoNav
+  },
 };
 </script>
 
@@ -91,54 +95,88 @@ export default {
   justify-content: flex-start;
   align-items: center;
 }
-.title-cgu-container img {
-  margin-right: 15px;
-  width: 40px;
-}
-.title-cgu-container p {
-  color: $main-green;
-  font-weight: 900;
-    font-size: 18px;
-}
 .cgu-container {
-  margin: 15px;
+  
+  margin: 0 auto;
   padding: 15px;
+
 }
 .cgu-container h2 {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 900px;
 }
-.--button {
-  border-radius: 19px;
-  padding: 1px;
-  width: 345px;
-  height: 38px;
-  color: white;
-  background-color: $main-green;
-  width: 100%;
-  border: none;
-  margin: 17px;
+.main-container{
+  margin-top:180px;
+}
+.title-cgu-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  font-size: 14px;
+  position:relative;
+}
+.title-cgu-container img {
+  margin-right: 15px;
+  width: 40px;
+}
+.title-cgu-container p {
+  color: $main-green;
+  font-size: 24px;
   font-weight: 900px;
-  cursor: pointer;
-  margin-top: 100px;
-  transition: all 0.3s;
+}
+#cgu-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 900px;
+}
+#cgu-container {
+  margin: 0 auto;
+  padding: 15px;
 }
 .--button:hover {
   background-color: $secondary-green;
+}
+#pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
 }
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {
 }
 @media screen and (min-width: 992px) {
+  .cgu-container {
+  width:55em;
+}
 }
 @media screen and (min-width: 1200px) {
 }
 @media screen and (min-width: 1400px) {
+    .--button {
+  border-radius: 19px;
+  padding: 1px;
+  position:fixed;
+  top:150px;
+  left:150px;
+  height: 38px;
+  color: white;
+  background-color: $main-green;
+  width: 160px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 900px;
+  cursor: pointer;
+
+  transition: all 0.3s;
+}
 }
 </style>

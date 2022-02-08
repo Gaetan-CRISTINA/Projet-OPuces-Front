@@ -2,7 +2,11 @@
 <div>
 <Header2 />
   <LegalNotice/>
+  
 </div> 
+
+      
+   
 </template>
 
 <script>
@@ -26,4 +30,5 @@ export default {
   font-weight: 900;
     font-size: 18px;
 }
+
 </style>
