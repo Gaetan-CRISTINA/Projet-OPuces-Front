@@ -248,6 +248,18 @@ const userService = {
             })
             return response;
          }
+    },
+
+    async loadUserById(id)
+    {
+        const response = await axios.get(userService.wpApi + '/users/' + id)
+        .catch(function(){
+            console.log('error');
+            return response;
+        })
+        return response;
+
     }
+    
 };
 export default userService;

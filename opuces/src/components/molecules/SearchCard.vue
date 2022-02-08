@@ -13,14 +13,13 @@
       <h3>{{ SearchCardProps.title.rendered }}</h3>
       <p class="date-annonce">Annonce parue le {{ SearchCardProps.date }}</p>
       <p class="auteur-annonce">
-        {{ SearchCardProps.id }}
       </p>
     </div>
 
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
       <div class="picto-etat"><PictoEtat1 /></div>
-      <p>{{ productState.name }}</p>
+      <p>{{ productState['name'] }}</p>
     </div>
 
     <!-- <CategorieCardList/> -->
@@ -110,8 +109,9 @@ export default {
     VoirPlus,
   },
   props: {
-    SearchCardProps: Object,
+    SearchCardProps: Object
   },
+  
 
   async load() {
     this.categories = await classifiedsService.loadClassifiedProductCategory();
@@ -123,6 +123,7 @@ export default {
       typeCusto,
       this.SearchCardProps.ProductCategory[0]
     );
+
     typeCusto = "productstate";
     this.productState = await classifiedsService.loadOneCustonomy(
       typeCusto,
