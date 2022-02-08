@@ -32,6 +32,12 @@ export default {
   async created(){
     this.keyword = storage.get('searchQuery');
     this.searchCards = await this.$store.state.services.classified.loadClassifiedsByKeyWord(this.keyword);
+  
+    this.keyWord = storage.get('searchQueries');
+    console.log(this.keyWord);
+    this.searchCards = await this.$store.satate.services.classified.getQueryClassified(this.keyWord);
+  
+  
   },
 }
 </script>

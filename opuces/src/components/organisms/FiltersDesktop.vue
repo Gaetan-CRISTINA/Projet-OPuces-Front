@@ -1,14 +1,15 @@
 <template>
   <div class="filters-desktop">
-    <form class="input-filters" @submit.prevent="processForm" >
+    <form class="input-filters" @submit="handleSubmit" >
       <div class="input-filters">
 
         <!-- Select a category -->
         <label for="name">Choisissez une categorie</label>
-        <select v-model="selectedCategory">
-          <option @click="selectItem(category)" 
-          v-for="(category, index) in filteredCategory" 
-          :key="`user-${index}`"
+        <select v-model="selectedCategory" name="selectedCategory">
+          <option 
+          v-for="category in categoryArray" 
+          :key="category.name"
+          :value="category.id"
           >
           {{ category.name }}
           </option>
@@ -22,7 +23,7 @@
         type="text" 
         placeholder="Villes" 
         class="selected-item"
-        v-model="ville"
+        v-model="city"
         >
       
       </div>
@@ -47,8 +48,8 @@
 </template>
 
 <script>
-  import classifiedsService from "../../services/classifiedsService";
-
+import classifiedsService from "../../services/classifiedsService";
+import storage from "../../plugins/storage";
   export default {
     name: "FiltersDesktop",
     components: {
@@ -64,43 +65,22 @@
 
     data() {
     return{
-      ville: '',
+      city: '',
       priceMin: '',
       priceMax: '',
-      searchQuery: "",
-      selectedCategory: null,
+      searchQueries: "",
+      selectedCategory: '',
       categoryArray: []
     };
   },
-
-  computed: {
-    filteredCategory() {
-      // if the input is empty return the array
-      const query = this.searchQuery.toLowerCase()
-      if(this.searchQuery == "") {
-        return this.categoryArray;
-      }
-      // checking what you are typing in the input
-      return this.categoryArray.filter((category) => {
-        return Object.values(category).some((word) => String(word).toLowerCase().includes(query)
-        );
-      });
-    },
-  },
-
   async created(){
     this.categoryArray = await classifiedsService.loadClassifiedProductCategory();
   },
-
   methods: {
-    selectItem(category){
-      this.selectedCategory = category;
-    },
-
-    // to listen for the event click on search button
-    processForm(){
-      console.log({category: this.selectedCategory, city: this.ville, priceMin: this.priceMin, priceMax: this.priceMax});
-      alert('Processing!');
+    async handleSubmit(event){
+      event.preventDefault();
+      this.searchQueries = storage.set('searchQueries', [this.selectedCategory, this.city, this.priceMin, this.priceMax]);
+      this.$router.push({ name : 'SearchClassifiedsList'});
     },
 
 

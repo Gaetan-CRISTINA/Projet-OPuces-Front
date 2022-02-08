@@ -107,6 +107,7 @@
 import Logo from "../atoms/Logo";
 import PictoEye from "../atoms/PictoEye";
 import userService from "../../services/userService.js";
+import storage from "../../plugins/storage";
 export default {
   name: "PageRegister",
   components: {
@@ -187,7 +188,12 @@ export default {
               console.log(result);
               if(result){
                   if(result.success == true){   
-                this.$router.push({name:'LoginForm'});
+                    let userData = await userService.login(this.username, this.password);
+                    console.log(userData);
+                    if(userData){
+                      storage.set("userData", userData);
+                    }
+                  this.$router.push({name:'KnowMore'});
                       // renvoyer vers la home avec token 
                   }
               }

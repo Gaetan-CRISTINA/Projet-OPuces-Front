@@ -153,6 +153,19 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId  +'?_embed=true');
         return response.data;
     },
+    async loadUserTrashedClassifieds(id){
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/trashed-classifieds',
+        {
+            userId: id
+            
+        }).catch(function(){
+            console.log('Error or No Trashed Classifieds');
+            return response;
+        });
+        console.log ('Trashed Classifieds Loaded');
+        console.log(response.data);
+        return response.data;
+    },
 
     async loadClassifiedsByUser(userId){
         //TODO voir pour rajouter +'?_embed=true'
@@ -194,6 +207,25 @@ const classifiedsService = {
 
     async loadClassifiedsByKeyWord(keyword){
         const response = await axios.get(classifiedsService.baseURI+ '/classified?search=' + keyword);
+        return response.data;
+    },
+
+    async getQueryClassified(keyWords)
+    {
+        this.category = keyWords[0],
+        this.city = keyWords[1],
+        this.priceMin = keyWords[2],
+        this.priceMax = keyWords[3];
+
+        const response = await axios.get(classifiedsService.opucesBaseURI+ '/queryClassified',
+        {
+            city : this.city,
+            category: this.category,
+            priceMin: this.priceMin,
+            priceMax: this.priceMax
+        }
+        );
+        console.log(response);
         return response.data;
     }
 

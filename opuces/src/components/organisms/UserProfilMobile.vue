@@ -1,109 +1,45 @@
 <template>
   <div class="main-container">
-    <div class="headerLink">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <div id="left-header-mobile">
-          <span><Logo /></span>
-        </div>
-      </router-link>
-    </div>
-    <div class="userDashboard">
-      <h6>Tableau de Bord Vendeur</h6>
+    <h2>Tableau de Bord Vendeur</h2>
+    <div class="display-cart">
       <h6>Annonces en ligne</h6>
-
-      <span></span>
-
-      <h6>Annonces en attente</h6>
-      <span></span>
-
-      <h6>Messages en attente</h6>
-      <span></span>
+      <span>{{ countUserClassifieds }}</span>
 
       <h6>Annonces supprimées</h6>
-      <span></span>
+      <span>{{countTrashedClassifieds}}</span>
     </div>
+
+    <router-link
+      :to="{
+        name: 'Home',
+      }"
+      ><button class="--button connect">Retour à l'Accueil</button>
+    </router-link>
   </div>
 </template>
 
 
 
 <script>
+import storage from "../../plugins/storage";
 import classifiedsService from "../../services/classifiedsService";
-import userService from "../../services/userService";
 
 export default {
   name: "UserPRofilMobile",
   components: {},
   props: {
-    userProps: Object,
+    countUserClassifieds: Object,
   },
   async created() {
-    this.userData = await classifiedsService.loadAuthor();
-  },
-  data() {
-    return {
-      userDatas: [],
-      username: "",
-      email: "",
-      newPassword: "",
-      newPasswordVerify: "",
-      usernameEmpty: false,
-      emailEmpty: false,
-      newPasswordEmpty: false,
-      newPasswordVerifyEmpty: false,
-      newPasswordTooShort: false,
-      newPasswordConfirm: false,
-    };
-  },
-  methods: {
-    async handleSubmit(event) {
-      event.preventDefault();
+    this.id = storage.get("UserIdLogged");
+    this.userClassifieds = await classifiedsService.loadClassifiedsByUser(
+      this.id
+    );
+    console.log(this.userClassifieds);
+    this.countUserClassifieds = this.userClassifieds.length;
 
-      if (this.username == "") {
-        this.usernameEmpty = true;
-      }
-      if (this.email == "") {
-        this.emailEmpty = true;
-      }
-      if (this.newPassword == "") {
-        this.newPasswordEmpty = true;
-      }
-      if (this.newPasswordVerify == "") {
-        this.newPasswordVerifyEmpty = true;
-      }
-      if (this.newPassword !== this.newPasswordVerify) {
-        this.newPasswordConfirm = true;
-      }
-      if (this.newPassword.length < 8) {
-        this.newPasswordTooShort = true;
-      }
-      if (
-        !this.usernameEmpty &&
-        !this.emailEmpty &&
-        !this.newPasswordEmpty &&
-        !this.newPasswordVerifyEmpty &&
-        !this.newPasswordTooShort &&
-        !this.newPasswordConfirm
-      ) {
-        console.log("Appel de l'API pour modification");
-        let result = await userService.updateUser(
-          this.username,
-          this.email,
-          this.password,
-          this.passwordVerify
-        );
-        console.log(result);
-        if (result) {
-          if (result.success == true) {
-            this.$router.push({ name: "Home" });
-          }
-        }
-      }
-    },
+    this.userTrashedClassifieds = await classifiedsService.loadUserTrashedClassifieds(this.id);
+    this.countTrashedClassifieds = this.userTrashedClassifieds.length;
   },
 };
 </script>
@@ -111,53 +47,28 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/scss/main.scss";
 
-.connexion {
-  width: 50%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin: auto;
-  border: 15px;
-  //   border: 2px solid yellow;
+.display-cart {
+  border-radius: 44px;
+  -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
+  margin-top: 130px;
+  padding: 2rem;
 }
+
 .main-container {
-  width: 100%;
   display: flex;
+  justify-content: space-around;
+  padding-top: 5rem;
   flex-direction: column;
-  //   border: 2px solid red;
-  position: absolute;
 }
-.userDashboard {
-  width: 50%;
-  //   border: 2px solid green;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
+h2 {
+  margin-top: 3rem;
 }
-.userDashboard span {
-  background-color: $light-grey;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 0px 15px;
-  height: 100px;
-  width: auto;
-  height: 38px;
-  border: none;
-  border-radius: 6px;
-}
-.userDashboard h6 {
-  align-self: flex-start;
-  margin: 8px;
-}
-
-.main-container h6 {
-  align-self: flex-start;
-  margin: 8px;
-}
-
 form {
   width: 100%;
 }
-.--button {
+button {
   border-radius: 19px;
   padding: 1px;
   width: 345px;
@@ -171,6 +82,11 @@ form {
   align-items: center;
   font-size: 14px;
   font-weight: 900px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+button:hover {
+  background-color: $secondary-green;
 }
 h6 {
   padding: 15px 0 15px 0;
@@ -185,10 +101,6 @@ input {
 .connect {
   background-color: $main-green;
   margin: 28px 0 38px 0;
-}
-
-input:focus {
-  outline: $text-color;
 }
 
 @media screen and (min-width: 576px) {
