@@ -5,62 +5,51 @@
       <IllusLamp />
     </div>
     <div class="main-container">
-      
-
-
-        <div class="left">
-          <div class="svg">
-          <IllusDesk />
-          </div>
-          <router-link
-            :to="{
-              name: 'UpdatePassword',
-            }"
-          >
-            <button class="--button connect">
-              Mettre à jour mon mot de passe
-            </button>
-          </router-link>
+      <div class="svg">
+        <img src="../assets/svg/illus-computer.svg" alt="" />
+      </div>
+      <div class="buttons">
         <router-link
-            :to="{
-              name: 'UpdateEmail',
-            }"
-          >
-            <button class="--button connect">
-              Mettre à jour mon adresse mail
-            </button>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'UpdateUser',
-            }"
-          >
-            <button class="--button connect">
-              Mettre à jour mon adresse postale
-            </button>
-          </router-link>
+          :to="{
+            name: 'UpdatePassword',
+          }"
+        >
+          <button class="button btn-edit">
+            Mettre à jour mon mot de passe
+          </button>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'UpdateEmail',
+          }"
+        >
+          <button class="button btn-edit">
+            Mettre à jour mon adresse mail
+          </button>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'UpdateUser',
+          }"
+        >
+          <button class="button btn-edit">
+            Mettre à jour mon adresse postale
+          </button>
+        </router-link>
 
-
-          <router-link
-            :to="{
-              name: 'DeleteUser'
-            }"
-          >
-            <button class="delete">
-              Supprimer mon compte
-            </button>
-          </router-link>
-        </div>
-       
-            
-        
-      
+        <router-link
+          :to="{
+            name: 'DeleteUser',
+          }"
+        >
+          <button class="button btn-delete">Supprimer mon compte</button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import IllusDesk from "../components/atoms/IllusDesk.vue";
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 
@@ -69,17 +58,19 @@ export default {
   components: {
     Header2,
     IllusLamp,
-    IllusDesk
   },
-  
 };
 </script>
 
+
 <style scoped lang="scss">
 @import "../assets/scss/main.scss";
-
-.main-container {
+.svg {
   width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+.main-container {
   display: flex;
   flex-direction: column;
   padding-top: 5rem;
@@ -87,6 +78,7 @@ export default {
 .illusLamp {
   display: none;
 }
+
 .svg{
   width: 100%;
   align-self: center;
@@ -96,6 +88,40 @@ export default {
   color: white;
   border: solid 1px $social-google;
 }
+.buttons>* {
+  display: block;
+  text-align: center;
+}
+.button {
+  margin: 1em auto;
+  border-radius: 19px;
+  padding: 1px;
+  height: 38px;
+  width: 100%;
+  max-width: 360px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-edit {
+  background-color: $main-green;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: $secondary-green;
+}
+.btn-delete {
+  border: solid 1px #DC3645;
+  background-color: #fff;
+  color: #DC3645;
+}
+.btn-delete:hover {
+  background-color: #DC3645;
+  color: #fff;
+}
+
 @media screen and (min-width: 576px) {
   .illusLamp {
     display: none;
@@ -110,6 +136,11 @@ export default {
   .illusLamp {
     display: none;
   }
+  .svg img{
+    width: 360px;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
@@ -122,73 +153,5 @@ export default {
     position: fixed;
     margin-left: 6%;
   }
-}
-button {
-  margin-top: 2em;
-  background-color: $main-green;
-  border-radius: 19px;
-  padding: 1px;
-  height: 38px;
-  color: white;
-  width: 100%;
-  border: none;
-  font-size: 14px;
-  font-weight: 900px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-button:hover {
-  background-color: $secondary-green;
-}
-.infos-desktop {
-  display: none;
-}
-.infos-mobile {
-  display: block;
-}
-.infos {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 33em;
-}
-h2 {
-  color: $main-green;
-}
-form {
-  margin: 0 auto;
-  width: 100%;
-}
-form > * {
-  display: block;
-  width: 100%;
-}
-
-label {
-  font-weight: 600;
-  padding-top: 1.5em;
-}
-input {
-  height: 38px;
-  background-color: $light-grey;
-  border: none;
-  border-radius: 6px;
-  padding-left: 1em;
-}
-select {
-  padding-top: 1.5em;
-  border: 0;
-  padding-bottom: 1em;
-  border-bottom: solid 1px $text-color;
-  margin-bottom: 1em;
-  font-size: 14px;
-  cursor: pointer;
-  background-color: white;
-}
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
 }
 </style>

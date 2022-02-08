@@ -195,7 +195,7 @@ export default {
     },
     displayHideCardContent: function (evt) {
       evt.preventDefault;
-      //console.log(evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content'));
+      console.log(evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content'));
       let currentHideContent = evt.currentTarget
         .closest("div")
         .closest(".card")
@@ -347,6 +347,7 @@ button:hover {
   width: 100%;
   height: 150px;
   margin-bottom: 1em;
+  overflow: hidden;
 }
 .flex {
   display: flex;

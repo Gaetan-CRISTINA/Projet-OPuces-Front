@@ -94,11 +94,10 @@ export default {
   }
   .input-price {
     display: flex;
-    gap: 20px;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .input-price input {
-    width: 115px;
+    width: 200px;
   }
   .input-price input::placeholder,
   .input-filters input::placeholder {
