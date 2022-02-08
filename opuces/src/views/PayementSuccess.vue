@@ -19,13 +19,10 @@
             <h2>L'équipe O'Puces.</h2>
 
             <div>
-             <router-link
-                :to="{
-                    name: 'Home'}
-                    "><button class="--button connect">
+             <button class="--button connect" @click="UnsetStore">
                
                      Retour à l'Accueil
-                </button></router-link>
+                </button>
             </div>
         </div>
     </div>
@@ -47,10 +44,17 @@ export default {
    
   },
   async created(){
-    // storage.unset("ClassifiedIdCart");
+    
     this.ClassifiedId = storage.get("ClassifiedIdCart");
     console.log(this.ClassifiedId);
 
+  },
+  methods: {
+      async UnsetStore(event){
+        event.preventDefault();
+        storage.unset("ClassifiedIdCart");
+        this.$router.push({ name: "Home"});
+      }
   }
 }
 </script>
