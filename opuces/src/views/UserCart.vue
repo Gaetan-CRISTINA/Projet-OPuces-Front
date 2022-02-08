@@ -35,6 +35,7 @@
         <p>0{{ userAdress[0].phone_number }}</p>
         <h1>Adresse Email</h1>
         <p>{{ userEmail }}</p>
+
       </div>
     </div>
 
@@ -152,8 +153,9 @@ export default {
     console.log(this.userAdress);
     console.log("User Information Loaded");
 
-    this.userData = storage.get("userData");
-    this.userEmail = this.userData.user_email;
+    
+    this.userEmail = await userService.loadUserEmail();
+    // this.userEmail = this.userInfos.
     console.log(this.userEmail);
 
     this.lastname = this.userAdress[0].lastname;
