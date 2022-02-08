@@ -31,9 +31,11 @@ export default {
       };
   },
   async created(){
+      // par Search Bar
     this.keyword = storage.get('searchQuery');
     this.searchCards = await classifiedsService.loadClassifiedsByKeyWord(this.keyword);
   
+    // par FilterDesktop
     this.keyWord = storage.get('searchQueries');
     console.log(this.keyWord);
     this.searchCards = await classifiedsService.getQueryClassified(this.keyWord);
