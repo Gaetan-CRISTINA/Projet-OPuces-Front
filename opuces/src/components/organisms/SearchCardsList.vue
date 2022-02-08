@@ -15,6 +15,7 @@
 <script>
 import SearchCard from "../molecules/SearchCard.vue";
 import storage from "../../plugins/storage";
+import classifiedsService from '../../services/classifiedsService';
 
 
 
@@ -30,12 +31,14 @@ export default {
       };
   },
   async created(){
+      // par Search Bar
     this.keyword = storage.get('searchQuery');
-    this.searchCards = await this.$store.state.services.classified.loadClassifiedsByKeyWord(this.keyword);
+    this.searchCards = await classifiedsService.loadClassifiedsByKeyWord(this.keyword);
   
+    // par FilterDesktop
     this.keyWord = storage.get('searchQueries');
     console.log(this.keyWord);
-    this.searchCards = await this.$store.satate.services.classified.getQueryClassified(this.keyWord);
+    this.searchCards = await classifiedsService.getQueryClassified(this.keyWord);
   
   
   },

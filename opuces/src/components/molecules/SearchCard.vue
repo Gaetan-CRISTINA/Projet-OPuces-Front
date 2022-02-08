@@ -13,14 +13,13 @@
       <h3>{{ SearchCardProps.title.rendered }}</h3>
       <p class="date-annonce">Annonce parue le {{ SearchCardProps.date }}</p>
       <p class="auteur-annonce">
-        {{ SearchCardProps.id }}
       </p>
     </div>
 
     <!-- <EtatAnnonce/> -->
     <div class="etat content-annonce">
       <div class="picto-etat"><PictoEtat1 /></div>
-      <p>{{ productState.name }}</p>
+      <p>{{ productState['name'] }}</p>
     </div>
 
     <!-- <CategorieCardList/> -->
@@ -51,9 +50,6 @@
         class="description-annonce content-annonce"
         v-html="SearchCardProps.content.rendered"
       ></p>
-      <Ville />
-      <MapWrapper />
-      <AnnonceAuteur />
       <VoirMoins />
       <!-- <CtaAnnonce/> -->
       <div class="CTA-annonces content-annonce">
@@ -99,9 +95,7 @@ import Vue from "vue";
 
 
 import VoirPlus from "../molecules/VoirPlus.vue";
-import Ville from "../atoms/Ville.vue";
-import MapWrapper from "../molecules/MapWrapper.vue";
-import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
+
 import VoirMoins from "../molecules/VoirMoins.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
@@ -110,16 +104,14 @@ import userService from "../../services/userService";
 export default {
   name: "Card",
   components: {
-    Ville,
-    MapWrapper,
-    AnnonceAuteur,
     VoirMoins,
     PictoEtat1,
     VoirPlus,
   },
   props: {
-    SearchCardProps: Object,
+    SearchCardProps: Object
   },
+  
 
   async load() {
     this.categories = await classifiedsService.loadClassifiedProductCategory();
@@ -131,6 +123,7 @@ export default {
       typeCusto,
       this.SearchCardProps.ProductCategory[0]
     );
+
     typeCusto = "productstate";
     this.productState = await classifiedsService.loadOneCustonomy(
       typeCusto,

@@ -221,7 +221,7 @@ const classifiedsService = {
         {
             params:{
             city : this.city,
-            category: this.category,
+            taxo: this.category,
             priceMin: this.priceMin,
             priceMax: this.priceMax
             }

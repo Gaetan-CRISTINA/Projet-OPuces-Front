@@ -6,7 +6,7 @@
     </div>
     <div class="main-container">
       <div id="display-annonces">
-        <h2>Me Recherche </h2>
+        <h2>Ma Recherche </h2>
       </div>
       <div>
         <SearchCardsList />
@@ -29,7 +29,7 @@ export default {
     SearchCardsList,
     TabBar,
     IllusLamp,
-  },
+  }
 };
 </script>
 <style scoped lang="scss">
