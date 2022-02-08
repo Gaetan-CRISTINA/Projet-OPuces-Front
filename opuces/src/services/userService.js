@@ -211,7 +211,9 @@ const userService = {
 
     const response = await axios.get(userService.opucesBaseURI + '/user-table',
         {
-            userID: id
+            params:{
+                userID: id
+            }
         }
         ).catch(function(){
             console.log('Failed To Load User Informations');
