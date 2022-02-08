@@ -6,34 +6,37 @@
             :key="searchCard.id">
        
          
-            <SearchCard :SearchCardProps="searchCard" />
+            <SearchCardByMulti :SearchCardProps="searchCard" />
         </span>
         
 </div>
 </template>
 
 <script>
-import SearchCard from "../molecules/SearchCard.vue";
+import SearchCardByMulti from "../molecules/SearchCardByMulti.vue";
 import storage from "../../plugins/storage";
 import classifiedsService from '../../services/classifiedsService';
 
 
 
 export default {
-  name: 'SearchCardsList',
+  name: 'SearchCardsListByMulti',
   components: {
-      SearchCard,
+      SearchCardByMulti,
       
   },
   data(){
       return{
-          searchCards: []
+        searchCards: [],
+        searchCardsArray: []
       };
   },
   async created(){
-      // par Search Bar
-    this.keyword = storage.get('searchQuery');
-    this.searchCards = await classifiedsService.loadClassifiedsByKeyWord(this.keyword);
+    this.keyWord = storage.get('searchQueries');
+    console.log(this.keyWord);
+    this.searchCardsArray = await classifiedsService.getQueryClassified(this.keyWord);
+    this.searchCards = this.searchCardsArray[0];
+    console.log(this.searchCards);
   },
 }
 </script>

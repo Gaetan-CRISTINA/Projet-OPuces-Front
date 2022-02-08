@@ -80,7 +80,7 @@ import storage from "../../plugins/storage";
     async handleSubmit(event){
       event.preventDefault();
       this.searchQueries = storage.set('searchQueries', [this.selectedCategory, this.city, this.priceMin, this.priceMax]);
-      this.$router.push({ name : 'SearchClassifiedsList'});
+      this.$router.push({ name : 'SearchClassifiedsListByMulti'});
     },
 
 
