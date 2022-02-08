@@ -32,6 +32,8 @@
         <p>{{userAdress[0].city}}</p>
         <h1>Numéro de téléphone</h1>
         <p>0{{userAdress[0].phone_number}}</p>
+        <h1>Adresse Email</h1>
+        <p>{{userEmail}}</p>
       </div>
       
     </div>
