@@ -144,7 +144,7 @@ const userService = {
         }
     },
 
-    saveUserInformation: async function ( adress, adress2, country, phoneNumber, zipcode, city)
+    saveUserInformation: async function (adress, adress2, country, phoneNumber, zipcode, city,civility, firstname, lastname,)
     {
         const userData = storage.get('userData');
         const token = userData.token;
@@ -162,7 +162,10 @@ const userService = {
             zipcode: zipcode,
             city: city,
             country: country,
-            phone_number: phoneNumber
+            phone_number: phoneNumber,
+            civility: civility,
+            firstname: firstname,
+            lastname: lastname
         },
         options
         ).catch(function(){
@@ -173,6 +176,8 @@ const userService = {
         return response.data;
         }
     },
+    
+    
     deleteUser: async function(){
         const userId = storage.get('UserIdLogged');
         console.log(userId);

@@ -174,6 +174,7 @@ export default {
         this.imageId
       );
       if (result) {
+        storage.unset('ClassifiedToUpdate');
         this.$router.push({ name: "Home" });
         return result;
       } else {

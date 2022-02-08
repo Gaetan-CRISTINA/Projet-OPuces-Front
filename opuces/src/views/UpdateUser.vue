@@ -18,12 +18,43 @@
         <div class="right contact">
           <div class="form-contact">
             <form class="login-form" @submit="handleSubmit">
+              
+              <h6>Civilité</h6>
+              <select name="civility" v-model="civility">
+                <option value="Madame">Madame</option>
+                <option value="Monsieur">Monsieur</option>
+                <option value="Autres">Autres</option>
+              </select> 
+              <div class="error" v-if="civilityEmpty">
+                Merci de choisir une civilité
+              </div>
+
+              <h6>Nom</h6>
+              <input
+                v-model="lastname"
+                type="text"
+                name="lastname"
+              />
+              
+              <div class="error" v-if="lastnameEmpty">
+                Merci de saisir votre nom
+              </div>
+
+              <h6>Prénom</h6>
+              <input
+                v-model="firstname"
+                type="text"
+                name="firstname"
+              />
+              <div class="error" v-if="firstnameEmpty">
+                Merci de saisir votre prénom
+              </div>
+
               <h6>Adresse</h6>
               <input
                 v-model="adress"
                 type="text"
                 name="adress1"
-                class="adress1"
               />
 
               <div class="error" v-if="adressEmpty">
@@ -35,7 +66,6 @@
                 v-model="adress2"
                 type="text"
                 name="adress2"
-                class="adress2"
               />
 
               <h6>Code Postal</h6>
@@ -43,7 +73,6 @@
                 v-model="zipcode"
                 type="number"
                 name="zipcode"
-                class="zipcode"
               />
 
               <div class="error" v-if="zipcodeEmpty">
@@ -51,7 +80,7 @@
               </div>
 
               <h6>Ville</h6>
-              <input v-model="city" type="text" name="city" class="city" />
+              <input v-model="city" type="text" name="city"/>
 
               <div class="error" v-if="cityEmpty">
                 Vous devez saisir une ville
@@ -62,7 +91,6 @@
                 v-model="country"
                 type="text"
                 name="country"
-                class="country"
               />
 
               <div class="error" v-if="countryEmpty">
@@ -74,7 +102,6 @@
                 v-model="phoneNumber"
                 type="number"
                 name="phoneNumber"
-                class="phoneNumber"
               />
 
               <div class="error" v-if="phoneNumberEmpty">
@@ -105,6 +132,7 @@ import IllusTree from "../components/atoms/IllusTree.vue";
 import userService from "../services/userService";
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
+import storage from "../plugins/storage"
 
 export default {
   name: "UpdateUser",
@@ -127,6 +155,12 @@ export default {
       countryEmpty: false,
       phoneNumber: "",
       phoneNumberEmpty: false,
+      civility: "",
+      civilityEmpty: false,
+      firstname: "",
+      firstnameEmpty: false,
+      lastname: "",
+      lastnameEmpty: false
     };
   },
   methods: {
@@ -135,8 +169,14 @@ export default {
       if (this.zipcode == "") {
         this.zipcodeEmpty = true;
       }
-      if (this.city == "") {
-        this.cityEmpty = true;
+      if (this.civility == ""){
+        this.civilityEmpty = true;
+      }
+      if (this.firstname == ""){
+        this.civilityEmpty = true;
+      }
+      if (this.lastname == ""){
+        this.lastnameEmpty = true;
       }
       if (this.city == "") {
         this.cityEmpty = true;
@@ -151,14 +191,17 @@ export default {
         this.phoneNumberEmpty = true;
       }
 
-      if (
+       if (
         !this.zipcodeEmpty &&
         !this.cityEmpty &&
         !this.adressEmpty &&
         !this.countryEmpty &&
-        !this.phoneNumberEmpty
+        !this.phoneNumberEmpty &&
+        !this.civilityEmpty &&
+        !this.lastnameEmpty &&
+        !this.firstnameEmpty
       ) {
-        console.log("Appel de l'API pour inscription info USER");
+        console.log("Mise à jour des infos user");
         
         let result = await userService.saveUserInformation(
           
@@ -167,10 +210,14 @@ export default {
           this.country,
           this.phoneNumber,
           this.zipcode,
-          this.city
+          this.city,
+          this.civility,
+          this.firstname,
+          this.lastname
         );
         console.log(result);
         if (result) {
+          storage.set("UserInfos", [this.civility, this.firstname, this.lastname, this.adress, this.adress2, this.country, this.phoneNumber, this.zipcode, this.city])
           this.$router.push({ name: 'Myaccount' });
         }
       }
