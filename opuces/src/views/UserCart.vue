@@ -33,8 +33,7 @@
         <p>{{ userAdress[0].city }}</p>
         <h1>Numéro de téléphone</h1>
         <p>0{{ userAdress[0].phone_number }}</p>
-        <h1>Adresse Email</h1>
-        <p>{{ userEmail }}</p>
+        
 
       </div>
     </div>
@@ -155,12 +154,11 @@ export default {
 
     
     this.userEmail = await userService.loadUserEmail();
-    // this.userEmail = this.userInfos.
-    console.log(this.userEmail);
+    console.log(this.userEmail.data[0].user_email);
 
     this.lastname = this.userAdress[0].lastname;
     this.firstname = this.userAdress[0].firstname;
-    this.to_email = this.userEmail;
+    this.to_email = this.userEmail.data[0].user_email;
 
     this.article = this.classifiedToBuy.title.rendered;
     this.price = this.classifiedToBuy.classifiedPrice;

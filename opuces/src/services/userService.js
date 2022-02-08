@@ -230,7 +230,7 @@ const userService = {
         console.log(userId);
         const userData = storage.get('userData');
         const token = userData.token;
-        console.log(token);
+        // console.log(token);
         if(token){
         const response = await axios.get(userService.opucesBaseURI + '/load-user-email',
             {
