@@ -19,8 +19,10 @@
         <p>{{ classifiedToBuy._embedded["wp:term"][1][0]["name"] }}</p>
       </div>
 
-      <div class="display-user">
+      <div class="display-user" >
         <h3>Récapitulatif de la Livraison</h3>
+        <div v-if="userInfos">
+        
 
         <h1>Nom et prénom</h1>
         <p>{{ userAdress[0].lastname }} {{ userAdress[0].firstname }}</p>
@@ -41,6 +43,16 @@
         >
           <button>Modifier mes informations</button>
         </router-link>
+        </div>
+        <div v-if="!userInfos">
+          <router-link
+          :to="{
+            name: 'UpdateUser',
+          }"
+        >
+          <button>Renseigner mes informations</button>
+        </router-link>
+        </div>
       </div>
     </div>
     <div class="align-buttons">
@@ -127,7 +139,7 @@
           class="hidden"
         />
 
-        <button class="pay">Procéder au paiement</button>
+        <button class="pay" v-if="userInfos">Procéder au paiement</button>
       </form>
       <div class="span">
       <router-link
@@ -248,6 +260,16 @@ export default {
       this.email = "";
     },
   },
+  computed: {
+    userInfos(){
+      const userInfos = storage.get("UserInfos");
+      if(userInfos ){
+        return true;
+      } else{
+        return false;
+      }
+    }
+  }
 };
 </script>
 
