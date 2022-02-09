@@ -332,11 +332,18 @@ export default {
   align-items: center;
   position:relative;
 }
+.illusLamp {
+    display: none;
+  }
 @media screen and (min-width: 576px) {
-   
+   .illusLamp {
+    display: none;
+  }
   }
 @media screen and (min-width: 768px) {
-  
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 992px) {
   #left-header-desktop #logo {
@@ -346,12 +353,23 @@ export default {
   #left-header-desktop:hover #logo {
     fill: $secondary-green;
   }
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 1200px) {
-  
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 @media screen and (min-width: 1400px) {
-    
+    .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 </style>
 <style scoped lang="scss">
