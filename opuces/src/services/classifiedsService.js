@@ -153,16 +153,16 @@ const classifiedsService = {
         const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId  +'?_embed=true');
         return response.data;
     },
-    async loadUserTrashedClassifieds(id){
-        const response = await axios.get(classifiedsService.opucesBaseURI + '/trashed-classifieds',
+    async updateClassifiedSold(id){
+        const response = await axios.patch(classifiedsService.opucesBaseURI + '/classified-sold',
         {
-            userId: id
+            classifiedId: id
             
         }).catch(function(){
-            console.log('Error or No Trashed Classifieds');
+            console.log('Failed to update Sold Status');
             return response;
         });
-        console.log ('Trashed Classifieds Loaded');
+        console.log ('Classified Sold');
         console.log(response.data);
         return response.data;
     },
