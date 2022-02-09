@@ -195,6 +195,7 @@ export default {
             this.zipcode,
             this.city,
           ]);
+          
           this.$router.push({ name: "Myaccount" });
         }
       }
