@@ -143,9 +143,11 @@
           <div v-if="!searchQuery">
             <SearchBar />
           </div>
+          
           <div v-if="searchQuery">
             <button @click="UnsetSearchQuery">Nouvelle Recherche</button>
           </div>
+          
         </div>
         <!--
         RIGHT HEADER
