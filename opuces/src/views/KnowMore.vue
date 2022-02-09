@@ -13,7 +13,7 @@
               <select name="civility" v-model="civility">
                 <option value="Madame">Madame</option>
                 <option value="Monsieur">Monsieur</option>
-                <option value="Autres">Autres</option>
+                <option value="Autre">Autre</option>
               </select>  
                 <div class="error" v-if="civilityEmpty">
                 Merci de choisir une civilité
@@ -103,7 +103,12 @@
                 Enregistrer mes informations
               </button>
             </form>
-
+            <router-link
+            :to="{
+              name: 'Home'
+              }">
+            <button>Je le ferai plus tard</button>
+            </router-link>
 
 
 
@@ -248,9 +253,9 @@ button {
   width: 345px;
   height: 38px;
   color: white;
+  background-color: $main-green;
   width: 100%;
   border: none;
-  margin: 17px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -12,7 +12,7 @@
         </div>
 
         <form @submit="handleSubmit">
-          <h6>Nom</h6>
+          <h6>Nom d'utilisateur</h6>
           <input
             v-model="username"
             type="text"

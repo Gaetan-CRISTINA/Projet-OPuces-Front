@@ -17,13 +17,10 @@
             <h1>L'équipe O'Puces.</h1>
 
             <div>
-             <router-link
-                :to="{
-                    name: 'Home'}
-                    "><button class="--button connect">
+             <button class="--button connect" @click="UnsetUserInfos">
                
                      Retour à l'Accueil
-                </button></router-link>
+                </button>
             </div>
         </div>
     </div>
@@ -34,6 +31,7 @@
 
 import Header2 from '../components/organisms/Header2.vue'
 import IllusLamp from '../components/atoms/IllusLamp.vue'
+import storage from '../plugins/storage'
 
 export default {
   name: 'CancelOrder',
@@ -41,6 +39,13 @@ export default {
     Header2,
     IllusLamp
    
+  },
+  methods: {
+    async UnsetUserInfos(event){
+      event.preventDefault();
+      storage.unset('UserInfos');
+      this.$router.push({ name : 'Home' })
+    }
   }
 }
 </script>
