@@ -7,7 +7,7 @@
 
     <div class="main-container">
       
-        <div class="left">
+        
           <div class="form-contact">
             <form class="login-form" @submit="handleSubmit">
               <h6>Civilité</h6>
@@ -71,7 +71,7 @@
                 Vous devez saisir un numéro de téléphone
               </div>
 
-              <button class="--button">
+              <button>
                 Enregistrer les modifications
               </button>
               <router-link
@@ -84,15 +84,15 @@
               </button>
             </router-link>
             </form>
+
+            
             
           </div>
         </div>
 
-        <div class="right">
-          <img src="../assets/svg/tree.svg" alt="">
-        </div>
+        
       
-    </div>
+    
   </div>
 </template>
 
@@ -217,29 +217,9 @@ export default {
   max-width: 400px;
 }
 h6 {
-  padding-top: 1.5em;
+  padding-top: 0.1em;
 }
-.--button {
-  border-radius: 19px;
-  padding: 1px;
-  width: 100%;
-  height: 38px;
-  color: white;
-  width: 100%;
-  border: none;
-  margin: 17px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 900px;
-  cursor: pointer;
-  transition: all .3s;
-}
-.--button:hover {
-  background-color: $secondary-green;
-}
-.left {
+.form-contact {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -248,6 +228,9 @@ h6 {
   display: none;
 }
 button {
+  justify-content: center;
+  align-items: center;
+  display: flex;
   margin-top: 2em;
   background-color: $main-green;
   border-radius: 19px;
@@ -260,6 +243,12 @@ button {
   font-weight: 900px;
   cursor: pointer;
   transition: all 0.3s;
+}
+button:hover {
+  background-color: $secondary-green;
+}
+.--button{
+  margin-bottom: 1rem;
 }
 form {
   margin: 0 auto;
@@ -295,28 +284,17 @@ textarea:focus {
   
 }
 @media screen and (min-width: 768px) {
-  .right img {
-    width: 400px;
-  }
- 
-  .main-container {
+   .main-container {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .left {
-    width: 50%;
-  }
-  .right {
-    text-align: center;
-    width: 50%;
-    display: block;
-  }
+  
 }
 @media screen and (min-width: 992px) {
   
-  .left {
+  .form-contact {
     padding-top:20px;
     border-radius: 44px;
     -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);

@@ -139,7 +139,7 @@
           class="hidden"
         />
 
-        <button class="pay" v-if="userInfos">Procéder au paiement</button>
+        <button class="pay" v-if="userInfos" >Procéder au paiement</button>
       </form>
       <div class="span">
       <router-link
@@ -249,6 +249,7 @@ export default {
           }
         );
         console.log("it works!!!");
+        this.updateClassifiedStatus = classifiedsService.updateClassifiedSold(this.classifiedToBuy.id);
         this.$router.push({ name: "PayementSuccess" });
       } catch (error) {
         console.log({ error });

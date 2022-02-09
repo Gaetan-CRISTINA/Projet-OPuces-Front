@@ -6,7 +6,7 @@
       <span>{{ countUserClassifieds }}</span>
 
       <h6>Annonces supprimées</h6>
-      <span>{{countTrashedClassifieds}}</span>
+      <span></span>
     </div>
 
     <router-link
@@ -38,8 +38,7 @@ export default {
     console.log(this.userClassifieds);
     this.countUserClassifieds = this.userClassifieds.length;
 
-    this.userTrashedClassifieds = await classifiedsService.loadUserTrashedClassifieds(this.id);
-    this.countTrashedClassifieds = this.userTrashedClassifieds.length;
+    
   },
 };
 </script>
