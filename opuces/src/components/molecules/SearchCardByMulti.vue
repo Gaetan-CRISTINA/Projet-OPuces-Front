@@ -365,31 +365,35 @@ button:hover {
   position: absolute;
   right: 0;
 }
-
-@media screen and (min-width: 576px) {
-  .display2 {
-    width: 262.5px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .display2 {
-    width: 352.5px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .display2 {
+.display2 {
     width: 252.5px;
   }
+
+
+@media screen and (min-width: 576px) {
+  // .display2 {
+  //   width: 262.5px;
+  // }
+}
+@media screen and (min-width: 768px) {
+  // .display2 {
+  //   width: 352.5px;
+  // }
+}
+@media screen and (min-width: 992px) {
+  // .display2 {
+  //   width: 252.5px;
+  // }
 }
 @media screen and (min-width: 1200px) {
-  .display2 {
-    width: 342.5px;
-  }
+  // .display2 {
+  //   width: 342.5px;
+  // }
 }
 @media screen and (min-width: 1400px) {
-  .display2 {
-    width: 432.5px;
-  }
+  // .display2 {
+  //   width: 432.5px;
+  // }
 }
 </style>
 
