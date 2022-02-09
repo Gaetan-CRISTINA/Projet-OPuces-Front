@@ -71,7 +71,7 @@
                 Vous devez saisir un numéro de téléphone
               </div>
 
-              <button class="--button">
+              <button>
                 Enregistrer les modifications
               </button>
               <router-link
@@ -246,6 +246,9 @@ button {
 }
 button:hover {
   background-color: $secondary-green;
+}
+.--button{
+  margin-bottom: 1rem;
 }
 form {
   margin: 0 auto;
