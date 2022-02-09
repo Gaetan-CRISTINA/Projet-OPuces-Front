@@ -14,7 +14,7 @@
               <select name="civility" v-model="civility">
                 <option value="Madame">Madame</option>
                 <option value="Monsieur">Monsieur</option>
-                <option value="Autres">Autres</option>
+                <option value="Autre">Autre</option>
               </select>
               <div class="error" v-if="civilityEmpty">
                 Merci de choisir une civilité
@@ -195,12 +195,17 @@ export default {
             this.zipcode,
             this.city,
           ]);
-          
-          this.$router.push({ name: "Myaccount" });
+          this.idCart = storage.get('ClassifiedIdCart');
+            if(this.idCart){
+              this.$router.push({ name : 'Cart'})
+            } else {
+              this.$router.push({ name: "Myaccount" });
+            }
         }
       }
     },
   },
+  
 };
 </script>
 

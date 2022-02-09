@@ -25,12 +25,26 @@
                      Retour à l'Accueil
                 </button></router-link>
                 <router-link
+                v-if="userInfos"
                 :to="{
                     name: 'Cart'}
-                    "><button class="--button connect">
+                    ">
+                    <button class="--button connect">
                
                      Voir mon panier
-                </button></router-link>
+                </button>
+                </router-link>
+
+                <router-link
+                v-if="!userInfos"
+                :to="{
+                    name: 'UpdateUser'}
+                    ">
+                    <button class="--button connect">
+               
+                     Renseigner mes informations personnelles pour continuer
+                </button>
+                </router-link>
             </div>
         </div>
     </div>
@@ -41,6 +55,7 @@
 
 import Header2 from '../components/organisms/Header2.vue'
 import IllusLamp from '../components/atoms/IllusLamp.vue'
+import storage from '../plugins/storage';
 
 export default {
   name: 'BuyOrContinue',
@@ -48,6 +63,16 @@ export default {
     Header2,
     IllusLamp
    
+  },
+  computed:{
+    userInfos(){
+      const userInfos = storage.get('UserInfos');
+      if (isNaN(userInfos)){
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 }
 </script>
