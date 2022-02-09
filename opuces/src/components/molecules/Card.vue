@@ -191,8 +191,13 @@ export default {
       storage.set("UserIdLogged", this.id);
 
       this.userInfos = await userService.loadUserFromUserTable(this.id);
-      storage.set('UserInfos', this.userInfos);
-
+      if(this.userInfos.length > 0) {
+        storage.set('UserInfos', this.userInfos);
+      } else {
+        return false;
+      }
+      
+      
     },
     displayHideCardContent: function (evt) {
       evt.preventDefault;
