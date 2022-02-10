@@ -43,12 +43,12 @@ export default {
 .cards-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: flex-start;
     width: 100%;
 }
 .unitCard{
-    transition: all .2s ease-in-out
+    transition: all .2s ease-in-out;
+    margin-right:25px;
 }
 .unitCard:hover{
     transform: scale(1.02);

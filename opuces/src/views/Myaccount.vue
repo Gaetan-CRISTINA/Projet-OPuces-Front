@@ -73,7 +73,9 @@ export default {
 .main-container {
   display: flex;
   flex-direction: column;
-  padding-top: 5rem;
+  
+  
+  padding-top: 10rem;
 }
 .illusLamp {
   display: none;
