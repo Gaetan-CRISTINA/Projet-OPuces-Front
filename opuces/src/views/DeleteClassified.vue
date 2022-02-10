@@ -5,6 +5,7 @@
 <script>
 
 import classifiedsService from '../services/classifiedsService';
+import storage from '../plugins/storage';
 
 export default {
   name: 'DeleteClassified',
@@ -12,10 +13,10 @@ export default {
 
   },
   created(){
-      this.id = this.$route.params.id;
-      
-
+      this.id = storage.get('ClassifiedToDelete');
+      console.log(this.id);
       classifiedsService.deleteCurrentClassified(this.id); 
+      storage.unset('ClassifiedToDelete');
       this.$router.push({name:"UserClassifieds"})  
   }
 }

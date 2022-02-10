@@ -34,6 +34,9 @@ export default {
     this.userClassifieds = await this.$store.state.services.classified.loadClassifiedsByUser(this.userId);
     
   },
+  computed:{
+      
+  }
 }
 </script>
 
