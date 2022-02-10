@@ -116,6 +116,9 @@ export default {
   .illusLamp {
     display: none;
   }
+  .main-container {
+    width:100%;
+  }
 
 @media screen and (max-width: 576px) {
   .picDev{
@@ -216,7 +219,7 @@ export default {
   .illusLamp {
     display: inline-block;
     position: fixed;
-    margin-left: 6%;
+    margin-left: 10%;
   }
 }
 </style>
