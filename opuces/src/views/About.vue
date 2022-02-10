@@ -71,7 +71,9 @@ export default {
 <style scoped lang="scss">
 @import "../assets/scss/main";
 
-
+h4{
+  color: #2093A7;
+}
 .picDev img {
     width: 200px;
     border-radius: 100%;
@@ -83,7 +85,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5rem;
+    padding: 1rem;
   }
   .picDev span {
     border: 2px solid #31c7c0;
@@ -103,9 +105,7 @@ export default {
   h3{
     text-align: center;
   }
-  h2{
-    padding-top: 5rem;
-  }
+  
   .role, .link, h3{
     text-align: center;
     margin-bottom: 1rem;
