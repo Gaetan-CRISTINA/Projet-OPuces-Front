@@ -111,6 +111,9 @@ export default {
 .illusLamp {
   display: none;
 }
+.fixe-right{
+    display: none;
+  }
 
 @media screen and (min-width: 576px) {
   .illusLamp {
@@ -121,6 +124,7 @@ export default {
   .illusLamp {
     display: none;
   }
+  
 }
 @media screen and (min-width: 992px) {
   .main-container {
@@ -138,6 +142,7 @@ export default {
   .fixe-right {
     margin-left: 20px;
     width: 100%;
+    display: block;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -146,6 +151,9 @@ export default {
   }
   .illusLamp {
     display: none;
+  }
+  .fixe-right{
+    display: block;
   }
 }
 @media screen and (min-width: 1400px) {
@@ -156,6 +164,9 @@ export default {
     display: inline-block;
     position: fixed;
     margin-left: 6%;
+  }
+  .fixe-right{
+    display: block;
   }
 }
 </style>
