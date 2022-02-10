@@ -49,21 +49,11 @@
     <div class="voir-plus">
       
       <button @click="handleClick" class="modify">Modifier L'Annonce</button>
+          
       
-
-    
-      <router-link
-        :to="{
-          name: 'deleteClassified',
-          params: {
-            id: userClassifiedProps.id
-          }
-        }"
-      >
-        <button class="delete">Supprimer L'Annonce</button>
-      </router-link>
-    
-
+        <button class="delete" @click="handleClassified">Supprimer L'Annonce</button>
+      
+  
     </div>
 
     <div class="hide-content">
@@ -137,6 +127,11 @@ export default {
       event.preventDefault();
       storage.set('ClassifiedToUpdate', this.userClassifiedProps.id);
       this.$router.push({ name: 'UpdateClassified'})
+    },
+    async handleClassified(event){
+      event.preventDefault();
+      storage.set('ClassifiedToDelete', this.userClassifiedProps.id);
+      this.$router.push({ name: 'ConfirmDeleteClassified'})
     }
   }
 };

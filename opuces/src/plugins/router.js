@@ -38,6 +38,7 @@ import SearchClassifiedsListByMulti from '../views/SearchClassifiedsListByMulti.
 import KnowMore from '../views/KnowMore.vue'
 import BuyOrContinue from '../views/BuyOrContinue.vue'
 import CartEmpty from '../views/CartEmpty.vue'
+import ConfirmDeleteClassified from '../views/ConfirmDeleteClassified.vue'
 
 
 Vue.use(VueRouter)
@@ -192,7 +193,16 @@ const routes = [
     component: CartEmpty
   },
   {
+    path: '/delete-classifiedconfirm',
+    name: 'ConfirmDeleteClassified',
+    component: ConfirmDeleteClassified
+  },
+  {
     path: '*',
+    redirect: '/404'
+  },
+  {
+    path: '/404',
     component: ErrorPages
   }
 ]
