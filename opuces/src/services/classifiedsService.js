@@ -186,7 +186,10 @@ const classifiedsService = {
         });
         return response.data;
     },
-
+    async getUrlImage(postID){
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'geturlimage?id=' + postID);
+        return response.data;
+    },
     async getTaxonomyName(){
         const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'taxonomy');
         return response.data;

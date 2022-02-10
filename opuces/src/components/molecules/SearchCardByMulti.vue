@@ -2,7 +2,7 @@
   <div class="card display2">
     <!-- <HeroAnnonce/> -->
     <div class="img-annoce">
-      <img src="https://picsum.photos/400/600" alt="classifiedImage" class="img-annoce" />
+      <img :src="urlImg" alt="classifiedImage" class="img-annoce" />
       <div class="flex prix-like">
         <span class="prix">{{ SearchCardProps.meta_value }} €</span>
       </div>
@@ -130,8 +130,17 @@ export default {
     typeCusto = "productstate";
     this.productState = await classifiedsService.loadOneCustonomy(
       typeCusto,
-      this.recupPost.ProductState
-    );
+      this.recupPost.ProductState,
+          );
+
+      // recuperation de l image associee
+      this.urlImage = await classifiedsService.getUrlImage(this.id);
+     if (this.urlImage[0][0]) {
+      this.urlImg = this.urlImage[0][0]
+      } else {
+      this.urlImg ="https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
+      }
+
 
     //AFFICHER CACHER CONTENU SUPPLEMENTAIRE CARDS
     Vue.prototype.$hiddenContentHeight = [];
@@ -148,20 +157,12 @@ export default {
       categoryName: "",
       productState: "",
       recupPost:"",
+      urlImg:"",
     };
   },
   computed: {
-    getImage() {
-
-      if (this.recupPost._embedded.wp.featuredmedia) {
-        console.log(this.recupPost._embedded.wp.featuredmedia);
-        return this.recupPost._embedded.wp.featuredmedia[0].source_url;
-      } else {
-        return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
-      }
-    },
-      //TODO
-      // author name en Majuscule (1ere lettre)
+    //TODO
+    // author name en Majuscule (1ere lettre)
     //   capitalizeString(){
     //    let input = document.getElementByClass("auteur-annonce");
     //    let headingElement = document.getElementById("modified-string");
