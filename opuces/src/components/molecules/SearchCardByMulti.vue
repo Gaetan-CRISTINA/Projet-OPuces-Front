@@ -126,7 +126,7 @@ export default {
   //recuperation du post pour avoir le code etat
     this.id = this.SearchCardProps.ID;
     this.recupPost = await classifiedsService.loadClassifiedsById(this.id);
-
+          console.log(this.recupPost);
     typeCusto = "productstate";
     this.productState = await classifiedsService.loadOneCustonomy(
       typeCusto,
@@ -147,12 +147,15 @@ export default {
     return {
       categoryName: "",
       productState: "",
+      recupPost:"",
     };
   },
   computed: {
     getImage() {
-      if (this.SearchCardProps._embedded["wp:featuredmedia"]) {
-        return this.SearchCardProps._embedded["wp:featuredmedia"][0].source_url;
+
+      if (this.recupPost._embedded.wp.featuredmedia) {
+        console.log(this.recupPost._embedded.wp.featuredmedia);
+        return this.recupPost._embedded.wp.featuredmedia[0].source_url;
       } else {
         return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
       }
