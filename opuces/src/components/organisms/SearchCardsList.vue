@@ -44,30 +44,40 @@ export default {
 .cards-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: flex-start;
     width: 100%;
 }
 .unitCard{
     transition: all .2s ease-in-out
 }
-.unitCard:hover{
-    transform: scale(1.02);
-}
+
 @media screen and (min-width: 576px) {
-   
+   .cards-list {
+       justify-content: space-evenly;
+       margin: auto;
+   }
 }
 @media screen and (min-width: 768px) {
-    
+    .cards-list{
+        justify-content: space-evenly;
+        
+    }
 }
 @media screen and (min-width: 992px) {
-    
+    .cards-list {
+        width: 520px;
+    }
 }  
 @media screen and (min-width: 1200px) {
-    
+    .cards-list {
+        width: 700px;
+    }
 }
 @media screen and (min-width: 1400px) {
-    
+    .cards-list {
+        width: 880px;
+    }
 }
 </style>
 

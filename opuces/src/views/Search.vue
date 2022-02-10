@@ -24,10 +24,23 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/main";
-
+.main-container{
+  width: 50%;
+  margin: 20vh auto;
+  display: flex;
+  justify-content: center;
+}
 @media screen and (min-width: 576px) {
+  .main-container{
+  width: 50%;
+  margin: 20vh auto;
+  display: flex;
+  justify-content: center;
+}
+
 }
 @media screen and (min-width: 768px) {
+  
   
 }
 @media screen and (min-width: 992px) {
