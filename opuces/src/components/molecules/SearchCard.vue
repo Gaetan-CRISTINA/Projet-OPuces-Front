@@ -131,10 +131,9 @@ export default {
     );
 
     // recuperation de l image associee
-      this.urlImage = await classifiedsService.getUrlImage(this.id);
+      this.urlImage = await classifiedsService.getUrlImage(this.SearchCardProps.id);
      if (this.urlImage[0][0]) {
       this.urlImg = this.urlImage[0][0]
-      console.log(this.urlImg);
       } else {
       this.urlImg ="https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
       }
@@ -153,6 +152,7 @@ export default {
     return {
       categoryName: "",
       productState: "",
+      urlImg:""
     };
   },
   computed: {
