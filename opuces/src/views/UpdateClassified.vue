@@ -6,9 +6,12 @@
     </div>
     <div class="main-container">
       <div class="displayForm">
-        <h2 class="CreateClassifiedFormTitle">Modifier votre annonce</h2>
+        
         <form @submit="handleSubmit">
-          
+          <div class="CreateClassifiedFormTitle">
+          <h2>Modifier votre annonce</h2>
+          <h4>Attention, tous les champs sont obligatoires</h4>
+          </div>
           <label>
               <h3>Le titre de votre annonce:</h3>
               <h4>{{userClassifieds.title.rendered}}</h4>
@@ -210,6 +213,8 @@ export default {
 .main-container {
   position: relative;
   top: 70px;
+  border-radius: 5px;
+  padding-bottom: 50px;
 }
 .label-price {
   position: relative;
@@ -314,11 +319,16 @@ input:focus {
 .displayForm {
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
 }
 .CreateClassifiedFormTitle {
   margin-bottom: 15px;
   margin-top: 3rem;
-  align-self: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.CreateClassifiedFormTitle h2{
+  width: 100%;
 }
 .illusLamp {
   display: none;

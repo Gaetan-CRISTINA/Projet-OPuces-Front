@@ -6,7 +6,7 @@
           <router-link :to="{ name: 'Home' }">
             <div class="home-link">
               <Logo class="logo" />
-              <h1>O'puces</h1>
+              <h1>O'Puces</h1>
             </div>
           </router-link>
         </div>
@@ -158,6 +158,9 @@ input {
   background-color: #f2f2f2;
   padding: 20px;
   width: 50%;
+}
+.main-container{
+  padding-top: 5rem;
 }
 .left div:first-child {
   position: relative;
