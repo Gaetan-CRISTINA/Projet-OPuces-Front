@@ -94,25 +94,15 @@ import storage from "../../plugins/storage";
 <style scoped lang="scss">
 @import "../../assets/scss/main";
 
-.filters-desktop {
-  display: none;
-}
 .input-filters{
   width: 100%;
 }
-
-@media screen and (min-width: 576px) {
-}
-@media screen and (min-width: 768px) {
-}
-@media screen and (min-width: 992px) {
-  
-  .filters-desktop {
+.filters-desktop {
     display: block;
   }
   .filters-desktop {
     position: fixed;
-    width: 420px;
+    width: 70%;
     
   }
   select {
@@ -208,10 +198,36 @@ import storage from "../../plugins/storage";
   .search-validate:hover {
     background-color: $secondary-green;
   }
+
+@media screen and (min-width: 576px) {
+  .filters-desktop {
+    position: fixed;
+    width: 420px;
+    }
+}
+@media screen and (min-width: 768px) {
+  .filters-desktop {
+    position: fixed;
+    width: 420px;
+    }
+}
+@media screen and (min-width: 992px) {
+   .filters-desktop {
+    position: fixed;
+    width: 350px;
+    }
 }
 @media screen and (min-width: 1200px) {
+  .filters-desktop {
+    position: fixed;
+    width: 350px;
+    }
 }
 @media screen and (min-width: 1400px) {
+  .filters-desktop {
+    position: fixed;
+    width: 350px;
+    }
 }
 </style>
 

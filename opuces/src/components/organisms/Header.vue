@@ -554,10 +554,10 @@ li svg {
   width: 32px;
 }
 #left-header-desktop a:hover svg {
-  fill: $secondary-green !important;
+  fill: $secondary-green;
 }
 #picto-home {
-  fill: $main-green !important;
+  fill: $main-green;
 }
 @media screen and (max-width: 576px) {
 }

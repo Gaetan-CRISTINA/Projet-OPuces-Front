@@ -201,7 +201,7 @@ export default {
     },
     displayHideCardContent: function (evt) {
       evt.preventDefault;
-      console.log(evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content'));
+      //console.log(evt.currentTarget.closest('div').closest('.card').querySelector('.hide-content'));
       let currentHideContent = evt.currentTarget
         .closest("div")
         .closest(".card")
