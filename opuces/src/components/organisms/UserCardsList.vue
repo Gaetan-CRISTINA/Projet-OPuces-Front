@@ -46,6 +46,7 @@ export default {
 .cards-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     align-items: flex-start;
     width: 100%;
 }

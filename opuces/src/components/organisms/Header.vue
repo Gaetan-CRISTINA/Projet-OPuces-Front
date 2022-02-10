@@ -385,6 +385,7 @@ export default {
   width: 40px;
   margin-right: 15px;
 }
+
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {
