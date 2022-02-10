@@ -245,7 +245,8 @@ h6{
 .main-container {
   display: flex;
   justify-content: space-around;
-  width: 40%;
+  width: 80%;
+  margin:0 auto;
 }
 button {
   border-radius: 19px;
@@ -301,7 +302,8 @@ textarea:focus {
     display: none;
   }
   .main-container{
-    width: 70%;
+    margin: 10px auto;
+    width: 80%;
   }
   
 }
@@ -311,7 +313,7 @@ textarea:focus {
     display: none;
   }
   .main-container{
-    width: 50%;
+    width: 80%;
   }
   
 }
@@ -321,7 +323,7 @@ textarea:focus {
     display: none;
   }
   .main-container{
-    width: 50%;
+    width: 60%;
   }
   
 }
@@ -330,7 +332,7 @@ textarea:focus {
     display: none;
   }
   .main-container{
-    width: 50%;
+    width: 60%;
   }
 }
 @media screen and (min-width: 1400px) {
