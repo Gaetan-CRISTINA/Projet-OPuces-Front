@@ -1,9 +1,6 @@
 <template>
   <div class="about">
     <Header2 />
-    <div class="illusLamp">
-      <IllusLamp />
-    </div>
     <div class="main-container">
       <h2>L'Equipe</h2>
       <div class="picDev">
@@ -61,12 +58,12 @@
 
 <script>
 import Header2 from "../components/organisms/Header2.vue";
-import IllusLamp from "../components/atoms/IllusLamp.vue"
+
 export default {
   name: "About",
   components: {
     Header2,
-    IllusLamp
+    
   },
 };
 </script>
@@ -113,9 +110,7 @@ export default {
     text-align: center;
     margin-bottom: 1rem;
   }
-  .illusLamp {
-    display: none;
-  }
+  
   .main-container {
     width:100%;
   }
@@ -123,9 +118,9 @@ export default {
 @media screen and (max-width: 576px) {
   .picDev{
     flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 0;
-    
+    flex-wrap: wrap;   
+    display:flex;
+    justify-content: space-evenly;
   }
   h2{
     padding: 6rem 0 0 0;
@@ -134,19 +129,16 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+   
   }
-  .illusLamp {
-    display: none;
-  }
+  
 }
 @media screen and (min-width: 768px) {
   .picDev{
     flex-direction: row;
     flex-wrap: wrap;
     padding-top: 0;
-    
   }
   h2{
     padding: 6rem;
@@ -156,12 +148,10 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+   
   }
-  .illusLamp {
-    display: none;
-  }
+  
 }
 @media screen and (min-width: 992px) {
   .picDev{
@@ -176,12 +166,9 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
   }
-  .illusLamp {
-    display: none;
-  }
+  
 }
 @media screen and (min-width: 1200px) {
   .picDev{
@@ -195,18 +182,15 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+   
   }
-  .illusLamp {
-    display: none;
-  }
+  
 }
 @media screen and (min-width: 1400px) {
   .picDev{
     flex-direction: row;
     padding-top: 0;
-    
   }
   h2{
     padding: 6rem;
@@ -214,12 +198,8 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
+    margin: 20px;
   }
-  .illusLamp {
-    display: inline-block;
-    position: fixed;
-    margin-left: 10%;
-  }
+  
 }
 </style>

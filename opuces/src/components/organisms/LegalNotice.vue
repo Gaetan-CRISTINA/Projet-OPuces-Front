@@ -1,13 +1,9 @@
 <template>
   <div>
     <div class="title-cgu-container" id="scroll-top">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <button class="--button connect">Retour à l'accueil</button>
-      </router-link>
+      <div class="illusLamp">
+      <IllusLamp />
+    </div>
     </div>
     <div class="main-container">
       <div class="cgu-container">
@@ -79,11 +75,13 @@
   </div>
 </template>
 <script>
-import PictoNav from "../atoms/PictoNav"
+import PictoNav from "../atoms/PictoNav";
+import IllusLamp from "../../components/atoms/IllusLamp.vue";
 export default {
   name: "CGU",
   components: {
-    PictoNav
+    PictoNav,
+    IllusLamp
   },
 };
 </script>
@@ -95,6 +93,9 @@ export default {
   justify-content: flex-start;
   align-items: center;
 }
+.illusLamp {
+    display: none;
+  }
 .cgu-container {
   
   margin: 0 auto;
@@ -107,7 +108,7 @@ export default {
   font-weight: 900px;
 }
 .main-container{
-  margin-top:180px;
+  margin-top:100px;
 }
 .title-cgu-container {
   display: flex;
@@ -145,19 +146,83 @@ export default {
   transform:rotate(180deg);
   bottom:50px;
   right: 50px;
+  
 }
 @media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  
+}
 }
 @media screen and (min-width: 992px) {
+.illusLamp {
+    display: none;
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
   .cgu-container {
   width:55em;
 }
 }
 @media screen and (min-width: 1200px) {
+  .illusLamp {
+    display: none;
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
 }
 @media screen and (min-width: 1400px) {
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left:10%;
+    top:0;
+    
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
     .--button {
   border-radius: 19px;
   padding: 1px;

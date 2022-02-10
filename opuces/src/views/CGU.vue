@@ -2,13 +2,9 @@
   <div>
     <Header2 />
     <div class="title-cgu-container" id="scroll-top">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <button class="--button connect">Retour à l'accueil</button>
-      </router-link>
+      <div class="illusLamp">
+      <IllusLamp />
+    </div>
     </div>
     <div id="main-container">
       
@@ -1048,11 +1044,13 @@
 <script>
 import Header2 from "../components/organisms/Header2.vue";
 import PictoNav from "../components/atoms/PictoNav.vue";
+import IllusLamp from "../components/atoms/IllusLamp.vue";
 export default {
   name: "CGU",
   components: {
     Header2,
-    PictoNav
+    PictoNav,
+    IllusLamp
   },
 };
 </script>
@@ -1097,7 +1095,7 @@ export default {
   background-color: $secondary-green;
 }
 #main-container{
-  margin-top:180px;
+  margin-top:100px;
 }
 #pictoNav {
   width:50px;
@@ -1109,18 +1107,66 @@ export default {
   bottom:50px;
   right: 50px;
 }
-
+.illusLamp {
+    display: none;
+  }
 @media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
+  
 }
 @media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
+
+ #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  
+}
 }
 @media screen and (min-width: 992px) {
   #cgu-container {
   width:55em;
 }
+.illusLamp {
+    display: none;
+  }
+   #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
 }
 @media screen and (min-width: 1200px) {
-  
+  .illusLamp {
+    display: none;
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
 }
 @media screen and (min-width: 1400px) {
   .--button {
@@ -1142,6 +1188,24 @@ export default {
   cursor: pointer;
 
   transition: all 0.3s;
+}
+.illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left:10%;
+    top:0;
+    
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
 }
 }
 </style>
