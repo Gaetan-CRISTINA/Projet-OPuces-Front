@@ -28,6 +28,7 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/scss/main";
 
+
 @media screen and (min-width: 576px) {
 }
 @media screen and (min-width: 768px) {
