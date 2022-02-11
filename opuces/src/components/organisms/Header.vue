@@ -504,7 +504,7 @@ header {
 }
 .sub-nav li {
   border-bottom: solid 1px black;
-  padding: 25px 25px 25px 10px;
+  padding: 10px 25px 10px 0;
   width: 100%;
   margin-top: 25px;
   height: 37px;
@@ -513,6 +513,7 @@ header {
   justify-content: flex-start;
   color: black;
 }
+.sub-nav
 li:hover,
 span:hover {
   color: $main-green;
