@@ -362,6 +362,9 @@ button {
   border: solid 1px #10bd4c;
   color: white;
 }
+.span{
+  margin-bottom: 40px;
+}
 @media screen and (min-width: 576px) {
   .illusLamp {
     display: none;
