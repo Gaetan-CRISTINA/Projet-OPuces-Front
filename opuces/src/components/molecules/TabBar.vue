@@ -15,13 +15,6 @@
       >
     <PictoSearch />
     </router-link>
-    <router-link
-      :to="{
-        name: 'UserClassifieds',
-      }"
-    >
-      <PictoAnnonces />
-    </router-link>
 
     <router-link
       v-if="user"
@@ -31,6 +24,39 @@
     >
       <PictoAdd1 class="button-add" />
     </router-link>
+
+    
+
+  <div v-if="user">
+    <router-link
+      v-if="!cart"
+      :to="{
+        name: 'Cart',
+      }"
+    >
+      <PictoEmptyCart />
+    </router-link>
+
+    <router-link
+      v-if="cart"
+      :to="{
+        name: 'Cart',
+      }"
+    >
+      <PictoFullCart />
+    </router-link>
+  </div>
+
+
+
+    <router-link
+      :to="{
+        name: 'UserClassifieds',
+      }"
+    >
+      <PictoAnnonces />
+    </router-link>
+
   </nav>
 </template>
 
@@ -39,6 +65,9 @@ import PictoHome from "../atoms/PictoHome";
 import PictoAdd1 from "../atoms/PictoAdd1";
 import PictoAnnonces from "../atoms/PictoAnnonces";
 import PictoSearch from "../atoms/PictoSearch";
+import storage from "../../plugins/storage";
+import PictoEmptyCart from "../atoms/PictoEmptyCart";
+import PictoFullCart from "../atoms/PictoFullCart";
 
 export default {
   name: "TabBar",
@@ -47,11 +76,23 @@ export default {
     PictoAdd1,
     PictoAnnonces,
     PictoSearch,
+    PictoFullCart,
+    PictoEmptyCart,
   },
   computed: {
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get("userData");
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
+      } else {
+        return false;
+      }
+    },
+    cart() {
+      const cartFull = storage.get("ClassifiedIdCart");
+      if (cartFull) {
+        return true;
       } else {
         return false;
       }
@@ -64,8 +105,8 @@ export default {
 #picto-add1 {
   position: relative;
   width: 30px;
-  left: 22px;
-  top: 22px;
+  left: 20px;
+  top: 20px;
 }
 </style>
 
@@ -73,6 +114,9 @@ export default {
 @import "../../assets/scss/main.scss";
 
 nav {
+  position: relative;
+  padding-top: 1em;
+  padding-bottom: 1em;
   position: fixed;
   z-index: 999;
   bottom: 0;
@@ -80,23 +124,20 @@ nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: linear-gradient(0deg, rgba(49,199,192,1) 0%, rgba(227,251,255,1) 50%);;
+  background: linear-gradient(0deg, rgba(49,199,192,1) 0%, rgba(227,251,255,1) 50%);
   
 }
 .button-add {
-  position: relative;
-  bottom: 35px;
-  width: 75px;
-  height: 75px;
+  position: absolute;
+  left: calc(100vw/2 - 35px);
+  bottom: 25px;
+  width: 70px;
+  height: 70px;
   border-radius: 100%;
   -webkit-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.16);
   background: white;
-  transition: all .2s ease-in-out;
-}
-.button-add:hover{
-  transform: scale(1.2);
 }
 
 @media screen and (min-width: 576px) {

@@ -10,8 +10,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 @import "../../assets/scss/main";
+
 svg {
   fill: $main-green;
+}
+svg:hover {
+  fill: #2093A7;
 }
 </style>

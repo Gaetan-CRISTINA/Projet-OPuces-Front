@@ -5,105 +5,53 @@
       <IllusLamp />
     </div>
     <div class="main-container">
-      <div class="connexion">
-        <div class="left">
-          <router-link
-            :to="{
-              name: 'UpdatePassword',
-            }"
-          >
-            <button class="--button connect">
-              Mettre à jour mon mot de passe
-            </button>
-          </router-link>
+      <div class="svg">
+        <img src="../assets/svg/illus-computer.svg" alt="" />
+      </div>
+      <div class="buttons">
+        <router-link
+          :to="{
+            name: 'UpdatePassword',
+          }"
+        >
+          <button class="button btn-edit">
+            Mettre à jour mon mot de passe
+          </button>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'UpdateEmail',
+          }"
+        >
+          <button class="button btn-edit">
+            Mettre à jour mon adresse mail
+          </button>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'UpdateUser',
+          }"
+        >
+          <button class="button btn-edit">
+            Mettre à jour mon adresse postale
+          </button>
+        </router-link>
 
-          
-        </div>
-        <div class="right contact">
-          <div class="form-contact">
-            <form class="login-form" @submit="handleSubmit">
-              <h6>Adresse</h6>
-              <input
-                v-model="adress"
-                type="text"
-                name="adress1"
-                class="adress1"
-              />
-
-              <div class="error" v-if="adressEmpty">
-                Vous devez saisir un email
-              </div>
-
-              <h6>Complément d'adresse</h6>
-              <input
-                v-model="adress2"
-                type="text"
-                name="adress2"
-                class="adress2"
-              />
-
-              <h6>Code Postal</h6>
-              <input
-                v-model="zipcode"
-                type="number"
-                name="zipcode"
-                class="zipcode"
-              />
-
-              <div class="error" v-if="zipcodeEmpty">
-                Vous devez saisir un code postal
-              </div>
-
-              <h6>Ville</h6>
-              <input v-model="city" type="text" name="city" class="city" />
-
-              <div class="error" v-if="cityEmpty">
-                Vous devez saisir une ville
-              </div>
-
-              <h6>Pays</h6>
-              <input
-                v-model="country"
-                type="text"
-                name="country"
-                class="country"
-              />
-
-              <div class="error" v-if="countryEmpty">
-                Vous devez saisir un Pays
-              </div>
-
-              <h6>Numéro de téléphone</h6>
-              <input
-                v-model="phoneNumber"
-                type="number"
-                name="phoneNumber"
-                class="phoneNumber"
-              />
-
-              <div class="error" v-if="phoneNumberEmpty">
-                Vous devez saisir un numéro de téléphone
-              </div>
-
-              <button class="--button connect">
-                ENREGISTRER LES MODIFICATIONS
-              </button>
-            </form>
-          </div>
-        </div>
+        <router-link
+          :to="{
+            name: 'DeleteUser',
+          }"
+        >
+          <button class="button btn-delete">Supprimer mon compte</button>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import storage from "../plugins/storage";
-import userService from "../services/userService";
-
 import Header2 from "../components/organisms/Header2.vue";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
-
-import classifiedsService from "..//services/classifiedsService";
 
 export default {
   name: "Myaccount",
@@ -111,100 +59,69 @@ export default {
     Header2,
     IllusLamp,
   },
-  data() {
-    return {
-      
-      zipcode: "",
-      zipcodeEmpty: false,
-      city: "",
-      cityEmpty: false,
-      adress: "",
-      adressEmpty: false,
-      adress2: "",
-      country: "",
-      countryEmpty: false,
-      phoneNumber: "",
-      phoneNumberEmpty: false,
-    };
-  },
-  methods: {
-    async handleSubmit(event) {
-      event.preventDefault();
-      if (this.zipcode == "") {
-        this.zipcodeEmpty = true;
-      }
-      if (this.city == "") {
-        this.cityEmpty = true;
-      }
-      if (this.city == "") {
-        this.cityEmpty = true;
-      }
-      if (this.adress == "") {
-        this.adressEmpty = true;
-      }
-      if (this.country == "") {
-        this.countryEmpty = true;
-      }
-      if (this.phoneNumber == "") {
-        this.phoneNumberEmpty = true;
-      }
-
-      if (
-        !this.zipcodeEmpty &&
-        !this.cityEmpty &&
-        !this.adressEmpty &&
-        !this.countryEmpty &&
-        !this.phoneNumberEmpty
-      ) {
-        console.log("Appel de l'API pour inscription info USER");
-        const UserId = await classifiedsService.loadAuthor();
-        console.log(UserId);
-        let result = await userService.saveUserInformation(
-          this.UserId,
-          this.adress,
-          this.adress2,
-          this.country,
-          this.phoneNumber,
-          this.zipcode,
-          this.city
-        );
-        console.log(result);
-        if (result) {
-          this.$router.push({ name: "Home" });
-        }
-      }
-    },
-  },
 };
 </script>
 
+
 <style scoped lang="scss">
 @import "../assets/scss/main.scss";
-
-.headerLink {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
-}
-.connexion {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin: 200px auto;
-  border: 15px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+.svg {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
 }
 .main-container {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  margin-top: 7rem;
+  
+  
+  padding-top: 10rem;
 }
 .illusLamp {
   display: none;
+}
+
+.svg{
+  width: 100%;
+  align-self: center;
+}
+.delete:hover {
+  background-color: $social-google;
+  color: white;
+  border: solid 1px $social-google;
+}
+.buttons>* {
+  display: block;
+  text-align: center;
+}
+.button {
+  margin: 1em auto;
+  border-radius: 19px;
+  padding: 1px;
+  height: 38px;
+  width: 100%;
+  max-width: 360px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-edit {
+  background-color: $main-green;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: $secondary-green;
+}
+.btn-delete {
+  border: solid 1px #DC3645;
+  background-color: #fff;
+  color: #DC3645;
+}
+.btn-delete:hover {
+  background-color: #DC3645;
+  color: #fff;
 }
 
 @media screen and (min-width: 576px) {
@@ -221,6 +138,11 @@ export default {
   .illusLamp {
     display: none;
   }
+  .svg img{
+    width: 360px;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
@@ -233,76 +155,5 @@ export default {
     position: fixed;
     margin-left: 6%;
   }
-}
-button {
-  margin-top: 2em;
-  background-color: $main-green;
-  border-radius: 19px;
-  padding: 1px;
-  height: 38px;
-  color: white;
-  width: 100%;
-  border: none;
-  font-size: 14px;
-  font-weight: 900px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-button:hover {
-  background-color: $secondary-green;
-}
-.infos-desktop {
-  display: none;
-}
-.infos-mobile {
-  display: block;
-}
-.infos {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 33em;
-}
-h2 {
-  color: $main-green;
-}
-.main-container {
-  padding-top: 42px;
-}
-form {
-  margin: 0 auto;
-  width: 100%;
-}
-form > * {
-  display: block;
-  width: 100%;
-}
-
-label {
-  font-weight: 600;
-  padding-top: 1.5em;
-}
-input {
-  height: 38px;
-  background-color: $light-grey;
-  border: none;
-  border-radius: 6px;
-  padding-left: 1em;
-}
-select {
-  padding-top: 1.5em;
-  border: 0;
-  padding-bottom: 1em;
-  border-bottom: solid 1px $text-color;
-  margin-bottom: 1em;
-  font-size: 14px;
-  cursor: pointer;
-  background-color: white;
-}
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
 }
 </style>

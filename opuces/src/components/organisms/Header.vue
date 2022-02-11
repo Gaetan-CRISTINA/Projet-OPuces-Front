@@ -24,7 +24,9 @@
                   name: 'UserProfil',
                 }"
               >
-                <li><PictoUser /><span>Mon profil</span></li>
+                <li @click="handleClick">
+                  <PictoUser /><span>Mon profil</span>
+                </li>
               </router-link>
 
               <router-link
@@ -33,7 +35,9 @@
                   name: 'Myaccount',
                 }"
               >
-                <li><PictoCompte /><span>Mon compte</span></li>
+                <li @click="StoreUserId">
+                  <PictoCompte /><span>Mon compte</span>
+                </li>
               </router-link>
 
               <router-link
@@ -77,15 +81,15 @@
                 <li><PictoMail /><span>Contact</span></li>
               </router-link>
 
-            
-            <router-link
-              :to="{
-                name: 'Logout',
-              }"
-            >
-             <a class="disconect--button"><PictoClose/><span>Se déconnecter</span></a>
-            </router-link>
-            
+              <router-link
+                :to="{
+                  name: 'Logout',
+                }"
+              >
+                <li class="disconect--button">
+                  <PictoClose /><span>Se déconnecter</span>
+                </li>
+              </router-link>
             </ul>
           </nav>
 
@@ -95,10 +99,9 @@
               name: 'LoginForm',
             }"
           >
-            <a id="se-connecter"> Se connecter </a>
+            <li id="se-connecter">Se connecter / se créer un compte</li>
           </router-link>
         </div>
-
 
         <!--
         LEFT HEADER
@@ -137,42 +140,52 @@
         CENTER HEADER
         -->
         <div id="center-header-desktop">
-          <SearchBar />
+          <div v-if="!searchQuery">
+            <SearchBar />
+          </div>
+          
+          <div v-if="searchQuery">
+            <button @click="UnsetSearchQuery">Nouvelle Recherche</button>
+          </div>
           
         </div>
-
         <!--
         RIGHT HEADER
         -->
         <div id="right-header-desktop">
-          <router-link
-          v-if="!cart"
-          :to="{
-            name:'Cart'}">
-          <PictoEmptyCart />
-          </router-link>
-          
-          <router-link
-          v-if="cart"
-          :to="{
-            name:'Cart'}">
-          <PictoFullCart />
-          </router-link>
+          <div v-if="user">
+            <router-link
+              v-if="!cart"
+              :to="{
+                name: 'CartEmpty',
+              }"
+            >
+              <PictoEmptyCart />
+            </router-link>
 
+            <router-link
+              v-if="cart"
+              :to="{
+                name: 'Cart',
+              }"
+            >
+              <PictoFullCart />
+            </router-link>
+          </div>
           <h3 v-if="user">Bonjour {{ user.user_nicename }}</h3>
           <!--User Connected-->
           <router-link
             v-if="user"
             :to="{
               name: 'UserProfil',
-              //params: {
-              //id: userProps.id,
-              //}
             }"
           >
-
-            <img class="userPicto" src="https://picsum.photos/30" alt="" />
-
+            <img
+              class="userPicto"
+              src="https://picsum.photos/30"
+              alt=""
+              @click="handleClick"
+            />
           </router-link>
           <!--FIN-->
 
@@ -183,103 +196,102 @@
               name: 'LoginForm',
             }"
           >
-          <PictoUser />
+            <PictoUser />
           </router-link>
           <!--FIN-->
         </div>
       </div>
-      
     </div>
     <div class="header-bottom">
-        <ul>
-          <router-link
-            v-if="user"
-            :to="{
-              name: 'CreateClassified',
-            }"
-          >
-            <li>Ajouter une annonce</li>
-          </router-link>
-          <router-link
-            v-if="user"
-            :to="{
-              name: 'Myaccount',
-            }"
-          >
-          <li>Mon compte</li>
-          </router-link>
-          <router-link
-            v-if="user"
-            :to="{
-              name: 'UserClassifieds',
-            }"
-          >
-          <li>Mes annonces</li>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'CGU',
-            }"
-          >
-            
-          <li>CGU/CGV</li>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'LegalNotice',
-            }"
-          >
-            
-          <li>Mentions légales</li>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'ContactPage',
-            }"
-          >
-            
-          <li>Contact</li>
-          </router-link>
-          <router-link
-            :to="{
-              name: 'About',
-            }"
-          >
-            
-          <li>A propos de nous</li>
-          </router-link>
-
-          <router-link
+      <ul>
+        <router-link
+          :to="{
+            name: 'Home',
+          }"
+        >
+          <li>Accueil</li>
+        </router-link>
+        <router-link
           v-if="user"
-            :to="{
-              name: 'Logout',
-            }"
-          >
-            
+          :to="{
+            name: 'CreateClassified',
+          }"
+        >
+          <li>Ajouter une annonce</li>
+        </router-link>
+        <router-link
+          v-if="user"
+          :to="{
+            name: 'Myaccount',
+          }"
+        >
+          <li @click="StoreUserId">Mon compte</li>
+        </router-link>
+        <router-link
+          v-if="user"
+          :to="{
+            name: 'UserClassifieds',
+          }"
+        >
+          <li>Mes annonces</li>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'CGU',
+          }"
+        >
+          <li>CGU/CGV</li>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'LegalNotice',
+          }"
+        >
+          <li>Mentions légales</li>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'ContactPage',
+          }"
+        >
+          <li>Contact</li>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'About',
+          }"
+        >
+          <li>A propos de nous</li>
+        </router-link>
+
+        <router-link
+          v-if="user"
+          :to="{
+            name: 'Logout',
+          }"
+        >
           <li>Se déconnecter</li>
-          </router-link>
+        </router-link>
 
-          <router-link
+        <router-link
           v-if="!user"
-            :to="{
-              name: 'LoginForm',
-            }"
-          >
-            
+          :to="{
+            name: 'LoginForm',
+          }"
+        >
           <li>Se connecter</li>
-          </router-link>
+        </router-link>
 
-          <router-link
+        <router-link
           v-if="!user"
-            :to="{
-              name: 'PageRegister',
-            }"
-          >
-            
+          :to="{
+            name: 'PageRegister',
+          }"
+        >
           <li>Créer un compte</li>
-          </router-link>
-        </ul>
-      </div>
+        </router-link>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -297,7 +309,7 @@ import PictoFullCart from "../atoms/PictoFullCart.vue";
 import Logo from "../atoms/Logo";
 import SearchBar from "../molecules/SearchBar";
 import storage from "../../plugins/storage";
-
+import classifiedsService from "../../services/classifiedsService";
 export default {
   name: "Header",
   components: {
@@ -312,64 +324,111 @@ export default {
     PictoClose,
     PictoAdd2,
     PictoEmptyCart,
-    PictoFullCart
+    PictoFullCart,
   },
   computed: {
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get("userData");
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }
     },
-    cart(){
-      const cartFull = storage.get('ClassifiedIdCart');
-      if (cartFull){
+    cart() {
+      const cartFull = storage.get("ClassifiedIdCart");
+      if (cartFull) {
         return true;
-      }else{
+      } else {
         return false;
       }
-    }
+    },
+    searchQuery() {
+      const searchQuery = storage.get("searchQuery");
+      if (searchQuery) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  methods: {
+    async StoreUserId(event) {
+      event.preventDefault();
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+      this.$router.push({ name: "Myaccount" });
+    },
+    async handleClick(event) {
+      event.preventDefault();
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+      this.$router.push({ name: "UserProfil" });
+    },
+    async UnsetSearchQuery(event) {
+      event.preventDefault();
+      storage.unset("searchQuery");
+      this.$router.push({ name: "Home" });
+    },
   },
 };
 </script>
 
 <style lang="scss">
 @import "../../assets/scss/main";
-  #left-header-mobile #logo {
-      fill: $main-green;
-    }
-  #left-header-mobile:hover #logo {
-    fill: $secondary-green;
-    width: 30px;
-  }
+#left-header-mobile #logo {
+  fill: $main-green;
+}
+#left-header-mobile:hover #logo {
+  fill: $secondary-green;
+  width: 40px;
+  margin-right: 15px;
+}
+
 @media screen and (min-width: 576px) {
-   
-  }
+}
 @media screen and (min-width: 768px) {
-  
 }
 @media screen and (min-width: 992px) {
   #left-header-desktop #logo {
-      fill: $main-green;
-      width: 30px;
-    }
+    fill: $main-green;
+    width: 30px;
+  }
   #left-header-desktop:hover #logo {
     fill: $secondary-green;
   }
 }
 @media screen and (min-width: 1200px) {
-  
 }
 @media screen and (min-width: 1400px) {
-    
 }
 </style>
 
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+
+button {
+  font-size: 12px;
+  font-weight: 700;
+  color: $main-green;
+  padding: 0.5em 1em;
+  border-radius: 22px;
+  border: solid 1px $main-green;
+  background-color: #fff;
+  margin-top: 0.5em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: $main-green;
+  color: #fff;
+  border: solid 1px $main-green;
+}
+
 .header-bottom {
   display: none;
+  text-align: center;
 }
 .sub-nav img {
   border-radius: 100%;
@@ -398,21 +457,23 @@ export default {
 #left-header-mobile,
 #right-header-mobile {
   display: flex;
-  padding-top: .5em;
-  transition: all .3s;
+  padding-top: 0.5em;
+  transition: all 0.3s;
 }
 #left-header-desktop,
 #center-header-desktop,
 #right-header-desktop {
   display: none;
 }
-#left-header-mobile span, h1{
-  transition: all .2s ease-in-out;
+#left-header-mobile span,
+h1 {
+  transition: all 0.2s ease-in-out;
 }
 header {
   position: fixed;
   z-index: 1;
-  padding: 0.5em 0 0 0 !important;
+  top: 0;
+  padding: 0.5em 0 !important;
   width: 100%;
   background-color: #fff;
   display: flex;
@@ -443,7 +504,7 @@ header {
 }
 .sub-nav li {
   border-bottom: solid 1px black;
-  padding: 25px 25px 25px 10px;
+  padding: 10px 25px 10px 0;
   width: 100%;
   margin-top: 25px;
   height: 37px;
@@ -452,8 +513,10 @@ header {
   justify-content: flex-start;
   color: black;
 }
-li:hover, span:hover {
-  color:$main-green;
+.sub-nav
+li:hover,
+span:hover {
+  color: $main-green;
 }
 li svg {
   margin-right: 15px;
@@ -477,7 +540,7 @@ li svg {
 }
 .disconect--button {
   position: absolute;
-  bottom: 10em;  
+  bottom: 10em;
   padding: 25px 25px 25px 10px;
   width: 100%;
   margin-top: 25px;
@@ -493,17 +556,16 @@ li svg {
   width: 32px;
 }
 #left-header-desktop a:hover svg {
-  fill: $secondary-green !important;
+  fill: $secondary-green;
 }
 #picto-home {
-  fill: $main-green !important;
+  fill: $main-green;
 }
 @media screen and (max-width: 576px) {
 }
 @media screen and (min-width: 768px) {
 }
 @media screen and (min-width: 992px) {
-
   .header-bottom {
     width: 100%;
     display: block;
@@ -516,7 +578,7 @@ li svg {
     display: flex;
     justify-content: center;
     font-size: 13px;
-    padding: .3em 0;
+    padding: 0.3em 0;
   }
   .header-bottom a li {
     color: #fff;
@@ -546,7 +608,7 @@ li svg {
     color: $secondary-green;
   }
   #left-header-desktop {
-    transition: all .3s;
+    transition: all 0.3s;
   }
   #left-header-desktop:hover {
     transform: scale(1.025);
@@ -577,10 +639,10 @@ li svg {
   #right-header-desktop > *:hover {
     cursor: pointer;
   }
-  .userPicto{
-    transition: all .2s ease-in-out;
+  .userPicto {
+    transition: all 0.2s ease-in-out;
   }
-  .userPicto:hover{
+  .userPicto:hover {
     transform: scale(1.3);
   }
 }

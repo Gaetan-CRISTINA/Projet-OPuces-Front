@@ -19,9 +19,9 @@
             Vous devez saisir un nom d'utilisateur
           </div>
 
-          <h6>Email</h6>
-          <input v-model="email" type="email" name="email" class="email" />
-          <div class="error" v-if="emailEmpty">Vous devez saisir un email</div>
+          <h6>Mot de passe actuel</h6>
+          <input v-model="currentPassword" type="password" name="currentPassword" class="currentPassword" />
+          <div class="error" v-if="currentPasswordEmpty">Vous devez saisir votre mot de passe actuel</div>
 
           <h6>Nouveau mot de passe</h6>
           <label class="eye-label">
@@ -50,15 +50,23 @@
             />
           </label>
           <div class="error" v-if="newPasswordVerifyEmpty">
-            Vous devez saisir un password
+            Vous devez saisir un mot de passe
           </div>
           <div class="error" v-if="newPasswordConfirm">
             Les mots de passe ne correspondent pas.
           </div>
           <button class="--button connect">
-            ENREGISTRER LES MODIFICATIONS
+            Enregistrer les modifications
           </button>
         </form>
+        <router-link
+        :to="{
+          name: 'Home'
+          }">
+        <button class="--button connect">
+            Annuler et retourner à l'accueil
+          </button>
+        </router-link>
       </div>
 
       <div class="right">
@@ -72,7 +80,7 @@
 
 <script>
 import Header2 from "../components/organisms/Header2.vue";
-import storage from "../plugins/storage";
+// import storage from "../plugins/storage";
 import userService from "../services/userService";
 import IllusLamp from "../components/atoms/IllusLamp.vue";
 export default {
@@ -87,8 +95,8 @@ export default {
       usernameEmpty: false,
       newPassword: "",
       newPasswordEmpty: false,
-      email: "",
-      emailEmtpy: false,
+      currentPassword: "",
+      currentPasswordEmpty: false,
       newPasswordVerify: "",
       newPasswordTooShort: false,
       newPasswordVerifyEmpty: false,
@@ -101,8 +109,8 @@ export default {
       if (this.username == "") {
         this.usernameEmpty = true;
       }
-      if (this.email == "") {
-        this.emailEmpty = true;
+      if (this.currentPassword == "") {
+        this.currentPasswordEmpty = true;
       }
       if (this.password == "") {
         this.passwordEmpty = true;
@@ -117,35 +125,26 @@ export default {
         this.passwordConfirm = true;
       }
 
-      const userData = storage.get("userData");
-      if (userData != null) {
-        const token = userData.token;
-        if (userService.checkUser(token)) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+     
 
       if (
         !this.usernameEmpty &&
-        !this.emailEmpty &&
+        !this.currentPasswordEmpty &&
         !this.newPasswordEmpty &&
-        !this.newPasswordVerify &&
+        !this.newPasswordVerifyEmpty &&
         !this.newPasswordTooShort &&
-        !this.newPasswordConfirm &&
-        this.userData == true
-      ) {
-        console.log("Mise à jour du USER");
-        let result = await userService.updateUser(
+        !this.newPasswordConfirm 
+        
+      ) 
+      {
+        console.log("Mise à jour du Password");
+        let result = await userService.updateUserPassword(
           this.newPassword,
-          this.newPasswordVerify,
-          this.username,
-          this.email
+          this.currentPassword
         );
-        console.log(result);
+        
         if (result) {
-          if (result == true) {
+          if (result) {
             this.$router.push({ name: "Home" });
           }
         }
@@ -154,26 +153,33 @@ export default {
   },
 };
 </script>
-
+<style  lang="scss">
+@import "../assets/scss/main.scss";
+.error {padding:5px 0 5px 0; color:$social-google;
+}
+</style>
 <style scoped lang="scss">
 @import "../assets/scss/main.scss";
 .main-container {
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items:center;
   position: absolute;
   margin-top: 7rem;
 }
 .left, .right{
   margin-top: 10rem;
 }
-.left{
+.left {
   display: flex;
+  
+  justify-content:center;
   flex-direction: column;
-  margin-right: 15%;
+  
 }
-button {
+
+.--button {
   margin-top: 2em;
   background-color: $main-green;
   border-radius: 19px;
@@ -190,6 +196,7 @@ button {
 button:hover {
   background-color: $secondary-green;
 }
+
 input {
   height: 38px;
   background-color: $light-grey;
@@ -205,6 +212,9 @@ textarea:focus {
 }
 .illusLamp {
   display: none;
+}
+.right {
+  display:none;
 }
 
 @media screen and (min-width: 576px) {
@@ -232,12 +242,19 @@ textarea:focus {
   .main-container{
     flex-direction: row;
   }
-  
+  .right {
+    display: block;
+    margin-left:60px;
+    }
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
     display: none;
   }
+  .right {
+    display: block;
+    margin-left:80px;
+    }
 }
 @media screen and (min-width: 1400px) {
   .illusLamp {
@@ -245,5 +262,9 @@ textarea:focus {
     position: fixed;
     margin-left: 6%;
   }
+  .right {
+    display: block;
+    margin-left:100px;
+    }
 }
 </style>

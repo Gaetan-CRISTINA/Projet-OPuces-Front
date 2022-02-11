@@ -51,19 +51,28 @@
         class="description-annonce content-annonce"
         v-html="classifiedProps.content.rendered"
       ></p>
-      <Ville />
-      <MapWrapper />
-      <AnnonceAuteur />
+      <!-- <Ville /> -->
+      <!-- <MapWrapper /> -->
+      <!-- <AnnonceAuteur /> -->
       <VoirMoins />
       <!-- <CtaAnnonce/> -->
       <div class="CTA-annonces content-annonce">
         <button id="acheter" @click="StoreClassified">
           <router-link
+          v-if="user"
             :to="{
-              name: 'Cart',
+              name: 'BuyOrContinue',
             }"
           >
             Acheter
+          </router-link>
+           <router-link
+          v-if="!user"
+            :to="{
+              name: 'LoginForm',
+            }"
+          >
+            Se connecter
           </router-link>
         </button>
 
@@ -72,9 +81,10 @@
             :to="{
               name: 'ContactPage',
             }"
-            >CONTACTER</router-link
+            >Contacter le vendeur</router-link
           >
         </button>
+        
       </div>
     </div>
 
@@ -88,30 +98,23 @@
 <script>
 import Vue from "vue";
 
-// import HeroAnnonce from "../molecules/HeroAnnonce.vue";
-// import HeaderAnnonce from "../molecules/HeaderAnnonce.vue";
-// import EtatAnnonce from "../molecules/EtatAnnonce.vue";
-// import CategorieCardList from "../molecules/CategorieCardList.vue";
-// import ExcerptAnnonce from "../molecules/ExcerptAnnonce.vue";
-// import DescriptionAnnonce from "../molecules/DescriptionAnnonce.vue";
-import VoirPlus from "../molecules/VoirPlus.vue";
 
-import Ville from "../atoms/Ville.vue";
-import MapWrapper from "../molecules/MapWrapper.vue";
-import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
+import VoirPlus from "../molecules/VoirPlus.vue";
+// import Ville from "../atoms/Ville.vue";
+// import MapWrapper from "../molecules/MapWrapper.vue";
+// import AnnonceAuteur from "../molecules/AnnonceAuteur.vue";
 import VoirMoins from "../molecules/VoirMoins.vue";
-// import CtaAnnonce from "../molecules/CtaAnnonce.vue";
 import classifiedsService from "../../services/classifiedsService.js";
 import PictoEtat1 from "../atoms/PictoEtat1.vue";
 import storage from "../../plugins/storage";
+import userService from "../../services/userService";
 export default {
   name: "Card",
   components: {
-    Ville,
-    MapWrapper,
-    AnnonceAuteur,
+    // Ville,
+    // MapWrapper,
+    // AnnonceAuteur,
     VoirMoins,
-    // CtaAnnonce,
     PictoEtat1,
     VoirPlus,
   },
@@ -156,17 +159,27 @@ export default {
       if (this.classifiedProps._embedded["wp:featuredmedia"]) {
         return this.classifiedProps._embedded["wp:featuredmedia"][0].source_url;
       } else {
-        return "https://picsum.photos/400/600";
+        return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
       }
+    },
       //TODO
       // author name en Majuscule (1ere lettre)
-      // capitalizeString(){
-      //  let input = document.getElementById("input");
-      //  let headingElement = document.getElementById("modified-string");
-      //  let string = input.value;
-      //  headingElement.innerHTML = string.charAt(0).toUpperCase() +
-      //      string.slice(1); ;
-      // }
+    //   capitalizeString(){
+    //    let input = document.getElementByClass("auteur-annonce");
+    //    let headingElement = document.getElementById("modified-string");
+    //    let string = input.value;
+    //    headingElement.innerHTML = string.charAt(0).toUpperCase() +
+    //        string.slice(1); ;
+    //   }
+    // },
+    user() {
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
+      } else {
+        return false;
+      }
     },
   },
 
@@ -174,6 +187,17 @@ export default {
     async StoreClassified(event) {
       event.preventDefault();
       storage.set("ClassifiedIdCart", this.classifiedProps.id);
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+
+      this.userInfos = await userService.loadUserFromUserTable(this.id);
+      if(this.userInfos.length > 0) {
+        storage.set('UserInfos', this.userInfos);
+      } else {
+        return false;
+      }
+      
+      
     },
     displayHideCardContent: function (evt) {
       evt.preventDefault;
@@ -266,11 +290,12 @@ button {
   color: $main-green;
   padding: 0.5em 1em;
   border-radius: 22px;
-  border: solid 1px $main-green;
+ 
   background-color: #fff;
   margin-top: 0.5em;
   transition: all 0.3s;
   cursor: pointer;
+  border: none;
 }
 button:hover {
   background-color: $main-green;
@@ -329,6 +354,7 @@ button:hover {
   width: 100%;
   height: 150px;
   margin-bottom: 1em;
+  overflow: hidden;
 }
 .flex {
   display: flex;
@@ -351,31 +377,32 @@ button:hover {
   position: absolute;
   right: 0;
 }
-
-@media screen and (min-width: 576px) {
-  .display2 {
-    width: 262.5px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .display2 {
-    width: 352.5px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .display2 {
+.display2 {
     width: 252.5px;
   }
+
+@media screen and (min-width: 576px) {
+  // .display2 {
+  //   width: 262.5px;
+  // }
+}
+@media screen and (min-width: 768px) {
+  // .display2 {
+  //   width: 352.5px;
+  // }
+}
+@media screen and (min-width: 992px) {
+  
 }
 @media screen and (min-width: 1200px) {
-  .display2 {
-    width: 342.5px;
-  }
+  // .display2 {
+  //   width: 342.5px;
+  // }
 }
 @media screen and (min-width: 1400px) {
-  .display2 {
-    width: 432.5px;
-  }
+  // .display2 {
+  //   width: 432.5px;
+  // }
 }
 </style>
 

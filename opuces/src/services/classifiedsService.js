@@ -45,6 +45,43 @@ const classifiedsService = {
         
     },
 
+    async updateClassified(id, title, description, selectedState, selectedCategory, price, selectedDeliveryMethod, content, imageId){
+        const userData = storage.get('userData');
+        if(userData !=null){
+            const token = userData.token;
+            if(token){
+                const options = {
+                    headers: {
+                        Authorization: 'Bearer' + token
+                    }
+                };
+            const response = await axios.post(
+            classifiedsService.opucesBaseURI + '/update-classified',
+            {
+                post_id: id,
+                title: title,
+                description: description,
+                ProductState: selectedState,
+                ProductCategorie: selectedCategory,
+                price: price,
+                DeliveryMethod: selectedDeliveryMethod,
+                content: content,
+                imageId: imageId
+                
+            },
+            options
+        ).catch(
+            function(){
+                console.log('upload classified failed');
+                return false;
+            });
+            
+            return response.data;
+            
+            }
+        }
+    },
+
     async loadClassified(){
         const response = await axios.get(classifiedsService.baseURI + '/classified?_embed=true');
         return response.data;
@@ -113,11 +150,25 @@ const classifiedsService = {
     },
 
     async loadClassifiedsById(classifiedId){
-        const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId );
+        const response = await axios.get(classifiedsService.baseURI + '/classified/' + classifiedId  +'?_embed=true');
+        return response.data;
+    },
+    async updateClassifiedSold(id){
+        const response = await axios.patch(classifiedsService.opucesBaseURI + '/classified-sold',
+        {
+            classifiedId: id
+            
+        }).catch(function(){
+            console.log('Failed to update Sold Status');
+            return response;
+        });
+        console.log ('Classified Sold');
+        console.log(response.data);
         return response.data;
     },
 
     async loadClassifiedsByUser(userId){
+        //TODO voir pour rajouter +'?_embed=true'
         const response = await axios.get(classifiedsService.baseURI + '/classified?author=' + userId);
         return response.data;
     },
@@ -135,7 +186,10 @@ const classifiedsService = {
         });
         return response.data;
     },
-
+    async getUrlImage(postID){
+        const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'geturlimage?id=' + postID);
+        return response.data;
+    },
     async getTaxonomyName(){
         const response = await axios.get(classifiedsService.opucesBaseURI + '/' + 'taxonomy');
         return response.data;
@@ -150,7 +204,33 @@ const classifiedsService = {
                     'Authorization' : 'Bearer ' + token
                 }
         });
-        console.log('ok');
+        console.log('Classified Deleted !');
+        return response.data;
+    },
+
+    async loadClassifiedsByKeyWord(keyword){
+        const response = await axios.get(classifiedsService.baseURI+ '/classified?search=' + keyword);
+        return response.data;
+    },
+
+    async getQueryClassified(keyWords)
+    {
+        this.category = keyWords[0],
+        this.city = keyWords[1],
+        this.priceMin = keyWords[2],
+        this.priceMax = keyWords[3];
+
+        const response = await axios.get(classifiedsService.opucesBaseURI+ '/queryClassified',
+        {
+            params:{
+            city : this.city,
+            taxo: this.category,
+            priceMin: this.priceMin,
+            priceMax: this.priceMax
+            }
+        }
+        );
+        console.log(response);
         return response.data;
     }
 

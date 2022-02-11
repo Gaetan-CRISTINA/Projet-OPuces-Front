@@ -58,10 +58,12 @@
 
 <script>
 import Header2 from "../components/organisms/Header2.vue";
+
 export default {
   name: "About",
   components: {
     Header2,
+    
   },
 };
 </script>
@@ -69,7 +71,9 @@ export default {
 <style scoped lang="scss">
 @import "../assets/scss/main";
 
-
+h4{
+  color: #2093A7;
+}
 .picDev img {
     width: 200px;
     border-radius: 100%;
@@ -81,7 +85,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5rem;
+    padding: 1rem;
   }
   .picDev span {
     border: 2px solid #31c7c0;
@@ -101,20 +105,22 @@ export default {
   h3{
     text-align: center;
   }
-  h2{
-    padding-top: 5rem;
-  }
+  
   .role, .link, h3{
     text-align: center;
     margin-bottom: 1rem;
+  }
+  
+  .main-container {
+    width:100%;
   }
 
 @media screen and (max-width: 576px) {
   .picDev{
     flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 0;
-    
+    flex-wrap: wrap;   
+    display:flex;
+    justify-content: space-evenly;
   }
   h2{
     padding: 6rem 0 0 0;
@@ -123,16 +129,16 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+   
   }
+  
 }
 @media screen and (min-width: 768px) {
   .picDev{
     flex-direction: row;
     flex-wrap: wrap;
     padding-top: 0;
-    
   }
   h2{
     padding: 6rem;
@@ -142,9 +148,10 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+   
   }
+  
 }
 @media screen and (min-width: 992px) {
   .picDev{
@@ -159,9 +166,9 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
   }
+  
 }
 @media screen and (min-width: 1200px) {
   .picDev{
@@ -175,15 +182,15 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+   
   }
+  
 }
 @media screen and (min-width: 1400px) {
   .picDev{
     flex-direction: row;
     padding-top: 0;
-    
   }
   h2{
     padding: 6rem;
@@ -191,7 +198,8 @@ export default {
   .picDev span{
     height: 450px;
     width: 300px;
-    margin: 0 20px 0 20px;
+    margin: 20px;
   }
+  
 }
 </style>

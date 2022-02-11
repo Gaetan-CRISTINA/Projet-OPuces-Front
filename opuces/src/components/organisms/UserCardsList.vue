@@ -34,6 +34,9 @@ export default {
     this.userClassifieds = await this.$store.state.services.classified.loadClassifiedsByUser(this.userId);
     
   },
+  computed:{
+      
+  }
 }
 </script>
 
@@ -43,12 +46,13 @@ export default {
 .cards-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: flex-start;
     width: 100%;
 }
 .unitCard{
-    transition: all .2s ease-in-out
+    transition: all .2s ease-in-out;
+    margin-right:25px;
 }
 .unitCard:hover{
     transform: scale(1.02);

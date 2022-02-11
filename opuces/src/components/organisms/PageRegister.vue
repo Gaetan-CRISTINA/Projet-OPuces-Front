@@ -12,7 +12,7 @@
         </div>
 
         <form @submit="handleSubmit">
-          <h6>Nom</h6>
+          <h6>Nom d'utilisateur</h6>
           <input
             v-model="username"
             type="text"
@@ -107,6 +107,7 @@
 import Logo from "../atoms/Logo";
 import PictoEye from "../atoms/PictoEye";
 import userService from "../../services/userService.js";
+import storage from "../../plugins/storage";
 export default {
   name: "PageRegister",
   components: {
@@ -187,7 +188,12 @@ export default {
               console.log(result);
               if(result){
                   if(result.success == true){   
-                this.$router.push({name:'Login'});
+                    let userData = await userService.login(this.username, this.password);
+                    console.log(userData);
+                    if(userData){
+                      storage.set("userData", userData);
+                    }
+                  this.$router.push({name:'KnowMore'});
                       // renvoyer vers la home avec token 
                   }
               }
@@ -206,10 +212,8 @@ h1 {
   width: 95px;
   margin-bottom: 1em;
 }
-.home-link:hover h1 {
-  color: $secondary-green;
-}
-.home-link:hover:hover .logo #logo {
+
+.home-link .logo #logo {
   fill: $secondary-green !important;
 }
 .picto-eye {
@@ -221,13 +225,7 @@ h1 {
 
 <style scoped lang="scss">
 @import "../../assets/scss/main.scss";
-// .connexion {
-//   width: 100%;
-//   padding-right: 15px;
-//   padding-left: 15px;
-//   margin: auto;
-//   border: 15px;
-// }
+
 .left div:first-child {
   position: relative;
   color: $main-green;

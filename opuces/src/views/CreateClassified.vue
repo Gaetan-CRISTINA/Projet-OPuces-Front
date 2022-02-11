@@ -12,6 +12,10 @@
           <label>
             <input v-model="title" name="title" class="title" />
           </label>
+          <div class="error" v-if="titleEmpty">
+            Vous devez saisir un titre pour votre annonce
+          </div>
+
 
           <h6>Description rapide</h6>
           <label>
@@ -21,17 +25,27 @@
               class="description"
             />
           </label>
+          <div class="error" v-if="descriptionEmpty">
+            Vous devez saisir une description rapide
+          </div>
+
 
           <h6>Contenu de l'annonce</h6>
           <label>
             <textarea v-model="content" name="content" class="content" />
           </label>
-
+          <div class="error" v-if="contentEmpty">
+            Le contenu de votre annonce est absent
+          </div>
+          
           <h6>Votre prix</h6>
           <label class="label-price">
             <input v-model="price" name="price" class="price" />
             <p>€</p>
           </label>
+          <div class="error" v-if="priceEmpty">
+            Vous devez saisir un prix de vente
+          </div>
 
           <h6>Etat du produit</h6>
           <label>
@@ -42,6 +56,10 @@
               </option>
             </select>
           </label>
+          <div class="error" v-if="stateEmpty">
+            Merci de renseigner l'état du produit
+          </div>
+
 
           <h6>Catégorie</h6>
           <label>
@@ -56,6 +74,10 @@
               </option>
             </select>
           </label>
+          <div class="error" v-if="categoryEmpty">
+            Merci de renseigner la catégorie du produit
+          </div>
+
 
           <h6>Mode de livraison</h6>
           <label>
@@ -70,6 +92,11 @@
               </option>
             </select>
           </label>
+          <div class="error" v-if="deliveryEmpty">
+            Vous devez saisir un mode de livraison
+          </div>
+
+
           <h6>L'image de votre annonce</h6>
           <div class="uploadImageForm">
             <label>
@@ -84,13 +111,18 @@
               </div>
             </label>
           </div>
+          
+          <div class="error" v-if="imageEmpty">
+            Pour plus de visibilité sur le site, vous devez mettre une image
+          </div>
+
 
           <div>
             <button class="button-enregistrer">Enregistrer mon annonce</button>
           </div>
         </form>
 
-        <!-- <div class="homeLink">
+        <div class="homeLink">
           <router-link
             :to="{
               name: 'Home',
@@ -98,7 +130,7 @@
           >
             <button class="button-retour-home">Retouner vers la page d'accueil</button>
           </router-link>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -116,15 +148,23 @@ export default {
   data() {
     return {
       title: "",
+      titleEmpty: false,
       description: "",
+      descriptionEmpty: false,
       states: [],
       price: "",
+      priceEmpty: false,
       selectedState: "",
+      stateEmpty: false,
       selectedCategory: "",
+      categoryEmpty: false,
       selectedDeliveryMethod: "",
+      deliveryEmpty: false,
       content: "",
+      contentEmpty: false,
       image: null,
       imageId: null,
+      imageEmpty: false,
     };
   },
   async created() {
@@ -136,7 +176,43 @@ export default {
   methods: {
     async handleSubmit(event) {
       event.preventDefault();
-      const result = await classifiedsService.createClassified(
+
+      if(this.title == ""){
+      this.titleEmpty = true;
+      }
+      if(this.description == ""){
+        this.descriptionEmpty = true;
+      }
+      if(this.selectedState == ""){
+        this.stateEmpty = true;
+      }
+      if(this.selectedCategory ==""){
+        this.categoryEmpty = true;
+      }
+      if(this.price == ""){
+        this.priceEmpty = true;
+      }
+      if(this.selectedDeliveryMethod ==""){
+        this.deliveryEmpty = true;
+      }
+      if(this.content == ""){
+        this.contentEmpty = true;
+      }
+      if(this.imageId == ""){
+        this.imageEmpty = true;
+      }
+
+      if(
+        !this.titleEmpty &&
+        !this.descriptionEmpty &&
+        !this.stateEmpty &&
+        !this.categoryEmpty &&
+        !this.priceEmpty &&
+        !this.deliveryEmpty &&
+        !this.contentEmpty &&
+        !this.imageEmpty
+      ){
+        const result = await classifiedsService.createClassified(
         this.title,
         this.description,
         this.selectedState,
@@ -145,12 +221,17 @@ export default {
         this.selectedDeliveryMethod,
         this.content,
         this.imageId
-      );
-      if (result) {
+        );
+        if (result) {
         this.$router.push({ name: "Home" });
         return result;
-      } else {
+        } else {
         this.createFail = true;
+        }
+
+      
+      }else{
+        console.log('Les champs obligatoires ne sont pas renseignés')
       }
     },
     async uploadImage(event) {
@@ -192,6 +273,7 @@ export default {
   width: 100%;
 }
 button {
+  height: 38px;
   font-size: 12px;
   font-weight: 700;
   padding: 0.5em 1em;
@@ -199,23 +281,21 @@ button {
   margin-top: 0.5em;
   transition: all 0.3s;
   cursor: pointer;
+  border: none;
 }
 .button-enregistrer {
   margin-top: 2em;
   background-color: $main-green;
   color:#fff;
-  border: solid 1px $main-green;
   width: 100%;
 }
 .button-retour-home {
   background-color: #fff;
   color:$main-green;
-  border: solid 1px $main-green
 }
 button:hover {
-  background-color: $main-green;
+  background-color: $secondary-green;
   color: #fff;
-  border: solid 1px $main-green;
 }
 .main-container div:first-child {
   position: relative;

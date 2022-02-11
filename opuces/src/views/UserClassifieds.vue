@@ -8,7 +8,7 @@
       <div id="display-annonces">
         <h2>Mes Annonces</h2>
       </div>
-      <div>
+      <div class="userCardList">
         <UserCardsList />
       </div>
     </div>
@@ -34,14 +34,17 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../assets/scss/main";
-
+.userCardList {
+  display:flex;
+  
+  margin:20px 0 120px 0;
+}
 .main-container {
   position: relative;
   top: 70px;
 }
 #display-annonces {
   display: flex;
-  justify-content: space-between;
   padding-bottom: 1em;
 }
 h2 {
@@ -55,11 +58,17 @@ h2 {
   .illusLamp {
     display: none;
   }
+  .userCardList {
+  display:flex;
+  margin:0 auto;
+  width:100%;
+}
 }
 @media screen and (min-width: 768px) {
   .illusLamp {
     display: none;
   }
+  
 }
 @media screen and (min-width: 992px) {
   .illusLamp {

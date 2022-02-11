@@ -6,7 +6,7 @@
           <router-link :to="{ name: 'Home' }">
             <div class="home-link">
               <Logo class="logo" />
-              <h1>O'puces</h1>
+              <h1>Contact</h1>
             </div>
           </router-link>
         </div>
@@ -96,7 +96,7 @@ PictoEye
       try {
         emailjs.sendForm(
           "service_23ritqp",
-          "template_t6hafqo",
+          "template_7p13msm",
           e.target,
           "user_S0Gnpuir0FKyLOHzHOp9L",
           {
@@ -107,6 +107,7 @@ PictoEye
           }
         );
         console.log("it works!!!");
+        this.$router.push({ name:'Home'})
       } catch (error) {
         console.log({ error });
       }
@@ -116,6 +117,7 @@ PictoEye
       this.name = "";
       this.email = "";
     },
+    
   },
 };
 </script>
@@ -156,6 +158,9 @@ input {
   background-color: #f2f2f2;
   padding: 20px;
   width: 50%;
+}
+.main-container{
+  padding-top: 5rem;
 }
 .left div:first-child {
   position: relative;

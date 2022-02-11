@@ -25,6 +25,22 @@ import DeleteClassified from '../views/DeleteClassified.vue'
 import Search from '../views/Search.vue'
 import About from '../views/About.vue'
 import UserCart from '../views/UserCart.vue'
+import PayementSuccess from '../views/PayementSuccess.vue'
+import CancelOrder from '../views/CancelOrder.vue'
+import UpdateEmail from '../views/UpdateEmail.vue'
+import UpdateUser from '../views/UpdateUser.vue'
+import UpdateClassified from '../views/UpdateClassified.vue'
+
+import DeleteUser from '../views/DeleteUser.vue'
+import DeleteUserConfirmation from '../views/DeleteUserConfirmation.vue'
+import SearchClassifiedsList from '../views/SearchClassifiedsList.vue'
+import SearchClassifiedsListByMulti from '../views/SearchClassifiedsListByMulti.vue'
+import KnowMore from '../views/KnowMore.vue'
+import BuyOrContinue from '../views/BuyOrContinue.vue'
+import CartEmpty from '../views/CartEmpty.vue'
+import ConfirmDeleteClassified from '../views/ConfirmDeleteClassified.vue'
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -117,7 +133,76 @@ const routes = [
     component: UserCart
   },
   {
+    path: '/payement-success',
+    name: 'PayementSuccess',
+    component: PayementSuccess
+  },
+  {
+    path: '/order-canceled',
+    name: 'CancelOrder',
+    component: CancelOrder
+  },
+  {
+    path: '/update-email',
+    name: 'UpdateEmail',
+    component: UpdateEmail
+  },
+  {
+    path: '/update-user',
+    name: 'UpdateUser',
+    component: UpdateUser
+  },
+  {
+    path: '/update-classified',
+    name: 'UpdateClassified',
+    component: UpdateClassified
+  },
+  {
+    path: '/delete-account',
+    name: 'DeleteUser',
+    component: DeleteUser
+  },
+  {
+    path: '/delete-account-Confirmation',
+    name: 'DeleteUserConfirmation',
+    component: DeleteUserConfirmation
+  },
+  {
+    path: '/search-list',
+    name: 'SearchClassifiedsList',
+    component: SearchClassifiedsList
+  },
+  {
+    path: '/search-list-multi',
+    name: 'SearchClassifiedsListByMulti',
+    component: SearchClassifiedsListByMulti
+  },
+  {
+    path: '/about-you',
+    name: 'KnowMore',
+    component: KnowMore
+  },
+  {
+    path: '/continue',
+    name: 'BuyOrContinue',
+    component: BuyOrContinue
+  },
+  {
+    path: '/cart-empty',
+    name: 'CartEmpty',
+    component: CartEmpty
+  },
+  {
+    path: '/delete-classifiedconfirm',
+    name: 'ConfirmDeleteClassified',
+    component: ConfirmDeleteClassified
+  },
+  {
     path: '*',
+    redirect: '/404'
+  },
+  {
+    path: '/404',
     component: ErrorPages
   }
 ]

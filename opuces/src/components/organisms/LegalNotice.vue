@@ -1,13 +1,9 @@
 <template>
   <div>
-    <div class="title-cgu-container">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <button class="--button connect">Retour à l'accueil</button>
-      </router-link>
+    <div class="title-cgu-container" id="scroll-top">
+      <div class="illusLamp">
+      <IllusLamp />
+    </div>
     </div>
     <div class="main-container">
       <div class="cgu-container">
@@ -75,12 +71,18 @@
         </p>
       </div>
     </div>
+    <a href="#scroll-top" id="pictoNav"><PictoNav/></a>
   </div>
 </template>
 <script>
+import PictoNav from "../atoms/PictoNav";
+import IllusLamp from "../../components/atoms/IllusLamp.vue";
 export default {
   name: "CGU",
-  components: {},
+  components: {
+    PictoNav,
+    IllusLamp
+  },
 };
 </script>
 
@@ -90,7 +92,29 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 20px;
+}
+.illusLamp {
+    display: none;
+  }
+.cgu-container {
+  
+  margin: 0 auto;
+  padding: 15px;
+
+}
+.cgu-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 900px;
+}
+.main-container{
+  margin-top:100px;
+}
+.title-cgu-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position:relative;
 }
 .title-cgu-container img {
   margin-right: 15px;
@@ -101,45 +125,123 @@ export default {
   font-size: 24px;
   font-weight: 900px;
 }
-.cgu-container {
-  margin: 15px;
-  padding: 15px;
-}
-.cgu-container h2 {
+#cgu-container h2 {
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 900px;
 }
-.--button {
+#cgu-container {
+  margin: 0 auto;
+  padding: 15px;
+}
+.--button:hover {
+  background-color: $secondary-green;
+}
+#pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  
+}
+@media screen and (min-width: 576px) {
+  .illusLamp {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .illusLamp {
+    display: none;
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  
+}
+}
+@media screen and (min-width: 992px) {
+.illusLamp {
+    display: none;
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
+  .cgu-container {
+  width:55em;
+}
+}
+@media screen and (min-width: 1200px) {
+  .illusLamp {
+    display: none;
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
+}
+@media screen and (min-width: 1400px) {
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left:10%;
+    top:0;
+    
+  }
+  #pictoNav {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:$main-green;
+  position:fixed;
+  transform:rotate(180deg);
+  bottom:50px;
+  right: 50px;
+  display:none;
+}
+    .--button {
   border-radius: 19px;
   padding: 1px;
-  width: 345px;
+  position:fixed;
+  top:150px;
+  left:150px;
   height: 38px;
   color: white;
   background-color: $main-green;
-  width: 100%;
+  width: 160px;
   border: none;
-  margin: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
   font-weight: 900px;
   cursor: pointer;
-  margin-top: 100px;
+
   transition: all 0.3s;
 }
-.--button:hover {
-  background-color: $secondary-green;
-}
-@media screen and (min-width: 576px) {
-}
-@media screen and (min-width: 768px) {
-}
-@media screen and (min-width: 992px) {
-}
-@media screen and (min-width: 1200px) {
-}
-@media screen and (min-width: 1400px) {
 }
 </style>

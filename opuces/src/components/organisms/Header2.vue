@@ -33,7 +33,7 @@
                   name: 'Myaccount',
                 }"
               >
-                <li><PictoCompte /><span>Mon compte</span></li>
+                <li @click="StoreUserId"><PictoCompte /><span>Mon compte</span></li>
               </router-link>
 
               <router-link
@@ -170,6 +170,14 @@
     <div class="header-bottom">
         <ul>
           <router-link
+            :to="{
+              name: 'Home',
+            }"
+          >
+            
+          <li>Accueil</li>
+          </router-link>
+          <router-link
             v-if="user"
             :to="{
               name: 'CreateClassified',
@@ -183,7 +191,7 @@
               name: 'Myaccount',
             }"
           >
-          <li>Mon compte</li>
+          <li @click="StoreUserId">Mon compte</li>
           </router-link>
           <router-link
             v-if="user"
@@ -270,9 +278,10 @@ import PictoMail from "../atoms/PictoMail";
 import PictoClose from "../atoms/PictoClose.vue";
 import PictoAdd2 from "../atoms/PictoAdd2.vue";
 
-
+import classifiedsService from "../../services/classifiedsService"
 import Logo from "../atoms/Logo";
 
+import storage from "../../plugins/storage";
 
 export default {
   name: "Header2",
@@ -289,13 +298,23 @@ export default {
   },
   computed: {
     user() {
-      if (this.$store.state.user) {
-        return this.$store.state.user;
+      const user = storage.get('userData');
+      if (user || this.$store.state.user) {
+        this.$store.state.user;
+        return user;
       } else {
         return false;
       }
     },
   },
+  methods: {
+    async StoreUserId(event){
+      event.preventDefault();
+      this.id = await classifiedsService.loadAuthor();
+      storage.set("UserIdLogged", this.id);
+      this.$router.push({name: 'Myaccount'});
+    }
+  }
 };
 </script>
 <style lang="scss">
@@ -307,11 +326,24 @@ export default {
     fill: $secondary-green;
     width: 70px;
   }
+.title-cgu-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position:relative;
+}
+.illusLamp {
+    display: none;
+  }
 @media screen and (min-width: 576px) {
-   
+   .illusLamp {
+    display: none;
+  }
   }
 @media screen and (min-width: 768px) {
-  
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 992px) {
   #left-header-desktop #logo {
@@ -321,16 +353,28 @@ export default {
   #left-header-desktop:hover #logo {
     fill: $secondary-green;
   }
+  .illusLamp {
+    display: none;
+  }
 }
 @media screen and (min-width: 1200px) {
-  
+  .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 @media screen and (min-width: 1400px) {
-    
+    .illusLamp {
+    display: inline-block;
+    position: fixed;
+    margin-left: 6%;
+  }
 }
 </style>
 <style scoped lang="scss">
 @import "../../assets/scss/main";
+
 .header-bottom {
   display: none;
 }
@@ -368,7 +412,9 @@ export default {
 #left-header-mobile:hover {
   transform: scale(1.05);
 }
-
+#right-header-desktop h3 {
+  font-size: 12px;
+}
 header {
   position: fixed;
   z-index: 1;
@@ -403,7 +449,6 @@ header {
 }
 .sub-nav li {
   border-bottom: solid 1px black;
-  padding: 25px 25px 25px 10px;
   width: 100%;
   margin-top: 25px;
   height: 37px;
@@ -445,6 +490,7 @@ li svg {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  border-bottom:1px solid black;
 }
 .disconect--button span {
   color: $main-green;
