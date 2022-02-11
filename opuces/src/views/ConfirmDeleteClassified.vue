@@ -88,24 +88,33 @@ img{
   justify-content: space-around;
 }
 button {
-  margin-top: 2em;
-  background-color: $main-green;
   border-radius: 19px;
   padding: 1px;
+  width: 345px;
   height: 38px;
   color: white;
-  width: 500px;
+  width: 100%;
   border: none;
+  margin-top: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   font-weight: 900px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all .3s;
+}
+h2{
+  text-align: center;
 }
 button:hover {
   background-color: $secondary-green;
 }
 .button{
-    width: 50%;
+    width: 100%;
+}
+.connect {
+  background-color: $main-green;
 }
 .delete{
     background-color: #fff;
