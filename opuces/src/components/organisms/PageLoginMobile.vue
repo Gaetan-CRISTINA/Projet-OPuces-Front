@@ -182,13 +182,14 @@ h1 {
   display: flex;
   justify-content: center;
   align-items:center;
-  
+  flex-direction: column;
   
 }
 .new-account a{
   display:flex;
   justify-content: center;
   align-items:center;
+  text-align: center;
   width: 100%;
   height: 38px;
   background-color: $main-green;

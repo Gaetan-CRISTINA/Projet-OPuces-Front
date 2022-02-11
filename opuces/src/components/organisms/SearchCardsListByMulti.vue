@@ -50,6 +50,7 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    margin-bottom: 160px;
 }
 .unitCard{
     transition: all .2s ease-in-out

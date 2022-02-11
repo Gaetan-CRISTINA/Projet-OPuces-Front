@@ -198,12 +198,13 @@ const routes = [
     component: ConfirmDeleteClassified
   },
   {
-    path: '*',
-    redirect: '/404'
+    path: '/404',
+    name: 'ErrorPages',
+    component: ErrorPages
   },
   {
-    path: '/404',
-    component: ErrorPages
+    path: '*',
+    redirect: '/404'
   }
 ]
 
