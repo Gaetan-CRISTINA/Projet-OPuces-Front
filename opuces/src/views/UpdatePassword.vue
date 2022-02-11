@@ -159,8 +159,8 @@ export default {
 .main-container {
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items:center;
   position: absolute;
   margin-top: 7rem;
 }
@@ -170,7 +170,7 @@ export default {
 .left{
   display: flex;
   flex-direction: column;
-  margin-right: 15%;
+  
 }
 button {
   margin-top: 2em;
@@ -205,6 +205,9 @@ textarea:focus {
 .illusLamp {
   display: none;
 }
+.right {
+  display:none;
+}
 
 @media screen and (min-width: 576px) {
   .illusLamp {
@@ -231,12 +234,19 @@ textarea:focus {
   .main-container{
     flex-direction: row;
   }
-  
+  .right {
+    display: block;
+    margin-left:60px;
+    }
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
     display: none;
   }
+  .right {
+    display: block;
+    margin-left:80px;
+    }
 }
 @media screen and (min-width: 1400px) {
   .illusLamp {
@@ -244,5 +254,9 @@ textarea:focus {
     position: fixed;
     margin-left: 6%;
   }
+  .right {
+    display: block;
+    margin-left:100px;
+    }
 }
 </style>
