@@ -47,9 +47,17 @@
     </router-link>
   </div>
 
-
+<router-link
+    v-if="!user"
+      :to="{
+        name: 'LoginForm',
+      }"
+    >
+      <PictoUser />
+    </router-link>
 
     <router-link
+    v-if="user"
       :to="{
         name: 'UserClassifieds',
       }"
@@ -68,6 +76,7 @@ import PictoSearch from "../atoms/PictoSearch";
 import storage from "../../plugins/storage";
 import PictoEmptyCart from "../atoms/PictoEmptyCart";
 import PictoFullCart from "../atoms/PictoFullCart";
+import PictoUser from "../atoms/PictoUser.vue";
 
 export default {
   name: "TabBar",
@@ -78,6 +87,7 @@ export default {
     PictoSearch,
     PictoFullCart,
     PictoEmptyCart,
+    PictoUser
   },
   computed: {
     user() {
