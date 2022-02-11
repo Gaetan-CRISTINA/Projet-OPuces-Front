@@ -361,6 +361,7 @@ button {
   color: #fff;
   border: solid 1px $main-green;
 }
+
 .delete:hover {
   background-color: $social-google;
   color: white;
