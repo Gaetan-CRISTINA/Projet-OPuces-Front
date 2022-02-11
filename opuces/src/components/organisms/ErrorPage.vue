@@ -4,37 +4,38 @@
     <div class="illusLamp">
       <IllusLamp />
     </div>
-    <div class="error-text">
-      <span>OUPS !</span>
-      <p>
-        Il n'y a rien sur cette page, elle a peut-être été supprimée, ou elle
-        n'a jamais existé !
-      </p>
-    </div>
-    <div class="error-button">
-      <router-link
-        :to="{
-          name: 'Home',
-        }"
-      >
-        <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
-      </router-link>
-      <a href="" id="useless2" v-on:click="handleclick"
-        >FAIRE UN TRUC INUTILE</a
-      >
-    </div>
-    <div class="svgFlex">
-      <div class="svg">
-        <img src="../../assets/svg/Quatre.svg" alt="" />
+    <div class="main-container">
+      <div class="error-text">
+        <span>OUPS !</span>
+        <p>
+          Il n'y a rien sur cette page, elle a peut-être été supprimée, ou elle
+          n'a jamais existé !
+        </p>
       </div>
-      <div class="svg">
-        <IllusPlane />
+      <div class="error-button">
+        <router-link
+          :to="{
+            name: 'Home',
+          }"
+        >
+          <a href="" class="useless">RETOURNER A L'ACCUEIL</a>
+        </router-link>
+        <a href="" id="useless2" v-on:click="handleclick"
+          >FAIRE UN TRUC INUTILE</a
+        >
       </div>
-      <div class="svg">
-        <img src="../../assets/svg/Quatre.svg" alt="" />
+      <div class="svgFlex">
+        <div class="svg">
+          <img src="../../assets/svg/Quatre.svg" alt="" />
+        </div>
+        <div class="svg">
+          <IllusPlane />
+        </div>
+        <div class="svg">
+          <img src="../../assets/svg/Quatre.svg" alt="" />
+        </div>
       </div>
     </div>
-  
   </div>
 </template>
 
@@ -47,7 +48,7 @@ export default {
   components: {
     Header2,
     IllusPlane,
-    IllusLamp
+    IllusLamp,
   },
 };
 </script>
@@ -74,7 +75,6 @@ export default {
   text-align: center;
   justify-content: center;
   flex-direction: column;
-  margin: 4em;
 }
 .error-text span {
   font-weight: 700;
@@ -90,6 +90,7 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 3rem;
 }
 .error-button a {
   margin: 1em;
@@ -115,11 +116,17 @@ export default {
   .svgFlex {
     display: none;
   }
+  .main-container{
+  margin-top: 8rem;
+}
 }
 @media screen and (min-width: 768px) {
   .svgFlex {
     display: none;
   }
+  .main-container{
+  margin-top: 8rem;
+}
 }
 @media screen and (min-width: 992px) {
   .svg img {
@@ -131,16 +138,22 @@ export default {
     justify-content: center;
     margin: 10%;
   }
-  
-  
+  .main-container{
+  margin-top: 8rem;
+}
 }
 @media screen and (min-width: 1200px) {
   .error-button {
     display: block;
   }
+  .main-container{
+  margin-top: 8rem;
+}
 }
 @media screen and (min-width: 1400px) {
- 
+  .main-container{
+  margin-top: 8rem;
+}
 }
 </style>
 
