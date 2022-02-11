@@ -91,7 +91,7 @@ button {
   color: white;
   width: 100%;
   border: none;
-  margin: 17px;
+  margin-top: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,15 +100,17 @@ button {
   cursor: pointer;
   transition: all .3s;
 }
+h2{
+  text-align: center;
+}
 button:hover {
   background-color: $secondary-green;
 }
 .button{
-    width: 50%;
+    width: 100%;
 }
 .connect {
   background-color: $main-green;
-  margin: 28px 0 38px 0;
 }
 @media screen and (min-width: 576px) {
   .illusLamp {
