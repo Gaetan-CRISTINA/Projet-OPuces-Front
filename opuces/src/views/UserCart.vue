@@ -140,8 +140,10 @@
         />
 
         <button class="pay" v-if="userInfos" >Procéder au paiement</button>
-      </form>
-      <div class="span">
+        
+        <span class="delete" @click="UnsetStoreClassified">
+        Annuler ma commande
+      </span>
       <router-link
         :to="{
           name: 'Home',
@@ -149,11 +151,13 @@
       >
         <span class="waitToPay">Je réfléchis, encore !</span>
       </router-link>
+      
+      </form>
+      
+      
 
-      <span class="delete" @click="UnsetStoreClassified">
-        Annuler ma commande
-      </span>
-      </div>
+      
+      
     </div>
   </div>
 </template>
@@ -306,6 +310,11 @@ form .pay {
   transition: all 0.3s;
   cursor: pointer;
 }
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .hidden {
   display: none;
 }
@@ -323,7 +332,7 @@ form span {
 }
 .display-cart {
   border: 1px solid $main-green;
-  margin: 8rem 1rem 0;
+  margin: 5rem 1rem 0;
   padding: 2rem;
 }
 .display-user {
@@ -369,6 +378,12 @@ button {
   .illusLamp {
     display: none;
   }
+  form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 }
 @media screen and (min-width: 768px) {
   .display-user,
@@ -391,11 +406,32 @@ button {
   .illusLamp {
     display: none;
   }
+  .display-cart {
+  border: 1px solid $main-green;
+  margin: 8rem 1rem 0;
+  padding: 2rem;
+  
+}
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
     display: none;
   }
+  .display-cart {
+  border: 1px solid $main-green;
+  margin: 8rem 1rem 0;
+  padding: 2rem;
+}
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
   
 }
 @media screen and (min-width: 1400px) {
@@ -404,6 +440,16 @@ button {
     position: fixed;
     margin-left: 6%;
   }
+  .display-cart {
+  border: 1px solid $main-green;
+  margin: 8rem 1rem 0;
+  padding: 2rem;
+}
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
   
 }
 </style>
