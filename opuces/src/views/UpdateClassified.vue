@@ -199,9 +199,9 @@ export default {
     },
     getImage(){
         if (this.userClassifieds._embedded['wp:featuredmedia'][0].source_url){
-            return this.userClassifieds._embedded['wp:featuredmedia'][0].source_url
+            return this.userClassifieds._embedded['wp:featuredmedia'][0].source_url;
         } else {
-        return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
+            return "https://media.istockphoto.com/vectors/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-vector-id1128826884?k=20&m=1128826884&s=612x612&w=0&h=3GMtsYpW6jmRY9L47CwA-Ou0yYIc5BXRQZmcc81MT78=";
         }
     }
   },
