@@ -6,7 +6,7 @@
           <router-link :to="{ name: 'Home' }">
             <div class="home-link">
               <Logo class="logo" />
-              <h1>O'Puces</h1>
+              <h1>Contact</h1>
             </div>
           </router-link>
         </div>
