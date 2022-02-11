@@ -218,6 +218,7 @@ export default {
     justify-content: space-between;
   }
   form {
+    margin-top:15px;
   width: 100%;
   max-width: 400px;
 }
