@@ -50,7 +50,7 @@
             />
           </label>
           <div class="error" v-if="newPasswordVerifyEmpty">
-            Vous devez saisir un password
+            Vous devez saisir un mot de passe
           </div>
           <div class="error" v-if="newPasswordConfirm">
             Les mots de passe ne correspondent pas.
@@ -153,26 +153,33 @@ export default {
   },
 };
 </script>
-
+<style  lang="scss">
+@import "../assets/scss/main.scss";
+.error {padding:5px 0 5px 0; color:$social-google;
+}
+</style>
 <style scoped lang="scss">
 @import "../assets/scss/main.scss";
 .main-container {
   width: 100%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items:center;
   position: absolute;
   margin-top: 7rem;
 }
 .left, .right{
   margin-top: 10rem;
 }
-.left{
+.left {
   display: flex;
+  
+  justify-content:center;
   flex-direction: column;
-  margin-right: 15%;
+  
 }
-button {
+
+.--button {
   margin-top: 2em;
   background-color: $main-green;
   border-radius: 19px;
@@ -189,6 +196,7 @@ button {
 button:hover {
   background-color: $secondary-green;
 }
+
 input {
   height: 38px;
   background-color: $light-grey;
@@ -204,6 +212,9 @@ textarea:focus {
 }
 .illusLamp {
   display: none;
+}
+.right {
+  display:none;
 }
 
 @media screen and (min-width: 576px) {
@@ -231,12 +242,19 @@ textarea:focus {
   .main-container{
     flex-direction: row;
   }
-  
+  .right {
+    display: block;
+    margin-left:60px;
+    }
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
     display: none;
   }
+  .right {
+    display: block;
+    margin-left:80px;
+    }
 }
 @media screen and (min-width: 1400px) {
   .illusLamp {
@@ -244,5 +262,9 @@ textarea:focus {
     position: fixed;
     margin-left: 6%;
   }
+  .right {
+    display: block;
+    margin-left:100px;
+    }
 }
 </style>

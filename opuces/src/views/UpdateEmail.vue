@@ -144,10 +144,12 @@ export default {
 }
 .left {
   display: flex;
+  
+  justify-content:center;
   flex-direction: column;
-  margin-right: 15%;
 }
-button {
+
+.--button {
   margin-top: 2em;
   background-color: $main-green;
   border-radius: 19px;
@@ -171,6 +173,7 @@ input {
   border-radius: 6px;
   padding-left: 1em;
   width: 100%;
+  margin-bottom:15px;
 }
 input:focus,
 select:focus,
@@ -180,7 +183,9 @@ textarea:focus {
 .illusLamp {
   display: none;
 }
-
+.right {
+  display:none;
+}
 @media screen and (min-width: 576px) {
   .illusLamp {
     display: none;
@@ -206,11 +211,19 @@ textarea:focus {
   .main-container {
     flex-direction: row;
   }
+  .right {
+    display: block;
+    margin-left:60px;
+    }
 }
 @media screen and (min-width: 1200px) {
   .illusLamp {
     display: none;
   }
+  .right {
+    display: block;
+    margin-left:80px;
+    }
 }
 @media screen and (min-width: 1400px) {
   .illusLamp {
@@ -218,5 +231,9 @@ textarea:focus {
     position: fixed;
     margin-left: 6%;
   }
+  .right {
+    display: block;
+    margin-left:100px;
+    }
 }
 </style>

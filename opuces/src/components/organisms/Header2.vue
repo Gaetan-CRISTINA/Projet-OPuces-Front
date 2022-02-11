@@ -449,7 +449,6 @@ header {
 }
 .sub-nav li {
   border-bottom: solid 1px black;
-  padding: 25px 25px 25px 10px;
   width: 100%;
   margin-top: 25px;
   height: 37px;
@@ -491,6 +490,7 @@ li svg {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  border-bottom:1px solid black;
 }
 .disconect--button span {
   color: $main-green;

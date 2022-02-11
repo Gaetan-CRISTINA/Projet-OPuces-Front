@@ -8,14 +8,14 @@
       <div class="display-cart">
         <h3>Récapitulatif de la commande n° {{ classifiedToBuy.id }}</h3>
 
-        <h1>Titre de l'annonce</h1>
+        <h6>Titre de l'annonce</h6>
         <p>{{ classifiedToBuy.title.rendered }}</p>
-        <h1>Description</h1>
+        <h6>Description</h6>
         <p v-html="classifiedToBuy.content.rendered"></p>
-        <h1>Prix</h1>
+        <h6>Prix</h6>
         <p>{{ classifiedToBuy.classifiedPrice }} €</p>
 
-        <h1>Mode de livraison</h1>
+        <h6>Mode de livraison</h6>
         <p>{{ classifiedToBuy._embedded["wp:term"][1][0]["name"] }}</p>
       </div>
 
@@ -24,16 +24,16 @@
         <div v-if="userInfos">
         
 
-        <h1>Nom et prénom</h1>
+        <h6>Nom et prénom</h6>
         <p>{{ userAdress[0].lastname }} {{ userAdress[0].firstname }}</p>
-        <h1>Adresse</h1>
+        <h6>Adresse</h6>
         <p>{{ userAdress[0].adress1 }}</p>
         <p>{{ userAdress[0].adress2 }}</p>
-        <h1>Code Postal</h1>
+        <h6>Code Postal</h6>
         <p>{{ userAdress[0].zipcode }}</p>
-        <h1>Ville</h1>
+        <h6>Ville</h6>
         <p>{{ userAdress[0].city }}</p>
-        <h1>Numéro de téléphone</h1>
+        <h6>Numéro de téléphone</h6>
         <p>0{{ userAdress[0].phone_number }}</p>
 
         <router-link
@@ -286,7 +286,9 @@ export default {
 }
 .main-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: column;
+  align-items:center;
 }
 h3 {
   margin-bottom: 15px;
@@ -314,15 +316,23 @@ form .pay {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 form span {
   margin: 10px;
 }
-.display-user,
 .display-cart {
   border: 1px solid $main-green;
-  margin: 8rem 1rem;
+  margin: 8rem 1rem 0;
   padding: 2rem;
+}
+.display-user {
+  border: 1px solid $main-green;
+  margin: 2rem 1rem 2rem;
+  padding: 2rem;
+}
+h6 {
+  color:$main-green;
 }
 span,
 button {
@@ -367,6 +377,12 @@ button {
   .illusLamp {
     display: none;
   }
+  .align-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
 }
 @media screen and (min-width: 992px) {
   .illusLamp {
@@ -377,6 +393,7 @@ button {
   .illusLamp {
     display: none;
   }
+  
 }
 @media screen and (min-width: 1400px) {
   .illusLamp {
@@ -384,5 +401,6 @@ button {
     position: fixed;
     margin-left: 6%;
   }
+  
 }
 </style>

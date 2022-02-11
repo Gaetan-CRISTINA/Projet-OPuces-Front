@@ -290,11 +290,12 @@ button {
   color: $main-green;
   padding: 0.5em 1em;
   border-radius: 22px;
-  border: solid 1px $main-green;
+ 
   background-color: #fff;
   margin-top: 0.5em;
   transition: all 0.3s;
   cursor: pointer;
+  border: none;
 }
 button:hover {
   background-color: $main-green;

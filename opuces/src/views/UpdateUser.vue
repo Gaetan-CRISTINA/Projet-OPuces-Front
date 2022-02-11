@@ -218,6 +218,7 @@ export default {
     justify-content: space-between;
   }
   form {
+    
   width: 100%;
   max-width: 400px;
 }
@@ -228,6 +229,7 @@ h6 {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top:60px;
 }
 .illusLamp {
   display: none;
