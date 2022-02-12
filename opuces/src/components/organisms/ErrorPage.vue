@@ -75,6 +75,10 @@ export default {
   text-align: center;
   justify-content: center;
   flex-direction: column;
+<<<<<<< HEAD
+=======
+  padding:8em;
+>>>>>>> 8d7f74d88d0381f2c4bd4692e5d8174f09db15de
 }
 .error-text span {
   font-weight: 700;

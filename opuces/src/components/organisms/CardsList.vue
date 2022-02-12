@@ -47,9 +47,12 @@ export default {
     justify-content: space-evenly;
     align-items: flex-start;
     margin: 10px;
+<<<<<<< HEAD
     margin-bottom: 160px;
     
     
+=======
+>>>>>>> 8d7f74d88d0381f2c4bd4692e5d8174f09db15de
 }
 .unitCard{
     transition: all .2s ease-in-out;

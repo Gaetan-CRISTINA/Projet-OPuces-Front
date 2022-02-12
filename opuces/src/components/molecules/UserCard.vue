@@ -235,7 +235,6 @@ button:hover {
 }
 .img-annoce {
   position: relative;
-  // background-image: url("https://picsum.photos/400/600");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -243,6 +242,9 @@ button:hover {
   width: 100%;
   height: 150px;
   margin-bottom: 1em;
+  overflow: hidden;
+  object-fit:cover;
+  height: 100%;
 }
 .flex {
   display: flex;
