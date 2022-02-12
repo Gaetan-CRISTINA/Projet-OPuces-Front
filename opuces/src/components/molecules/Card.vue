@@ -354,12 +354,9 @@ button:hover {
   width: 100%;
   margin-bottom: 1em;
   overflow: hidden;
-<<<<<<< HEAD
   object-fit: cover;
   height: 100%;
-=======
-  object-fit:cover;
->>>>>>> 8d7f74d88d0381f2c4bd4692e5d8174f09db15de
+
 }
 .flex {
   display: flex;
