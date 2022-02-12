@@ -47,8 +47,6 @@ export default {
     justify-content: space-evenly;
     align-items: flex-start;
     margin: 10px;
-    
-    
 }
 .unitCard{
     transition: all .2s ease-in-out;

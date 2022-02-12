@@ -339,17 +339,14 @@ button:hover {
 }
 .img-annoce {
   position: relative;
-  // background-image: url("https://picsum.photos/400/600");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   border-radius: 44px 44px 0 0;
   width: 100%;
-  height: 150px;
   margin-bottom: 1em;
   overflow: hidden;
   object-fit:cover;
-
   height: 100%;
 }
 .flex {
