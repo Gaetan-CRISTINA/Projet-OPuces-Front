@@ -74,7 +74,7 @@ export default {
   text-align: center;
   justify-content: center;
   flex-direction: column;
-  margin: 4em;
+  padding:8em;
 }
 .error-text span {
   font-weight: 700;
